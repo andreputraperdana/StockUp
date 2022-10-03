@@ -1,0 +1,880 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+/* Halaman Utama */
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+#header {
+    background-color: #d7caa0;
+    height: 100vh;
+    position: relative;
+    border-radius: 0px 0px 0px 200px;
+}
+
+.logoStock {
+    font-size: 48px;
+    padding-right: 50px;
+    margin-bottom: -10px;
+    padding-top: 15px;
+}
+
+.highlight1 {
+    position: relative;
+    font-size: 44px;
+    animation-name: fadeout;
+    animation-duration: 2s;
+}
+
+.content {
+    font-size: 16px;
+    color: black;
+}
+
+.btn--text {
+    display: inline-block;
+    font-size: 25px;
+    background-color: #f4f4f4;
+    border: none;
+    padding-bottom: 6px;
+    padding-left: 6px;
+    padding-right: 2px;
+    transition: all 0.3s;
+    border-radius: 7px;
+    animation: moveInBottom 0.5s ease-out 2s;
+    animation-fill-mode: backwards;
+}
+@keyframes moveinleft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    80% {
+        transform: translateX(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes fadeout {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+.highlight {
+    font-size: 48px;
+    animation-name: moveinleft;
+    animation-duration: 2s;
+
+    /* animation-timing-function: ease-out; */
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(90px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+.imagestock {
+    padding-top: 45px;
+}
+.content {
+    animation-name: fadeout;
+    animation-duration: 2s;
+}
+
+.body_text {
+    padding-top: 70px;
+}
+
+.body_c {
+    padding-bottom: 30px;
+    transition: transform 1s, opacity 1s;
+}
+
+.line {
+    border-bottom: 5px solid #d7caa0;
+    width: 75%;
+    /* text-align: center; */
+}
+
+.col__icon_square > img {
+    height: 120px;
+    padding: 10px;
+}
+
+.col__icon_square {
+    width: 40%;
+    /* background-color: #eadca6; */
+    border: 5px solid #d7caa0;
+    border-radius: 50%;
+}
+
+.col {
+    padding-top: 50px;
+}
+
+.col__Text > p {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.col__desc {
+    color: black;
+    font-size: 16px;
+}
+
+.col__line {
+    border-left: 2px solid #d7caa0;
+    height: 250px;
+    /* text-align: center; */
+}
+/* .col__icon {
+
+} */
+
+/* .newline {
+    display: flex;
+    justify-content: center;
+} */
+
+.hidden {
+    opacity: 0;
+    transform: translateY(8rem);
+}
+.btn__login {
+    display: inline-block;
+    font-size: 25px;
+    background-color: #f4f4f4;
+    border: none;
+    color: black;
+    padding-bottom: 2px;
+    transition: all 0.3s;
+    border-radius: 7px;
+    padding: 2px 20px 2px 20px;
+}
+
+.btn__register {
+    display: inline-block;
+    font-size: 25px;
+    background-color: #f4f4f4;
+    border: none;
+    color: black;
+    padding-bottom: 2px;
+    transition: all 0.3s;
+    border-radius: 7px;
+    padding: 2px 20px 2px 20px;
+}
+
+.kotak {
+    border-style: ridge;
+    width: 30%;
+    border-radius: 9px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    margin: 0 auto;
+}
+
+/* Login  */
+
+.content__body {
+    height: 100vh;
+    background-color: #c7e0bc;
+    position: relative;
+}
+
+.logo {
+    font-size: 44px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.daftar {
+    color: black;
+}
+
+.daftar a {
+    border: none;
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.title > p {
+    font-size: 24px;
+    color: black;
+}
+
+.btn a {
+    color: black;
+}
+
+.icon {
+    position: absolute;
+    left: 58%;
+    top: 64%;
+}
+
+.icon > img {
+    height: 210px;
+    /* animation-name: fadeout;
+    animation-duration: 2s; */
+}
+
+.foot {
+    margin-top: 7%;
+    /* margin-bottom: 7%; */
+    padding-bottom: 40px;
+}
+
+.foot p {
+    font-weight: bold;
+    color: black;
+    font-size: 16px;
+}
+
+/* register */
+
+.text__daftar {
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.text__daftar::before,
+.text__daftar:after {
+    content: "";
+    flex: 1 1;
+    border-bottom: 1px solid;
+    margin: auto;
+}
+
+.text__daftar:before {
+    margin-right: 10px;
+}
+.text__daftar:after {
+    margin-left: 10px;
+}
+
+.judul > p {
+    font-size: 35px;
+}
+
+.menu_daftar {
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+}
+
+.btnUmkm {
+    border: 2px solid #d7caa0;
+    border-radius: 7px;
+    box-shadow: #f4f4f4 4px 4px 0 0;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 0 20px 0 18px;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.btnPemasok {
+    margin-left: 100px;
+    background-color: #f4f4f4;
+    border: 2px solid #d7caa0;
+    border-radius: 7px;
+    box-shadow: #f4f4f4 4px 4px 0 0;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 0 15px 0 18px;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    touch-action: manipulation;
+}
+
+.btnUmkm:hover,
+.btnPemasok:hover,
+.btnLogin:hover {
+    background-color: #f4f4f4;
+}
+
+.btnUmkm:active,
+.btnPemasok:active,
+.btnLogin:active {
+    background-color: #f4f4f4;
+}
+
+.btnUmkm:active {
+    box-shadow: #d7caa0 2px 2px 0 0;
+    transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+    .btnUmkm {
+        min-width: 120px;
+        padding: 0 25px;
+    }
+}
+
+@media (min-width: 768px) {
+    .btnLogin {
+        min-width: 120px;
+        padding: 0 25px;
+    }
+}
+
+.daftar__image {
+    position: relative;
+}
+
+.daftar__image__cover {
+    position: absolute;
+    top: 30%;
+    left: 18%;
+}
+
+.kategori {
+    background-color: transparent;
+    width: 100%;
+    border: 1px solid #626262;
+}
+
+.lines {
+    border-bottom: 1px solid black;
+    width: 89%;
+    opacity: 0.2;
+    /* text-align: center; */
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 100;
+    transition: all 0.5s;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.notif_success {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 35%;
+    height: 420px;
+    background-color: #f4f4f4;
+    z-index: 1000;
+    transition: all 0.5s;
+}
+
+.notif_image > img {
+    height: 200px;
+}
+
+.notif_text > p {
+    color: green;
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: -1px;
+}
+
+.sub_notif_text > p {
+    color: black;
+    font-size: 20px;
+}
+
+.btnLogin {
+    border-radius: 7px;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 16x;
+    padding: 0 20px 0 20px;
+    line-height: 35px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+/* beranda */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.side_bar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    background: #f4f4f4;
+    box-shadow: 5px 0 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+}
+
+.active {
+    width: 80px;
+}
+
+#footer {
+    background-color: #d7caa0;
+    height: 15vh;
+    border-radius: 0px 200px 0px 0px;
+    position: relative;
+}
+
+.footerCopy {
+    font-size: 20px;
+    padding-right: 55px;
+    padding-top: 50px;
+}
+
+.textmenu > p {
+    color: black;
+    /* margin-bottom: -10px; */
+    padding-left: 20px;
+    padding-top: 5px;
+}
+
+li {
+    padding-top: 50px;
+}
+
+.menu:hover {
+    background-color: #f4f4f4;
+}
+
+.iconmenu > img {
+    height: 30px;
+}
+
+.isi_konten {
+    position: absolute;
+    top: 0;
+    left: 8%;
+    transition: all 0.5s;
+}
+
+.tambah {
+    position: absolute;
+    top: 0;
+    left: 300px;
+    transition: all 0.5s;
+}
+
+.kotak_info1 {
+    border-radius: 25px;
+}
+
+#resp-table {
+    width: 100%;
+    display: table;
+    align-items: center;
+}
+.resp-table-body {
+    display: table-row-group;
+    transition: all 0.5s;
+    /* border: 1px solid black; */
+    /* justify-content: center; */
+}
+.resp-table-row {
+    /* display: table-row; */
+    border: 1px solid black;
+    transition: all 0.5s;
+    border-radius: 7px;
+}
+.table-body-cell {
+    display: table-cell;
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    width: 37%;
+    transition: all 0.5s;
+}
+
+.list_barang {
+    margin-top: 25px;
+    background-color: #f4f4f4;
+}
+
+.raja_list {
+    background-color: #f4f4f4;
+    border-radius: 2px;
+}
+
+.hide {
+    display: none;
+    opacity: 0;
+}
+
+/* Dropdown Button */
+.dropbutton {
+    background-color: #f4f4f4;
+    color: 000000;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f4f4f4;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #d7caa0;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #f4f4f4;
+}
+
+.chat {
+    background-color: #f4f4f4;
+}
+
+#btnBarang .btn {
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto,
+        sans-serif;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms;
+    border: 0;
+    font-size: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.angka > p {
+    margin-bottom: -1px;
+}
+
+/* Tambahbarang */
+.content_tambahbarang {
+    position: relative;
+}
+
+.isi_content_tambahbarang {
+    position: absolute;
+    top: 15%;
+    bottom: 0;
+    transform: translate(-50, -50);
+}
+
+.btn1 {
+    border: 2px solid #d7caa0;
+    border-radius: 7px;
+    box-shadow: #f4f4f4 4px 4px 0 0;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    width: 65px;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 0 25px 0 20px;
+    line-height: 27px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    transition: all 0.5s;
+}
+
+.btn2 {
+    border: 2px solid #d7caa0;
+    border-radius: 7px;
+    box-shadow: #f4f4f4 4px 4px 0 0;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    width: 65px;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 0 25px 0 20px;
+    line-height: 27px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    transition: all 0.5s;
+}
+
+.lines2 {
+    width: 20%;
+    text-align: center;
+    border-bottom: 1px solid black;
+    line-height: 0.1em;
+    margin: 10px 0 30px;
+}
+
+.lines3 {
+    width: 24.6%;
+    border-bottom: 1px solid black;
+}
+
+.lines4 {
+    border-bottom: 1px solid black;
+    width: 100%;
+    opacity: 0.2;
+    /* text-align: center; */
+}
+
+.menu_daftar2 {
+    display: flex;
+    justify-content: center;
+    /* padding-top: 15px; */
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: #d7caa0;
+    justify-content: center;
+    font-weight: bold;
+    color: black;
+}
+
+.button__rekomen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.daftar_kategori:hover {
+    transition: all 0.2s;
+    color: #d7caa0;
+}
+
+/* mengelolabarang */
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.btn__delete {
+    display: inline-block;
+    font-size: 25px;
+    background-color: #d7caa0;
+    border: none;
+    color: black;
+    padding-bottom: 2px;
+    transition: all 0.3s;
+    border-radius: 7px;
+    padding: 2px 20px 2px 20px;
+}
+
+.btn__expand,
+.btn__edit {
+    display: inline-block;
+    font-size: 25px;
+    background-color: #d7caa0;
+    border: none;
+    color: black;
+    padding-bottom: 2px;
+    transition: all 0.3s;
+    border-radius: 7px;
+    padding: 2px 20px 2px 20px;
+    /* transform: rotate(90deg); */
+}
+
+.btn__expand > a > img {
+    transition: all 0.5s;
+    /* transform: rotate(90deg); */
+    /* height: 70px; */
+}
+
+.item_list_hidden {
+    transition: all 0.5s;
+    transform: translateY(8rem);
+    opacity: 0;
+    display: none;
+}
+
+.item_list {
+    transition: all 0.5s;
+    opacity: 1;
+}
+/* .test1 {
+   padding-top: ;
+} */
+
+/* .expand {
+    height: 25px;
+    transform: rotate(0deg);
+    transition: all 0.5s;
+}
+
+.expand:hover {
+    transform: rotate(90deg);
+    transition: all 0.5s;
+} */
+
+/* Item */
+.nama_item {
+    padding-top: 35px;
+    padding-left: 80px;
+}
+
+.isi_deskripsi {
+    margin-top: -10px;
+}
+
+.produk_item {
+    display: flex;
+}
+
+.gambar_item {
+    margin-right: 100px;
+}
+
+.gambar_toko {
+    margin-right: 25px;
+}
+
+.data_toko {
+    display: flex;
+    margin-top: 50px;
+}
+
+.toko_tombol {
+    display: flex;
+}
+
+.produk_terkait {
+    margin-top: 50px;
+    margin-left: 80px;
+}
+
+.kotak_gambar_produk_terkait {
+    margin-right: 65px;
+}
+
+.btn_platform {
+    padding-left: 270px;
+}
+
+/* ul#menu_bar {
+    list-style: none;
+}
+ul#menu_bar li {
+    display: inline-block;
+    padding: 0.3em 0.5em;
+    position: relative;
+    overflow: hidden;
+}
+ul#menu_bar li::before {
+    position: absolute;
+    display: block;
+    content: "";
+    bottom: 0;
+    left: -100%;
+    width: 100%;
+    height: 5px;
+    transition: 0.4s;
+    background-color: #3399ff;
+}
+ul#menu_bar li.active::before,
+ul#menu_bar li:hover::before {
+    left: 0%;
+}
+ul#menu_bar li a {
+    text-decoration: none;
+} */
+
+a:hover {
+    color: aqua;
+    background-color: yellow;
+}
