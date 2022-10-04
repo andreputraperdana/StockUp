@@ -112,7 +112,7 @@
                                             Raw Material
                                         </div>
                                         <div class="table-body-cell">
-                                            20
+                                            21
                                         </div>
                                     </div>
                                 </div>
