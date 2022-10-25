@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('kategori');
             $table->bigInteger('nomortelp');
-            $table->foreignId('roleid')->constrained('role');
+            $table->foreignId('role_id')->constrained('role')->onUpdate('cascade')->onDelete('cascade');
             $table->string('status');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();

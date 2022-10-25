@@ -21,7 +21,7 @@ class DaftarController extends Controller
         $register->name = $hasil['nama'];
         $register->kategori = $hasil['kategori'];
         $register->nomortelp = $hasil['nomortelp'];
-        $register->roleid = $hasil['roleid'];
+        $register->role_id = $hasil['roleid'];
         $register->status = "Active";
         $register->save();
 

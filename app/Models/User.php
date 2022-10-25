@@ -47,7 +47,19 @@ class User extends Authenticatable
     ];
 
     protected $table = 'users';
-    public function role(){
+    public function Role(){
         return $this->belongsTo(Role::class);
+    }
+
+    public function BarangUMKM(){
+        return $this->hasMany(BarangUMKM::class);
+    }
+
+    public function PlatformSosial(){
+        return $this->hasMany(PlatformSosial::class);
+    }
+
+    public function BarangPemasok(){
+        return $this->hasMany(BarangPemasok::class);
     }
 }
