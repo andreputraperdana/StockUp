@@ -9,6 +9,8 @@ const inputTambahBarang = document.querySelector(".input_content_tambahbarang");
 const inputJenisBarang = document.querySelector(".input_content_jenisbarang");
 const inputJumlahBarang = document.querySelector(".input_content_jumlahbarang");
 const judulTambahBarang = document.querySelector(".judul_content_tambahbarang");
+const overlay = document.querySelector(".overlay");
+const notification = document.querySelector(".notif_success");
 const judulTambahBarangExist = document.querySelector(
     ".judul_content_tambahbarangexist"
 );
@@ -55,4 +57,43 @@ buttonBarangExist.addEventListener("click", function (e) {
     inputFoto.style.display = "none";
     judulTambahBarang.style.display = "none";
     judulTambahBarangExist.style.display = "block";
+});
+
+if (document.querySelector(".tanda").innerHTML == "2") {
+    document.querySelector(".menu_tmbhbrg").style.backgroundColor = "#D7CAA0";
+    document.querySelector("#tmbhBrg").style.fontWeight = "700";
+}
+
+$(document).ready(function () {
+    $(document).on("click", "#btn_simpan", function (e) {
+        e.preventDefault();
+
+        var hasil = {
+            namabarang: $(".namabarang").val(),
+            jenisbarang: $(".kategori").val(),
+            jumlahbarang: $(".jumlahbarang").val(),
+            tanggalkadaluarsa: $(".tanggalkadaluarsa").val(),
+            fotobarang: $(".fotobarang").val(),
+        };
+
+        // console.log(hasil);
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/tambahbarang",
+            data: hasil,
+            dataType: "json",
+            success: function (response) {
+                if (response.stats) {
+                    overlay.classList.remove("hidden");
+                    notification.classList.remove("hidden");
+                }
+            },
+        });
+    });
 });

@@ -26,11 +26,14 @@
 
                             <div class="dropdown mt-2">
                             <button class="dropbutton ps-3 pe-4 pt-1 pb-1" style="border: none; border-radius: 25px;">
-                                <img src="{{URL::asset('akun.png')}}" alt="" style="height: 40px;"> Glosary
+                                <img src="{{URL::asset('akun.png')}}" alt="" style="height: 40px;"> {{Str::limit(auth()->user()->name,5)}}
                             </button>
                                 <div class="dropdown-content">
-                                    <a href="#">Pengaturan</a>
-                                    <a href="#">Logout</a>
+                                    <a href="/editprofile">Pengaturan</a>
+                                    <form action="/logout" method="POST">
+                                        @csrf
+                                        <input type="submit" class="btn prevbutton" value="Logout">
+                                    </form>
                                 </div>
                             </div>
 
@@ -38,7 +41,7 @@
         </div>
 
 
-        <div class="content_tambahbarang mt-5" style="height: 780px; width: 100%; background-color: #F4F4F4; border-radius: 25px;" >      
+        <div class="content_tambahbarang mt-5" style="height: auto; width: 100%; background-color: #F4F4F4; border-radius: 25px;" >      
                     <div class="d-flex justify-content-center pt-4 pb-5">
                         <div class="d-flex justify-content-between" style="width: 90%;">
                             <div class="d-flex" style="border: 1px solid #626262; background-color:transparent; border-radius: 7px; width: 30%; height: 40px;">
@@ -75,15 +78,16 @@
                                     </div>
 
                                     <div class="resp-table-row mb-5 p-3" style="font-size: 20px;"> 
+                                        @foreach($AllItems as $AllItem)
                                         <div class="d-flex">
                                             <div class="" style="width: 25%;">
                                                 <img src="{{URL::asset('akun.png')}}" alt="Foto Profil" style="height: 80px;">
                                             </div>
                                             <div class="center" style="width: 21%;">
-                                                    Mie Ayam
+                                                {{$AllItem->nama}}
                                             </div>
                                             <div class="center" style="width: 35%;">
-                                                12
+                                                {{$AllItem->total}}
                                             </div>
                                             <div class="center">
                                                 <div class="d-flex">
@@ -116,79 +120,36 @@
                                                 </div>
 
                                                 <div class="resp-table-row mb-3 p-3" style="font-size: 16px; border-radius: 7px; background-color: #C7E0BC;"> 
-                                                <div class="d-flex">
-                                                    <div class="center" style="width: 25%;">
-                                                        001 - 1
-                                                    </div>
-                                                    <div class="center" style="width: 25%;">
-                                                            10
-                                                    </div>
-                                                    <div class="center" style="width: 25%;">
-                                                        17.000
-                                                    </div>
-                                                    <div class="center" style="width: 25%;">
-                                                        20 - 06 - 2022
-                                                    </div>
-                                                    <div class="center">
-                                                        <div class="d-flex">
-                                                                <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login"><img src="{{URL::asset('trash.png')}}" alt="" style="height: 25px;"></a></button>
-                                                                <button class="btn__edit me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login"><img src="{{URL::asset('editicon.png')}}" alt="" style="height: 25px; transform: rotate(0deg); transition: all 0.5s;"></a></button>
+                                                    @foreach($BarangMasuk as $BarangMsk)
+                                                    <div class="d-flex">
+                                                        <div class="center" style="width: 25%;">
+                                                            {{$BarangMsk->barang_umkm_id}}
+                                                        </div>
+                                                        <div class="center" style="width: 25%;">
+                                                            {{$BarangMsk->jumlah}}
+                                                        </div>
+                                                        <div class="center" style="width: 25%;">
+                                                            17.000
+                                                        </div>
+                                                        <div class="center" style="width: 25%;">
+                                                            {{$BarangMsk->tanggal_kadaluarsa}}
+                                                        </div>
+                                                        <div class="center">
+                                                            <div class="d-flex">
+                                                                    <button class="btn__delete1 me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <img src="{{URL::asset('trash.png')}}" alt="" style="height: 25px;"></button>
+                                                                    <button class="btn__edit me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/editbarang"><img src="{{URL::asset('editicon.png')}}" alt="" style="height: 25px; transform: rotate(0deg); transition: all 0.5s;"></a></button>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                </div>
-
-                                                <div class="resp-table-row mb-3 p-3" style="font-size: 16px; border-radius: 7px; background-color: #C7E0BC;"> 
-                                                <div class="d-flex">
-                                                    <div class="center" style="width: 25%;">
-                                                        001 - 2
-                                                    </div>
-                                                    <div class="center" style="width: 25%;">
-                                                            4
-                                                    </div>
-                                                    <div class="center" style="width: 25%;">
-                                                        15.000
-                                                    </div>
-                                                    <div class="center" style="width: 25%;">
-                                                        20 - 06 - 2022
-                                                    </div>
-                                                    <div class="center">
-                                                        <div class="d-flex">
-                                                                <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login"><img src="{{URL::asset('trash.png')}}" alt="" style="height: 25px;"></a></button>
-                                                                <button class="btn__edit me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login"><img src="{{URL::asset('editicon.png')}}" alt="" style="height: 25px; transform: rotate(0deg); transition: all 0.5s;"></a></button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                </div>
-
-                                                <div class="resp-table-row mb-3 p-3" style="font-size: 16px; border-radius: 7px; background-color: #C7E0BC;"> 
-                                                <div class="d-flex">
-                                                    <div class="center" style="width: 25%;">
-                                                        001 - 3
-                                                    </div>
-                                                    <div class="center" style="width: 25%;">
-                                                            10
-                                                    </div>
-                                                    <div class="center" style="width: 25%;">
-                                                        16.000
-                                                    </div>
-                                                    <div class="center" style="width: 25%;">
-                                                        15 - 06 - 2022
-                                                    </div>
-                                                    <div class="center">
-                                                        <div class="d-flex">
-                                                                <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login"><img src="{{URL::asset('trash.png')}}" alt="" style="height: 25px;"></a></button>
-                                                                <button class="btn__edit me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login"><img src="{{URL::asset('editicon.png')}}" alt="" style="height: 25px; transform: rotate(0deg); transition: all 0.5s;"></a></button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                </div>
-
+                                                @endforeach
                                             </div>   
                                         </div>
+                                        @endforeach
                                     </div>
-
-                                    <div class="resp-table-row mb-5 p-3" style="font-size: 20px;"> 
+                                        
+                                    
+                                    
+                                    <!-- <div class="resp-table-row mb-5 p-3" style="font-size: 20px;"> 
                                         <div class="d-flex">
                                             <div class="" style="width: 25%;">
                                                 <img src="{{URL::asset('akun.png')}}" alt="Foto Profil" style="height: 80px;">
@@ -206,14 +167,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="resp-table-row mb-5 p-3" style="font-size: 20px;"> 
+                                    </div> -->
+                                    <!-- <div class="resp-table-row mb-5 p-3" style="font-size: 20px;"> 
                                         <div class="d-flex">
                                             <div class="" style="width: 25%;">
                                                 <img src="{{URL::asset('akun.png')}}" alt="Foto Profil" style="height: 80px;">
                                             </div>
                                             <div class="center" style="width: 21%;">
-                                                    Mie Ayam
+                                                Mie Ayam
                                             </div>
                                             <div class="center" style="width: 35%;">
                                                 12
@@ -225,7 +186,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                             </div>
 
                     
@@ -261,4 +222,7 @@
                                 </tbody>
                         </table>     -->
     </div>
+    <div style="visibility:hidden">
+            <p class="tanda">{{$flag}}</p>
+         </div>
 @endsection

@@ -29,42 +29,7 @@ slidebar.addEventListener("mouseout", function (e) {
     isikonten.style.width = "90%";
 });
 
-butonexpand.addEventListener("click", function (e) {
-    if (!expanded.style.rotate) {
-        count = 0;
-        expanded.style.rotate = "90deg";
-        // console.log(ItemList.classList);
-        ItemList.classList.remove("item_list_hidden");
-        ItemList.classList.add("item_list");
-        content.style.height = "1200px";
-    } else if ((expanded.style.rotate = "90deg")) {
-        count = 1;
-        expanded.style.rotate = "";
-        ItemList.classList.remove("item_list");
-        ItemList.classList.add("item_list_hidden");
-        content.style.height = "780px";
-    }
-});
-
-if (document.querySelector(".tanda").innerHTML == "4") {
-    document.querySelector(".menu_mnglola").style.backgroundColor = "#D7CAA0";
-    document.querySelector("#mnglolaBrg").style.fontWeight = "700";
+if (document.querySelector(".tanda").innerHTML == "5") {
+    document.querySelector(".menu_tko").style.backgroundColor = "#D7CAA0";
+    document.querySelector("#tko").style.fontWeight = "700";
 }
-
-butondelete.addEventListener("click", function (e) {
-    var p = e.parentNode.parentNode;
-    console.log(p);
-    p.parentNode.removeChild(p);
-});
-
-var req = new XMLHttpRequest();
-
-req.open("GET", "/ajaxData", true);
-req.send();
-
-req.onreadystatechange = function () {
-    if (req.readyState == 4 && req.status == 200) {
-        var obj = JSON.parse(req.responseText);
-        console.log(obj);
-    }
-};

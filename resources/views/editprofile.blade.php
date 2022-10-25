@@ -30,7 +30,7 @@
                             <img src="{{URL::asset('akun.png')}}" alt="" style="height: 40px;"> Glosary
                             </button>
                             <div class="dropdown-content">
-                                <a href="#">Pengaturan</a>
+                                <a href="/editprofile">Pengaturan</a>
                                 <a href="#">Logout</a>
                             </div>
                         </div>  

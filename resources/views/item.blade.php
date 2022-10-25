@@ -30,8 +30,11 @@
                             <img src="{{URL::asset('akun.png')}}" alt="" style="height: 40px;"> Glosary
                             </button>
                             <div class="dropdown-content">
-                                <a href="#">Pengaturan</a>
-                                <a href="#">Logout</a>
+                                <a href="/editprofile">Pengaturan</a>
+                                <form action="/logout" method="POST">
+                                    @csrf
+                                    <input type="submit" class="btn prevbutton" value="Logout">
+                                </form>
                             </div>
                         </div>  
                     </div>
@@ -79,11 +82,15 @@
 
                         <div class="toko_tombol">
                             <div class="toko_tombol_chat me-3">
-                                <button class="btn btn-primary ps-4 pe-4 " id="btn_chat" style="background-color: #D7CAA0; border: none; font-weight: bold; color: black;">Chat Toko</button>
+                                <a href="">
+                                    <button class="btn btn-primary ps-4 pe-4 " id="btn_chat" style="background-color: #D7CAA0; border: none; font-weight: bold; color: black;">Chat Toko</button>
+                                </a>
                             </div>
 
                             <div class="toko_tombol_platform">
-                                <button class="btn btn-primary ps-4 pe-4 " id="btn_platform" style="background-color: #D7CAA0; border: none; font-weight: bold; color: black;">Platform Sosial</button>
+                                <a href="/platformsosial">
+                                    <button class="btn btn-primary ps-4 pe-4 " id="btn_platform" style="background-color: #D7CAA0; border: none; font-weight: bold; color: black;">Platform Sosial</button>
+                                </a>
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('javascript')
-<script defer src="tambahbarang.js"></script>
+<script defer src="laporan.js"></script>
 @endsection
 
 @section('content')
@@ -26,11 +26,14 @@
 
                             <div class="dropdown mt-2">
                             <button class="dropbutton ps-3 pe-4 pt-1 pb-1" style="border: none; border-radius: 25px;">
-                                <img src="{{URL::asset('akun.png')}}" alt="" style="height: 40px;"> Glosary
+                                <img src="{{URL::asset('akun.png')}}" alt="" style="height: 40px;"> {{Str::limit(auth()->user()->name,5)}}
                             </button>
                                 <div class="dropdown-content">
-                                    <a href="#">Pengaturan</a>
-                                    <a href="#">Logout</a>
+                                    <a href="/editprofile">Pengaturan</a>
+                                    <form action="/logout" method="POST">
+                                        @csrf
+                                        <input type="submit" class="btn prevbutton" value="Logout">
+                                    </form>
                                 </div>
                             </div>
 
@@ -98,4 +101,7 @@
                           </div>
                        </div>
                     </div>
+        <div style="visibility:hidden">
+            <p class="tanda">{{$flag}}</p>
+         </div>
 @endsection

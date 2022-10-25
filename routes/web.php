@@ -1,10 +1,22 @@
 <?php
 
 use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\DaftarController;
+use App\Http\Controllers\EditBarangController;
+use App\Http\Controllers\EditProfileController;
 use App\Http\Controllers\HalamanUtamaController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ListUserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\TambahBarangController;
+use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\MengelolaBarangController;
+use App\Http\Controllers\NotifikasiController;
+use App\Http\Controllers\PlatformSosialController;
+use App\Http\Controllers\ProfilTokoController;
+use App\Http\Controllers\TokoController;
+use App\Models\PlatformSosial;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,51 +46,28 @@ Route::get('/beranda', [BerandaController::class, 'getindex']);
 
 Route::get('/listalluser', [ListUserController::class, 'getindex']);
 
-Route::get('/chat', function(){
-    return view('chat');
-});
+Route::get('/chat', [ChatController::class, 'getindex']);
 
+Route::get('/tambahbarang', [TambahBarangController::class, 'getindex']);
 
-Route::get('/tambahbarang', function(){
-    return view('tambahbarang');
-});
+Route::post('/tambahbarang', [TambahBarangController::class, 'inputbarang']);
 
-Route::get('/editprofile', function(){
-    return view('editprofile');
-});
+Route::get('/laporan', [LaporanController::class, 'getindex']);
 
-Route::get('/editprofile', function(){
-    return view('editprofile');
-});
+Route::get('/mengelolabarang', [MengelolaBarangController::class, 'getindex']);
 
-Route::get('/editbarang', function(){
-    return view('editbarang');
-});
+Route::get('/toko', [TokoController::class, 'getindex']);
 
-Route::get('/notifikasi', function(){
-    return view('notifikasi');
-});
+Route::get('/editprofile', [EditProfileController::class, 'getindex']);
 
-Route::get('/toko', function(){
-    return view('toko');
-});
+Route::get('/editbarang', [EditBarangController::class, 'getindex']);
 
-Route::get('/item', function(){
-    return view('item');
-});
+Route::get('/notifikasi', [NotifikasiController::class, 'getindex']);
 
-Route::get('/mengelolabarang', function(){
-    return view('mengelolabarang');
-});
+Route::get('/item', [ItemController::class, 'getindex']);
 
-Route::get('/profiltoko', function(){
-    return view('profiltoko');
-});
+Route::get('/profiltoko', [ProfilTokoController::class, 'getindex']);
 
-Route::get('/platformsosial', function(){
-    return view('platformsosial');
-});
+Route::get('/platformsosial',[PlatformSosialController::class, 'getindex']);
 
-Route::get('/laporan', function(){
-    return view('laporan');
-});
+Route::get('/ajaxData',[MengelolaBarangController::class, 'ajaxData']);
