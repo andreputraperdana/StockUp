@@ -42,155 +42,119 @@
 
 
         <div class="content_tambahbarang mt-5" style="height: auto; width: 100%; background-color: #F4F4F4; border-radius: 25px;" >      
-                    <div class="d-flex justify-content-center pt-4 pb-5">
-                        <div class="d-flex justify-content-between" style="width: 90%;">
-                            <div class="d-flex" style="border: 1px solid #626262; background-color:transparent; border-radius: 7px; width: 30%; height: 40px;">
-                                <input type="text" class="form-control" id="exampleInputTanggalKadaluarsa1" aria-describedby="emailHelp" placeholder="Cari Barang" style="border-radius: 0; background-color:transparent; border: 0;">
-                                <button type="submit" class="btn" style="border-left: 1px solid #626262; border-radius: 0 7px 7px 0; background-color: #D7CAA0;">
-                                    <img src="{{URL::asset('search.png')}}" class="" style="height: 20px;">
-                                </button>
+            <div class="d-flex justify-content-center pt-4 pb-5">
+                <div class="d-flex justify-content-between" style="width: 90%;">
+                    <div class="d-flex" style="border: 1px solid #626262; background-color:transparent; border-radius: 7px; width: 30%; height: 40px;">
+                        <input type="text" class="form-control" id="exampleInputTanggalKadaluarsa1" aria-describedby="emailHelp" placeholder="Cari Barang" style="border-radius: 0; background-color:transparent; border: 0;">
+                        <button type="submit" class="btn" style="border-left: 1px solid #626262; border-radius: 0 7px 7px 0; background-color: #D7CAA0;">
+                            <img src="{{URL::asset('search.png')}}" class="" style="height: 20px;">
+                        </button>
+                    </div>
+                    
+                    <div class="input_pilihtanggal" style="width: 20%;">
+                        <input type="date" class="form-control" id="exampleInputPilihTanggal1" aria-describedby="emailHelp" placeholder="Pilih Tanggal" style="border: 1px solid #626262; background-color:transparent;">
+                    </div>   
+                </div>
+            </div>
+            <input type="hidden" id="size" value="{{$Size}}">
+            <div class="d-flex justify-content-center pt-4"style="width: 100%;">
+                <div class="resp-table-body" style="width: 90%;">
+                    <div class="" style="font-size: 20px; font-weight: bold;"> 
+                        <div class="table-body-cell" style="visibility: hidden; width: 35%;">
+                            Image
+                        </div>
+                        <div class="table-body-cell" style="width: 30%;">
+                            ID
+                        </div>
+                        <div class="table-body-cell" style="width: 30%;">
+                            Nama Barang
+                        </div>
+                        <div class="table-body-cell" style="width: 32%;">
+                            Kuantitas
+                        </div>
+                        <div class="table-body-cell" style="visibility: hidden;">
+                            <div class="d-flex">
+                                <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login"><img src="{{URL::asset('exit.png')}}" alt="" style="height: 25px;"></a></button>
+                                <button class="btn__login me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login">></a></button>
                             </div>
-                            
-                            <div class="input_pilihtanggal" style="width: 20%;">
-                                <input type="date" class="form-control" id="exampleInputPilihTanggal1" aria-describedby="emailHelp" placeholder="Pilih Tanggal" style="border: 1px solid #626262; background-color:transparent;">
-                            </div>   
                         </div>
                     </div>
-                        
-                    <div class="d-flex justify-content-center pt-4"style="width: 100%;">
-                            <div class="resp-table-body" style="width: 90%;">
-                                    <div class="" style="font-size: 20px; font-weight: bold;"> 
-                                        <div class="table-body-cell" style="visibility: hidden; width: 35%;">
-                                            Image
-                                        </div>
-                                        <div class="table-body-cell" style="width: 30%;">
-                                            Nama Barang
-                                        </div>
-                                        <div class="table-body-cell" style="width: 32%;">
-                                            Kuantitas
-                                        </div>
-                                        <div class="table-body-cell" style="visibility: hidden;">
-                                            <div class="d-flex">
-                                                    <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login"><img src="{{URL::asset('exit.png')}}" alt="" style="height: 25px;"></a></button>
-                                                    <button class="btn__login me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login">></a></button>
-                                            </div>
+
+                    @foreach($AllItems as $AllItem)
+                    <div class="resp-table-row mb-5 p-3" style="font-size: 20px;"> 
+                        <div class="d-flex">
+                            <div class="foto" style="width: 25%;">
+                                <img src="{{URL::asset('akun.png')}}" alt="Foto Profil" style="height: 80px;">
+                            </div>
+                            <div class="id_header center" style="width: 21%;">
+                                {{$AllItem->id}}
+                                <input type="text" id="id_header{{$AllItem->id}}" value="{{$AllItem->id}}">
+                            </div>
+                            <div class="nama_header center" style="width: 21%;">
+                                {{$AllItem->nama}}
+                            </div>
+                            <div class="total_header center" style="width: 35%;">
+                                {{$AllItem->total}}
+                            </div>
+                            <div class="center">
+                                <div class="d-flex">
+                                    <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login"><img src="{{URL::asset('trash.png')}}" alt="" style="height: 25px;"></a></button>
+                                    <button class="btn__expand{{$AllItem->id}} me-3 p-2 pe-3 ps-3" onclick="myFunction('btn__expand{{$AllItem->id}} ')" id="btn_expand" value="{{$AllItem->id}}" style="font-size: 16px; font-weight: bold;"> <img src="{{URL::asset('righticon.png')}}" alt="" style="height: 25px; transform: rotate(0deg); transition: all 0.5s;" class="expanded"></button>
+                                    <input type="hidden" id="btn__expand" value="{{$AllItem->id}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item_list_hidden" id="list_Allitem" style="width: 100%;">
+                            <div class="" style="width: 100%;"> 
+                                <div class="" style="width: 100%; font-size: 16px;">
+                                    <div class="table-body-cell text-center" style="width: 25%;">
+                                        ID
+                                    </div>
+                                    <div class="table-body-cell text-center" style="width: 25%;">
+                                        Kuantitas
+                                    </div>
+                                    <div class="table-body-cell text-center" style="width: 25%;">
+                                        Harga
+                                    </div>
+                                    <div class="table-body-cell text-center" style="width: 25%;">
+                                        Tanggal Kadaluarsa
+                                    </div>
+                                    <div class="table-body-cell" style="visibility: hidden;">
+                                        <div class="d-flex">
+                                            <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login"><img src="{{URL::asset('exit.png')}}" alt="" style="height: 25px;"></a></button>
+                                            <button class="btn__login me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login">></a></button>
                                         </div>
                                     </div>
-
-                                    <div class="resp-table-row mb-5 p-3" style="font-size: 20px;"> 
-                                        @foreach($AllItems as $AllItem)
-                                        <div class="d-flex">
-                                            <div class="" style="width: 25%;">
-                                                <img src="{{URL::asset('akun.png')}}" alt="Foto Profil" style="height: 80px;">
-                                            </div>
-                                            <div class="center" style="width: 21%;">
-                                                {{$AllItem->nama}}
-                                            </div>
-                                            <div class="center" style="width: 35%;">
-                                                {{$AllItem->total}}
-                                            </div>
-                                            <div class="center">
-                                                <div class="d-flex">
-                                                        <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login"><img src="{{URL::asset('trash.png')}}" alt="" style="height: 25px;"></a></button>
-                                                        <button class="btn__expand me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <img src="{{URL::asset('righticon.png')}}" alt="" style="height: 25px; transform: rotate(0deg); transition: all 0.5s;" class="expanded"></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item_list_hidden" id="list_Allitem" style="width: 100%;">
-                                            <div class="" style="width: 100%;"> 
-                                                <div class="" style="width: 100%; font-size: 16px;">
-                                                    <div class="table-body-cell text-center" style="width: 25%;">
-                                                        ID
-                                                    </div>
-                                                    <div class="table-body-cell text-center" style="width: 25%;">
-                                                        Kuantitas
-                                                    </div>
-                                                    <div class="table-body-cell text-center" style="width: 25%;">
-                                                        Harga
-                                                    </div>
-                                                    <div class="table-body-cell text-center" style="width: 25%;">
-                                                        Tanggal Kadaluarsa
-                                                    </div>
-                                                    <div class="table-body-cell" style="visibility: hidden;">
-                                                        <div class="d-flex">
-                                                                <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login"><img src="{{URL::asset('exit.png')}}" alt="" style="height: 25px;"></a></button>
-                                                                <button class="btn__login me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login">></a></button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="resp-table-row mb-3 p-3" style="font-size: 16px; border-radius: 7px; background-color: #C7E0BC;"> 
-                                                    @foreach($BarangMasuk as $BarangMsk)
-                                                    <div class="d-flex">
-                                                        <div class="center" style="width: 25%;">
-                                                            {{$BarangMsk->barang_umkm_id}}
-                                                        </div>
-                                                        <div class="center" style="width: 25%;">
-                                                            {{$BarangMsk->jumlah}}
-                                                        </div>
-                                                        <div class="center" style="width: 25%;">
-                                                            17.000
-                                                        </div>
-                                                        <div class="center" style="width: 25%;">
-                                                            {{$BarangMsk->tanggal_kadaluarsa}}
-                                                        </div>
-                                                        <div class="center">
-                                                            <div class="d-flex">
-                                                                    <button class="btn__delete1 me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <img src="{{URL::asset('trash.png')}}" alt="" style="height: 25px;"></button>
-                                                                    <button class="btn__edit me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/editbarang"><img src="{{URL::asset('editicon.png')}}" alt="" style="height: 25px; transform: rotate(0deg); transition: all 0.5s;"></a></button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
-                                            </div>   
-                                        </div>
-                                        @endforeach
+                                </div>
+                            </div>
+                        @foreach($BarangMasuk as $BarangMsk)
+                        <div class="resp-table-row mb-3 p-3" style="font-size: 16px; border-radius: 7px; background-color: #C7E0BC;"> 
+                            <div class="d-flex">
+                                <div class="center" style="width: 25%;">
+                                    {{$BarangMsk->barang_umkm_id}}
+                                </div>
+                                <div class="center" style="width: 25%;">
+                                    {{$BarangMsk->jumlah}}
+                                </div>
+                                <div class="center" style="width: 25%;">
+                                    17.000
+                                </div>
+                                <div class="center" style="width: 25%;">
+                                    {{$BarangMsk->tanggal_kadaluarsa}}
+                                </div>
+                                <div class="center">
+                                    <div class="d-flex">
+                                        <button class="btn__delete1 me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <img src="{{URL::asset('trash.png')}}" alt="" style="height: 25px;"></button>
+                                        <button class="btn__edit me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/editbarang"><img src="{{URL::asset('editicon.png')}}" alt="" style="height: 25px; transform: rotate(0deg); transition: all 0.5s;"></a></button>
                                     </div>
-                                        
-                                    
-                                    
-                                    <!-- <div class="resp-table-row mb-5 p-3" style="font-size: 20px;"> 
-                                        <div class="d-flex">
-                                            <div class="" style="width: 25%;">
-                                                <img src="{{URL::asset('akun.png')}}" alt="Foto Profil" style="height: 80px;">
-                                            </div>
-                                            <div class="center" style="width: 21%;">
-                                                    Mie Ayam
-                                            </div>
-                                            <div class="center" style="width: 35%;">
-                                                12
-                                            </div>
-                                            <div class="center">
-                                                <div class="d-flex">
-                                                        <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login"><img src="{{URL::asset('trash.png')}}" alt="" style="height: 25px;"></a></button>
-                                                        <button class="btn__expand me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login"><img src="{{URL::asset('righticon.png')}}" alt="" style="height: 25px; transform: rotate(0deg); transition: all 0.5s;"></a></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                    <!-- <div class="resp-table-row mb-5 p-3" style="font-size: 20px;"> 
-                                        <div class="d-flex">
-                                            <div class="" style="width: 25%;">
-                                                <img src="{{URL::asset('akun.png')}}" alt="Foto Profil" style="height: 80px;">
-                                            </div>
-                                            <div class="center" style="width: 21%;">
-                                                Mie Ayam
-                                            </div>
-                                            <div class="center" style="width: 35%;">
-                                                12
-                                            </div>
-                                            <div class="center">
-                                                <div class="d-flex">
-                                                        <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login"><img src="{{URL::asset('trash.png')}}" alt="" style="height: 25px;"></a></button>
-                                                        <button class="btn__expand me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login"><img src="{{URL::asset('righticon.png')}}" alt="" style="height: 25px; transform: rotate(0deg); transition: all 0.5s;"></a></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
+                                </div>
                             </div>
-
-                    
-                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    </div>
+                    @endforeach
+            </div>
                         
                         <!-- <table class="table">
                              <thead >

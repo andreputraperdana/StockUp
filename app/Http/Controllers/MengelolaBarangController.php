@@ -14,13 +14,14 @@ class MengelolaBarangController extends Controller
         // $AllItems = BarangUMKM::where('user_id', '=', auth()->user()->id)->get();
         $AllItems = DB::select('select * from barang_umkm');
         $BarangMasuk = DB::select('select * from transaksi_barang_masuk');
+        $Size = count($AllItems);
         
         
-        return view('mengelolabarang', ['flag'=>$flag, 'AllItems'=>$AllItems, 'BarangMasuk'=>$BarangMasuk]);
+        return view('mengelolabarang', ['flag'=>$flag, 'AllItems'=>$AllItems, 'BarangMasuk'=>$BarangMasuk, 'Size'=>$Size]);
     }
 
     public function ajaxData(){
-        $BarangMasuk = DB::select('select * from transaksi_barang_masuk a join barang_umkm b ON a.barang_umkm_id = b.id WHERE a.barang_umkm_id = b.id GROUP BY barang_umkm_id');
+        $BarangMasuk = DB::select('select * from barang_umkm');
         return response()->json(['BarangMasuk'=>$BarangMasuk]);
     }
 }
