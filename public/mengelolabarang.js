@@ -5,18 +5,12 @@ const d = new Date().toLocaleString();
 const isikonten = document.querySelector(".isi_konten");
 textmenu.forEach((test) => test.classList.add("hide"));
 const butondelete = document.querySelector(".btn__delete1");
-let expanded = document.querySelector(".expanded");
 let ItemList = document.querySelector("#list_Allitem");
 let content = document.querySelector(".content_tambahbarang");
-var butonexpand = document.querySelector(".btn_expand");
+var butonexpand = document.querySelector(".btn__expand");
+console.log(butonexpand);
 var id = $("#id_header").val();
 var size = document.getElementById("size").value;
-var valBut = [];
-var angka = 1;
-for(var i = 0; i< size; i++){
-    valBut[i] = document.querySelector(".btn__expand"+ angka);
-    angka++;
-}
 
 slidebar.addEventListener("mouseover", function (e) {
     // console.log(this.classList);
@@ -50,8 +44,30 @@ butondelete.addEventListener("click", function (e) {
     p.parentNode.removeChild(p);
 });
 
-function myFunction(e) {
-    console.log(e);
+
+function myFunction(event) {
+    var btnexpand = event;
+    var btnexpand2 = document.querySelector("."+btnexpand);
+    btnexpand2.addEventListener("click", function (e) {
+        var expanded = btnexpand2.getElementsByTagName('img');
+        var a = btnexpand2.value;
+        console.log(expanded[0]);
+        if (!expanded[0].style.rotate) {
+                count = 0;
+                expanded[0].style.rotate = "90deg";
+                // console.log(ItemList.classList);
+                ItemList.classList.remove("item_list_hidden");
+                ItemList.classList.add("item_list");
+                content.style.height = "1200px";
+            } else if ((expanded[0].style.rotate = "90deg")) {
+                count = 1;
+                expanded[0].style.rotate = "";
+                ItemList.classList.remove("item_list");
+                ItemList.classList.add("item_list_hidden");
+                content.style.height = "780px";
+            }
+    })
+
 }
 
 var req = new XMLHttpRequest();

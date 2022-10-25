@@ -99,8 +99,7 @@
                             <div class="center">
                                 <div class="d-flex">
                                     <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login"><img src="{{URL::asset('trash.png')}}" alt="" style="height: 25px;"></a></button>
-                                    <button class="btn__expand{{$AllItem->id}} me-3 p-2 pe-3 ps-3" onclick="myFunction('btn__expand{{$AllItem->id}} ')" id="btn_expand" value="{{$AllItem->id}}" style="font-size: 16px; font-weight: bold;"> <img src="{{URL::asset('righticon.png')}}" alt="" style="height: 25px; transform: rotate(0deg); transition: all 0.5s;" class="expanded"></button>
-                                    <input type="hidden" id="btn__expand" value="{{$AllItem->id}}">
+                                    <button class="btn__expand{{$AllItem->id}} me-3 p-2 pe-3 ps-3" onclick="myFunction('btn__expand{{$AllItem->id}} ')" value="{{$AllItem->id}}" style="font-size: 16px; font-weight: bold;"> <img src="{{URL::asset('righticon.png')}}" alt="" style="height: 25px; transform: rotate(0deg); transition: all 0.5s;" id="expanded{{$AllItem->id}}"></button>
                                 </div>
                             </div>
                         </div>
