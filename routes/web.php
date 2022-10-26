@@ -11,6 +11,7 @@ use App\Http\Controllers\ListUserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TambahBarangController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\ListBarangController;
 use App\Http\Controllers\MengelolaBarangController;
 use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\PlatformSosialController;
@@ -71,3 +72,7 @@ Route::get('/profiltoko', [ProfilTokoController::class, 'getindex']);
 Route::get('/platformsosial',[PlatformSosialController::class, 'getindex']);
 
 Route::get('/ajaxData',[MengelolaBarangController::class, 'ajaxData']);
+
+Route::get('/listbarang/{id}', [ListBarangController::class, 'getindex']);
+
+Route::get('/mengelolabarang/cari',[MengelolaBarangController::class, 'cari']);
