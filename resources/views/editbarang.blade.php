@@ -62,7 +62,7 @@
                                                     </label> 
                                                 </div>
                                                 <div class="input_namabarang">
-                                                    <input type="text" class="form-control" id="exampleInputNamaBarang1" aria-describedby="emailHelp" placeholder="Nama Barang" style="border: 1px solid #626262; background-color:transparent;">
+                                                    <input type="text" class="form-control" id="exampleInputNamaBarang1" value="{{ $hasil->get(0)->nama }}" aria-describedby="emailHelp" placeholder="Nama Barang" style="border: 1px solid #626262; background-color:transparent;">
                                                 </div>
                                             </div>
     
@@ -92,7 +92,7 @@
                                                     </label>    
                                                 </div>
                                                 <div class="input_tanggalkadaluarsa">
-                                                    <input type="date" class="form-control" id="exampleInputTanggalKadaluarsa1" aria-describedby="emailHelp" placeholder="Tanggal Kadaluarsa" style="border: 1px solid #626262; background-color:transparent;">
+                                                    <input type="date" class="form-control" value="{{ $hasil->get(0)->tanggal_kadaluarsa }}" id="exampleInputTanggalKadaluarsa1" aria-describedby="emailHelp" placeholder="Tanggal Kadaluarsa" style="border: 1px solid #626262; background-color:transparent;">
                                                 </div>
                                             </div>
 
@@ -119,7 +119,8 @@
                                                         
                                                         <div class="d-flex" style="border: 1px solid #626262; background-color:transparent; border-radius: 5px; width: 100%;">
                                                             <button type="submit" class="btn" style="border-right: 1px solid #626262; border-radius: 0;">-</button>
-                                                            <span class="ps-4 pe-4 pt-2">1</span>
+                                                            {{-- <span class="ps-4 pe-4 pt-2"></span> --}}
+                                                                <input type="text" value="{{ $hasil->get(0)->jumlah }}" style="border: 0px solid #626262;background-color:transparent; outline: 0; width: 50px; text-align: center;" placeholder="Kuantitas">
                                                             <button type="submit" class="btn" style="border-left: 1px solid #626262; border-radius: 0;">+</button>
                                                         </div>
                                                     </div>

@@ -109,6 +109,17 @@
                                     </div>
                                 </div>
 
+                                <div class="input_content_jumlahbarang mt-3">
+                                    <div class="input_judul_jumlahbarang">
+                                        <label for="">
+                                            <p style="font-size: 16px; font-weight: bold;">Harga Barang</p>
+                                        </label> 
+                                    </div>
+                                    <div class="input_namabarang">
+                                        <input type="number" class="form-control hargabarang" name = "hargabarang" id="exampleInputHargaBarang1" aria-describedby="emailHelp" placeholder="Harga Barang" style="border: 1px solid #626262; background-color:transparent;">
+                                    </div>
+                                </div>
+
                                 <div class="input_content_tanggalkadaluarsa mt-3">
                                     <div class="input_judul_tanggalkadaluarsa">
                                         <label for="">

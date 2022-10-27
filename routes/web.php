@@ -61,7 +61,7 @@ Route::get('/toko', [TokoController::class, 'getindex']);
 
 Route::get('/editprofile', [EditProfileController::class, 'getindex']);
 
-Route::get('/editbarang', [EditBarangController::class, 'getindex']);
+Route::get('/editbarang/{id}', [EditBarangController::class, 'getindex']);
 
 Route::get('/notifikasi', [NotifikasiController::class, 'getindex']);
 
@@ -75,4 +75,4 @@ Route::get('/ajaxData',[MengelolaBarangController::class, 'ajaxData']);
 
 Route::get('/listbarang/{id}', [ListBarangController::class, 'getindex']);
 
-Route::get('/mengelolabarang/cari',[MengelolaBarangController::class, 'cari']);
+Route::delete('/mengelolabarang/{id}', [MengelolaBarangController::class, 'destroy'])->name('users.destroy');

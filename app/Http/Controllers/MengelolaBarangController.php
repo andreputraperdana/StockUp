@@ -13,17 +13,18 @@ class MengelolaBarangController extends Controller
     public function getindex(){
         $flag = 4;
         $AllItems = DB::select('select * from barang_umkm');
-        $Size = count($AllItems);
+        if(request('search')){
+            $cari = request('search');
+            $AllItems = DB::table('barang_umkm')->where('nama','like',"%".$cari."%")->get();
+        }
+        // $Size = count($AllItems);
         
-        return view('mengelolabarang', ['flag'=>$flag, 'Size'=>$Size, 'AllItems'=>$AllItems]);
+        return view('mengelolabarang', ['flag'=>$flag, 'AllItems'=>$AllItems]);
     }
 
-    public function cari(Request $request){
-        $cari = $request->cari;
-        dd($cari);
-        $AllItems = DB::table('barang_umkm')
-		->where('nama','like',"%".$cari."%");
-        return view('mengelolabarang',['AllItems'=>$AllItems]);
+    public function destroy($id){
+        DB::delete('DELETE FROM barang_umkm WHERE id = ?', [$id]);
+        return redirect('mengelolabarang')->with('success','Barang Telah Di hapus');
     }
 
     public function ajaxData(){

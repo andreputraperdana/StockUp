@@ -44,21 +44,21 @@
         <div class="content_tambahbarang mt-5" style="height: auto; width: 100%; background-color: #F4F4F4; border-radius: 25px;" >      
             <div class="d-flex justify-content-center pt-4 pb-5">
                 <div class="d-flex justify-content-between" style="width: 90%;">
-                    <div class="d-flex" style="border: 1px solid #626262; background-color:transparent; border-radius: 7px; width: 30%; height: 40px;">
-                        <form action="/mengelolabarang/cari" method="GET">
-                            <input type="text" class="form-control" id="cariBarang" value="{{ old('cari') }}" placeholder="Cari Barang" style="border-radius: 0; background-color:transparent; border: 0;">
+                    <form action="/mengelolabarang">
+                        <div class="d-flex" style="border: 1px solid #626262; background-color:transparent; border-radius: 7px; height: 40px;">
+                            <input type="text" class="form-control" name="search" id="search" placeholder="Cari Barang" style="width: 200px;">
                             <button type="submit" class="btn" style="border-left: 1px solid #626262; border-radius: 0 7px 7px 0; background-color: #D7CAA0;">
                                 <img src="{{URL::asset('search.png')}}" class="" style="height: 20px;">
                             </button>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                     
                     <div class="input_pilihtanggal" style="width: 20%;">
                         <input type="date" class="form-control" id="exampleInputPilihTanggal1" aria-describedby="emailHelp" placeholder="Pilih Tanggal" style="border: 1px solid #626262; background-color:transparent;">
                     </div>   
                 </div>
             </div>
-            <input type="hidden" id="size" value="{{$Size}}">
+            {{-- <input type="hidden" id="size" value="{{$Size}}"> --}}
             <div class="d-flex justify-content-center pt-4"style="width: 100%;">
                 <div class="resp-table-body" style="width: 90%;">
                     <div class="" style="font-size: 20px; font-weight: bold;"> 
@@ -90,7 +90,7 @@
                             </div>
                             <div class="id_header center" style="width: 20%;">
                                 {{$AllItem->id}}
-                                <input type="hidden" id="id_header{{$AllItem->id}}" value="{{$AllItem->id}}">
+                                {{-- <input type="hidden" id="id_header{{$AllItem->id}}" value="{{$AllItem->id}}"> --}}
                             </div>
                             <div class="nama_header center" style="width: 36%;">
                                 {{$AllItem->nama}}
@@ -100,7 +100,11 @@
                             </div>
                             <div class="center">
                                 <div class="d-flex">
-                                    <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login"><img src="{{URL::asset('trash.png')}}" alt="" style="height: 25px;"></a></button>
+                                    <form action="{{route('users.destroy', $AllItem->id)}}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;" onclick="return confirm('Apakah Kamu Yakin Ingin Menghapus Barang Ini?')"><img src="{{URL::asset('trash.png')}}" alt="" style="height: 25px;"></button>   
+                                    </form>
                                     <button class="btn__expand me-3 p-2 pe-3 ps-3" value="{{$AllItem->id}}" style="font-size: 16px; font-weight: bold;"> <img src="{{URL::asset('righticon.png')}}" alt="" style="height: 25px; transform: rotate(0deg); transition: all 0.5s;" id="expanded"></button>
                                 </div>
                             </div>
@@ -108,6 +112,9 @@
                         <div class="item_list_hidden" id="list_Allitem" style="width: 100%;">
                             <div class="" style="width: 100%;"> 
                                 <div class="" style="width: 100%; font-size: 16px;">
+                                    <div class="table-body-cell text-center" style="width: 25%;">
+                                        No. Barang
+                                    </div>
                                     <div class="table-body-cell text-center" style="width: 25%;">
                                         ID
                                     </div>

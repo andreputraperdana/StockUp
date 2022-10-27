@@ -72,6 +72,7 @@ $(document).ready(function () {
             namabarang: $(".namabarang").val(),
             jenisbarang: $(".kategori").val(),
             jumlahbarang: $(".jumlahbarang").val(),
+            hargabarang: $(".hargabarang").val(),
             tanggalkadaluarsa: $(".tanggalkadaluarsa").val(),
             fotobarang: $(".fotobarang").val(),
         };

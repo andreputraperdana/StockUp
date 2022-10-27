@@ -20,10 +20,12 @@
 
             <div class="atas_kanan d-flex  mt-5">
                 <div class="notifikasi pe-2 mt-2">
-                    <a href="">
-                        <span class="badge">3</span>
-                        <img src="{{URL::asset('notifikasi.png')}}" class="ps-2 pe-2 pt-1 pb-1" style="background-color: #F4F4F4; border-radius: 50%; height: 45px;">
-                    </a>
+                    <div class="item">
+                        <a href="">
+                            <span class="badge">3</span>
+                            <img src="{{URL::asset('notifikasi.png')}}" class="ps-2 pe-2 pt-1 pb-1" style="background-color: #F4F4F4; border-radius: 50%; height: 45px;">
+                        </a>
+                    </div>
                 </div>
 
                 <div class="dropdown mt-2">

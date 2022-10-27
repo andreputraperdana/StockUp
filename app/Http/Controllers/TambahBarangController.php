@@ -27,12 +27,14 @@ class TambahBarangController extends Controller
             $barangUMKM->save(); 
             $transaksibarangmasuk->barang_umkm_id = $barangUMKM->id;
             $transaksibarangmasuk->jumlah = $output['jumlahbarang'];
+            $transaksibarangmasuk->harga = $output['hargabarang'];
             $transaksibarangmasuk->tanggal_kadaluarsa = $output['tanggalkadaluarsa'];
             $transaksibarangmasuk->save();
         }
         else{
             $transaksibarangmasuk->barang_umkm_id = $checkbarang->id;
             $transaksibarangmasuk->jumlah = $output['jumlahbarang'];
+            $transaksibarangmasuk->harga = $output['hargabarang'];
             $transaksibarangmasuk->tanggal_kadaluarsa = $output['tanggalkadaluarsa'];
             $checkbarang->total +=  $output['jumlahbarang'];
             $transaksibarangmasuk->save();

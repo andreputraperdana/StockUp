@@ -7,7 +7,6 @@ textmenu.forEach((test) => test.classList.add("hide"));
 const butondelete = document.querySelector(".btn__delete");
 let ItemList = document.querySelectorAll("#list_Allitem");
 let content = document.querySelector(".content_tambahbarang");
-var size = document.getElementById("size").value;
 
 slidebar.addEventListener("mouseover", function (e) {
     // console.log(this.classList);
