@@ -44,7 +44,7 @@
             </div>
         </div>
 
-<div id="myPopup" class="popUp">
+<div id="myPopup-BarangHabis" class="popUp">
   <!-- Modal content -->
     <div class="modal-content">
         <div class="modal-header">
@@ -52,8 +52,89 @@
             <span class="close">&times;</span>
         </div>
         <div class="modal-body">
-            <p>Terdapat Beberapa Barang Habis</p>
-            <p>Barang Habis Berjumlah 25</p>
+            @foreach($BarangHabis as $BarangHabis)
+                    <div class="resp-table-row"> 
+                        <div class="table-body-cell">
+                            {{$BarangHabis->BarangUMKM->nama}}
+                        </div>
+                        <div class="table-body-cell">
+                            {{$BarangHabis->BarangUMKM->jenis}}
+                        </div>
+                        <div class="table-body-cell">
+                            {{$BarangHabis->jumlah}}
+                        </div>
+                        <div class="table-body-cell">
+                            0
+                        </div>
+                    </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+
+<div id="myPopup-BarangKadaluarsa" class="popUp">
+  <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 style="text-align: center;">Barang akan Kadaluarsa</h2>
+            <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+            @foreach($BarangAkanKadaluarsa as $BarangAkanKadaluarsa)
+                    <div class="resp-table-row"> 
+                        <div class="table-body-cell">
+                            {{$BarangAkanKadaluarsa->BarangUMKM->nama}}
+                        </div>
+                        <div class="table-body-cell">
+                            {{$BarangAkanKadaluarsa->BarangUMKM->jenis}}
+                        </div>
+                        <div class="table-body-cell">
+                            0
+                        </div>
+                        <div class="table-body-cell">
+                            {{$BarangAkanKadaluarsa->tanggal_kadaluarsa}}
+                        </div>
+                        <div class="table-body-cell">
+                            {{$BarangAkanKadaluarsa->jumlah}}
+                        </div>
+                        <div class="table-body-cell">
+                            @if($BarangAkanKadaluarsa->Date_Today >= $BarangAkanKadaluarsa->tanggal_kadaluarsa)
+                                <p>Expired</p>
+                            @else
+                                <p>Hampir Expired</p>
+                            @endif
+                        </div>
+                    </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+
+
+<div id="myPopup-Pengeluaran" class="popUp">
+  <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 style="text-align: center;">Pengeluaran Per Hari</h2>
+            <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+            @foreach($PengeluranPerHari as $PengeluranPerHari)
+                    <div class="resp-table-row"> 
+                        <div class="table-body-cell">
+                            {{$PengeluranPerHari->BarangUMKM->nama}}
+                        </div>
+                        <div class="table-body-cell">
+                            {{$PengeluranPerHari->BarangUMKM->jenis}}
+                        </div>
+                        <div class="table-body-cell">
+                            {{$PengeluranPerHari->BarangUMKM->jenis}}
+                        </div>
+                        <div class="table-body-cell">
+                            {{$PengeluranPerHari->jumlah}}
+                        </div>
+                    </div>
+            @endforeach
         </div>
     </div>
 </div>
@@ -63,34 +144,37 @@
                 <div class="kotak_besar mb-4" style="width: 100%;">
                     <div class="kotak_info d-flex" style="width: 100%;">
 
-                        <div class="popUpBarangHabis me-4" id="popUpBarangHabis" style="width: 60%;">
+                        <div class="popUpBarang me-4" id="popUpBarang" style="width: 60%;" data-value="BarangHabis">
                             <div class="kotak_info1 pb-2 pt-3" style="background-color: #F4F4F4;">
                                 <div class="angka text-center">
-                                    <p style="font-size: 30px; font-weight: bold;">{{count($BarangHabis)}}</p>
+                                    <p style="font-size: 30px; font-weight: bold;">{{$TotalBarangHabis}}</p>
                                 </div>
                                 <div class="keterangan text-center pt-1">
+                                    <p class="inputtext" style="display: none;">BarangHabis</p>
                                     <p style="font-size: 16px;">Barang Habis / Akan Habis</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="popUpBarangKadaluarsa me-4" id="popUpBarangKadaluarsa" style="width: 60%;">
+                        <div class="popUpBarang me-4" id="popUpBarang" style="width: 60%;" data-value="BarangHabis">
                             <div class="kotak_info1 pb-2 pt-3" style="background-color: #F4F4F4;">
                                 <div class="angka text-center">
-                                <p style="font-size: 30px; font-weight: bold;">34</p>
+                                    <p style="font-size: 30px; font-weight: bold;">{{$TotalBarangAkanKadaluarsa}}</p>
                                 </div>
                                 <div class="keterangan text-center pt-1">
+                                    <p class="inputtext" style="display: none;">BarangKadaluarsa</p>
                                     <p style="font-size: 16px;">Barang Akan Kadaluarsa</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="popUpPengeluaran me-4" id="popUpPengeluaran" style="width: 60%;">
+                        <div class="popUpBarang me-4" id="popUpBarang" style="width: 60%;" data-value="BarangHabis">
                             <div class="kotak_info1 pb-2 pt-3" style="background-color: #F4F4F4;">
                                 <div class="angka text-center">
-                                <p style="font-size: 30px; font-weight: bold;">{{count($PengeluranPerHari)}}</p>
+                                    <p style="font-size: 30px; font-weight: bold;">{{$TotalPengeluranPerHari}}</p>
                                 </div>
                                 <div class="keterangan text-center pt-1">
+                                    <p class="inputtext" style="display: none;">Pengeluaran</p>
                                     <p style="font-size: 16px;">Pengeluaran Per Hari</p>
                                 </div>
                             </div>
