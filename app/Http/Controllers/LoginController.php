@@ -7,26 +7,28 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function getindex(){
+    public function getindex()
+    {
         return view('login');
     }
 
-    public function authenticate(Request $request){
+    public function authenticate(Request $request)
+    {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-        
-        if(Auth::attempt($credentials)){
+
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('beranda');
-        }
-        else{
+        } else {
             return redirect('/login');
         }
     }
 
-    public function Logout(Request $request){
+    public function Logout(Request $request)
+    {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
