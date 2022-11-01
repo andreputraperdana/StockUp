@@ -30,7 +30,8 @@ class BerandaController extends Controller
         // $test = DB::raw('DATE_ADD($today, INTERVAL 1 DAY)');
         // dd($BarangHabis);
         $emailuser = auth()->user()->email;
-        Mail::to($emailuser)->send(new SendNotification($TotalBarangHabis, $TotalBarangAkanKadaluarsa));
+        $username = auth()->user()->name;
+        Mail::to($emailuser)->send(new SendNotification($TotalBarangHabis, $TotalBarangAkanKadaluarsa, $username));
         return view('beranda', ['ListUser'=> $ListUser, 'flag'=>$flag, 'AllItems'=>$AllItems, 'BarangHabis'=> $BarangHabis, 'PengeluranPerHari'=> $PengeluranPerHari, 'BarangAkanKadaluarsa' => $BarangAkanKadaluarsa, 'TotalBarangHabis' => $TotalBarangHabis, 'TotalPengeluranPerHari'=>$TotalPengeluranPerHari, 'TotalBarangAkanKadaluarsa' => $TotalBarangAkanKadaluarsa]);
     }
 }

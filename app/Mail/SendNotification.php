@@ -18,10 +18,11 @@ class SendNotification extends Mailable
      *
      * @return void
      */
-    public function __construct($TotalBarangHabis, $TotalBarangAkanKadaluarsa)
+    public function __construct($TotalBarangHabis, $TotalBarangAkanKadaluarsa, $username)
     {
         $this->totalbaranghabis = $TotalBarangHabis;
         $this->totalbarangakankadaluarsa = $TotalBarangAkanKadaluarsa;
+        $this->username = $username;
     }
 
     /**
