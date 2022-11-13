@@ -10,28 +10,28 @@ let content = document.querySelector(".content_tambahbarang");
 
 slidebar.addEventListener("mouseover", function (e) {
     // console.log(this.classList);
-    this.classList.remove("active");
+    this.style.width = "250px";
     textmenu.forEach((test) => test.classList.remove("hide"));
     slidelogo.classList.remove("hidden");
     isikonten.classList.add("tambah");
-    // console.log(isikonten.style.width);
     isikonten.style.width = "75%";
+    document.querySelector(".menu_mnglola").classList.remove("actives");
 });
 
 slidebar.addEventListener("mouseout", function (e) {
     // console.log(this.classList);
-    this.classList.add("active");
+    this.style.width = "80px";
     textmenu.forEach((test) => test.classList.add("hide"));
     slidelogo.classList.add("hidden");
     isikonten.classList.remove("tambah");
     isikonten.style.width = "90%";
+    document.querySelector(".menu_mnglola").classList.add("actives");
 });
-
-    
 
 if (document.querySelector(".tanda").innerHTML == "4") {
     document.querySelector(".menu_mnglola").style.backgroundColor = "#D7CAA0";
     document.querySelector("#mnglolaBrg").style.fontWeight = "700";
+    document.querySelector(".menu_mnglola").classList.add("actives");
 }
 
 butondelete.addEventListener("click", function (e) {
@@ -39,7 +39,6 @@ butondelete.addEventListener("click", function (e) {
     console.log(p);
     p.parentNode.removeChild(p);
 });
-
 
 // function myFunction(event) {
 //     var btnexpand = event;
@@ -101,21 +100,20 @@ for (let j = 0; j < barangid.length; j++) {
     barangid[j].addEventListener("click", function (e) {
         let req = new XMLHttpRequest();
         let indexbarang = barangid[j].value;
-        let expanded = barangid[j].getElementsByTagName('img');
+        let expanded = barangid[j].getElementsByTagName("img");
         req.open("GET", `/listbarang/${indexbarang}`, true);
         req.onload = () => {
             if (req.readyState === XMLHttpRequest.DONE) {
                 let data = req.response;
                 console.log(data);
                 if (!expanded[0].style.rotate) {
-                // ItemList[j].classList.remove("item_list_hidden");
+                    // ItemList[j].classList.remove("item_list_hidden");
                     expanded[0].style.rotate = "90deg";
                     ItemList[j].style.display = "initial";
                     ItemList[j].classList.add("item_list");
                     content.style.height = "1200px";
                     additional[j].innerHTML = data;
-                }
-                else if (expanded[0].style.rotate = "90deg") {
+                } else if ((expanded[0].style.rotate = "90deg")) {
                     ItemList[j].style.display = "none";
                     ItemList[j].classList.add("item_list");
                     expanded[0].style.rotate = "";
@@ -136,5 +134,5 @@ req.onreadystatechange = function () {
     if (req.readyState == 4 && req.status == 200) {
         var obj = JSON.parse(req.responseText);
         console.log(obj);
-        }
-    };
+    }
+};

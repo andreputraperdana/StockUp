@@ -20,23 +20,26 @@ const inputFoto = document.querySelector(".input_content_fotobarang");
 
 slidebar.addEventListener("mouseover", function (e) {
     // console.log(this.classList);
-    this.classList.remove("active");
+    this.style.width = "250px";
     textmenu.forEach((test) => test.classList.remove("hide"));
     slidelogo.classList.remove("hidden");
     isikonten.classList.add("tambah");
     isikonten.style.width = "75%";
+    document.querySelector(".menu_lprn").classList.remove("actives");
 });
 
 slidebar.addEventListener("mouseout", function (e) {
     // console.log(this.classList);
-    this.classList.add("active");
+    this.style.width = "80px";
     textmenu.forEach((test) => test.classList.add("hide"));
     slidelogo.classList.add("hidden");
     isikonten.classList.remove("tambah");
     isikonten.style.width = "90%";
+    document.querySelector(".menu_lprn").classList.add("actives");
 });
 
 if (document.querySelector(".tanda").innerHTML == "3") {
     document.querySelector(".menu_lprn").style.backgroundColor = "#D7CAA0";
     document.querySelector("#lprn").style.fontWeight = "700";
+    document.querySelector(".menu_lprn").classList.add("actives");
 }

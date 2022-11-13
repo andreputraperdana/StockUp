@@ -456,14 +456,20 @@ ul {
     position: fixed;
     top: 0;
     bottom: 0;
-    width: 250px;
     background: #f4f4f4;
     box-shadow: 5px 0 30px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s;
+    transition: all 0.12s;
+}
+.actives {
+    width: 80px;
 }
 
-.active {
-    width: 80px;
+.content_bar {
+    /* position: fixed;
+    top: 0;
+    bottom: 0; */
+    width: 250px;
+    transition: all 0.3s;
 }
 
 #footer {
@@ -714,6 +720,23 @@ li {
     display: none;
 } */
 
+.badge {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background: red;
+    text-align: center;
+    color: white;
+    border: 1px solid black;
+    padding: 5px 10px;
+    border-radius: 30px;
+}
+
+.item {
+    position: relative;
+    display: inline-block;
+}
+
 .custom-file-upload {
     border: 1px solid #ccc;
     display: inline-block;
@@ -754,24 +777,6 @@ li {
     transition: all 0.3s;
     border-radius: 7px;
     padding: 2px 20px 2px 20px;
-    background-image: url("/public/trash.png");
-}
-
-.badge {
-    position: absolute;
-    top: -15px;
-    right: -15px;
-    background: red;
-    text-align: center;
-    color: white;
-    border: 1px solid black;
-    padding: 5px 10px;
-    border-radius: 30px;
-}
-
-.item {
-    position: relative;
-    display: inline-block;
 }
 
 .btn__expand,
@@ -1006,4 +1011,12 @@ ul#menu_bar li:hover::before {
     color: white;
 }
 
-
+.badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+}
