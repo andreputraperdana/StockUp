@@ -29,6 +29,7 @@ class TambahBarangController extends Controller
             $transaksibarangmasuk->jumlah = $output['jumlahbarang'];
             $transaksibarangmasuk->harga = $output['hargabarang'];
             $transaksibarangmasuk->tanggal_kadaluarsa = $output['tanggalkadaluarsa'];
+            $transaksibarangmasuk->notif_flag = 0;
             $transaksibarangmasuk->save();
         }
         else{
@@ -36,6 +37,7 @@ class TambahBarangController extends Controller
             $transaksibarangmasuk->jumlah = $output['jumlahbarang'];
             $transaksibarangmasuk->harga = $output['hargabarang'];
             $transaksibarangmasuk->tanggal_kadaluarsa = $output['tanggalkadaluarsa'];
+            $transaksibarangmasuk->notif_flag = 0;
             $checkbarang->total +=  $output['jumlahbarang'];
             $transaksibarangmasuk->save();
             $checkbarang->save();

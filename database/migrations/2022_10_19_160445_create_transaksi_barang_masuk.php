@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('jumlah');
             $table->date('tanggal_kadaluarsa');
             $table->timestamps();
+            $table->integer('notif_flag');
         });
     }
 
