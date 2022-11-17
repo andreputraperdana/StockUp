@@ -23,7 +23,6 @@ class TambahBarangController extends Controller
             $barangUMKM->nama = $output['namabarang'];
             $barangUMKM->jenis = $output['jenisbarang'];
             $barangUMKM->foto_barang = $output['fotobarang'];
-            $barangUMKM->total = $output['jumlahbarang'];
             $barangUMKM->save(); 
             $transaksibarangmasuk->barang_umkm_id = $barangUMKM->id;
             $transaksibarangmasuk->jumlah = $output['jumlahbarang'];
@@ -38,7 +37,6 @@ class TambahBarangController extends Controller
             $transaksibarangmasuk->harga = $output['hargabarang'];
             $transaksibarangmasuk->tanggal_kadaluarsa = $output['tanggalkadaluarsa'];
             $transaksibarangmasuk->notif_flag = 0;
-            $checkbarang->total +=  $output['jumlahbarang'];
             $transaksibarangmasuk->save();
             $checkbarang->save();
         }

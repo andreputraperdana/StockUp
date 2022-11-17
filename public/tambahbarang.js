@@ -80,7 +80,7 @@ $(document).ready(function () {
             fotobarang: $(".fotobarang").val(),
         };
 
-        // console.log(hasil);
+        console.log(hasil);
         $.ajaxSetup({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),

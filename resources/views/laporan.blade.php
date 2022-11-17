@@ -86,7 +86,7 @@
                                        </div>
 
                                        <div class="button_simpan d-flex justify-content-center pt-4 mt-2">
-                                            <button type="submit" class="btn btn-primary ps-5 pe-5 " id="btn_simpan" style="background-color: transparent; width: 40%; border: 2px solid #D7CAA0; font-weight: bold; color: black; border-radius: 7px;">Preview</button>
+                                            <button type="submit" class="btn btn-primary ps-5 pe-5 " id="btn_simpan" style="background-color: #D7CAA0; width: 40%; font-weight: bold; color: black; border-radius: 7px;">Preview</button>
                                         </div>
                                    </div>
                                    <div class="content_right_laporan" style="width: 45%;">

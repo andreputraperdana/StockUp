@@ -18,7 +18,11 @@
             </div>
             <div class="center">
                 <div class="d-flex">
-                    <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <img src="{{URL::asset('trash.png')}}" alt="" style="height: 25px;"></button>
+                <form action="{{route('barang.destroy', $hasil->id)}}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;" onclick="return confirm('Apakah Kamu Yakin Ingin Menghapus Barang Ini?')"><img src="{{URL::asset('trash.png')}}" alt="" style="height: 25px;"></button>   
+                </form>
                     <button class="btn__edit me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/editbarang/{{$hasil->id}}"><img src="{{URL::asset('editicon.png')}}" alt="" style="height: 25px; transform: rotate(0deg); transition: all 0.5s;"></a></button>
                 </div>
             </div>

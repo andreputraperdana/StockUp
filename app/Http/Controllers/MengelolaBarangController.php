@@ -12,7 +12,7 @@ class MengelolaBarangController extends Controller
 {
     public function getindex(){
         $flag = 4;
-        $AllItems = DB::select('select * from barang_umkm');
+        $AllItems = TransaksiBarangMasuk::groupBy('barang_umkm_id')->select('barang_umkm_id',DB::raw('SUM(jumlah) as total'))->get();
         if(request('search')){
             $cari = request('search');
             $AllItems = DB::table('barang_umkm')->where('nama','like',"%".$cari."%")->get();

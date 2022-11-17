@@ -89,23 +89,23 @@
                                 <img src="{{URL::asset('akun.png')}}" alt="Foto Profil" style="height: 80px;">
                             </div>
                             <div class="id_header center" style="width: 20%;">
-                                {{$AllItem->id}}
+                                {{$AllItem->BarangUMKM->id}}
                                 {{-- <input type="hidden" id="id_header{{$AllItem->id}}" value="{{$AllItem->id}}"> --}}
                             </div>
                             <div class="nama_header center" style="width: 36%;">
-                                {{$AllItem->nama}}
+                                {{$AllItem->BarangUMKM->nama}}
                             </div>
                             <div class="total_header center" style="width: 29%;">
                                 {{$AllItem->total}}
                             </div>
                             <div class="center">
                                 <div class="d-flex">
-                                    <form action="{{route('users.destroy', $AllItem->id)}}" method="POST">
+                                    <form action="{{route('users.destroy', $AllItem->BarangUMKM->id)}}" method="POST">
                                         @method('DELETE')
                                         @csrf
                                         <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;" onclick="return confirm('Apakah Kamu Yakin Ingin Menghapus Barang Ini?')"><img src="{{URL::asset('trash.png')}}" alt="" style="height: 25px;"></button>   
                                     </form>
-                                    <button class="btn__expand me-3 p-2 pe-3 ps-3" value="{{$AllItem->id}}" style="font-size: 16px; font-weight: bold;"> <img src="{{URL::asset('righticon.png')}}" alt="" style="height: 25px; transform: rotate(0deg); transition: all 0.5s;" id="expanded"></button>
+                                    <button class="btn__expand me-3 p-2 pe-3 ps-3" value="{{$AllItem->BarangUMKM->id}}" style="font-size: 16px; font-weight: bold;"> <img src="{{URL::asset('righticon.png')}}" alt="" style="height: 25px; transform: rotate(0deg); transition: all 0.5s;" id="expanded"></button>
                                 </div>
                             </div>
                         </div>
@@ -126,12 +126,6 @@
                                     </div>
                                     <div class="table-body-cell text-center" style="width: 25%;">
                                         Tanggal Kadaluarsa
-                                    </div>
-                                    <div class="table-body-cell" style="visibility: hidden;">
-                                        <div class="d-flex">
-                                            <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login"><img src="{{URL::asset('exit.png')}}" alt="" style="height: 25px;"></a></button>
-                                            <button class="btn__login me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login">></a></button>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

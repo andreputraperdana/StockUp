@@ -75,6 +75,8 @@ Route::get('/ajaxData',[MengelolaBarangController::class, 'ajaxData']);
 
 Route::get('/listbarang/{id}', [ListBarangController::class, 'getindex']);
 
+Route::delete('/listbarang/{id}', [ListBarangController::class, 'destroy'])->name('barang.destroy');
+
 Route::delete('/mengelolabarang/{id}', [MengelolaBarangController::class, 'destroy'])->name('users.destroy');
 
 Route::get('/notif', [SendNotificationController::class, 'getindex']);

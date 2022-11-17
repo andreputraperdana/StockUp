@@ -162,7 +162,7 @@
                             <div class="list_toko d-flex pt-4" style="width:60%">
                                 <div class="container d-flex">
                                     <div class="row row-cols-3">
-                                        <div class="kotak_gambar" style="border: 1px solid black;" role="button">
+                                        <div class="kotak_gambar me-2 mt-2" style="border: 1px solid black; width: 200px;" role="button">
                                             <div class="col">
                                                 <div class="gambar_toko ps-4">
                                                     <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
@@ -175,7 +175,7 @@
                                                 </div>
                                             </div>   
                                         </div>
-                                        <div class="kotak_gambar" style="border: 1px solid black;">
+                                        <div class="kotak_gambar me-2 mt-2" style="border: 1px solid black; width: 200px;" role="button">
                                             <div class="col">
                                                 <div class="gambar_toko ps-4">
                                                     <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
@@ -188,7 +188,7 @@
                                                 </div>
                                             </div>   
                                         </div>
-                                        <div class="kotak_gambar" style="border: 1px solid black;">
+                                        <div class="kotak_gambar me-2 mt-2" style="border: 1px solid black; width: 200px;" role="button">
                                             <div class="col">
                                                 <div class="gambar_toko ps-4">
                                                     <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
@@ -201,7 +201,7 @@
                                                 </div>
                                             </div>   
                                         </div>
-                                        <div class="kotak_gambar" style="border: 1px solid black;">
+                                        <div class="kotak_gambar me-2 mt-2" style="border: 1px solid black; width: 200px;" role="button">
                                             <div class="col">
                                                 <div class="gambar_toko ps-4">
                                                     <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
@@ -214,7 +214,7 @@
                                                 </div>
                                             </div>   
                                         </div>
-                                        <div class="kotak_gambar" style="border: 1px solid black;">
+                                        <div class="kotak_gambar me-2 mt-2" style="border: 1px solid black; width: 200px;" role="button">
                                             <div class="col">
                                                 <div class="gambar_toko ps-4">
                                                     <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
@@ -227,7 +227,7 @@
                                                 </div>
                                             </div>   
                                         </div>
-                                        <div class="kotak_gambar" style="border: 1px solid black;">
+                                        <div class="kotak_gambar me-2 mt-2" style="border: 1px solid black; width: 200px;" role="button">
                                             <div class="col">
                                                 <div class="gambar_toko ps-4">
                                                     <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
@@ -240,7 +240,7 @@
                                                 </div>
                                             </div>   
                                         </div>
-                                        <div class="kotak_gambar" style="border: 1px solid black;">
+                                        <div class="kotak_gambar me-2 mt-2" style="border: 1px solid black; width: 200px;" role="button">
                                             <div class="col">
                                                 <div class="gambar_toko ps-4">
                                                     <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
@@ -253,7 +253,7 @@
                                                 </div>
                                             </div>   
                                         </div>
-                                        <div class="kotak_gambar" style="border: 1px solid black;">
+                                        <div class="kotak_gambar me-2 mt-2" style="border: 1px solid black; width: 200px;" role="button">
                                             <div class="col">
                                                 <div class="gambar_toko ps-4">
                                                     <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
@@ -266,7 +266,7 @@
                                                 </div>
                                             </div>   
                                         </div>
-                                        <div class="kotak_gambar" style="border: 1px solid black;">
+                                        <div class="kotak_gambar me-2 mt-2" style="border: 1px solid black; width: 200px;" role="button">
                                             <div class="col">
                                                 <div class="gambar_toko ps-4">
                                                     <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">

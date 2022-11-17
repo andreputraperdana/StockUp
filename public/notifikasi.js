@@ -6,7 +6,7 @@ const isikonten = document.querySelector(".isi_konten");
 textmenu.forEach((test) => test.classList.add("hide"));
 const overlay = document.querySelector(".overlay");
 const notification = document.querySelector(".notif_success");
-const listNotif = document.querySelectorAll(".list_raja_notif");
+const listNotif = document.querySelectorAll(".button__rekomen");
 console.log(listNotif.length);
 
 const idbarangall = document.querySelectorAll(".id_barang");
@@ -43,6 +43,13 @@ for (let i = 0; i < listNotif.length; i++) {
         });
     });
 }
+
+window.addEventListener("click", function (e) {
+    if (!overlay.classList[1]) {
+        overlay.classList.add("hidden");
+        notification.classList.add("hidden");
+    }
+});
 
 slidebar.addEventListener("mouseover", function (e) {
     // console.log(this.classList);

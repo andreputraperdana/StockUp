@@ -19,7 +19,6 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('nama');
             $table->string('jenis');
-            $table->integer('total');
             $table->string('foto_barang');
             $table->timestamps();
         });

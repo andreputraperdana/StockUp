@@ -982,7 +982,7 @@ ul#menu_bar li:hover::before {
 
 /* The Close Button */
 .close {
-    color: white;
+    color: black;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -997,8 +997,13 @@ ul#menu_bar li:hover::before {
 
 .modal-header {
     padding: 2px 16px;
-    background-color: #f0ad4e;
-    color: white;
+    background-color: #d7caa0;
+    color: black;
+}
+
+.modal-header h2 {
+    font-size: 25px;
+    font-weight: bold;
 }
 
 .modal-body {

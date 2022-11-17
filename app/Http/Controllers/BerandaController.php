@@ -19,7 +19,7 @@ class BerandaController extends Controller
         $TotalNotif = 0;
         // $AllItems = BarangUMKM::where('user_id', '=', auth()->user()->id)->get();
         // $AllItems = TransaksiBarangMasuk::with('BarangUMKM')->get();
-        $AllItems = TransaksiBarangMasuk::groupBy('barang_umkm_id')->select('barang_umkm_id',DB::raw('count(barang_umkm_id) as totalAll'))->paginate(3);
+        $AllItems = TransaksiBarangMasuk::groupBy('barang_umkm_id')->select('barang_umkm_id',DB::raw('count(barang_umkm_id) as totalAll, SUM(jumlah) as total'))->paginate(3);
         $BarangHabis = TransaksiBarangMasuk::WHERE('jumlah', '<', '5')->get();
         $PengeluranPerHari = TransaksiBarangKeluar::all();
         $ListBarang = BarangUMKM::paginate(3);

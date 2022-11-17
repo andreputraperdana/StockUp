@@ -53,10 +53,10 @@
                      <table class="table caption-top" style="width: 90%;">
                        <thead>
                          <tr>
-                           <td scope="col" style="opacity: 0.6;">Nama Barang</td>
-                           <td scope="col" style="opacity: 0.6;" class="text-center">Jenis Barang</td>
-                           <td scope="col" style="opacity: 0.6;" class="text-center">Jumlah Barang</td>
-                           <td scope="col" style="opacity: 0.6;" class="text-center">Batch</td>
+                           <td scope="col" style="opacity: 0.6; font-weight: bold; color: black;">Nama Barang</td>
+                           <td scope="col" style="opacity: 0.6; font-weight: bold; color: black;" class="text-center">Jenis Barang</td>
+                           <td scope="col" style="opacity: 0.6; font-weight: bold; color: black;" class="text-center">Jumlah Barang</td>
+                           <td scope="col" style="opacity: 0.6; font-weight: bold; color: black;" class="text-center">Batch</td>
                          </tr>
                        </thead>
                        <tbody>
@@ -85,12 +85,12 @@
                 <table class="table caption-top" style="width: 90%;">
                        <thead>
                          <tr>
-                           <td scope="col" style="opacity: 0.6;">Nama Barang</td>
-                           <td scope="col" style="opacity: 0.6;" class="text-center">Jenis Barang</td>
-                           <td scope="col" style="opacity: 0.6;" class="text-center">Batch</td>
-                           <td scope="col" style="opacity: 0.6;" class="text-center">Tanggal Kadaluarsa</td>
-                           <td scope="col" style="opacity: 0.6;" class="text-center">Jumlah Barang</td>
-                           <td scope="col" style="opacity: 0.6;" class="text-center">Status</td>
+                           <td scope="col" style="opacity: 0.6; font-weight: bold;">Nama Barang</td>
+                           <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Jenis Barang</td>
+                           <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Batch</td>
+                           <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Tanggal Kadaluarsa</td>
+                           <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Jumlah Barang</td>
+                           <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Status</td>
                          </tr>
                        </thead>
                        <tbody>
@@ -128,10 +128,10 @@
                 <table class="table caption-top" style="width: 90%;">
                        <thead>
                          <tr>
-                           <td scope="col" style="opacity: 0.6;">Nama Barang</td>
-                           <td scope="col" style="opacity: 0.6;" class="text-center">Jenis Barang</td>
-                           <td scope="col" style="opacity: 0.6;" class="text-center">Batch</td>
-                           <td scope="col" style="opacity: 0.6;" class="text-center">Jumlah Barang Keluar</td>
+                           <td scope="col" style="opacity: 0.6; font-weight: bold;">Nama Barang</td>
+                           <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Jenis Barang</td>
+                           <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Batch</td>
+                           <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Jumlah Barang Keluar</td>
                          </tr>
                        </thead>
                        <tbody>
@@ -200,10 +200,6 @@
                                              <img src="{{URL::asset('search.png')}}" class="" style="height: 20px;">
                                          </button>
                                      </div>
-
-                                     <div class="button_simpan d-flex" style="width: 29%;">
-                                            <button type="submit" class="btn btn-primary ps-5 pe-5 " id="btn_simpan" style="background-color: transparent; width: 100%; border: 2px solid #D7CAA0; font-weight: bold; color: black; border-radius: 20px;"> <img src="{{URL::asset('downloadicon.png')}}" alt="" height="25px">Download PDF</button>
-                                    </div>
                                 </div>
                                 <div class="">
                                     <div class="d-flex justify-content-center" style="width: 100%;">
@@ -220,7 +216,7 @@
                                           @foreach($AllItems as $AllItem)
                                             <tr class="">
                                               <td class="pt-4 pb-4">{{$AllItem->BarangUMKM->nama}}<br><span style="opacity: 0.6;">00{{$AllItem->BarangUMKM->id}}</span></td>
-                                              <td class="text-center pt-4 pb-4">{{$AllItem->BarangUMKM->total}}</td>
+                                              <td class="text-center pt-4 pb-4">{{$AllItem->total}}</td>
                                               <td class="text-center pt-4 pb-4">{{$AllItem->BarangUMKM->jenis}}</td>
                                               <td class="text-center pt-4 pb-4">{{$AllItem->totalAll}}</td>
                                             </tr>
