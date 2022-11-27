@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="waktu">
-                    <p id="waktuskrg"></p>
+                    <span id="waktuskrg"></span>
                 </div>
             </div>
 

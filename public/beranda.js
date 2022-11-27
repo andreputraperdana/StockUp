@@ -1,10 +1,10 @@
 const slidebar = document.querySelector(".side_bar");
 const textmenu = document.querySelectorAll(".textmenu");
 const slidelogo = document.querySelector(".side_logo");
-const d = new Date().toLocaleString();
 const isikonten = document.querySelector(".isi_konten");
 textmenu.forEach((test) => test.classList.add("hide"));
 const listallUser = document.querySelector(".listall");
+var time = document.getElementById("waktuskrg");
 // var popupkadaluarsa = document.querySelector("#myPopup-Kadaluarsa");
 // var popuphabis = document.querySelector("#myPopup");
 // var popuppengeluaran = document.querySelector("#myPopup-PengeluaranPerHari");
@@ -36,10 +36,13 @@ slidebar.addEventListener("mouseover", function (e) {
     document.querySelector(".menu_brnd").classList.remove("actives");
 });
 
-if (!document.getElementById("waktuskrg")) {
-} else {
-    document.getElementById("waktuskrg").innerHTML = d;
+function refreshTime(){
+    const d = new Date().toLocaleString();
+    var formattedString = d.replace(", ", " - ");
+    time.innerHTML = formattedString;
 }
+
+setInterval(refreshTime, 1000);
 
 slidebar.addEventListener("mouseout", function (e) {
     // console.log(this.classList);
