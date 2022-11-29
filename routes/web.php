@@ -79,6 +79,6 @@ Route::delete('/listbarang/{id}', [ListBarangController::class, 'destroy'])->nam
 
 Route::delete('/mengelolabarang/{id}', [MengelolaBarangController::class, 'destroy'])->name('users.destroy');
 
-Route::get('/notif', [SendNotificationController::class, 'getindex']);
+// Route::get('/notif', [SendNotificationController::class, 'getindex']);
 
 Route::post('/detailnotif', [NotifikasiController::class, 'postdetail']);
