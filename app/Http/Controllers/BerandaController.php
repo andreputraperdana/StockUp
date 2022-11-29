@@ -17,9 +17,21 @@ class BerandaController extends Controller
         $ListUser = User::where('role_id', '=', '2')->get();
         $flag = 1;
         $TotalNotif = 0;
+        $searchbarang = request('namabarang');
+        $tanda = 0;
         // $AllItems = BarangUMKM::where('user_id', '=', auth()->user()->id)->get();
         // $AllItems = TransaksiBarangMasuk::with('BarangUMKM')->get();
-        $AllItems = TransaksiBarangMasuk::groupBy('barang_umkm_id')->select('barang_umkm_id',DB::raw('count(barang_umkm_id) as totalAll, SUM(jumlah) as total'))->paginate(3);
+        if($searchbarang){
+            $BarangUMKM = BarangUMKM::where('nama', 'like', '%'.$searchbarang.'%')->get();
+            for($i=0; $i<COUNT($BarangUMKM); $i++){
+                $AllItems[$i] = TransaksiBarangMasuk::groupBy('barang_umkm_id')->select('barang_umkm_id',DB::raw('count(barang_umkm_id) as totalAll, SUM(jumlah) as total'))->where('barang_umkm_id', '=', $BarangUMKM[$i]['id'])->paginate(3);
+            }
+            $tanda = 1;
+        }
+        else{
+            $AllItems = TransaksiBarangMasuk::groupBy('barang_umkm_id')->select('barang_umkm_id',DB::raw('count(barang_umkm_id) as totalAll, SUM(jumlah) as total'))->paginate(3);
+        }
+
         $BarangHabis = TransaksiBarangMasuk::WHERE('jumlah', '<', '5')->get();
         $PengeluranPerHari = TransaksiBarangKeluar::all();
         $ListBarang = BarangUMKM::paginate(3);
@@ -47,6 +59,8 @@ class BerandaController extends Controller
         $emailuser = auth()->user()->email;
         $username = auth()->user()->name;
         // Mail::to($emailuser)->send(new SendNotification($TotalBarangHabis, $TotalBarangAkanKadaluarsa, $username));
-        return view('beranda', ['ListUser'=> $ListUser, 'flag'=>$flag, 'AllItems'=>$AllItems, 'BarangHabis'=> $BarangHabis, 'PengeluranPerHari'=> $PengeluranPerHari, 'BarangAkanKadaluarsa' => $BarangAkanKadaluarsa, 'TotalBarangHabis' => $TotalBarangHabis, 'TotalPengeluranPerHari'=>$TotalPengeluranPerHari, 'TotalBarangAkanKadaluarsa' => $TotalBarangAkanKadaluarsa, 'Listbarang' => $ListBarang, 'Totalnotif'=> $TotalNotif]);
+        return view('beranda', ['ListUser'=> $ListUser, 'flag'=>$flag, 'AllItems'=>$AllItems, 'BarangHabis'=> $BarangHabis, 'PengeluranPerHari'=> $PengeluranPerHari, 'BarangAkanKadaluarsa' => $BarangAkanKadaluarsa, 'TotalBarangHabis' => $TotalBarangHabis, 'TotalPengeluranPerHari'=>$TotalPengeluranPerHari, 'TotalBarangAkanKadaluarsa' => $TotalBarangAkanKadaluarsa, 'Listbarang' => $ListBarang, 'Totalnotif'=> $TotalNotif, 'Tanda'=>$tanda]);
     }
+
+    
 }

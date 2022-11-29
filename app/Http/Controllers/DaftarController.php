@@ -14,7 +14,6 @@ class DaftarController extends Controller
 
     public function inputdata(Request $request){
         $hasil = $request->input();
-        // dd($hasil);
         $register = new User;
         $register->email = $hasil['email'];
         $register->password = Hash::make($hasil['password']);
@@ -24,7 +23,7 @@ class DaftarController extends Controller
         $register->role_id = $hasil['roleid'];
         $register->status = "Active";
         $register->save();
-
+    
         return response()->json(['stats'=>200, 'errors'=>'Test']);
     }
 }

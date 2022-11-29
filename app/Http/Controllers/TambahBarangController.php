@@ -38,7 +38,6 @@ class TambahBarangController extends Controller
             $transaksibarangmasuk->tanggal_kadaluarsa = $output['tanggalkadaluarsa'];
             $transaksibarangmasuk->notif_flag = 0;
             $transaksibarangmasuk->save();
-            $checkbarang->save();
         }
 
         // return redirect('/tambahbarang');

@@ -6,7 +6,7 @@
 
 @section('content')
         <div class="atas d-flex justify-content-between" style="width:100%">
-            <div class="atas_kiri">
+            <div class="atas_kiri pb-3">
                 <div class="judul_halaman mt-5">
                     <p style="font-size: 30px; font-weight: bold;">Dashboard Manajemen Barang</p>
                 </div>
@@ -14,6 +14,10 @@
                 <div class="waktu">
                     <span id="waktuskrg"></span>
                 </div>
+            </div>
+
+            <div>
+                <p>{{$Tanda}}</p>
             </div>
 
            <div class="atas_kanan d-flex  mt-5">
@@ -193,14 +197,16 @@
                         </div>
 
                             <div class="raja_list" style="width: 97%; height: 550px; border-radius: 25px;">
-                                <div class="ps-5 pt-4 pb-5 d-flex justify-content-between" style="width: 95%;">
-                                    <div class="d-flex" style="border: 1px solid #626262; background-color:transparent; border-radius: 7px; width: 45%; height: 40px;">
-                                         <input type="text" class="form-control" id="exampleInputTanggalKadaluarsa1" aria-describedby="emailHelp" placeholder="Cari Barang" style="border-radius: 0; background-color:transparent; border: 0;">
-                                         <button type="submit" class="btn" style="border-left: 1px solid #626262; border-radius: 0 7px 7px 0; background-color: #D7CAA0;">
-                                             <img src="{{URL::asset('search.png')}}" class="" style="height: 20px;">
-                                         </button>
-                                     </div>
-                                </div>
+                                <form action="/beranda">
+                                    <div class="ps-5 pt-4 pb-5 d-flex justify-content-between" style="width: 95%;">
+                                        <div class="d-flex" style="border: 1px solid #626262; background-color:transparent; border-radius: 7px; width: 45%; height: 40px;">
+                                             <input type="text" class="form-control" id="namabarang" name="namabarang" aria-describedby="emailHelp" placeholder="Cari Barang" style="border-radius: 0; background-color:transparent; border: 0;">
+                                             <button type="submit" class="btn" style="border-left: 1px solid #626262; border-radius: 0 7px 7px 0; background-color: #D7CAA0;">
+                                                 <img src="{{URL::asset('search.png')}}" class="" style="height: 20px;">
+                                             </button>
+                                         </div>
+                                        </div>
+                                </form>
                                 <div class="">
                                     <div class="d-flex justify-content-center" style="width: 100%;">
                                         <table class="table caption-top" style="width: 90%;">
@@ -213,6 +219,7 @@
                                             </tr>
                                           </thead>
                                           <tbody>
+                                        @if($Tanda == 0)
                                           @foreach($AllItems as $AllItem)
                                             <tr class="">
                                               <td class="pt-4 pb-4">{{$AllItem->BarangUMKM->nama}}<br><span style="opacity: 0.6;">00{{$AllItem->BarangUMKM->id}}</span></td>
@@ -221,12 +228,23 @@
                                               <td class="text-center pt-4 pb-4">{{$AllItem->totalAll}}</td>
                                             </tr>
                                           @endforeach
+                                        @elseif($Tanda == 1)
+                                            @php
+                                                $array = array_keys($AllItems);
+                                                $max = count($AllItems);
+                                            @endphp
+                                            @for($i=0; $i<$max; $i++)
+                                                @foreach($AllItems as $AllItem)
+                                                    <tr class="">
+                                                      <td class="pt-4 pb-4">{{$AllItem[$array[$i]]->BarangUMKM->nama}}<br><span style="opacity: 0.6;">00{{$AllItem[$array[$i]]->BarangUMKM->id}}</span></td>
+                                                    </tr>
+                                                @endforeach
+                                            @endfor
+                                        @endif
                                           </tbody>
                                          </table>
                                     </div>
-                                    <div class="d-flex justify-content-end pe-5">
-                                        {{$AllItems->links('vendor.pagination.bootstrap-4')}}
-                                    </div>
+                            
                                 </div>
                             </div>
 
