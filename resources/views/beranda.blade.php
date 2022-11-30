@@ -236,7 +236,7 @@
                                             @for($i=0; $i<$max; $i++)
                                                 @foreach($AllItems as $AllItem)
                                                     <tr class="">
-                                                      <td class="pt-4 pb-4">{{$AllItem[$array[$i]]->BarangUMKM->nama}}<br><span style="opacity: 0.6;">00{{$AllItem[$array[$i]]->BarangUMKM->id}}</span></td>
+                                                      <td class="pt-4 pb-4">{{$AllItemp[$array[$i]]->BarangUMKM->nama}}<br><span style="opacity: 0.6;">00{{$AllItem[$array[$i]]->BarangUMKM->id}}</span></td>
                                                     </tr>
                                                 @endforeach
                                             @endfor
