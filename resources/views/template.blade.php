@@ -88,41 +88,45 @@
         </div> 
     </div>
     @elseif(auth()->user()->role_id == 2)
-    <div class="side_bar active">
+    <div class="side_bar" style="width: 80px;">
+        <div class="content_bar">
             <div class="side_logo text-center hidden">
                 <h3 style="font-weight: 1000;">STOCKUP</h3>
             </div>
-            <ul class="menu_bar" style="width: 100%;">
-                <li>
-                    <div class="menu d-flex ps-4">
-                            <div class="iconmenu">
-                                <img src="{{URL::asset('beranda_icon.png')}}" alt="">
+            <ul class="menu_bar" id="menu_bar" style="width: 100%;">
+                <li class="beranda_">
+                    <a href="/beranda" id="linkBeranda">
+                            <div class="menu_brnd d-flex ps-4 pt-2 pb-1" role="button" style="transition: all 0.3s;">
+                                <div class="iconmenu">
+                                    <img src="{{URL::asset('beranda_icon.png')}}" alt="">
+                                </div>
+                                <div class="textmenu">
+                                    <p id="brnd" class="subtextmenu" style="text-decoration:none;">Beranda</p>
+                                </div>
                             </div>
-                            <div class="textmenu">
-                                <p>Beranda</p>
-                            </div>
-                    </div>
-    
+                    </a>
                 </li>
-                <li>
-                    <div class="menu d-flex ps-4" style="width: 100%;">
+
+                <li class="tambahbarang_">
+                    <a href="/tambahbarang" class="linkTambahBarang">
+                        <div class="menu_tmbhbrg d-flex ps-4 pt-2 pb-1" role="button" style="transition: all 0.8s;">
                             <div class="iconmenu">
                                 <img src="{{URL::asset('plus.png')}}" alt="">
                             </div>
                             <div class="textmenu">
-                                <p>Tambah Barang</p>
+                                <p id="tmbhBrg" class="subtextmenu" style="text-decoration:none;">Tambah Barang</p>
                             </div>
-                    </div>
-    
+                        </div>
+                    </a>
                 </li>
             </ul>
+        </div> 
     </div>
     @endif
 
 
     <div class="isi_konten" style="width: 90%;"> 
         @yield('content')
-        
         <div class="foot">
             <div class="copyright text-center" style="margin-top: -55px; margin-bottom: -35px;">
                 <p>2022 &#169opy right</p>

@@ -45,7 +45,7 @@
 
             </div>
         </div>
-
+        @if(auth()->user()->role_id == 1)
         <div id="myPopup-BarangHabis" class="popUp">
           <!-- Modal content -->
             <div class="modal-content">
@@ -195,7 +195,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        @endif
                             <div class="raja_list" style="width: 97%; height: 550px; border-radius: 25px;">
                                 <form action="/beranda">
                                     <div class="ps-5 pt-4 pb-5 d-flex justify-content-between" style="width: 95%;">
@@ -244,10 +244,8 @@
                                           </tbody>
                                          </table>
                                     </div>
-                            
                                 </div>
                             </div>
-
                     </div>
                     <div class="chat pe-4 ps-4" style="height: 630px; width: 22%; border-radius: 25px;">
                         <div class="title__chat d-flex pt-4">
