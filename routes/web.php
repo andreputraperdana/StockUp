@@ -82,3 +82,5 @@ Route::delete('/mengelolabarang/{id}', [MengelolaBarangController::class, 'destr
 // Route::get('/notif', [SendNotificationController::class, 'getindex']);
 
 Route::post('/detailnotif', [NotifikasiController::class, 'postdetail']);
+
+Route::post('/editbarang/update', [EditBarangController::class, 'update']);

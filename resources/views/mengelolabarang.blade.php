@@ -112,19 +112,19 @@
                         <div class="item_list_hidden" id="list_Allitem" style="width: 100%;">
                             <div class="" style="width: 100%;"> 
                                 <div class="" style="width: 100%; font-size: 16px;">
-                                    <div class="table-body-cell text-center" style="width: 25%;">
+                                    <div class="table-body-cell text-center" style="width: 20%;">
                                         No. Barang
                                     </div>
-                                    <div class="table-body-cell text-center" style="width: 25%;">
+                                    <div class="table-body-cell text-center" style="width: 20%;">
                                         ID
                                     </div>
-                                    <div class="table-body-cell text-center" style="width: 25%;">
+                                    <div class="table-body-cell text-center" style="width: 20%;">
                                         Kuantitas
                                     </div>
-                                    <div class="table-body-cell text-center" style="width: 25%;">
+                                    <div class="table-body-cell text-center" style="width: 20%;">
                                         Harga
                                     </div>
-                                    <div class="table-body-cell text-center" style="width: 25%;">
+                                    <div class="table-body-cell text-center" style="width: 20%;">
                                         Tanggal Kadaluarsa
                                     </div>
                                 </div>

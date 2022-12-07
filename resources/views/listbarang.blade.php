@@ -1,19 +1,19 @@
 @foreach($hasil as $hasil)
     <div class="resp-table-row mb-3 p-3" style="font-size: 16px; border-radius: 7px; background-color: #C7E0BC;"> 
         <div class="d-flex">
-            <div class="center" style="width: 20%;">
+            <div class="center" style="width: 15vw;">
                 {{$hasil->id}}
             </div>
-            <div class="center" style="width: 20%;">
+            <div class="center" style="width: 22vw;">
                 {{$hasil->barang_umkm_id}}
             </div>
-            <div class="center" style="width: 20%;">
+            <div class="center" style="width: 18vw;">
                 {{$hasil->jumlah}}
             </div>
-            <div class="center" style="width: 20%;">
+            <div class="center" style="width: 18vw;">
                 {{$hasil->harga}}
             </div>
-            <div class="center" style="width: 20%;">
+            <div class="center" style="width: 25vw;">
                 {{$hasil->tanggal_kadaluarsa}}
             </div>
             <div class="center">

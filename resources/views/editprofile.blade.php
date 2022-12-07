@@ -131,7 +131,14 @@
                                                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nama Toko" style="border: 1px solid #626262; background-color:transparent;">
                                                 </div>
                                                 <div class="daftar_akun_kanan_password">
-                                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Kategori" style="border: 1px solid #626262; background-color:transparent;">
+                                                    <select name="kategori" class="kategori p-2" style="color: #626262; border-radius: 5px;">
+                                                        <option value="javascript">Es Grim Coklat</option>
+                                                        <option value="php">Es Grim Vanilla</option>
+                                                        <option value="java">Es Grim Stroberi</option>
+                                                        <option value="golang">Es Grim Matcha</option>
+                                                        <option value="python">Es Grim Melon</option>
+                                                        <option value="c#">Es Grim Alpukat</option>
+                                                    </select>
                                                 </div>
                                                 <div class="daftar_akun_kanan_password mt-4">
                                                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Nomor Telepon" style="border: 1px solid #626262; background-color:transparent;">
