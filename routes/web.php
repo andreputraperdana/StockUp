@@ -51,7 +51,7 @@ Route::get('/chat', [ChatController::class, 'getindex']);
 
 Route::get('/tambahbarang', [TambahBarangController::class, 'getindex']);
 
-Route::post('/tambahbarang', [TambahBarangController::class, 'inputbarang']);
+Route::post('/tambahbarang', [TambahBarangController::class, 'inputbarang'])->name('tambahbarang');
 
 Route::get('/laporan', [LaporanController::class, 'getindex']);
 
@@ -65,13 +65,13 @@ Route::get('/editbarang/{id}', [EditBarangController::class, 'getindex']);
 
 Route::get('/notifikasi', [NotifikasiController::class, 'getindex']);
 
-Route::get('/item', [ItemController::class, 'getindex']);
+Route::get('/item/{id}', [ItemController::class, 'getindex']);
 
 Route::get('/profiltoko', [ProfilTokoController::class, 'getindex']);
 
-Route::get('/platformsosial',[PlatformSosialController::class, 'getindex']);
+Route::get('/platformsosial', [PlatformSosialController::class, 'getindex']);
 
-Route::get('/ajaxData',[MengelolaBarangController::class, 'ajaxData']);
+Route::get('/ajaxData', [MengelolaBarangController::class, 'ajaxData']);
 
 Route::get('/listbarang/{id}', [ListBarangController::class, 'getindex']);
 

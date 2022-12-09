@@ -159,10 +159,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list_toko d-flex pt-4" style="width:60%">
+                            <div class="list_toko d-flex pt-4" style="width:70%">
                                 <div class="container d-flex">
-                                    <div class="row row-cols-3">
-                                        <div class="kotak_gambar me-2 mt-2" style="border: 1px solid black; width: 200px;" role="button">
+                                        @foreach($Item as $Items)
+                                            <a href="/item/{{$Items->id}}">
+                                                <div class="card me-5" style="width: 15rem;" role="button">
+                                                    <img src="/storage/image/{{$Items->foto_barang}}" class="card-img-top" alt="">
+                                                    <div class="card-body">
+                                                      <h5 class="card-title" style="text-align: center; font-weight: bold;">{{$Items->nama}}</h5>
+                                                      <p class="card-text" style="text-align: center;">@currency($Items->harga)</p>
+                                                      {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        @endforeach
+                                        {{-- <div class="kotak_gambar me-2 mt-2" style="border: 1px solid black; width: 200px;" role="button">
                                             <div class="col">
                                                 <div class="gambar_toko ps-4">
                                                     <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
@@ -265,21 +276,8 @@
                                                     <p style="font-size: 16px;">Rp. 50.000</p>
                                                 </div>
                                             </div>   
-                                        </div>
-                                        <div class="kotak_gambar me-2 mt-2" style="border: 1px solid black; width: 200px;" role="button">
-                                            <div class="col">
-                                                <div class="gambar_toko ps-4">
-                                                    <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
-                                                </div>
-                                                <div class="nama_barang pt-3">
-                                                    <p style="font-size: 16px; font-weight: bold;">Nugget kensler</p>
-                                                </div>
-                                                <div class="harga_barang">
-                                                    <p style="font-size: 16px;">Rp. 50.000</p>
-                                                </div>
-                                            </div>   
-                                        </div>
-                                    </div>
+                                        </div> --}}
+                                    {{-- </div> --}}
                                 </div>
                             </div>
                         </div>

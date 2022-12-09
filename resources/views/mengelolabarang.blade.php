@@ -86,7 +86,7 @@
                     <div class="resp-table-row mb-5 p-3" style="font-size: 20px;"> 
                         <div class="d-flex">
                             <div class="foto" style="width: 18%;">
-                                <img src="{{URL::asset('akun.png')}}" alt="Foto Profil" style="height: 80px;">
+                                <img src="/storage/image/{{$AllItem->BarangUMKM->foto_barang}}" alt="Foto Profil" style="height: 80px;">
                             </div>
                             <div class="id_header center" style="width: 20%;">
                                 {{$AllItem->BarangUMKM->id}}

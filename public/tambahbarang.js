@@ -68,8 +68,10 @@ if (document.querySelector(".tanda").innerHTML == "2") {
 }
 
 $(document).ready(function () {
-    $(document).on("click", "#btn_simpan", function (e) {
+    $(document).on("submit", "#tambahbarang", function (e) {
         e.preventDefault();
+
+        let formData = new FormData($("#tambahbarang")[0]);
 
         var hasil = {
             namabarang: $(".namabarang").val(),
@@ -79,20 +81,25 @@ $(document).ready(function () {
             tanggalkadaluarsa: $(".tanggalkadaluarsa").val(),
             fotobarang: $(".fotobarang").val(),
         };
-
+        // overlay.classList.remove("hidden");
+        // notification.classList.remove("hidden");
         console.log(hasil);
         $.ajaxSetup({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
         });
-
+        console.log(formData);
         $.ajax({
             type: "POST",
             url: "/tambahbarang",
-            data: hasil,
-            dataType: "json",
+            data: formData,
+            // dataType: "json",
+            contentType: false,
+            processData: false,
             success: function (response) {
+                console.log(response);
+                console.log(response.stats);
                 if (response.stats) {
                     overlay.classList.remove("hidden");
                     notification.classList.remove("hidden");

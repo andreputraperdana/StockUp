@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BarangPemasok;
 use Illuminate\Http\Request;
 
 class TokoController extends Controller
 {
-    public function getindex(){
+    public function getindex()
+    {
         $flag = 5;
-        return view('toko', ['flag'=>$flag]);
+        $Item = BarangPemasok::all();
+        return view('toko', ['flag' => $flag, 'Item' => $Item]);
     }
 }

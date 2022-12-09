@@ -28,6 +28,17 @@ class EditBarangController extends Controller
         $transaksibarangmasuk->tanggal_kadaluarsa = $output['tanggalkadaluarsa'];
         $transaksibarangmasuk->notif_flag = 0;
         $transaksibarangmasuk->update();
+        $filenameWithExt = $request->file('fotobarang')->getClientOriginalName();
+        // Get Filename
+        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+        // Get just Extension
+        $extension = $request->file('fotobarang')->getClientOriginalExtension();
+        // Filename To store
+        $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+        // Upload Image
+        $path = $request->file('fotobarang')->storeAs('public/image', $fileNameToStore);
+        $checkbarang->foto_barang = $fileNameToStore;
+        $checkbarang->update();
 
         return redirect('/mengelolabarang')->with('status', 'Data siswa Berhasil Diubah');
     }

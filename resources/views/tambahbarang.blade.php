@@ -1,10 +1,11 @@
 @extends('template')
 
+@if(auth()->user()->role_id == 1)
+
 @section('javascript')
 <script defer src="tambahbarang.js"></script>
 @endsection
 
-@if(auth()->user()->role_id == 1)
 @section('content')
         <div class="atas d-flex justify-content-between" style="width:100%">
                         <div class="atas_kiri">
@@ -42,7 +43,7 @@
             </div>
 
 
-                    <div class="content_tambahbarang mt-5" style="height: 750px; width: 100%; background-color: #F4F4F4; border-radius: 25px;" >
+                    <div class="content_tambahbarang mt-5" style="height: 850px; width: 100%; background-color: #F4F4F4; border-radius: 25px;" >
                         <div class="content_tambah d-flex" style="height: 80px;">
                             <button class="btn d-flex justify-content-center" id="btnBarangBaru" style="width: 50%; background-color: #D7CAA0; border-radius: 25px 0 0 0;">
                             <div class="iconbaru">
@@ -59,7 +60,7 @@
                         </div>
 
                         <div class="isi_content_tambahbarang mt-4" style="width: 100%;">
-                        <form action="/tambahbarang" method="POST">
+                        <form method="POST" enctype="multipart/form-data" id="tambahbarang">
                             @csrf
                             <div class="judul_content_tambahbarang text-center">
                                <label for=""><p style="font-size: 25px; font-weight: bold;">Barang Baru</p></label>
@@ -176,6 +177,11 @@
     </div>
 @endsection
 @elseif(auth()->user()->role_id == 2)
+
+@section('javascript')
+<script defer src="tambahbarang.js"></script>
+@endsection
+
 @section('content')
 <div class="atas d-flex justify-content-between" style="width:100%">
                 <div class="atas_kiri">
@@ -212,8 +218,8 @@
                 </div>
     </div>
             <div class="content_tambahbarang mt-5" style="height: 750px; width: 100%; background-color: #F4F4F4; border-radius: 25px;" >
-                <div class="isi_content_tambahbarang mt-4" style="width: 100%;">
-                <form action="/tambahbarang" method="POST">
+                <div class="isi_content_tambahbarang" style="width: 100%; top: 5%;">
+                <form method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="judul_content_tambahbarang text-center">
                        <label for=""><p style="font-size: 25px; font-weight: bold;">Barang Baru</p></label>
@@ -278,7 +284,7 @@
                                 </label>
                             </div>
                             <div class="input_fotobarang">
-                                <input type="file" name="fotobarang" class="form-control fotobarang" id="exampleInputFotoBarang1" aria-describedby="emailHelp" placeholder="Foto Barang" style="border: 1px solid #626262; background-color:transparent;">
+                                <input type="file" name="fotobarang" class="form-control fotobarang" id="fotobarang" aria-describedby="emailHelp" placeholder="Foto Barang" style="border: 1px solid #626262; background-color:transparent;">
                             </div>
                         </div>
                     </div>

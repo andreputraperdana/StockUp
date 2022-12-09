@@ -22,6 +22,7 @@ return new class extends Migration
             $table->bigInteger('nomortelp');
             $table->foreignId('role_id')->constrained('role')->onUpdate('cascade')->onDelete('cascade');
             $table->string('status');
+            $table->string('foto_profile')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

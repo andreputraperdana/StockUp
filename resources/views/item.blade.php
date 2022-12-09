@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('javascript')
-<script defer src="beranda.js"></script>
+<script defer src="item.js"></script>
 @endsection
 
 @section('content')
@@ -43,17 +43,17 @@
         <div class="content_item mt-5" style="height: 850px; width: 100%; background-color: #F4F4F4; border-radius: 25px;" >
 
                 <div class="nama_item">
-                        <p style="font-size: 30px; font-weight: bold;">Nugget Kanzler</p>
+                        <p style="font-size: 30px; font-weight: bold;">{{ $BarangDetail->get(0)->nama }}</p>
                 </div>
     
                 <div class="produk_item">
                     <div class="gambar_item ps-4">
-                        <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 250px; margin-left: 60px;">
+                        <img src="/storage/image/{{$BarangDetail->get(0)->foto_barang}}" alt="" style="height: 250px; margin-left: 60px;">
                     </div>
 
                     <div class="catatan_item">
                         <div class="harga_item">
-                            <p style="font-size: 25px; font-weight: bold;">Rp. 50.000</p>
+                            <p style="font-size: 25px; font-weight: bold;">@currency($BarangDetail->get(0)->harga)</p>
                         </div>
                         <div class="deskripsi_item">
                             <div class="judul_deskripsi">
@@ -61,7 +61,7 @@
                             </div>
                             <div class="isi_deskripsi">
                                 <p style="font-size: 16px; width: 60%;">
-                                    Nugget Kanzler adalah nugget enak dengan tekstur yang super garing dan pastinya bikin nagih!
+                                    {{ $BarangDetail->get(0)->deskripsi }}
                                 </p>
                             </div>
                         </div>
@@ -77,7 +77,7 @@
 
                     <div class="toko_keterangan ps-3">
                         <div class="toko_nama">
-                            <p style="font-size: 25px; font-weight: bold;">S-MART</p>
+                            <p style="font-size: 25px; font-weight: bold;">{{ $BarangDetail->get(0)->name }}</p>
                         </div>
 
                         <div class="toko_tombol">

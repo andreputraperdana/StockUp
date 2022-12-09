@@ -36,18 +36,18 @@
                         </div>  
                     </div>
         </div>
-        <form action="/editbarang/update" method="post">
+        <form action="/editbarang/update" method="post" enctype="multipart/form-data">
         @csrf
         <div class="content_tambahbarang mt-5" style="height: 700px; width: 100%; background-color: #F4F4F4; border-radius: 25px;" >
                     <div class="pengaturan_akun" style="width: 100%;">
                         <div class="section_dua d-flex" style="width: 100%">
                             <div class="foto_profile" style="width: 30%; padding-top: 7%; height: 100%;">
                             <div class="d-flex justify-content-center">
-                                <img src="{{URL::asset('akun.png')}}" alt="Foto Profil" style="height: 200px;">
+                                <img src="/storage/image/{{$hasil->get(0)->foto_barang}}" alt="Foto Profil" style="height: 200px;">
                             </div>
                                 <div class="button_pilihfoto d-flex justify-content-center pt-5 mt-2" >
                                     <label class="custom-file-upload" style="border-radius: 7px;">
-                                        <input type="file"/>
+                                        <input type="file" name="fotobarang"/>
                                         Pilih Foto
                                     </label>
                                 </div>
