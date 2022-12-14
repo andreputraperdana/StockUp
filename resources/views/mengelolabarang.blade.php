@@ -51,14 +51,9 @@
                                 <img src="{{URL::asset('search.png')}}" class="" style="height: 20px;">
                             </button>
                         </div>
-                    </form>
-                    
-                    <div class="input_pilihtanggal" style="width: 20%;">
-                        <input type="date" class="form-control" id="exampleInputPilihTanggal1" aria-describedby="emailHelp" placeholder="Pilih Tanggal" style="border: 1px solid #626262; background-color:transparent;">
-                    </div>   
+                    </form> 
                 </div>
             </div>
-            {{-- <input type="hidden" id="size" value="{{$Size}}"> --}}
             <div class="d-flex justify-content-center pt-4"style="width: 100%;">
                 <div class="resp-table-body" style="width: 90%;">
                     <div class="" style="font-size: 20px; font-weight: bold;"> 
@@ -85,26 +80,23 @@
                     @foreach($AllItems as $AllItem)
                     <div class="resp-table-row mb-5 p-3" style="font-size: 20px;"> 
                         <div class="d-flex">
-                            <div class="foto" style="width: 18%;">
+                            <!-- <div class="foto" style="width: 18%;">
                                 <img src="/storage/image/{{$AllItem->BarangUMKM->foto_barang}}" alt="Foto Profil" style="height: 80px;">
-                            </div>
-                            <div class="id_header center" style="width: 20%;">
-                                {{$AllItem->BarangUMKM->id}}
-                                {{-- <input type="hidden" id="id_header{{$AllItem->id}}" value="{{$AllItem->id}}"> --}}
-                            </div>
+                            </div> -->
                             <div class="nama_header center" style="width: 36%;">
                                 {{$AllItem->BarangUMKM->nama}}
                             </div>
                             <div class="total_header center" style="width: 29%;">
                                 {{$AllItem->total}}
                             </div>
-                            <div class="center">
+                            <div class="center" style="width: 23%;">
                                 <div class="d-flex">
-                                    <form action="{{route('users.destroy', $AllItem->BarangUMKM->id)}}" method="POST">
+                                    <button class="btn__barangkeluar me-3 p-2 pe-3 ps-3" value="{{$AllItem->BarangUMKM->id}}" style="font-size: 12px; font-weight: bold; background-color: #D7CAA0; border: none; border-radius: 7px;">Barang Keluar</button>
+                                    <!-- <form action="{{route('users.destroy', $AllItem->BarangUMKM->id)}}" method="POST">
                                         @method('DELETE')
                                         @csrf
                                         <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;" onclick="return confirm('Apakah Kamu Yakin Ingin Menghapus Barang Ini?')"><img src="{{URL::asset('trash.png')}}" alt="" style="height: 25px;"></button>   
-                                    </form>
+                                    </form> -->
                                     <button class="btn__expand me-3 p-2 pe-3 ps-3" value="{{$AllItem->BarangUMKM->id}}" style="font-size: 16px; font-weight: bold;"> <img src="{{URL::asset('righticon.png')}}" alt="" style="height: 25px; transform: rotate(0deg); transition: all 0.5s;" id="expanded"></button>
                                 </div>
                             </div>
@@ -112,9 +104,6 @@
                         <div class="item_list_hidden" id="list_Allitem" style="width: 100%;">
                             <div class="" style="width: 100%;"> 
                                 <div class="" style="width: 100%; font-size: 16px;">
-                                    <div class="table-body-cell text-center" style="width: 20%;">
-                                        No. Barang
-                                    </div>
                                     <div class="table-body-cell text-center" style="width: 20%;">
                                         ID
                                     </div>
@@ -134,7 +123,7 @@
                         </div>
                     </div>
                     </div>
-                    @endforeach
+                    @endforeach      
             </div>
                         
                         <!-- <table class="table">
@@ -167,7 +156,63 @@
                                 </tbody>
                         </table>     -->
     </div>
+    <span class="d-flex justify-content-center">
+        {{$AllItems->links()}}
+    </span>
     <div style="visibility:hidden">
             <p class="tanda">{{$flag}}</p>
-         </div>
+    </div>
+
+    <div class="popup_barangkeluar hidden">
+        <div class="notif_text_judul text-center">
+            <h1>Barang Keluar</h1>
+        </div>
+        <form action="/barangkeluar" method="POST">
+        @csrf
+        <div class="notif_content d-flex justify-content-center">
+        <div class="popupbarangkeluar d-flex pt-4">
+                <div class="daftar_profil_kiri me-5 mt-2" style="width: 50%;">
+                    <div class="daftar_profil_kiri_sistempengeluaran mb-3" id="sistempengeluaran">
+                        <label for="exampleInputNama1" class="form-label" style="color: black;">Sistem Pengeluaran</label>
+                    </div>
+                    <div class="daftar_profil_kiri_nama mt-4">
+                        <label for="exampleInputKategori1" class="form-label" style="color: black">Nama Barang</label>
+                    </div>
+                    <div class="daftar_profil_kiri_jenis mt-4">
+                        <label for="exampleInputKategori1" class="form-label" style="color: black">Jenis Barang</label>
+                    </div>
+                    <div class="daftar_profil_kiri_id_kadaluarsa mt-4">
+                        <label for="exampleInputKategori1" class="form-label" style="color: black">ID / Tanggal Kadaluarsa</label>
+                    </div>
+                    <div class="daftar_profil_kiri_kuantitas mt-4">
+                        <label for="exampleInputNomorTelepon1" class="form-label" style="color: black">Kuantitas</label>
+                    </div>
+                </div>
+                <div class="daftar_profil" style="width: 50%">
+                    <div class="daftar_profil_k mb-3" style="width: 100%;">
+                        <select name="pengeluaran" class="pengeluaran p-2" style="color: #626262; border-radius: 5px; width: 100%; border: 1px solid #626262; background-color:transparent;" onchange="outputhasil(this)">
+                            <option value="Manual">Manual</option>
+                            <option value="FIFO">FIFO</option>
+                        </select>
+                    </div>
+                   <div class="popupkontendetail">
+
+                   </div>
+                   <div class="popupkontenidtanggal">
+
+                   </div>
+                   <input type="hidden" value="{{$AllItem->total}}">
+                    <div class="daftar_profil_kk pt-4" style="width: 100%;">
+                        <input type="number" name="kuantitas" class="form-control kuantitas" id="kuantitas" placeholder="kuantitas" style="border: 1px solid #626262; background-color:transparent;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="button_simpan d-flex justify-content-center pt-4">
+             <button type="submit" class="btn btn-primary ps-5 pe-5" id="btn_simpan" style="background-color: #d7caa0; width: 25%; border: none; font-weight: bold; color: black;" name="roleid" value="1">Simpan</button>
+        </div>
+        </form>
+    </div>
+    <div class="overlay hidden"></div>
+
 @endsection

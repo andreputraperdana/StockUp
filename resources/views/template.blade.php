@@ -129,7 +129,7 @@
         @yield('content')
         <div class="foot">
             <div class="copyright text-center" style="margin-top: -55px; margin-bottom: -35px;">
-                <p>2022 &#169opy right</p>
+                <p>&#169 2022</p>
             </div>
         </div>
 

@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('javascript')
-<script defer src="tambahbarang.js"></script>
+<script defer src="chat.js"></script>
 @endsection
 
 @section('content')
@@ -93,8 +93,8 @@
                                     </div>
     
                                     <div class="d-flex flex-column justify-content-center pt-3">
-                                        <p style="font-size: 16px; font-weight: bold; margin-bottom: -1px;">Stephanus</p>
-                                        <p style="font-size: 12px;">Online</p>
+                                        <p style="font-size: 16px; font-weight: bold; margin-bottom: -1px;">{{$userchat->name}}</p>
+                                        <p style="font-size: 12px;">{{$userchat->status}}</p>
                                     </div>
     
                                 </div>

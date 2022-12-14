@@ -24,7 +24,8 @@ class User extends Authenticatable
         'kategori',
         'nomortelp',
         'roleid',
-        'status'
+        'status',
+        'foto_profile'
     ];
 
     /**

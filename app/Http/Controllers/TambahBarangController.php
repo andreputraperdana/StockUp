@@ -75,6 +75,6 @@ class TambahBarangController extends Controller
             $barangPemasok->save();
         }
         // return redirect('/tambahbarang');
-        return response()->json(['stats' => 200, 'errors' => 'Test']);
+        return response()->json(['stats' => 200]);
     }
 }

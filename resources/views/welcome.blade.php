@@ -30,9 +30,11 @@
                 </div>
     
                 <p class="content pb-3">
-                Aplikasi yang mengatur barang UMKM dengan</br>
-                menyediakan laporan dari </br>
-                transaksi masuk dan keluar barang
+                Sebuah aplikasi yang membantu pelaku usaha</br>
+                (UMKM) untuk mengelola persediaan barang dengan</br>
+                berbagai fitur dan jenis laporan yang telah disediakan</br>
+                serta menghubungkan pelaku usaha (UMKM)</br>
+                dengan pemasok.
                 </p>
                 <a href="#section1">
                 <button class="btn--text p-2 pe-3 ps-3" style="color: black; font-size: 16px; font-weight: bold;">Pelajari &DownArrow;</button>
@@ -66,7 +68,9 @@
                         <p>Laporan</p>
                     </div>
                     <div class="col__desc">
-                        <p>Menyediakan laporan...</br> dalam bentuk digital</p>
+                        <p>Menyediakan laporan keluar masuk barang, persediaan stok barang,</br>
+                        barang kadaluarsa, dan barang habis</br>
+                        dalam bentuk digital</p>
                     </div>
                 </div>
               </div>
@@ -81,7 +85,9 @@
                     <p>Notifikasi</p>
                 </div>
                 <div class="col__desc">
-                    <p>Memunculkan notifikasi</br> Barang...</p>
+                    <p>Memunculkan notifikasi</br>
+                    sebagai pemberitahuan barang habis</br>
+                    dan kadaluarsa</p>
                 </div>
               </div>
               <div class="col text-center">
@@ -94,7 +100,9 @@
                     <p>Koneksi ke Pemasok</p>
                 </div>
                 <div class="col__desc">
-                    <p>Memperkenalkan</br>pemasok kepada</br>UMKM melalui chat...</p>
+                    <p>Memperkenalkan pemasok berserta</br>
+                    barang yang dijualnya kepada</br>
+                    UMKM melalui chat</p>
                 </div>
               </div>
             </div>
@@ -104,7 +112,7 @@
 
     <div id="footer">
         <div class="copyright">
-            <p class="d-flex justify-content-end fw-bold footerCopy text-dark">2022&#169opy right</p>
+            <p class="d-flex justify-content-end fw-bold footerCopy text-dark">&#169 2022</p>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

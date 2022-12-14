@@ -20,7 +20,9 @@
                 <div class="notifikasi pe-2 mt-2">
                     <div class="item">
                         <a href="/notifikasi">
-                            <span class="badge">{{$Totalnotif}}</span>
+                            @if($Totalnotif != 0)
+                                <span class="badge">{{$Totalnotif}}</span>
+                            @endif
                             <img src="{{URL::asset('notifikasi.png')}}" class="ps-2 pe-2 pt-1 pb-1" style="background-color: #F4F4F4; border-radius: 50%; height: 45px;">
                         </a>
                     </div>
@@ -34,7 +36,7 @@
                         <a href="/editprofile">Pengaturan</a>
                         <form action="/logout" method="POST">
                             @csrf
-                            <input type="submit" class="btn prevbutton" value="Logout">
+                            <input type="submit" class="btn btnLogout" value="Logout">
                         </form>
                     </div>
                 </div>
@@ -54,8 +56,7 @@
                          <tr>
                            <td scope="col" style="opacity: 0.6; font-weight: bold; color: black;">Nama Barang</td>
                            <td scope="col" style="opacity: 0.6; font-weight: bold; color: black;" class="text-center">Jenis Barang</td>
-                           <td scope="col" style="opacity: 0.6; font-weight: bold; color: black;" class="text-center">Jumlah Barang</td>
-                           <td scope="col" style="opacity: 0.6; font-weight: bold; color: black;" class="text-center">Batch</td>
+                           <td scope="col" style="opacity: 0.6; font-weight: bold; color: black;" class="text-center">Sisa Barang</td>
                          </tr>
                        </thead>
                        <tbody>
@@ -63,8 +64,7 @@
                          <tr class="">
                            <td class="pt-4 pb-4">{{$BarangHabis->BarangUMKM->nama}}</td>
                            <td class="text-center pt-4 pb-4">{{$BarangHabis->BarangUMKM->jenis}}</td>
-                           <td class="text-center pt-4 pb-4">{{$BarangHabis->jumlah}}</td>
-                           <td class="text-center pt-4 pb-4">0</td>
+                           <td class="text-center pt-4 pb-4">{{$BarangHabis->total}}</td>
                          </tr>
                        @endforeach
                        </tbody>
@@ -86,7 +86,6 @@
                          <tr>
                            <td scope="col" style="opacity: 0.6; font-weight: bold;">Nama Barang</td>
                            <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Jenis Barang</td>
-                           <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Batch</td>
                            <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Tanggal Kadaluarsa</td>
                            <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Jumlah Barang</td>
                            <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Status</td>
@@ -97,14 +96,13 @@
                          <tr class="">
                            <td class="pt-4 pb-4">{{$BarangAkanKadaluarsa->BarangUMKM->nama}}</td>
                            <td class="text-center pt-4 pb-4">{{$BarangAkanKadaluarsa->BarangUMKM->jenis}}</td>
-                           <td class="text-center pt-4 pb-4">0</td>
                            <td class="text-center pt-4 pb-4">{{$BarangAkanKadaluarsa->tanggal_kadaluarsa}}</td>
                            <td class="text-center pt-4 pb-4">{{$BarangAkanKadaluarsa->jumlah}}</td>
                            <td class="text-center pt-4 pb-4">
                                 @if($BarangAkanKadaluarsa->Date_Today >= $BarangAkanKadaluarsa->tanggal_kadaluarsa)
-                                        <p>Expired</p>
+                                        <p>Kadaluarsa</p>
                                 @else
-                                        <p>Hampir Expired</p>
+                                        <p>Akan kadaluarsa</p>
                                 @endif
                            </td>
                          </tr>
@@ -129,7 +127,6 @@
                          <tr>
                            <td scope="col" style="opacity: 0.6; font-weight: bold;">Nama Barang</td>
                            <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Jenis Barang</td>
-                           <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Batch</td>
                            <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Jumlah Barang Keluar</td>
                          </tr>
                        </thead>
@@ -138,7 +135,6 @@
                          <tr class="">
                            <td class="pt-4 pb-4">{{$PengeluranPerHari->BarangUMKM->nama}}</td>
                            <td class="text-center pt-4 pb-4">{{$PengeluranPerHari->BarangUMKM->jenis}}</td>
-                           <td class="text-center pt-4 pb-4">0</td>
                            <td class="text-center pt-4 pb-4">{{$PengeluranPerHari->jumlah}}</td>
                          </tr>
                        @endforeach
@@ -206,14 +202,13 @@
                                         <table class="table caption-top" style="width: 90%;">
                                           <thead>
                                             <tr>
-                                              <td scope="col" style="opacity: 0.6;">Nama Barang</td>
-                                              <td scope="col" style="opacity: 0.6;" class="text-center">Kuantitas</td>
-                                              <td scope="col" style="opacity: 0.6;" class="text-center">Jenis Barang</td>
-                                              <td scope="col" style="opacity: 0.6;" class="text-center">Total Batch</td>
+                                              <td scope="col" style="color: black;">Nama Barang</td>
+                                              <td scope="col" style="color: black;" class="text-center">Kuantitas</td>
+                                              <td scope="col" style="color: black;" class="text-center">Jenis Barang</td>
+                                              <td scope="col" style="color: black;" class="text-center">Total Batch</td>
                                             </tr>
                                           </thead>
                                           <tbody>
-                                        @if($Tanda == 0)
                                           @foreach($AllItems as $AllItem)
                                             <tr class="">
                                               <td class="pt-4 pb-4">{{$AllItem->BarangUMKM->nama}}<br><span style="opacity: 0.6;">00{{$AllItem->BarangUMKM->id}}</span></td>
@@ -222,26 +217,16 @@
                                               <td class="text-center pt-4 pb-4">{{$AllItem->totalAll}}</td>
                                             </tr>
                                           @endforeach
-                                        @elseif($Tanda == 1)
-                                            @php
-                                                $array = array_keys($AllItems);
-                                                $max = count($AllItems);
-                                            @endphp
-                                            @for($i=0; $i<$max; $i++)
-                                                @foreach($AllItems as $AllItem)
-                                                    <tr class="">
-                                                      <td class="pt-4 pb-4">{{$AllItemp[$array[$i]]->BarangUMKM->nama}}<br><span style="opacity: 0.6;">00{{$AllItem[$array[$i]]->BarangUMKM->id}}</span></td>
-                                                    </tr>
-                                                @endforeach
-                                            @endfor
-                                        @endif
                                           </tbody>
-                                         </table>
-                                    </div>
+                                        </table>
+                                      </div>
+                                      <span class="d-flex justify-content-center">
+                                        {{$AllItems->links()}}
+                                      </span>
                                 </div>
                             </div>
                     </div>
-                    <div class="chat pe-4 ps-4" style="height: 630px; width: 22%; border-radius: 25px;">
+                    <div class="chat pe-4 ps-4" style="height: 685px; width: 22%; border-radius: 25px;">
                         <div class="title__chat d-flex pt-4">
                             <div class="pe-3">
                                 <p style="font-size: 20px; font-weight: bold;">Pesan Masuk</p>
@@ -273,16 +258,7 @@
                     <span id="waktuskrg"></span>
                 </div>
             </div>
-           <div class="atas_kanan d-flex  mt-5">
-                <div class="notifikasi pe-2 mt-2">
-                    <div class="item">
-                        <a href="/notifikasi">
-                            <span class="badge">{{$Totalnotif}}</span>
-                            <img src="{{URL::asset('notifikasi.png')}}" class="ps-2 pe-2 pt-1 pb-1" style="background-color: #F4F4F4; border-radius: 50%; height: 45px;">
-                        </a>
-                    </div>
-                </div>
-
+           <div class="atas_kanan mt-5">
                 <div class="dropdown mt-2">
                     <button class="dropbutton ps-3 pe-4 pt-1 pb-1" style="border: none; border-radius: 25px;">
                     <img src="{{URL::asset('akun.png')}}" alt="" style="height: 40px;"> {{Str::limit(auth()->user()->name,5)}}
@@ -296,112 +272,6 @@
                     </div>
                 </div>
 
-            </div>
-        </div>
-        <div id="myPopup-BarangHabis" class="popUp">
-          <!-- Modal content -->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 style="text-align: center;">Barang Habis</h2>
-                    <span class="close">&times;</span>
-                </div>
-                <div class="modal-body d-flex justify-content-center pt-4 pb-5" style="width: 100%;">
-                     <table class="table caption-top" style="width: 90%;">
-                       <thead>
-                         <tr>
-                           <td scope="col" style="opacity: 0.6; font-weight: bold; color: black;">Nama Barang</td>
-                           <td scope="col" style="opacity: 0.6; font-weight: bold; color: black;" class="text-center">Jenis Barang</td>
-                           <td scope="col" style="opacity: 0.6; font-weight: bold; color: black;" class="text-center">Jumlah Barang</td>
-                           <td scope="col" style="opacity: 0.6; font-weight: bold; color: black;" class="text-center">Batch</td>
-                         </tr>
-                       </thead>
-                       <tbody>
-                       @foreach($BarangHabis as $BarangHabis)
-                         <tr class="">
-                           <td class="pt-4 pb-4">{{$BarangHabis->BarangUMKM->nama}}</td>
-                           <td class="text-center pt-4 pb-4">{{$BarangHabis->BarangUMKM->jenis}}</td>
-                           <td class="text-center pt-4 pb-4">{{$BarangHabis->jumlah}}</td>
-                           <td class="text-center pt-4 pb-4">0</td>
-                         </tr>
-                       @endforeach
-                       </tbody>
-                      </table>
-                </div>
-            </div>
-        </div>
-
-        <div id="myPopup-BarangKadaluarsa" class="popUp">
-          <!-- Modal content -->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 style="text-align: center;">Barang akan Kadaluarsa</h2>
-                    <span class="close">&times;</span>
-                </div>
-                <div class="modal-body d-flex justify-content-center pt-4 pb-5" style="width: 100%;">
-                <table class="table caption-top" style="width: 90%;">
-                       <thead>
-                         <tr>
-                           <td scope="col" style="opacity: 0.6; font-weight: bold;">Nama Barang</td>
-                           <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Jenis Barang</td>
-                           <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Batch</td>
-                           <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Tanggal Kadaluarsa</td>
-                           <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Jumlah Barang</td>
-                           <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Status</td>
-                         </tr>
-                       </thead>
-                       <tbody>
-                        @foreach($BarangAkanKadaluarsa as $BarangAkanKadaluarsa)
-                         <tr class="">
-                           <td class="pt-4 pb-4">{{$BarangAkanKadaluarsa->BarangUMKM->nama}}</td>
-                           <td class="text-center pt-4 pb-4">{{$BarangAkanKadaluarsa->BarangUMKM->jenis}}</td>
-                           <td class="text-center pt-4 pb-4">0</td>
-                           <td class="text-center pt-4 pb-4">{{$BarangAkanKadaluarsa->tanggal_kadaluarsa}}</td>
-                           <td class="text-center pt-4 pb-4">{{$BarangAkanKadaluarsa->jumlah}}</td>
-                           <td class="text-center pt-4 pb-4">
-                                @if($BarangAkanKadaluarsa->Date_Today >= $BarangAkanKadaluarsa->tanggal_kadaluarsa)
-                                        <p>Expired</p>
-                                @else
-                                        <p>Hampir Expired</p>
-                                @endif
-                           </td>
-                         </tr>
-                       @endforeach
-                       </tbody>
-                      </table>
-                </div>
-            </div>
-        </div>
-
-
-        <div id="myPopup-Pengeluaran" class="popUp">
-          <!-- Modal content -->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 style="text-align: center;">Pengeluaran Per Hari</h2>
-                    <span class="close">&times;</span>
-                </div>
-                <div class="modal-body d-flex justify-content-center pt-4 pb-5" style="width: 100%;">
-                <table class="table caption-top" style="width: 90%;">
-                       <thead>
-                         <tr>
-                           <td scope="col" style="opacity: 0.6; font-weight: bold;">Nama Barang</td>
-                           <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Jenis Barang</td>
-                           <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Batch</td>
-                           <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Jumlah Barang Keluar</td>
-                         </tr>
-                       </thead>
-                       <tbody>
-                       @foreach($PengeluranPerHari as $PengeluranPerHari)
-                         <tr class="">
-                           <td class="pt-4 pb-4">{{$PengeluranPerHari->BarangUMKM->nama}}</td>
-                           <td class="text-center pt-4 pb-4">{{$PengeluranPerHari->BarangUMKM->jenis}}</td>
-                           <td class="text-center pt-4 pb-4">0</td>
-                           <td class="text-center pt-4 pb-4">{{$PengeluranPerHari->jumlah}}</td>
-                         </tr>
-                       @endforeach
-                       </tbody>
-                </table>
-                </div>
             </div>
         </div>
                 <div class="d-flex">
@@ -423,37 +293,24 @@
                                           <thead>
                                             <tr>
                                               <td scope="col" style="opacity: 0.6;">Nama Barang</td>
-                                              <td scope="col" style="opacity: 0.6;" class="text-center">Kuantitas</td>
                                               <td scope="col" style="opacity: 0.6;" class="text-center">Jenis Barang</td>
-                                              <td scope="col" style="opacity: 0.6;" class="text-center">Total Batch</td>
+                                              <td scope="col" style="opacity: 0.6;" class="text-center">Harga Barang</td>
                                             </tr>
                                           </thead>
                                           <tbody>
-                                        @if($Tanda == 0)
                                           @foreach($AllItems as $AllItem)
                                             <tr class="">
-                                              <td class="pt-4 pb-4">{{$AllItem->BarangUMKM->nama}}<br><span style="opacity: 0.6;">00{{$AllItem->BarangUMKM->id}}</span></td>
-                                              <td class="text-center pt-4 pb-4">{{$AllItem->total}}</td>
-                                              <td class="text-center pt-4 pb-4">{{$AllItem->BarangUMKM->jenis}}</td>
-                                              <td class="text-center pt-4 pb-4">{{$AllItem->totalAll}}</td>
+                                              <td class="pt-4 pb-4">{{$AllItem->nama}}<br><span style="opacity: 0.6;">00{{$AllItem->id}}</span></td>
+                                              <td class="text-center pt-4 pb-4">{{$AllItem->jenis}}</td>
+                                              <td class="text-center pt-4 pb-4">{{$AllItem->harga}}</td>
                                             </tr>
                                           @endforeach
-                                        @elseif($Tanda == 1)
-                                            @php
-                                                $array = array_keys($AllItems);
-                                                $max = count($AllItems);
-                                            @endphp
-                                            @for($i=0; $i<$max; $i++)
-                                                @foreach($AllItems as $AllItem)
-                                                    <tr class="">
-                                                      <td class="pt-4 pb-4">{{$AllItemp[$array[$i]]->BarangUMKM->nama}}<br><span style="opacity: 0.6;">00{{$AllItem[$array[$i]]->BarangUMKM->id}}</span></td>
-                                                    </tr>
-                                                @endforeach
-                                            @endfor
-                                        @endif
                                           </tbody>
                                          </table>
                                     </div>
+                                    <span class="d-flex justify-content-center">
+                                        {{$AllItems->links()}}
+                                      </span>
                                 </div>
                             </div>
                     </div>

@@ -48,7 +48,6 @@
                                 <div class="button_pilihfoto d-flex justify-content-center pt-5 mt-2" >
                                     <label class="custom-file-upload" style="border-radius: 7px;">
                                         <input type="file" name="fotobarang"/>
-                                        Pilih Foto
                                     </label>
                                 </div>
                             </div>
@@ -128,22 +127,6 @@
                                                     </div>
                                                 </div>
                                                 </div>
-
-
-                                            <div class="input_content_catatan mt-3">
-                                                <div class="input_judul_catatan">
-                                                    <label for="">
-                                                        <p style="font-size: 16px; font-weight: bold;">Catatan</p>
-                                                    </label> 
-                                                </div>
-                                                <div class="input_catatan">
-                                                    <input type="text" class="form-control" id="exampleInputCatatan1" aria-describedby="emailHelp" placeholder="Catatan" style="border: 1px solid #626262; background-color:transparent;">
-                                                </div>
-                                            </div>
-
-                                            
-
-                                            
                                         </div>
 
                                     </div>

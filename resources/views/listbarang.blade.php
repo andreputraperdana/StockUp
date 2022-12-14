@@ -1,11 +1,15 @@
+@php
+    $total = 0;
+@endphp
+
 @foreach($hasil as $hasil)
+    @php
+        $total += 1;
+    @endphp
     <div class="resp-table-row mb-3 p-3" style="font-size: 16px; border-radius: 7px; background-color: #C7E0BC;"> 
         <div class="d-flex">
             <div class="center" style="width: 15vw;">
-                {{$hasil->id}}
-            </div>
-            <div class="center" style="width: 22vw;">
-                {{$hasil->barang_umkm_id}}
+                {{$hasil->barang_umkm_id}} - 00{{$total}}
             </div>
             <div class="center" style="width: 18vw;">
                 {{$hasil->jumlah}}

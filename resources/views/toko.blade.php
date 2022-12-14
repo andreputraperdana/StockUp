@@ -5,40 +5,40 @@
 @endsection
 
 @section('content')
-        <div class="atas d-flex justify-content-between" style="width:100%">
-                        <div class="atas_kiri">
-                            <div class="judul_halaman mt-5">
-                                <p style="font-size: 30px; font-weight: bold;">Toko</p>
-                            </div>
-                        </div>
-
-                        <div class="atas_kanan d-flex  mt-5">
-                            <div class="pe-2 mt-2" style="width: 60px; height: 60px;">
-                                <div class="notifikasi d-flex justify-content-center pt-2" style="background-color: #f4f4f4; height: 75%; width: 100%; border-radius: 50%;">
-                                        <img src="{{URL::asset('chat.png')}}" class="" style="height: 29px;">
-                                </div>
-                            </div>
-                            <div class="notifikasi pe-2 mt-2">
-                                <a href="">
-                                    <img src="{{URL::asset('notifikasi.png')}}" class="ps-2 pe-2 pt-1 pb-1" style="background-color: #f4f4f4; border-radius: 50%; height: 45px;">
-                                </a>
-                            </div>
-
-                            <div class="dropdown mt-2">
-                            <button class="dropbutton ps-3 pe-4 pt-1 pb-1" style="border: none; border-radius: 25px;">
-                                <img src="{{URL::asset('akun.png')}}" alt="" style="height: 40px;"> {{Str::limit(auth()->user()->name,5)}}
-                            </button>
-                                <div class="dropdown-content">
-                                    <a href="/editprofile">Pengaturan</a>
-                                    <form action="/logout" method="POST">
-                                        @csrf
-                                        <input type="submit" class="btn prevbutton" value="Logout">
-                                    </form>
-                                </div>
-                            </div>
-
-                        </div>
-        </div>
+                    <div class="atas d-flex justify-content-between" style="width:100%">
+                                    <div class="atas_kiri">
+                                        <div class="judul_halaman mt-5">
+                                            <p style="font-size: 30px; font-weight: bold;">Toko</p>
+                                        </div>
+                                    </div>
+            
+                                    <div class="atas_kanan d-flex  mt-5">
+                                        <div class="pe-2 mt-2" style="width: 60px; height: 60px;">
+                                            <div class="notifikasi d-flex justify-content-center pt-2" style="background-color: #f4f4f4; height: 75%; width: 100%; border-radius: 50%;">
+                                                    <img src="{{URL::asset('chat.png')}}" class="" style="height: 29px;">
+                                            </div>
+                                        </div>
+                                        <div class="notifikasi pe-2 mt-2">
+                                            <a href="">
+                                                <img src="{{URL::asset('notifikasi.png')}}" class="ps-2 pe-2 pt-1 pb-1" style="background-color: #f4f4f4; border-radius: 50%; height: 45px;">
+                                            </a>
+                                        </div>
+            
+                                        <div class="dropdown mt-2">
+                                        <button class="dropbutton ps-3 pe-4 pt-1 pb-1" style="border: none; border-radius: 25px;">
+                                            <img src="{{URL::asset('akun.png')}}" alt="" style="height: 40px;"> {{Str::limit(auth()->user()->name,5)}}
+                                        </button>
+                                            <div class="dropdown-content">
+                                                <a href="/editprofile">Pengaturan</a>
+                                                <form action="/logout" method="POST">
+                                                    @csrf
+                                                    <input type="submit" class="btn prevbutton" value="Logout">
+                                                </form>
+                                            </div>
+                                        </div>
+            
+                                    </div>
+                    </div>
 
 
                     <div class="content_tambahbarang mt-5" style="height: 780px; width: 100%; background-color: #F4F4F4; border-radius: 25px;" >
@@ -164,7 +164,7 @@
                                         @foreach($Item as $Items)
                                             <a href="/item/{{$Items->id}}">
                                                 <div class="card me-5" style="width: 15rem;" role="button">
-                                                    <img src="/storage/image/{{$Items->foto_barang}}" class="card-img-top" alt="">
+                                                    <!-- <img src="/storage/image/{{$Items->foto_barang}}" class="card-img-top" alt=""> -->
                                                     <div class="card-body">
                                                       <h5 class="card-title" style="text-align: center; font-weight: bold;">{{$Items->nama}}</h5>
                                                       <p class="card-text" style="text-align: center;">@currency($Items->harga)</p>

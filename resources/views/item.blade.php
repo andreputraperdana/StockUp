@@ -8,7 +8,9 @@
         <div class="atas d-flex justify-content-between" style="width:100%">
                     <div class="atas_kiri">
                         <div class="judul_halaman mt-5">
-                            <button class="ps-3 pe-3" style="background-color: #d7caa0; font-size: 30px; font-weight: bold;border-radius: 50%; border: none;"><</button>
+                            <a href="javascript:history.back()">
+                                <button class="ps-3 pe-3" style="background-color: #d7caa0; font-size: 30px; font-weight: bold;border-radius: 50%; border: none;"><</button>
+                            </a>
                         </div>
                     </div>
 
@@ -82,9 +84,11 @@
 
                         <div class="toko_tombol">
                             <div class="toko_tombol_chat me-3">
-                                <a href="">
+                                <form method="POST" action="/chat">
+                                    @csrf
+                                    <input type="hidden" name="user_id" value="{{ $BarangDetail->get(0)->user_id }}">
                                     <button class="btn btn-primary ps-4 pe-4 " id="btn_chat" style="background-color: #D7CAA0; border: none; font-weight: bold; color: black;">Chat Toko</button>
-                                </a>
+                                </form>
                             </div>
 
                             <div class="toko_tombol_platform">

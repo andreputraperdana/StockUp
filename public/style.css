@@ -401,7 +401,8 @@ a:hover {
     opacity: 0;
 }
 
-.notif_success {
+.notif_success,
+.notif_gagal {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -597,7 +598,8 @@ li {
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {
+.dropdown-content a:hover,
+.dropdown-content form:hover {
     background-color: #d7caa0;
 }
 
@@ -1024,4 +1026,16 @@ ul#menu_bar li:hover::before {
     border-radius: 50%;
     background: red;
     color: white;
+}
+
+.popup_barangkeluar {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    height: 450px;
+    background-color: #f4f4f4;
+    z-index: 1000;
+    transition: all 0.5s;
 }

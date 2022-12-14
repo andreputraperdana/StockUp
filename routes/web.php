@@ -3,6 +3,8 @@
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\DaftarController;
+use App\Http\Controllers\DetailBarangController;
+use App\Http\Controllers\DetailNotifikasiController;
 use App\Http\Controllers\EditBarangController;
 use App\Http\Controllers\EditProfileController;
 use App\Http\Controllers\HalamanUtamaController;
@@ -18,6 +20,7 @@ use App\Http\Controllers\PlatformSosialController;
 use App\Http\Controllers\ProfilTokoController;
 use App\Http\Controllers\TokoController;
 use App\Models\PlatformSosial;
+use App\Models\Role;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,7 +50,7 @@ Route::get('/beranda', [BerandaController::class, 'getindex']);
 
 Route::get('/listalluser', [ListUserController::class, 'getindex']);
 
-Route::get('/chat', [ChatController::class, 'getindex']);
+Route::POST('/chat', [ChatController::class, 'getindex']);
 
 Route::get('/tambahbarang', [TambahBarangController::class, 'getindex']);
 
@@ -84,3 +87,9 @@ Route::delete('/mengelolabarang/{id}', [MengelolaBarangController::class, 'destr
 Route::post('/detailnotif', [NotifikasiController::class, 'postdetail']);
 
 Route::post('/editbarang/update', [EditBarangController::class, 'update']);
+
+Route::get('/detailbarang/{id}', [DetailBarangController::class, 'getindex'])->name('detailsbarang');
+
+Route::post('/barangkeluar', [MengelolaBarangController::class, 'keluarbarang']);
+
+Route::get('/detailnotifikasi/{id}', [DetailNotifikasiController::class, 'getindex']);

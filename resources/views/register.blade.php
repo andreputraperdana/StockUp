@@ -24,7 +24,6 @@
                         </div>
                     </div>
     
-                            
                     </div>
                         <div class="daftar__form" style="background-color: #f4f4f4; width: 50%;">
                         <form action="/daftar" method="POST">
@@ -38,10 +37,10 @@
 
                                 <div class="menu_daftar">
                                     <div class="pe-5">
-                                        <button type="button" name="UMKM" value="1" class="btn btnUmkm" id="btnUmkm" style="background-color: #d7caa0;">UMKM<img src="{{URL::asset('notification.png')}}" height="30" alt="UMKM"></button>   
+                                        <button type="button" name="UMKM" value="1" class="btn btnUmkm" id="btnUmkm" style="background-color: #d7caa0;">UMKM</button>   
                                     </div>
                                     <div class="">
-                                        <button type="button" name= "UMKM" value="2" class="btn btnUmkm" id="btnPemasok" >Pemasok<img src="{{URL::asset('notification.png')}}" height="30" alt="UMKM"></button>
+                                        <button type="button" name= "UMKM" value="2" class="btn btnUmkm" id="btnPemasok" >Pemasok</button>
                                     </div>
                                 </div>
                             </div>
@@ -99,12 +98,16 @@
                                         </div>
                                         <div class="daftar_profil_kanan_kategori mb-3">
                                             <select name="kategori" class="kategori p-2" style="color: #626262; border-radius: 5px;">
-                                                <option value="javascript">Es Grim Coklat</option>
-                                                <option value="php">Es Grim Vanilla</option>
-                                                <option value="java">Es Grim Stroberi</option>
-                                                <option value="golang">Es Grim Matcha</option>
-                                                <option value="python">Es Grim Melon</option>
-                                                <option value="c#">Es Grim Alpukat</option>
+                                                <option selected="true" disabled="disabled">Pilih Kategori</option>
+                                                <option value="Fashion">Fashion</option>
+                                                <option value="Jasa">Jasa</option>
+                                                <option value="Kecantikan">Kecantikan</option>
+                                                <option value="Kesehatan">Kesehatan</option>
+                                                <option value="Makanan dan minuman">Makanan dan minuman</option>
+                                                <option value="Olahraga">Olahraga</option>
+                                                <option value="Otomotif">Otomotif</option>
+                                                <option value="Perdagangan">Perdagangan</option>
+                                                <option value="Lainnya">Lainnya</option>
                                             </select>
                                         </div>
                                         <div class="daftar_profil_kanan_nomortelepon">
@@ -127,7 +130,7 @@
 
     <div class="foot">
         <div class="copyright text-center" style="margin-top: -55px; margin-bottom: -35px;">
-            <p>2022 &#169opy right</p>
+            <p>&#169 2022</p>
         </div>
     </div>
     <div class="notif_success hidden">
@@ -137,13 +140,30 @@
         <div class="notif_text text-center">
             <p>BERHASIL</p>
             <div class="sub_notif_text">
-                <p>Akun Berhasil Terdaftar <br> Silahkan</p>
+                <p>Akun Berhasil Didaftarkan</p>
             </div>
         </div>
         <div class="text-center">
             <a href="/login">
                 <button class="btn btnLogin" id="btnUmkm" style="background-color: #d7caa0;">Login</button>
             </a>
+        </div>
+    </div>
+
+    <div class="notif_gagal hidden">
+        <div class="notif_image text-center ps-4 pt-4">
+            <img src="{{URL::asset('maskot2.png')}}" alt="">
+        </div>
+        <div class="notif_text text-center">
+            <p style="color: red;">TIDAK BERHASIL</p>
+            <div class="sub_notif_text">
+                <p>Silahkan periksa kembali inputan anda</p>
+            </div>
+        </div>
+        <div class="text-center">
+            <div class="texterror" style="color: red;">
+                    
+            </div>
         </div>
     </div>
     <div class="overlay hidden"></div>

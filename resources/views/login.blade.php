@@ -21,14 +21,29 @@
             <div class="title">
                 <p class="pt-2"> <b>Login</b></p>
             </div>
+                @if(Session::has('gagal'))
+                    <div class="alert alert-danger">
+                        {{Session::get('gagal')}}
+                    </div>
+                @endif
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label" style="color: black;">Email</label>
-                  <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" style="border: 1px solid #626262; background-color:transparent;">
+                  <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" style="border: 1px solid #626262; background-color:transparent;">
+                     @error('email')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                   <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
                 </div>
                 <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label" style="color: black">Password</label>
-                  <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" style="border: 1px solid #626262; background-color:transparent;">
+                  <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="exampleInputPassword1" placeholder="Password" style="border: 1px solid #626262; background-color:transparent;">
+                    @error('password')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="d-flex justify-content-center pt-4">
                     <button type="submit" class="btn btn-primary ps-5 pe-5 " style="background-color: #D7CAA0; width: 100%; border: none;font-size: 16px; border-radius: 7px;"><a href="" style="color: black; font-weight: bold;">Login</a> </button>

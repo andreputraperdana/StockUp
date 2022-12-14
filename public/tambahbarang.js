@@ -40,26 +40,30 @@ slidebar.addEventListener("mouseout", function (e) {
     document.querySelector(".menu_tmbhbrg").classList.add("actives");
 });
 
-buttonBarangBaru.addEventListener("click", function (e) {
-    buttonBarangBaru.style.backgroundColor = "#D7CAA0";
-    buttonBarangExist.style.backgroundColor = "#FFFFFF";
-    inputTambahBarang.style.display = "block";
-    inputJenisBarang.style.display = "block";
-    inputJumlahBarang.style.display = "block";
-    inputTanggalKadaluarsa.style.display = "block";
-    inputFoto.style.display = "block";
-    judulTambahBarang.style.display = "block";
-    judulTambahBarangExist.style.display = "none";
-});
+if (buttonBarangBaru) {
+    buttonBarangBaru.addEventListener("click", function (e) {
+        buttonBarangBaru.style.backgroundColor = "#D7CAA0";
+        buttonBarangExist.style.backgroundColor = "#FFFFFF";
+        inputTambahBarang.style.display = "block";
+        inputJenisBarang.style.display = "block";
+        inputJumlahBarang.style.display = "block";
+        inputTanggalKadaluarsa.style.display = "block";
+        inputFoto.style.display = "block";
+        judulTambahBarang.style.display = "block";
+        judulTambahBarangExist.style.display = "none";
+    });
+}
 
-buttonBarangExist.addEventListener("click", function (e) {
-    buttonBarangExist.style.backgroundColor = "#D7CAA0";
-    buttonBarangBaru.style.backgroundColor = "#FFFFFF";
-    inputJenisBarang.style.display = "none";
-    inputFoto.style.display = "none";
-    judulTambahBarang.style.display = "none";
-    judulTambahBarangExist.style.display = "block";
-});
+if (buttonBarangExist) {
+    buttonBarangExist.addEventListener("click", function (e) {
+        buttonBarangExist.style.backgroundColor = "#D7CAA0";
+        buttonBarangBaru.style.backgroundColor = "#FFFFFF";
+        inputJenisBarang.style.display = "none";
+        inputFoto.style.display = "none";
+        judulTambahBarang.style.display = "none";
+        judulTambahBarangExist.style.display = "block";
+    });
+}
 
 if (document.querySelector(".tanda").innerHTML == "2") {
     document.querySelector(".menu_tmbhbrg").style.backgroundColor = "#D7CAA0";
@@ -73,17 +77,9 @@ $(document).ready(function () {
 
         let formData = new FormData($("#tambahbarang")[0]);
 
-        var hasil = {
-            namabarang: $(".namabarang").val(),
-            jenisbarang: $(".kategori").val(),
-            jumlahbarang: $(".jumlahbarang").val(),
-            hargabarang: $(".hargabarang").val(),
-            tanggalkadaluarsa: $(".tanggalkadaluarsa").val(),
-            fotobarang: $(".fotobarang").val(),
-        };
         // overlay.classList.remove("hidden");
         // notification.classList.remove("hidden");
-        console.log(hasil);
+        // console.log(hasil);
         $.ajaxSetup({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -98,8 +94,8 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             success: function (response) {
-                console.log(response);
-                console.log(response.stats);
+                // console.log(response);
+                // console.log(response.stats);
                 if (response.stats) {
                     overlay.classList.remove("hidden");
                     notification.classList.remove("hidden");
