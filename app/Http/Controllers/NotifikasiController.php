@@ -17,12 +17,23 @@ class NotifikasiController extends Controller
 
     public function postdetail(Request $request){
         $hasil = $request->input();
-        dd($hasil);
-        $idbarang = $hasil['id_barang'];
-        $searchbarang = TransaksiBarangMasuk::where('id', '=', $idbarang)->first();
-        $searchbarang->notif_flag = 1;
-        $searchbarang->save();
+        if($hasil['tipe_notif'] == 'BarangKadaluarsa'){
+            $idbarang = $hasil['id_barang'];
+            $searchbarang = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->where('transaksi_barang_masuk.id', '=', $idbarang)->select('barang_umkm.nama', 'jenis','transaksi_barang_masuk.*')->first();
+            $searchbarang->notif_flag = 1;
+            $searchbarang->save();
+            return response()->json(['stats'=>200, 'detailbarang'=> $searchbarang]);
+        }
+        else if($hasil['tipe_notif'] == 'BarangHabis'){
+            $idbarangUMKM = $hasil['id_barang'];
+            $searchbarang = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->where('transaksi_barang_masuk.barang_umkm_id', '=', $idbarangUMKM)->select('barang_umkm.nama', 'jenis','transaksi_barang_masuk.*')->get();
+            $searchbarangnotif = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->where('transaksi_barang_masuk.barang_umkm_id', '=', $idbarangUMKM)->select('barang_umkm.nama', 'jenis','transaksi_barang_masuk.*')->first();
+            $searchbarangnotif->notif_flag = 1;
+            $searchbarangnotif->save();
+            return response()->json(['stats'=>300, 'detailbarang'=> $searchbarang]);
+        }
+
+
         
-        return response()->json(['stats'=>300, 'errors'=>'Test']);
     }
 }

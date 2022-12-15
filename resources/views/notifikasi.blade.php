@@ -53,6 +53,7 @@
                     </div>
                 </div>
                 <input type="hidden" name="id_barang" class="id_barang" value="{{$AllBarang->id}}">
+                <input type="hidden" name="tipe_notif" class="tipe_notif" value="BarangKadaluarsa">
                 <div class="button__rekomen">
                     <div class="button_rekomen_notif ps-5">
                         <button type="submit" class="btn btn-primary " id="btn_rekom_notif" style="background-color: #D7CAA0; width: 100%; border: none; font-weight: bold; color: black;">Cari Barang</button>
@@ -77,7 +78,8 @@
                             <p style="font-size: 16px;">Sisa Barang: {{$AllBarang->Total}}</p>
                         </div>
                     </div>
-                    <input type="hidden" name="id_barang" class="id_barang" value="{{$AllBarang->id}}">
+                    <input type="hidden" name="id_barang" class="id_barang" value="{{$AllBarang->barang_umkm_id}}">
+                    <input type="hidden" name="tipe_notif" class="tipe_notif" value="BarangHabis">
                     <div class="button__rekomen">
                         <div class="button_rekomen_notif ps-5">
                             <button type="submit" class="btn btn-primary" id="btn_rekom_notif" style="background-color: #D7CAA0; width: 100%; border: none; font-weight: bold; color: black;">Cari Barang</button>
@@ -94,16 +96,67 @@
         </div>
     </div>
 
-    <div class="notif_success hidden">
-        <div class="notif_image text-center ps-4 pt-4">
-            <img src="{{URL::asset('maskot2.png')}}" alt="">
+    <div class="notif_success hidden" style="height: 380px;">
+        <div class="header_detail d-flex pt-3 pb-3 ps-2">
+            <div class="leftheader_detail">
+                <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
+            </div>
+            <div class="rightheader_detail ps-2 pt-2">
+                <div class="detailnamabarang">
+                </div>
+                <div class="rightkategoribarang">
+                </div>
+            </div>
         </div>
-        <div class="notif text-center" style="font-size: 20px;">
-            <p>Silahkan cek beberapa rekomendasi<br>Supplier</p>
+
+        <div class="body_detail_1" style="display: none;">
+            <div class="body_detail_baranghabis d-flex justify-content-center pt-4 pb-5" style="width: 100%;">
+                <table class="table caption-top" style="width: 90%;">
+                       <thead>
+                         <tr>
+                           <td scope="col" style="opacity: 0.6; font-weight: bold;">ID Barang</td>
+                           <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Harga</td>
+                           <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Jumlah Barang</td>
+                           <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Tanggal Kadaluarsa</td>
+                         </tr>
+                       </thead>
+                       <tbody class="isi_detail_baranghabis">
+
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="text-center">
+        <div class="body_detail_2" style="display: none;">
+            <div class="body_detail d-flex justify-content-center">
+                <div class="left_bodydetail" style="width: 45%;">
+                    <div class="IDBarang">
+                        <p>ID Barang</p>
+                    </div>
+                    <div class="Harga">
+                        <p>Harga</p>
+                    </div>
+                    <div class="Jumlah">
+                        <p>Jumlah</p>
+                    </div>
+                    <div class="TanggalKadaluarsa">
+                        <p>Tanggal Kadaluarsa</p>
+                    </div>
+                </div>
+                <div class="right_bodydetail">
+                    <div class="IDBarangData">
+                    </div>
+                    <div class="HargaData">
+                    </div>
+                    <div class="JumlahData">
+                    </div>
+                    <div class="TanggalKadaluarsaData">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center pt-3">
             <a href="/toko">
-                <button class="btn btnLogin" id="btnUmkm" style="background-color: #d7caa0;">Toko</button>
+                <button class="btn btntoko" id="btntoko" style="background-color: #d7caa0;">Cari Barang</button>
             </a>
         </div>
     </div>

@@ -416,6 +416,19 @@ a:hover {
     border-radius: 10px;
 }
 
+.notif_detailbarang {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    padding-bottom: 20px;
+    /* height: 420px; */
+    background-color: #f4f4f4;
+    z-index: 1000;
+    transition: all 0.5s;
+    border-radius: 10px;
+}
 .notif_image > img {
     height: 200px;
 }
