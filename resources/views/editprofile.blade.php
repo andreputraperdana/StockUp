@@ -27,7 +27,7 @@
                         </div>
                         <div class="dropdown mt-2">
                             <button class="dropbutton ps-3 pe-4 pt-1 pb-1" style="border: none; border-radius: 25px;">
-                            <img src="{{URL::asset('akun.png')}}" alt="" style="height: 40px;"> Glosary
+                            <img src="{{URL::asset('akun.png')}}" alt="" style="height: 40px;"> {{Str::limit(auth()->user()->name,5)}}
                             </button>
                             <div class="dropdown-content">
                                 <a href="/editprofile">Pengaturan</a>
@@ -99,7 +99,7 @@
 
                                             <div class="daftar_akun_kanan ms-5" style="width: 65%;">
                                                 <div class="daftar_akun_kanan_email mb-3">
-                                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" style="border: 1px solid #626262; background-color:transparent;">
+                                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{auth()->user()->email}}" style="border: 1px solid #626262; background-color:transparent;">
                                                 </div>
                                                 <div class="daftar_akun_kanan_password">
                                                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password Lama" style="border: 1px solid #626262; background-color:transparent;">
@@ -128,20 +128,71 @@
 
                                             <div class="daftar_profil_kanan ms-5" style="width: 65%; display: none;">
                                                 <div class="daftar_akun_kanan_email mb-3">
-                                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nama Toko" style="border: 1px solid #626262; background-color:transparent;">
+                                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{auth()->user()->name}}" style="border: 1px solid #626262; background-color:transparent;">
                                                 </div>
                                                 <div class="daftar_akun_kanan_password">
-                                                    <select name="kategori" class="kategori p-2" style="color: #626262; border-radius: 5px;">
-                                                        <option value="javascript">Es Grim Coklat</option>
-                                                        <option value="php">Es Grim Vanilla</option>
-                                                        <option value="java">Es Grim Stroberi</option>
-                                                        <option value="golang">Es Grim Matcha</option>
-                                                        <option value="python">Es Grim Melon</option>
-                                                        <option value="c#">Es Grim Alpukat</option>
+                                                    <select name="kategori" class="kategori p-2" style="color: black; border-radius: 5px;">
+                                                        {{-- <option selected="true" disabled="disabled">{{auth()->user()->kategori}}</option> --}}
+                                                        <option value="Fashion"
+                                                            @if (auth()->user()->kategori == 'Fashion'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >Fashion</option>
+                                                        <option value="Jasa"
+                                                            @if (auth()->user()->kategori == 'Jasa'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >Jasa</option>
+                                                        <option value="Kecantikan"
+                                                            @if (auth()->user()->kategori == 'Kecantikan'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >Kecantikan</option>
+                                                        <option value="Kesehatan" 
+                                                            @if (auth()->user()->kategori == 'Kesehatan'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >
+                                                        Kesehatan</option>
+                                                        <option value="Makanan dan minuman"
+                                                            @if (auth()->user()->kategori == 'Makanan dan minuman'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >Makanan dan minuman</option>
+                                                        <option value="Olahraga"
+                                                            @if (auth()->user()->kategori == 'Olahraga'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >Olahraga</option>
+                                                        <option value="Otomotif"
+                                                            @if (auth()->user()->kategori == 'Otomotif'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >Otomotif</option>
+                                                        <option value="Perdagangan"
+                                                            @if (auth()->user()->kategori == 'Perdagangan'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >Perdagangan</option>
+                                                        <option value="Lainnya"
+                                                            @if (auth()->user()->kategori == 'Lainnya'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >Lainnya</option>
                                                     </select>
                                                 </div>
                                                 <div class="daftar_akun_kanan_password mt-4">
-                                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Nomor Telepon" style="border: 1px solid #626262; background-color:transparent;">
+                                                    <input type="tel" class="form-control" id="exampleInputPassword1" placeholder="Nomor Telfon" value={{auth()->user()->nomortelp}} 
+                                                    style="border: 1px solid #626262; background-color:transparent;">
                                                 </div>
                                             </div>
                                         </div>
