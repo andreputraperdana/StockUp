@@ -190,7 +190,7 @@
                                                         >Lainnya</option>
                                                     </select>
                                                 </div>
-                                                <div class="daftar_akun_kanan_password mt-4 test_push">
+                                                <div class="daftar_akun_kanan_password mt-4">
                                                     <input type="tel" class="form-control" id="exampleInputPassword1" placeholder="Nomor Telfon" value={{auth()->user()->nomortelp}} 
                                                     style="border: 1px solid #626262; background-color:transparent;">
                                                 </div>
