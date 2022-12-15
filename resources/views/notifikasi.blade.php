@@ -66,10 +66,10 @@
             @csrf
             <div class="list_raja_notif d-flex justify-content-center pt-5">
                 <div class="list_notifikasi d-flex justify-content-center pt-3" style="border: 1px solid black; width: 72%;  border-radius: 7px;">
-                    <div class="foto_notif pe-5 pt-4">
+                    <div class="foto_notif pe-5 pt-3">
                         <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
                     </div>
-                    <div class="description_notif ps-5" style="width: 38%;">
+                    <div class="description_notif ps-5 pt-2 pb-4" style="width: 38%;">
                         <div class="title_notif">
                             <p style="font-size: 20px; font-weight: bold;">{{$AllBarang->BarangUMKM->nama}}</p>
                         </div>

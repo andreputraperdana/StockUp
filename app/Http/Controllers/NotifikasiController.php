@@ -17,6 +17,7 @@ class NotifikasiController extends Controller
 
     public function postdetail(Request $request){
         $hasil = $request->input();
+        dd($hasil);
         $idbarang = $hasil['id_barang'];
         $searchbarang = TransaksiBarangMasuk::where('id', '=', $idbarang)->first();
         $searchbarang->notif_flag = 1;
