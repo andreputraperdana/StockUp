@@ -39,7 +39,7 @@
         <div class="list_raja_notif d-flex justify-content-center pt-5">
             <div class="list_notifikasi d-flex justify-content-center pt-3" style="border: 1px solid black; width: 72%;  border-radius: 7px;">
                 <div class="foto_notif pe-5 pt-4">
-                    <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
+                    <img src="\public\image\{{$AllBarang->BarangUMKM->foto_barang}}" alt="" style="height: 60px;">
                 </div>
                 <div class="description_notif ps-5">
                     <div class="title_notif">
@@ -68,7 +68,7 @@
             <div class="list_raja_notif d-flex justify-content-center pt-5">
                 <div class="list_notifikasi d-flex justify-content-center pt-3" style="border: 1px solid black; width: 72%;  border-radius: 7px;">
                     <div class="foto_notif pe-5 pt-3">
-                        <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
+                        <img src="\public\image\{{$AllBarang->BarangUMKM->foto_barang}}" alt="" style="height: 60px;">
                     </div>
                     <div class="description_notif ps-5 pt-2 pb-4" style="width: 38%;">
                         <div class="title_notif">

@@ -39,7 +39,7 @@ class TambahBarangController extends Controller
                 // Filename To store
                 $fileNameToStore = $filename . '_' . time() . '.' . $extension;
                 // Upload Image
-                $path = $request->file('fotobarang')->storeAs('public/image', $fileNameToStore);
+                $path = $request->file('fotobarang')->move('public/image', $fileNameToStore);
                 $barangUMKM->foto_barang = $fileNameToStore;
                 $barangUMKM->save();
                 $transaksibarangmasuk->barang_umkm_id = $barangUMKM->id;
@@ -70,7 +70,7 @@ class TambahBarangController extends Controller
             // Filename To store
             $fileNameToStore = $filename . '_' . time() . '.' . $extension;
             // Upload Image
-            $path = $request->file('fotobarang')->storeAs('public/image', $fileNameToStore);
+            $path = $request->file('fotobarang')->move('public/image', $fileNameToStore);
             $barangPemasok->foto_barang = $fileNameToStore;
             $barangPemasok->save();
         }

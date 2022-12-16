@@ -12,8 +12,8 @@
     <script defer src="scriptregister.js"></script>
     <title>Halaman Utama</title>
   </head>
-  <body class="content__body mt-3">
-                <div class="daftar d-flex justify-content-center" style="height: 115vh;">
+  <body class="content__body mt-3" style="display: flex; flex-direction: column">
+                <div class="daftar d-flex justify-content-center" style="flex: 1;">
                     <div class="daftar__image" style="background-color: #d7caa0; width: 20%;" >
                     <div class="daftar__image__cover">
                         <div class="judul text-center">
@@ -23,7 +23,11 @@
                             <img src="{{URL::asset('maskot2.png')}}" alt="" style="height: 150px;">
                         </div>
                     </div>
-    
+                    <div class="punya__akun">
+                        <span>Sudah Memiliki Akun?</span>
+                        <br/>
+                        <a href=""><u>Masuk Disini</u> </a>
+                    </div>
                     </div>
                         <div class="daftar__form" style="background-color: #f4f4f4; width: 50%;">
                         <form action="/daftar" method="POST">
@@ -120,7 +124,7 @@
                         </div>
                              
                             <div class="button_simpan d-flex justify-content-center pt-4">
-                                <button type="submit" class="btn btn-primary ps-5 pe-5" id="btn_simpan" style="background-color: #d7caa0; width: 25%; border: none; font-weight: bold; color: black;" name="roleid" value="1">Simpan</button>
+                                <button type="submit" class="btn btn-primary ps-5 pe-5" id="btn_simpan" style="background-color: #d7caa0; border: none; font-weight: bold; color: black;" name="roleid" value="1">Simpan</button>
                             </div>
                         </form>
                         </div>

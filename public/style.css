@@ -361,13 +361,20 @@ a:hover {
 }
 
 .daftar__image {
-    position: relative;
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
-.daftar__image__cover {
-    position: absolute;
-    top: 30%;
-    left: 18%;
+.daftar__form {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-bottom: 30px;
 }
 
 .kategori {
@@ -603,7 +610,7 @@ li {
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     border-radius: 10px;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 /* Links inside the dropdown */

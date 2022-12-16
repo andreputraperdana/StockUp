@@ -93,3 +93,5 @@ Route::get('/detailbarang/{id}', [DetailBarangController::class, 'getindex'])->n
 Route::post('/barangkeluar', [MengelolaBarangController::class, 'keluarbarang']);
 
 Route::get('/detailnotifikasi/{id}', [DetailNotifikasiController::class, 'getindex']);
+
+Route::post('/editprofile/update', [EditProfileController::class, 'update']);

@@ -1,14 +1,16 @@
 @extends('template')
 
 @section('javascript')
-<script defer src="mengelolabarang.js"></script>
+<script defer src="/editbarang.js"></script>
 @endsection
 
 @section('content')
         <div class="atas d-flex justify-content-between" style="width:100%">
                     <div class="atas_kiri">
                         <div class="judul_halaman mt-5">
-                            <button class="ps-3 pe-3" style="background-color: #d7caa0; font-size: 30px; font-weight: bold;border-radius: 50%; border: none;"><</button>
+                            <a href="javascript:history.back()">
+                                <button class="ps-3 pe-3" style="background-color: #d7caa0; font-size: 30px; font-weight: bold;border-radius: 50%; border: none;"><</button>
+                            </a>
                         </div>
                     </div>
 
@@ -43,7 +45,7 @@
                         <div class="section_dua d-flex" style="width: 100%">
                             <div class="foto_profile" style="width: 30%; padding-top: 7%; height: 100%;">
                             <div class="d-flex justify-content-center">
-                                <img src="/storage/image/{{$hasil->get(0)->foto_barang}}" alt="Foto Profil" style="height: 200px;">
+                                <img src="\public\image\{{$hasil->get(0)->foto_barang}}" alt="Foto Profil" style="height: 200px; width: 200px;">
                             </div>
                                 <div class="button_pilihfoto d-flex justify-content-center pt-5 mt-2" >
                                     <label class="custom-file-upload" style="border-radius: 7px;">

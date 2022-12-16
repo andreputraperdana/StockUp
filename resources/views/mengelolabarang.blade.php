@@ -80,9 +80,9 @@
                     @foreach($AllItems as $AllItem)
                     <div class="resp-table-row mb-5 p-3" style="font-size: 20px;"> 
                         <div class="d-flex">
-                            <!-- <div class="foto" style="width: 18%;">
-                                <img src="/storage/image/{{$AllItem->BarangUMKM->foto_barang}}" alt="Foto Profil" style="height: 80px;">
-                            </div> -->
+                            <div class="foto" style="width: 18%;">
+                                <img src="\public\image\{{$AllItem->BarangUMKM->foto_barang}}" alt="Foto Profil" style="height: 200px; width: 200px;">
+                            </div>
                             <div class="nama_header center" style="width: 36%;">
                                 {{$AllItem->BarangUMKM->nama}}
                             </div>

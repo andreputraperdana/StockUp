@@ -164,10 +164,10 @@
                                         @foreach($Item as $Items)
                                             <a href="/item/{{$Items->id}}">
                                                 <div class="card me-5" style="width: 15rem;" role="button">
-                                                    <!-- <img src="/storage/image/{{$Items->foto_barang}}" class="card-img-top" alt=""> -->
+                                                    <img src="\public\image\{{$Items->foto_barang}}" class="card-img-top" alt="">
                                                     <div class="card-body">
-                                                      <h5 class="card-title" style="text-align: center; font-weight: bold;">{{$Items->nama}}</h5>
-                                                      <p class="card-text" style="text-align: center;">@currency($Items->harga)</p>
+                                                      <p class="card-title" style="text-align: center;  font-size: 14px;">{{$Items->nama}}</p>
+                                                      <p class="card-text" style="text-align: center; font-weight: bold; font-size: 16px">@currency($Items->harga)</p>
                                                       {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
                                                     </div>
                                                 </div>

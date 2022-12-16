@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\BarangUMKM;
 use App\Models\TransaksiBarangKeluar;
 use App\Models\TransaksiBarangMasuk;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PDO;
 use PhpParser\Node\Expr\Isset_;
@@ -14,6 +15,7 @@ class MengelolaBarangController extends Controller
 {
     public function getindex()
     {
+        $auth = Auth::user();
         $flag = 4;
         // $AllItems = TransaksiBarangMasuk::groupBy('barang_umkm_id')->select('barang_umkm_id', DB::raw('SUM(jumlah) as total'))->get();
         $AllItems = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id')->select('barang_umkm_id', DB::raw('SUM(jumlah) as total'))->paginate(3);

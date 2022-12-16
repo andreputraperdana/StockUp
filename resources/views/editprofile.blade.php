@@ -37,13 +37,33 @@
                     </div>
         </div>
 
-
-        <div class="content_tambahbarang mt-5" style="height: 700px; width: 100%; background-color: #F4F4F4; border-radius: 25px;" >
+        <form action="/editprofile/update" method="post">
+        @csrf
+        <div class="content_tambahbarang mt-5" style="height: 740px; width: 100%; background-color: #F4F4F4; border-radius: 25px;" >
+            @if($errors->any())
+                {!! implode('', $errors->all('<div style="color:red">:message</div>')) !!}
+                @endif
+                @if(Session::get('error') && Session::get('error') != null)
+                <div class="alert alert-danger">
+                    {{ Session::get('error') }}
+                </div>
+                @php
+                    Session::put('error', null)
+                @endphp
+                @endif
+                @if(Session::get('success') && Session::get('success') != null)
+                <div class="alert alert-success">
+                    {{ Session::get('error') }}
+                </div>
+                @php
+                    Session::put('success', null)
+                @endphp
+                @endif
                     <div class="daftar_header pt-5 pb-1">
                         <div class="menu_daftar">
                         <div class="button__first pe-3">
                             <div class="">
-                                    <button class="btn btn1" id="btnUmkm" style="background-color: #d7caa0; border-radius: 50%; font-size: 20"><p class="ps-1 pt-3">1</p></button>
+                                <button class="btn btn1" id="btnUmkm" style="background-color: #d7caa0; border-radius: 50%; font-size: 20"><p class="ps-1 pt-3">1</p></button>
                             </div>
                         </div>
                         <div class="lines2">
@@ -81,6 +101,7 @@
                                             <p class="titles" style="font-size: 20px; font-weight: bold;">Akun</p>
                                             <div class="lines4"></div>
                                         </div>
+                                        
                                         <div class="pengaturan_akun_isi d-flex" style="display: none;">
                                             <div class="pengaturan_akun_kiri mt-2" style="width: 35%;">
                                                 <div class="pengaturan_akun_kiri_email mb-3">
@@ -99,16 +120,16 @@
 
                                             <div class="daftar_akun_kanan ms-5" style="width: 65%;">
                                                 <div class="daftar_akun_kanan_email mb-3">
-                                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{auth()->user()->email}}" style="border: 1px solid #626262; background-color:transparent;">
+                                                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{auth()->user()->email}}" style="border: 1px solid #626262; background-color:transparent;">
                                                 </div>
                                                 <div class="daftar_akun_kanan_password">
-                                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password Lama" style="border: 1px solid #626262; background-color:transparent;">
+                                                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password Lama" style="border: 1px solid #626262; background-color:transparent;">
                                                 </div>
                                                 <div class="daftar_akun_kanan_password mt-4">
-                                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password Baru" style="border: 1px solid #626262; background-color:transparent;">
+                                                    <input type="password" class="form-control" name="passwordBaru" id="exampleInputPassword1" placeholder="Password Baru" style="border: 1px solid #626262; background-color:transparent;">
                                                 </div>
                                                 <div class="daftar_akun_kanan_password mt-4">
-                                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Konfirmasi Password" style="border: 1px solid #626262; background-color:transparent;">
+                                                    <input type="password" class="form-control" name="passwordKonfirmasi" id="exampleInputPassword1" placeholder="Konfirmasi Password" style="border: 1px solid #626262; background-color:transparent;">
                                                 </div>
                                             </div>
                                         </div>
@@ -128,7 +149,7 @@
 
                                             <div class="daftar_profil_kanan ms-5" style="width: 65%; display: none;">
                                                 <div class="daftar_akun_kanan_email mb-3">
-                                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{auth()->user()->name}}" style="border: 1px solid #626262; background-color:transparent;">
+                                                    <input type="text" name="nama" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{auth()->user()->name}}" style="border: 1px solid #626262; background-color:transparent;">
                                                 </div>
                                                 <div class="daftar_akun_kanan_password">
                                                     <select name="kategori" class="kategori p-2" style="color: black; border-radius: 5px;">
@@ -191,7 +212,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="daftar_akun_kanan_password mt-4">
-                                                    <input type="tel" class="form-control" id="exampleInputPassword1" placeholder="Nomor Telfon" value={{auth()->user()->nomortelp}} 
+                                                    <input type="tel" name="nomorTelp" class="form-control" id="exampleInputPassword1" placeholder="Nomor Telfon" value={{auth()->user()->nomortelp}} 
                                                     style="border: 1px solid #626262; background-color:transparent;">
                                                 </div>
                                             </div>
@@ -205,14 +226,16 @@
 
                     <div class="gabungan_button d-flex justify-content-center pt-5">
                         <div class="button__lanjut d-flex justify-content-center pt-4 mt-2" style="width: 30%; height: 75px;">
-                            <button type="submit" class="btn btn-primary ps-5 pe-5 " id="btn_lanjut" style="background-color: #D7CAA0; width: 70%; border: none; font-weight: bold; color: black;">Lanjut</button>
+                            <button type="button" class="btn btn-primary ps-5 pe-5 " id="btn_lanjut" style="background-color: #D7CAA0; width: 70%; border: none; font-weight: bold; color: black;">Lanjut</button>
                         </div>    
                         <div class="button__kembali d-flex justify-content-center pt-4 mt-2" style="width: 30%; height: 75px;">
-                            <button type="submit" class="btn btn-primary ps-5 pe-5 " id="btn_kembali" style="background-color: #D7CAA0; width: 70%; border: none; font-weight: bold; color: black;">Kembali</button>
+                            <button type="button" class="btn btn-primary ps-5 pe-5 " id="btn_kembali" style="background-color: #D7CAA0; width: 70%; border: none; font-weight: bold; color: black;">Kembali</button>
                         </div>
                         <div class="button_simpan d-flex justify-content-center pt-4 mt-2" style="width: 30%">
                             <button type="submit" class="btn btn-primary ps-5 pe-5 " id="btn_simpan" style="background-color: #D7CAA0; width: 70%; border: none; font-weight: bold; color: black;">Simpan</button>
                         </div>
+                        
                     </div>
         </div>
+    </form>
 @endsection

@@ -16,7 +16,7 @@
                     <span id="waktuskrg"></span>
                 </div>
             </div>
-           <div class="atas_kanan d-flex  mt-5">
+           <div class="atas_kanan d-flex mt-5">
                 <div class="notifikasi pe-2 mt-2">
                     <div class="item">
                         <a href="/notifikasi">
@@ -258,7 +258,7 @@
                     <span id="waktuskrg"></span>
                 </div>
             </div>
-           <div class="atas_kanan mt-5">
+           <div class="atas_kanan d-flex mt-5">
                 <div class="dropdown mt-2">
                     <button class="dropbutton ps-3 pe-4 pt-1 pb-1" style="border: none; border-radius: 25px;">
                     <img src="{{URL::asset('akun.png')}}" alt="" style="height: 40px;"> {{Str::limit(auth()->user()->name,5)}}
@@ -274,8 +274,10 @@
 
             </div>
         </div>
+        
                 <div class="d-flex">
                     <div style="width: 80%;">
+                        
                             <div class="raja_list" style="width: 97%; height: 550px; border-radius: 25px;">
                                 <form action="/beranda">
                                     <div class="ps-5 pt-4 pb-5 d-flex justify-content-between" style="width: 95%;">
