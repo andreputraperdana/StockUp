@@ -80,6 +80,14 @@
                                     <div class="input_namabarang">
                                         <input type="text" class="form-control namabarang" id="namabarang" name="namabarang" aria-describedby="emailHelp" placeholder="Nama Barang" style="border: 1px solid #626262; background-color:transparent;">
                                     </div>
+                                    <div class="input_namabarangeksisting" style="display: none;">
+                                        <select  name="namabarangeksisting" class="namabarangeksisting p-2" style="color: #626262; border-radius: 5px;">>
+                                            <option selected="true" disabled="disabled">Nama Barang</option>
+                                            @foreach($barangexist as $barangexistings)
+                                                <option value="{{$barangexistings->nama}}">{{$barangexistings->nama}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
 
                                 <div class="input_content_jenisbarang mt-3">

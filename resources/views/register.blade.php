@@ -26,7 +26,7 @@
                     <div class="punya__akun">
                         <span>Sudah Memiliki Akun?</span>
                         <br/>
-                        <a href=""><u>Masuk Disini</u> </a>
+                        <a href="/login"><u>Masuk Disini</u> </a>
                     </div>
                     </div>
                         <div class="daftar__form" style="background-color: #f4f4f4; width: 50%;">

@@ -377,7 +377,8 @@ a:hover {
     padding-bottom: 30px;
 }
 
-.kategori {
+.kategori,
+.namabarangeksisting {
     background-color: transparent;
     width: 100%;
     border: 1px solid #626262;

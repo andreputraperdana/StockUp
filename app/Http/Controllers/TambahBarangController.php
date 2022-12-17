@@ -14,7 +14,8 @@ class TambahBarangController extends Controller
     public function getindex()
     {
         $flag = 2;
-        return view('tambahbarang', ['flag' => $flag]);
+        $BarangEksisting = BarangUMKM::all();
+        return view('tambahbarang', ['flag' => $flag, 'barangexist'=>$BarangEksisting]);
     }
 
     public function inputbarang(Request $request)
@@ -23,7 +24,7 @@ class TambahBarangController extends Controller
         $barangUMKM = new BarangUMKM;
         $barangPemasok = new BarangPemasok;
         $transaksibarangmasuk = new TransaksiBarangMasuk;
-        $checkbarang = BarangUMKM::where('nama', $request->namabarang)->first();
+        $checkbarang = BarangUMKM::where('nama', $request->namabarangeksisting)->first();
 
         if (Auth::user()->role_id == 1) {
             if (!$checkbarang) {

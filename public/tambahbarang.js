@@ -19,6 +19,10 @@ const inputTanggalKadaluarsa = document.querySelector(
     ".input_content_tanggalkadaluarsa"
 );
 const inputFoto = document.querySelector(".input_content_fotobarang");
+const inputbarangbaru = document.querySelector(".input_namabarang");
+const inputbarangeksisting = document.querySelector(
+    ".input_namabarangeksisting"
+);
 
 slidebar.addEventListener("mouseover", function (e) {
     // console.log(this.classList);
@@ -47,6 +51,8 @@ if (buttonBarangBaru) {
         inputTambahBarang.style.display = "block";
         inputJenisBarang.style.display = "block";
         inputJumlahBarang.style.display = "block";
+        inputbarangbaru.style.display = "block";
+        inputbarangeksisting.style.display = "none";
         inputTanggalKadaluarsa.style.display = "block";
         inputFoto.style.display = "block";
         judulTambahBarang.style.display = "block";
@@ -59,6 +65,8 @@ if (buttonBarangExist) {
         buttonBarangExist.style.backgroundColor = "#D7CAA0";
         buttonBarangBaru.style.backgroundColor = "#FFFFFF";
         inputJenisBarang.style.display = "none";
+        inputbarangbaru.style.display = "none";
+        inputbarangeksisting.style.display = "block";
         inputFoto.style.display = "none";
         judulTambahBarang.style.display = "none";
         judulTambahBarangExist.style.display = "block";
