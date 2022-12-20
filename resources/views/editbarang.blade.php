@@ -4,6 +4,7 @@
 <script defer src="/editbarang.js"></script>
 @endsection
 
+@if(auth()->user()->role_id == 1)
 @section('content')
         <div class="atas d-flex justify-content-between" style="width:100%">
                     <div class="atas_kiri">
@@ -76,13 +77,111 @@
                                                     </label> 
                                                 </div>
                                                 <div class="daftar_profil_kanan_kategori mb-3">
-                                                    <select name="kategori" class="kategori p-2" style="color: #626262; border-radius: 5px;">
-                                                        <option value="javascript">Es Grim Coklat</option>
-                                                        <option value="php">Es Grim Vanilla</option>
-                                                        <option value="java">Es Grim Stroberi</option>
-                                                        <option value="golang">Es Grim Matcha</option>
-                                                        <option value="python">Es Grim Melon</option>
-                                                        <option value="c#">Es Grim Alpukat</option>
+                                                    <select name="kategori" class="kategori p-2" style="color: black; border-radius: 5px;">
+                                                        {{-- <option selected="true" disabled="disabled">{{auth()->user()->kategori}}</option> --}}
+                                                        <option value="Alat tulis"
+                                                            @if ($hasil->get(0)->jenis == 'Alat tulis'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >Alat tulis</option>
+                                                        <option value="Bahan baku"
+                                                            @if ($hasil->get(0)->jenis == 'Bahan baku'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >Bahan baku</option>
+                                                        <option value="Buku"
+                                                            @if ($hasil->get(0)->jenis == 'Buku'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >Buku</option>
+                                                        <option value="Dapur" 
+                                                            @if ($hasil->get(0)->jenis == 'Dapur'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >
+                                                        Dapur</option>
+                                                        <option value="Elektronik"
+                                                            @if ($hasil->get(0)->jenis == 'Elektronik'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >Elektronik</option>
+                                                        <option value="Fashion"
+                                                            @if ($hasil->get(0)->jenis == 'Fashion'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >Fashion</option>
+                                                        <option value="Kecantikan"
+                                                            @if ($hasil->get(0)->jenis == 'Kecantikan'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >Kecantikan</option>
+                                                        <option value="Kerajinan"
+                                                            @if ($hasil->get(0)->jenis == 'Kerajinan'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >Kerajinan</option>
+                                                        <option value="Kesehatan"
+                                                            @if ($hasil->get(0)->jenis == 'Kesehatan'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >Kesehatan</option>
+                                                        <option value="Mainan"
+                                                            @if ($hasil->get(0)->jenis == 'Mainan'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >Mainan</option>
+                                                        <option value="Makanan dan minuman"
+                                                            @if ($hasil->get(0)->jenis == 'Makanan dan minuman'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >Makanan dan minuman</option>
+                                                        <option value="Olahraga"
+                                                            @if ($hasil->get(0)->jenis == 'Olahraga'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >Olahraga</option>
+                                                        <option value="Otomotif"
+                                                            @if ($hasil->get(0)->jenis == 'Otomotif'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >Otomotif</option>
+                                                        <option value="Perlengkapan pesta"
+                                                            @if ($hasil->get(0)->jenis == 'Perlengkapan pesta'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >Perlengkapan pesta</option>
+                                                        <option value="Pertukangan"
+                                                            @if ($hasil->get(0)->jenis == 'Pertukangan'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >Pertukangan</option>
+                                                        <option value="Rumah tangga"
+                                                            @if ($hasil->get(0)->jenis == 'Rumah tangga'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >Rumah tangga</option>
+                                                        <option value="Lainnya"
+                                                            @if ($hasil->get(0)->jenis == 'Lainnya'){
+                                                                selected="selected"
+                                                            }           
+                                                            @endif
+                                                        >Lainnya</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -144,4 +243,7 @@
         </form>
         
 @endsection
+@elseif(auth()->user()->role_id == 2)
+
+@endif  
 

@@ -60,229 +60,41 @@
                                 </div>
                             </div>   
                         </div>
-
+                        
                         <div class="d-flex">
-                            <div class="d-flex justify-content-center pt-4"style="width: 30%;">
-                                <div class="kategori_raja" style="width: 50%;">
+                            <div class="d-flex pt-4 ps-5"style="width: 28%;">
+                                <div class="kategori_raja" style="width: 70%;">
+                                    @foreach($Kategori as $Kategories)
                                     <div class="kategori_list d-flex">
-                                        <div class="daftar_kategori">
-                                            <p>Bahan Makanan</p>
-                                        </div>
-                                        <!-- <div class="jumlah_kategori">
-                                            <p>15</p>
-                                        </div> -->
-                                    </div>
-                                    <div class="kategori_list d-flex">
-                                        <div class="daftar_kategori">
-                                            <p>Makanan beku</p>
-                                        </div>
-                                        <!-- <div class="jumlah_kategori ps-4">
-                                            <p>15</p>
-                                        </div> -->
-                                    </div>
-                                    <div class="kategori_list d-flex">
-                                        <div class="daftar_kategori">
-                                            <p>Makanan Instan</p>
-                                        </div>
-                                        <!-- <div class="jumlah_kategori justify-content-end">
-                                            <p>15</p>
-                                        </div> -->
-                                    </div>
-                                    <div class="kategori_list d-flex">
-                                        <div class="daftar_kategori">
-                                            <p>Bahan Baku</p>
-                                        </div>
-                                        <!-- <div class="jumlah_kategori justify-content-end">
-                                            <p>15</p>
-                                        </div> -->
-                                    </div>
-                                    <div class="kategori_list d-flex">
-                                        <div class="daftar_kategori">
-                                            <p>Alat Tulis</p>
-                                        </div>
-                                        <!-- <div class="jumlah_kategori justify-content-end">
-                                            <p>15</p>
-                                        </div> -->
-                                    </div>
-                                    <div class="kategori_list d-flex">
-                                        <div class="daftar_kategori">
-                                            <p>Baju</p>
-                                        </div>
-                                        <!-- <div class="jumlah_kategori justify-content-end">
-                                            <p>15</p>
-                                        </div> -->
-                                    </div>
-                                    <div class="kategori_list d-flex">
-                                        <div class="daftar_kategori">
-                                            <p>Perabotan Rumah</p>
-                                        </div>
-                                        <!-- <div class="jumlah_kategori justify-content-end">
-                                            <p>15</p>
-                                        </div> -->
-                                    </div>
-                                </div>
-                                <div class="kategori_raja" style="width: 5%;">
-                                    <div class="kategori_list">
-                                        <div class="">
-                                            <p>15</p>
+                                        <div class="daftar_kategori d-flex justify-content-between" style="width: 100%;">
+                                            <p>{{$Kategories->jenis}}</p>
+                                            <p>{{$Kategories->total}}</p>
                                         </div>
                                     </div>
-                                    <div class="kategori_list">
-                                        <div class="">
-                                            <p>8</p>
-                                        </div>
-                                    </div>
-                                    <div class="kategori_list d-flex">
-                                        <div class="">
-                                            <p>12</p>
-                                        </div>
-                                    </div>
-                                    <div class="kategori_list d-flex">
-                                        <div class="">
-                                            <p>13</p>
-                                        </div>
-                                    </div>
-                                    <div class="kategori_list d-flex">
-                                        <div class="">
-                                            <p>15</p>
-                                        </div>
-                                    </div>
-                                    <div class="kategori_list d-flex">
-                                        <div class="">
-                                            <p>15</p>
-                                        </div>
-                                    </div>
-                                    <div class="kategori_list d-flex">
-                                        <div class="">
-                                            <p>20</p>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="list_toko d-flex pt-4" style="width:70%">
                                 <div class="container d-flex">
+                                    <div class="row justify-content-between">
                                         @foreach($Item as $Items)
+                                        <div class="col-3 mb-3">
                                             <a href="/item/{{$Items->id}}">
-                                                <div class="card me-5" style="width: 15rem;" role="button">
+                                                <div class="card me-5" style="width: 100%;" role="button">
                                                     <img src="\public\image\{{$Items->foto_barang}}" class="card-img-top" alt="">
                                                     <div class="card-body">
-                                                      <p class="card-title" style="text-align: center;  font-size: 14px;">{{$Items->nama}}</p>
-                                                      <p class="card-text" style="text-align: center; font-weight: bold; font-size: 16px">@currency($Items->harga)</p>
-                                                      {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+                                                        <p class="card-title" style="text-align: center;  font-size: 14px;">{{$Items->nama}}</p>
+                                                        <p class="card-text" style="text-align: center; font-weight: bold; font-size: 16px">@currency($Items->harga)</p>
+                                                        {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
                                                     </div>
                                                 </div>
                                             </a>
+                                        </div>
                                         @endforeach
-                                        {{-- <div class="kotak_gambar me-2 mt-2" style="border: 1px solid black; width: 200px;" role="button">
-                                            <div class="col">
-                                                <div class="gambar_toko ps-4">
-                                                    <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
-                                                </div>
-                                                <div class="nama_barang pt-3">
-                                                    <p style="font-size: 16px; font-weight: bold;">Nugget kensler</p>
-                                                </div>
-                                                <div class="harga_barang">
-                                                    <p style="font-size: 16px;">Rp. 50.000</p>
-                                                </div>
-                                            </div>   
-                                        </div>
-                                        <div class="kotak_gambar me-2 mt-2" style="border: 1px solid black; width: 200px;" role="button">
-                                            <div class="col">
-                                                <div class="gambar_toko ps-4">
-                                                    <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
-                                                </div>
-                                                <div class="nama_barang pt-3">
-                                                    <p style="font-size: 16px; font-weight: bold;">Nugget kensler</p>
-                                                </div>
-                                                <div class="harga_barang">
-                                                    <p style="font-size: 16px;">Rp. 50.000</p>
-                                                </div>
-                                            </div>   
-                                        </div>
-                                        <div class="kotak_gambar me-2 mt-2" style="border: 1px solid black; width: 200px;" role="button">
-                                            <div class="col">
-                                                <div class="gambar_toko ps-4">
-                                                    <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
-                                                </div>
-                                                <div class="nama_barang pt-3">
-                                                    <p style="font-size: 16px; font-weight: bold;">Nugget kensler</p>
-                                                </div>
-                                                <div class="harga_barang">
-                                                    <p style="font-size: 16px;">Rp. 50.000</p>
-                                                </div>
-                                            </div>   
-                                        </div>
-                                        <div class="kotak_gambar me-2 mt-2" style="border: 1px solid black; width: 200px;" role="button">
-                                            <div class="col">
-                                                <div class="gambar_toko ps-4">
-                                                    <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
-                                                </div>
-                                                <div class="nama_barang pt-3">
-                                                    <p style="font-size: 16px; font-weight: bold;">Nugget kensler</p>
-                                                </div>
-                                                <div class="harga_barang">
-                                                    <p style="font-size: 16px;">Rp. 50.000</p>
-                                                </div>
-                                            </div>   
-                                        </div>
-                                        <div class="kotak_gambar me-2 mt-2" style="border: 1px solid black; width: 200px;" role="button">
-                                            <div class="col">
-                                                <div class="gambar_toko ps-4">
-                                                    <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
-                                                </div>
-                                                <div class="nama_barang pt-3">
-                                                    <p style="font-size: 16px; font-weight: bold;">Nugget kensler</p>
-                                                </div>
-                                                <div class="harga_barang">
-                                                    <p style="font-size: 16px;">Rp. 50.000</p>
-                                                </div>
-                                            </div>   
-                                        </div>
-                                        <div class="kotak_gambar me-2 mt-2" style="border: 1px solid black; width: 200px;" role="button">
-                                            <div class="col">
-                                                <div class="gambar_toko ps-4">
-                                                    <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
-                                                </div>
-                                                <div class="nama_barang pt-3">
-                                                    <p style="font-size: 16px; font-weight: bold;">Nugget kensler</p>
-                                                </div>
-                                                <div class="harga_barang">
-                                                    <p style="font-size: 16px;">Rp. 50.000</p>
-                                                </div>
-                                            </div>   
-                                        </div>
-                                        <div class="kotak_gambar me-2 mt-2" style="border: 1px solid black; width: 200px;" role="button">
-                                            <div class="col">
-                                                <div class="gambar_toko ps-4">
-                                                    <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
-                                                </div>
-                                                <div class="nama_barang pt-3">
-                                                    <p style="font-size: 16px; font-weight: bold;">Nugget kensler</p>
-                                                </div>
-                                                <div class="harga_barang">
-                                                    <p style="font-size: 16px;">Rp. 50.000</p>
-                                                </div>
-                                            </div>   
-                                        </div>
-                                        <div class="kotak_gambar me-2 mt-2" style="border: 1px solid black; width: 200px;" role="button">
-                                            <div class="col">
-                                                <div class="gambar_toko ps-4">
-                                                    <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
-                                                </div>
-                                                <div class="nama_barang pt-3">
-                                                    <p style="font-size: 16px; font-weight: bold;">Nugget kensler</p>
-                                                </div>
-                                                <div class="harga_barang">
-                                                    <p style="font-size: 16px;">Rp. 50.000</p>
-                                                </div>
-                                            </div>   
-                                        </div> --}}
-                                    {{-- </div> --}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        
-                       
                     </div>
         <div style="visibility:hidden">
             <p class="tanda">{{$flag}}</p>

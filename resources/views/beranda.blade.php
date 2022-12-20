@@ -278,7 +278,7 @@
                 <div class="d-flex">
                     <div style="width: 80%;">
                         
-                            <div class="raja_list" style="width: 97%; height: 550px; border-radius: 25px;">
+                            <div class="raja_list" style="width: 97%; height: 600px; border-radius: 25px;">
                                 <form action="/beranda">
                                     <div class="ps-5 pt-4 pb-5 d-flex justify-content-between" style="width: 95%;">
                                         <div class="d-flex" style="border: 1px solid #626262; background-color:transparent; border-radius: 7px; width: 45%; height: 40px;">
@@ -316,7 +316,7 @@
                                 </div>
                             </div>
                     </div>
-                    <div class="chat pe-4 ps-4" style="height: 630px; width: 22%; border-radius: 25px;">
+                    <div class="chat pe-4 ps-4" style="height: 600px; width: 22%; border-radius: 25px;">
                         <div class="title__chat d-flex pt-4">
                             <div class="pe-3">
                                 <p style="font-size: 20px; font-weight: bold;">Pesan Masuk</p>
