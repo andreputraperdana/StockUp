@@ -58,6 +58,8 @@ Route::post('/tambahbarang', [TambahBarangController::class, 'inputbarang'])->na
 
 Route::get('/laporan', [LaporanController::class, 'getindex']);
 
+Route::post('/laporanbarang',[LaporanController::class, 'getdatalaporan']);
+
 Route::get('/mengelolabarang', [MengelolaBarangController::class, 'getindex']);
 
 Route::get('/toko', [TokoController::class, 'getindex']);

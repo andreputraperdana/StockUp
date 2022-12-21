@@ -20,9 +20,10 @@ $(document).ready(function () {
             kategori: $(".kategori").val(),
             nomortelp: $(".nomortelp").val(),
             roleid: $("#btn_simpan").val(),
+            fotoprofil: $(".fotoprofil").val(),
         };
 
-        // console.log(hasil);
+        console.log(hasil);
         $.ajaxSetup({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),

@@ -30,7 +30,7 @@
                     </div>
                     </div>
                         <div class="daftar__form" style="background-color: #f4f4f4; width: 50%;">
-                        <form action="/daftar" method="POST">
+                        <form action="/daftar" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="daftar_header">
                                 <div class="d-flex justify-content-center pt-3">
@@ -94,6 +94,9 @@
                                         <div class="daftar_profil_kiri_nomortelepon mt-4">
                                             <label for="exampleInputNomorTelepon1" class="form-label" style="color: black">Nomor Telepon</label>
                                         </div>
+                                        <div class="daftar_profil_kiri_foto mt-4">
+                                            <label for="exampleInputFoto1" class="form-label" style="color: black">Foto</label>
+                                        </div>
                                     </div>
             
                                     <div class="daftar_profil_kanan" style="width: 55%">
@@ -114,9 +117,12 @@
                                                 <option value="Lainnya">Lainnya</option>
                                             </select>
                                         </div>
-                                        <div class="daftar_profil_kanan_nomortelepon">
+                                        <div class="daftar_profil_kanan_nomortelepon mb-3">
                                             <input type="text" name="nomortelp" class="form-control nomortelp" id="exampleInputNomorTelepon1" placeholder="Nomor Telepon" style="border: 1px solid #626262; background-color:transparent;">
                                         </div>
+                                            <div class="input_fotoprofil">
+                                                <input type="file" name="fotoprofil" class="form-control fotoprofil" id="exampleInputFotoProfil1" aria-describedby="emailHelp" placeholder="Foto Profil" style="border: 1px solid #626262; background-color:transparent;">
+                                            </div>
                                     </div>
                                 </div>
         

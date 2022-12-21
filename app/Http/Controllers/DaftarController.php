@@ -18,7 +18,9 @@ class DaftarController extends Controller
             'email' => 'required|email|unique:users',
             'password'=> 'required|min:5',
             'nama' => 'required',
-            'nomortelp' => 'required|min:12'
+            'kategori' => 'required',
+            'nomortelp' => 'required|min:12',
+            // 'fotoprofil' => 'image'
         ]);
 
         if($validate->fails()){
@@ -35,7 +37,16 @@ class DaftarController extends Controller
             $register->nomortelp = $hasil['nomortelp'];
             $register->role_id = $hasil['roleid'];
             $register->status = "Active";
-            $register->foto_profile = "null";
+            $filenameWithExt = $request->file('fotoprofil')->getClientOriginalName();
+            // Get Filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just Extension
+            $extension = $request->file('fotoprofil')->getClientOriginalExtension();
+            // Filename To store
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            // Upload Image
+            $path = $request->file('fotoprofil')->move('public/image', $fileNameToStore);
+            $register->foto_profile = $fileNameToStore;
             $register->save();
             
             return response()->json(['stats'=>200]);

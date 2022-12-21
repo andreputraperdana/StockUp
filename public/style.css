@@ -378,7 +378,8 @@ a:hover {
 }
 
 .kategori,
-.namabarangeksisting {
+.namabarangeksisting,
+.jenislaporan {
     background-color: transparent;
     width: 100%;
     border: 1px solid #626262;
