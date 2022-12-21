@@ -1,5 +1,7 @@
 @extends('template')
 
+@if(auth()->user()->role_id == 1)
+
 @section('javascript')
 <script defer src="mengelolabarang.js"></script>
 @endsection
@@ -57,7 +59,7 @@
             <div class="d-flex justify-content-center pt-4"style="width: 100%;">
                 <div class="resp-table-body" style="width: 90%;">
                     <div class="" style="font-size: 20px; font-weight: bold;"> 
-                        <div class="table-body-cell " style="visibility: hidden; width: 25%;">
+                        <div class="table-body-cell " style="visibility: visible; width: 25%;">
                             Image
                         </div>
                         <div class="table-body-cell" style="width: 25%;">
@@ -125,37 +127,8 @@
                     </div>
                     @endforeach      
             </div>
-                        
-                        <!-- <table class="table">
-                             <thead >
-                               <tr>
-                                 <th scope="col">#</th>
-                                 <th scope="col">First</th>
-                                 <th scope="col">Last</th>
-                                 <th scope="col">Handle</th>
-                               </tr>
-                             </thead>
-                                <tbody>
-                                  <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                  </tr>
-                                </tbody>
-                        </table>     -->
     </div>
+    
     <span class="d-flex justify-content-center">
         {{$AllItems->links()}}
     </span>
@@ -201,7 +174,7 @@
                    <div class="popupkontenidtanggal">
 
                    </div>
-                   <input type="hidden" value="{{$AllItem->total}}">
+                   {{-- <input type="hidden" value="{{$AllItem->total}}"> --}}
                     <div class="daftar_profil_kk pt-4" style="width: 100%;">
                         <input type="number" name="kuantitas" class="form-control kuantitas" id="kuantitas" placeholder="kuantitas" style="border: 1px solid #626262; background-color:transparent;">
                     </div>
@@ -214,5 +187,158 @@
         </form>
     </div>
     <div class="overlay hidden"></div>
-
 @endsection
+@elseif(auth()->user()->role_id == 2)
+@section('javascript')
+<script defer src="mengelolabarang.js"></script>
+@endsection
+
+@section('content')
+        <div class="atas d-flex justify-content-between" style="width:100%">
+                        <div class="atas_kiri">
+                            <div class="judul_halaman mt-5">
+                                <p style="font-size: 30px; font-weight: bold;">Mengelola Barang</p>
+                            </div>
+                        </div>
+
+                        <div class="atas_kanan d-flex  mt-5">
+                            <div class="pe-2 mt-2" style="width: 60px; height: 60px;">
+                                <div class="notifikasi d-flex justify-content-center pt-2" style="background-color: #f4f4f4; height: 75%; width: 100%; border-radius: 50%;">
+                                        <img src="{{URL::asset('chat.png')}}" class="" style="height: 29px;">
+                                </div>
+                            </div>
+                            <div class="notifikasi pe-2 mt-2">
+                                <a href="">
+                                    <img src="{{URL::asset('notifikasi.png')}}" class="ps-2 pe-2 pt-1 pb-1" style="background-color: #f4f4f4; border-radius: 50%; height: 45px;">
+                                </a>
+                            </div>
+
+                            <div class="dropdown mt-2">
+                            <button class="dropbutton ps-3 pe-4 pt-1 pb-1" style="border: none; border-radius: 25px;">
+                                <img src="{{URL::asset('akun.png')}}" alt="" style="height: 40px;"> {{Str::limit(auth()->user()->name,5)}}
+                            </button>
+                                <div class="dropdown-content">
+                                    <a href="/editprofile">Pengaturan</a>
+                                    <form action="/logout" method="POST">
+                                        @csrf
+                                        <input type="submit" class="btn prevbutton" value="Logout">
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+        </div>
+
+
+        <div class="content_tambahbarang mt-5" style="height: auto; width: 100%; background-color: #F4F4F4; border-radius: 25px;" >      
+            <div class="d-flex justify-content-center pt-4 pb-5">
+                <div class="d-flex justify-content-between" style="width: 90%;">
+                    <form action="/mengelolabarang">
+                        <div class="d-flex" style="border: 1px solid #626262; background-color:transparent; border-radius: 7px; height: 40px;">
+                            <input type="text" class="form-control" name="search" id="search" placeholder="Cari Barang" style="width: 200px;">
+                            <button type="submit" class="btn" style="border-left: 1px solid #626262; border-radius: 0 7px 7px 0; background-color: #D7CAA0;">
+                                <img src="{{URL::asset('search.png')}}" class="" style="height: 20px;">
+                            </button>
+                        </div>
+                    </form> 
+                </div>
+            </div>
+            {{-- <div class="d-flex justify-content-center pt-4"style="width: 100%;">
+                <div class="resp-table-body" style="width: 90%;">
+                    <div class="" style="font-size: 20px; font-weight: bold;"> 
+                        <div class="table-body-cell " style="visibility: hidden; width: 30%;">
+                            Image
+                        </div>
+                        <div class="table-body-cell" style="width: 30%;">
+                            Nama Barang
+                        </div>
+                        <div class="table-body-cell" style="width: 30%;">
+                            Jenis Barang
+                        </div>
+                        <div class="table-body-cell" style="width: 30%;">
+                            Harga
+                        </div>
+                        <div class="table-body-cell" style="width: 30%;">
+                            Action
+                        </div>
+                        <div class="table-body-cell" style="visibility: hidden;">
+                            <div class="d-flex">
+                                <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login"><img src="{{URL::asset('exit.png')}}" alt="" style="height: 25px;"></a></button>
+                                <button class="btn__login me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login">></a></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    @foreach($AllItems as $AllItem)
+                    <div class="resp-table-row mb-5 p-3" style="font-size: 20px;"> 
+                        <div class="d-flex">
+                            <div class="foto" style="width: 30%;">
+                                <img src="\public\image\{{$AllItem->foto_barang}}" alt="Foto Profil" style="height: 200px; width: 200px;">
+                            </div>
+                            <div class="nama_header center" style="width: 30%;">
+                                <p style="font-size: 16px;">{{$AllItem->nama}}</p>
+                            </div>
+                            <div class="nama_header center" style="width: 30%;">
+                                <p style="font-size: 16px;">{{$AllItem->jenis}}</p>
+                            </div>
+                            <div class="nama_header center" style="width: 30%;">
+                                <p style="font-size: 16px;">{{$AllItem->harga}}</p>
+                            </div>
+                            <div class="center" style="width: 30%;">
+                                <div class="d-flex">
+                                    <form action="{{route('users.destroy', $AllItem->id)}}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;" onclick="return confirm('Apakah Kamu Yakin Ingin Menghapus Barang Ini?')"><img src="{{URL::asset('trash.png')}}" alt="" style="height: 25px;"></button>   
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach      
+            </div>
+    </div> --}}
+    <div class="table-responsive-md" style="display: flex; justify-content: center; width: 100%;" >
+        <table class="table table-borderless align-middle tableMengelola" style="width: 90%;">
+            <thead class="theadMengelola">
+              <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Nama Barang</th>
+                <th scope="col">Jenis Barang</th>
+                <th scope="col">Harga</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            @foreach($AllItems as $AllItem)
+            <tbody class="tbodyMengelola">
+              <tr>
+                <td scope="row"><img src="\public\image\{{$AllItem->foto_barang}}" alt="Foto Profil" style="height: 100px; width: 100px;"></td>
+                <td>{{$AllItem->nama}}</td>
+                <td>{{$AllItem->jenis}}</td>
+                <td>{{$AllItem->harga}}</td>
+                <td>
+                    <div class="d-flex">
+                        <form action="{{route('users.destroy', $AllItem->id)}}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;" onclick="return confirm('Apakah Kamu Yakin Ingin Menghapus Barang Ini?')"><img src="{{URL::asset('trash.png')}}" alt="" style="height: 25px;"></button>   
+                        </form>
+                        <button class="btn__edit me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/editbarang/{{$AllItem->id}}"><img src="{{URL::asset('editicon.png')}}" alt="" style="height: 25px; transform: rotate(0deg); transition: all 0.5s;"></a></button>
+                    </div>
+                </td>
+              </tr>
+            </tbody>
+            @endforeach
+          </table>
+    </div>
+</div>
+
+    {{-- <span class="d-flex justify-content-center">
+        {{$AllItems->links()}}
+    </span> --}}
+    <div style="visibility:hidden">
+            <p class="tanda">{{$flag}}</p>
+    </div>
+    <div class="overlay hidden"></div>
+@endsection
+@endif

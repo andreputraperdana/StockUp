@@ -547,6 +547,36 @@ li {
     border-radius: 25px;
 }
 
+
+/* TABLE BOOTSTRAP*/
+
+.tableMengelola {
+    width: 100%;
+    border-collapse: collapse;
+    display: block;
+    width: 600px;
+}
+
+.tbodyMengelola {
+    border: 1px solid black;
+    border-radius: 15px;
+    display: block;
+    margin-top: 30px;
+}
+
+th {
+    width: 200px;
+}
+
+td{
+    width: 195px;
+}
+
+td, th {
+    padding: 5px;
+    text-align: center;
+}
+
 #resp-table {
     width: 100%;
     display: table;
@@ -698,7 +728,7 @@ li {
     transition: all 0.5s;
 }
 
-.btn2 {
+.btn2, .btn3 {
     border: 2px solid #d7caa0;
     border-radius: 7px;
     box-shadow: #f4f4f4 4px 4px 0 0;
@@ -720,14 +750,23 @@ li {
 
 .lines2 {
     width: 20%;
+    height: 1.5px;
+    margin-top: 30px;
+    background-color: black;
+    /* height: 118px; */
     text-align: center;
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid black; */
     line-height: 0.1em;
-    margin: 10px 0 30px;
+    /* margin: 10px 0 30px; */
 }
 
 .lines3 {
     width: 24.6%;
+    border-bottom: 1px solid black;
+}
+
+.lines5 {
+    width: 22%;
     border-bottom: 1px solid black;
 }
 
