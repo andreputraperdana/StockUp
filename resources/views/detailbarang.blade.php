@@ -20,4 +20,7 @@
                             @endforeach
                         </select>
                      </div>
+                     <div class="getdetailvalue">
+                         <input type="hidden" value="{{$DetailBarang->get(0)->id}}" name="barangid" class="barangid">
+                     </div>
             </div>

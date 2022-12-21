@@ -61,6 +61,16 @@ class LaporanController extends Controller
         // dd($Allbarang->All());
         // dd($TotalStockBarangKeluar);
 
+        // SELECT bumkm.id, bumkm.nama, abc.Stockfinaly, d.stockawal as barangmasuk, d.created_at as tanggalmasukbarang, e.jumlah as barangkeluar, e.created_at as tanggalkeluarbarang FROM BARANG_UMKM bumkm JOIN (
+        //     SELECT final.id as id, final.nama, SUM(final.StockAwalAkhir) as Stockfinaly FROM (
+        //     SELECT a.id, a.nama, b.stockawal, c.TotalBarangKeluar, ( b.stockawal -  c.TotalBarangKeluar) as StockAwalAkhir FROM BARANG_UMKM a LEFT JOIN (SELECT id, barang_umkm_id, stockawal
+        //     FROM TRANSAKSI_BARANG_MASUK WHERE created_at < '2022-12-21') b on a.id = b.barang_umkm_id 
+        //     LEFT JOIN(SELECT transaksi_barang_masuk_id, SUM(jumlah) as TotalBarangKeluar FROM TRANSAKSI_BARANG_KELUAR WHERE created_at < '2022-12-21' GROUP BY transaksi_barang_masuk_id) c on b.id = c.transaksi_barang_masuk_id ) final GROUP BY final.id, final.nama) abc on bumkm.id = abc.id LEFT JOIN(SELECT * FROM TRANSAKSI_BARANG_MASUK tbm WHERE tbm.created_at BETWEEN '2022-12-21' AND '2022-12-24') d on bumkm.id = d.barang_umkm_id
+        //     LEFT JOIN(SELECT * FROM TRANSAKSI_BARANG_KELUAR tbl WHERE tbl.created_at BETWEEN '2022-12-21' AND '2022-12-24')e on d.id = e.transaksi_barang_masuk_id and d.created_at = e.created_at
+        //     UNION
+        //     SELECT x.id, x.nama, NULL as Stockfinaly, NULL as barangmasuk, z.created_at as tanggalmasukbarang, z.jumlah as barangkeluar, z.created_at as tanggalkeluarbarang FROM BARANG_UMKM x LEFT JOIN(SELECT * FROM TRANSAKSI_BARANG_MASUK tbm WHERE tbm.created_at BETWEEN '2022-12-21' AND '2022-12-24') y on x.id = y.barang_umkm_id
+        //     LEFT JOIN(SELECT * FROM TRANSAKSI_BARANG_KELUAR tbl WHERE tbl.created_at BETWEEN '2022-12-21' AND '2022-12-24')z on y.id = z.transaksi_barang_masuk_id where y.created_at != z.created_at ORDER BY id, tanggalmasukbarang
+
 
         if($inputlaporan['jenislaporan'] == "Keluar masuk barang"){
 

@@ -30,7 +30,7 @@
                     </div>
                     </div>
                         <div class="daftar__form" style="background-color: #f4f4f4; width: 50%;">
-                        <form action="/daftar" method="POST" enctype="multipart/form-data">
+                        <form action="/daftar" method="POST" enctype="multipart/form-data" id="submitform">
                             @csrf
                             <div class="daftar_header">
                                 <div class="d-flex justify-content-center pt-3">

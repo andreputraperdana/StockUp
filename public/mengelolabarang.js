@@ -172,7 +172,7 @@ $(document).ready(function () {
     for (let i = 0; i < barangkeluar.length; i++) {
         barangkeluar[i].addEventListener("click", function (e) {
             let barangid = barangkeluar[i].value;
-            console.log(barangid);
+            // console.log(barangid);
             $.ajax({
                 url: `/detailbarang/${barangid}`,
                 method: "GET",
@@ -183,6 +183,8 @@ $(document).ready(function () {
                     idtanggalkadaluarsa.innerHTML = $(data)
                         .find(".daftar_profil_kanan_id_tanggal")
                         .html();
+                    idtanggalkadaluarsa.innerHTML +=
+                        "\n" + $(data).find(".getdetailvalue").html();
                     overlay.classList.remove("hidden");
                     popupbarangkeluar.classList.remove("hidden");
                 },

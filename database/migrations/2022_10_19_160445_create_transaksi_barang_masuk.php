@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('barang_umkm_id')->references('id')->on('barang_umkm')->onUpdate('cascade')->onDelete('cascade');
             $table->double('harga');
             $table->integer('jumlah');
+            $table->integer('stockawal');
             $table->date('tanggal_kadaluarsa');
             $table->timestamps();
             $table->integer('notif_flag');

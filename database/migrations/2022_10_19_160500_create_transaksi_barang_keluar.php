@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('transaksi_barang_keluar', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('barang_umkm_id');
-            $table->foreign('barang_umkm_id')->references('id')->on('barang_umkm')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('transaksi_barang_masuk_id');
+            $table->foreign('transaksi_barang_masuk_id')->references('id')->on('transaksi_barang_masuk')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('jumlah');
             $table->timestamps();
         });

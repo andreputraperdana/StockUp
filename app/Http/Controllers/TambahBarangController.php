@@ -45,6 +45,7 @@ class TambahBarangController extends Controller
                 $barangUMKM->save();
                 $transaksibarangmasuk->barang_umkm_id = $barangUMKM->id;
                 $transaksibarangmasuk->jumlah = $output['jumlahbarang'];
+                $transaksibarangmasuk->stockawal = $output['jumlahbarang'];
                 $transaksibarangmasuk->harga = $output['hargabarang'];
                 $transaksibarangmasuk->tanggal_kadaluarsa = $output['tanggalkadaluarsa'];
                 $transaksibarangmasuk->notif_flag = 0;
@@ -52,6 +53,7 @@ class TambahBarangController extends Controller
             } else {
                 $transaksibarangmasuk->barang_umkm_id = $checkbarang->id;
                 $transaksibarangmasuk->jumlah = $output['jumlahbarang'];
+                $transaksibarangmasuk->stockawal = $output['jumlahbarang'];
                 $transaksibarangmasuk->harga = $output['hargabarang'];
                 $transaksibarangmasuk->tanggal_kadaluarsa = $output['tanggalkadaluarsa'];
                 $transaksibarangmasuk->notif_flag = 0;

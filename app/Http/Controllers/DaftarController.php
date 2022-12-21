@@ -37,6 +37,7 @@ class DaftarController extends Controller
             $register->nomortelp = $hasil['nomortelp'];
             $register->role_id = $hasil['roleid'];
             $register->status = "Active";
+            
             $filenameWithExt = $request->file('fotoprofil')->getClientOriginalName();
             // Get Filename
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);

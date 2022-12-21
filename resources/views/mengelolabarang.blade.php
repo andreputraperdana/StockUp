@@ -174,7 +174,7 @@
                    <div class="popupkontenidtanggal">
 
                    </div>
-                   {{-- <input type="hidden" value="{{$AllItem->total}}"> --}}
+                    <input type="hidden" value="{{$AllItem->total}}">
                     <div class="daftar_profil_kk pt-4" style="width: 100%;">
                         <input type="number" name="kuantitas" class="form-control kuantitas" id="kuantitas" placeholder="kuantitas" style="border: 1px solid #626262; background-color:transparent;">
                     </div>
@@ -243,7 +243,7 @@
                     </form> 
                 </div>
             </div>
-            {{-- <div class="d-flex justify-content-center pt-4"style="width: 100%;">
+            <div class="d-flex justify-content-center pt-4"style="width: 100%;">
                 <div class="resp-table-body" style="width: 90%;">
                     <div class="" style="font-size: 20px; font-weight: bold;"> 
                         <div class="table-body-cell " style="visibility: hidden; width: 30%;">
@@ -297,7 +297,7 @@
                     </div>
                     @endforeach      
             </div>
-    </div> --}}
+    </div>
     <div class="table-responsive-md" style="display: flex; justify-content: center; width: 100%;" >
         <table class="table table-borderless align-middle tableMengelola" style="width: 90%;">
             <thead class="theadMengelola">
@@ -333,9 +333,9 @@
     </div>
 </div>
 
-    {{-- <span class="d-flex justify-content-center">
+   <span class="d-flex justify-content-center">
         {{$AllItems->links()}}
-    </span> --}}
+    </span> 
     <div style="visibility:hidden">
             <p class="tanda">{{$flag}}</p>
     </div>

@@ -10,20 +10,22 @@ const text_error = document.querySelector(".texterror");
 // });
 
 $(document).ready(function () {
-    $(document).on("click", "#btn_simpan", function (e) {
+    $(document).on("submit", "#submitform", function (e) {
         e.preventDefault();
 
-        var hasil = {
-            email: $(".email").val(),
-            password: $(".password").val(),
-            nama: $(".nama").val(),
-            kategori: $(".kategori").val(),
-            nomortelp: $(".nomortelp").val(),
-            roleid: $("#btn_simpan").val(),
-            fotoprofil: $(".fotoprofil").val(),
-        };
+        let hasil = new FormData($("#submitform")[0]);
+        hasil.append("roleid", $("#btn_simpan").val());
+        // var hasil = {
+        //     email: $(".email").val(),
+        //     password: $(".password").val(),
+        //     nama: $(".nama").val(),
+        //     kategori: $(".kategori").val(),
+        //     nomortelp: $(".nomortelp").val(),
+        //     roleid: $("#btn_simpan").val(),
+        //     fotoprofil: $(".fotoprofil").val(),
+        // };
 
-        console.log(hasil);
+        // console.log(hasil);
         $.ajaxSetup({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -34,7 +36,9 @@ $(document).ready(function () {
             type: "POST",
             url: "/daftar",
             data: hasil,
-            dataType: "json",
+            // dataType: "json",
+            contentType: false,
+            processData: false,
             success: function (response) {
                 if (response.stats === 200) {
                     overlay.classList.remove("hidden");

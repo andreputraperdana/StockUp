@@ -53,23 +53,23 @@ class MengelolaBarangController extends Controller
 
     public function keluarbarang(Request $request){
         $inputbarangkeluar = $request->all();
-        // dd($inputbarangkeluar);
+        dd($inputbarangkeluar);
         $NewBarangKeluar = new TransaksiBarangKeluar();
         $idTransaksi = $inputbarangkeluar['listid_tanggal'];
         $BarangMasuk = TransaksiBarangMasuk::where('id', '=', $idTransaksi)->first();
         if($inputbarangkeluar['pengeluaran'] == "Manual"){
             $BarangMasuk['jumlah'] -= $inputbarangkeluar['kuantitas'];
             $BarangMasuk->save();
-            $NewBarangKeluar['barang_umkm_id'] = $BarangMasuk['barang_umkm_id'];
+            $NewBarangKeluar['transaksi_barang_masuk_id'] = $BarangMasuk['id'];
             $NewBarangKeluar['jumlah'] = $inputbarangkeluar['kuantitas'];
             $NewBarangKeluar->save();
         }
         else if($inputbarangkeluar['pengeluaran'] == "FIFO"){   
-            $BarangUMKMid =  $BarangMasuk['barang_umkm_id'];
+            $BarangUMKMid =  $inputbarangkeluar['barangid'];
             $BarangFIFO = TransaksiBarangMasuk::where('id', '=', $BarangUMKMid)->first();
             $BarangFIFO['jumlah'] -= $inputbarangkeluar['kuantitas'];
             $BarangFIFO->save();
-            $NewBarangKeluar['barang_umkm_id'] = $BarangUMKMid;
+            $NewBarangKeluar['transaksi_barang_masuk_id'] = $BarangUMKMid;
             $NewBarangKeluar['jumlah'] = $inputbarangkeluar['kuantitas'];
             $NewBarangKeluar->save();
         }
