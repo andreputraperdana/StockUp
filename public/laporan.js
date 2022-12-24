@@ -125,19 +125,135 @@ $(document).ready(function () {
                 } else if (response.jenislaporan === "Keluar masuk barang") {
                     judullaporan.innerHTML = `<h4>${response.jenislaporan}</h4>`;
                     periodelaporan.innerHTML = `<p>Periode: ${response.periodeawal} / ${response.periodeakhir}</p>`;
+                    let tempidbarang = 0;
+                    // console.log(response.laporanbarang[0].id);
+                    // console.log(tempidbarang);
+                    // if (response.laporanbarang[0].id === tempidbarang) {
+                    //     console.log("test");
+                    // } else if (response.laporanbarang[0].id != tempidbarang) {
+                    //     console.log("test2");
+                    // }
+                    let stockakhir = 0;
                     for (let d = 0; d < response.laporanbarang.length; d++) {
-                        contentlaporankeluarmasukbarang.innerHTML += `<tr class="">
-                        <td class="pt-4 pb-4">${response.laporanbarang[d].id}</td>
-                        <td class="text-center pt-4 pb-4">${response.laporanbarang[d].nama}</td>
-                        <td class="text-center pt-4 pb-4">${response.laporanbarang[d].Stockfinalawal}</td>
-                        <td class="text-center pt-4 pb-4">${response.laporanbarang[d].barangmasuk}</td>
-                        <td class="text-center pt-4 pb-4">${response.laporanbarang[d].tanggalmasukbarang}</td>
-                        <td class="text-center pt-4 pb-4">${response.laporanbarang[d].barangkeluar}</td>
-                        <td class="text-center pt-4 pb-4">${response.laporanbarang[d].tanggalkeluarbarang}</td>
-                        <td class="text-center pt-4 pb-4">0</td>
-                        </tr>`;
+                        if (response.laporanbarang[d].id === tempidbarang) {
+                            if (
+                                response.laporanbarang[d].barangmasukid ===
+                                response.laporanbarang[d - 1].barangmasukid
+                            ) {
+                                // stockakhir -=
+                                //     response.laporanbarang[d].barangkeluar;
+                                contentlaporankeluarmasukbarang.innerHTML += `<tr class="">
+                                <td class="pt-4 pb-4"></td>
+                                <td class="text-center pt-4 pb-4"></td>
+                                <td class="text-center pt-4 pb-4">${stockakhir}</td>
+                                <td class="text-center pt-4 pb-4">-</td>
+                                <td class="text-center pt-4 pb-4">-</td>
+                                <td class="text-center pt-4 pb-4">${
+                                    response.laporanbarang[d].barangkeluar
+                                }</td>
+                                <td class="text-center pt-4 pb-4">${
+                                    response.laporanbarang[d]
+                                        .tanggalkeluarbarang
+                                }</td>
+                                <td class="text-center pt-4 pb-4">${(stockakhir -=
+                                    response.laporanbarang[d]
+                                        .barangkeluar)}</td>
+                                </tr>`;
+                            } else if (
+                                response.laporanbarang[d].id !==
+                                    response.laporanbarang[d - 1]
+                                        .barangmasukid &&
+                                response.laporanbarang[d].barangmasukid !== null
+                            ) {
+                                let barangkeluarnull;
+                                let tanggalbarangkeluar;
+                                // stockakhir +=
+                                //     response.laporanbarang[d].barangmasuk -
+                                //     response.laporanbarang[d].barangkeluar;
+                                if (
+                                    response.laporanbarang[d].barangkeluar ===
+                                    null
+                                ) {
+                                    barangkeluarnull = "-";
+                                } else {
+                                    barangkeluarnull =
+                                        response.laporanbarang[d].barangkeluar;
+                                }
+
+                                if (
+                                    response.laporanbarang[d]
+                                        .tanggalkeluarbarang === null
+                                ) {
+                                    tanggalbarangkeluar = "-";
+                                } else {
+                                    tanggalbarangkeluar =
+                                        response.laporanbarang[d]
+                                            .tanggalkeluarbarang;
+                                }
+
+                                contentlaporankeluarmasukbarang.innerHTML += `<tr class="">
+                                <td class="pt-4 pb-4"></td>
+                                <td class="text-center pt-4 pb-4"></td>
+                                <td class="text-center pt-4 pb-4">${stockakhir}</td>
+                                <td class="text-center pt-4 pb-4">${
+                                    response.laporanbarang[d].barangmasuk
+                                }</td>
+                                <td class="text-center pt-4 pb-4">${
+                                    response.laporanbarang[d].tanggalmasukbarang
+                                }</td>
+                                <td class="text-center pt-4 pb-4">${barangkeluarnull}</td>
+                                <td class="text-center pt-4 pb-4">${tanggalbarangkeluar}</td>
+                                <td class="text-center pt-4 pb-4">${(stockakhir +=
+                                    response.laporanbarang[d].barangmasuk -
+                                    response.laporanbarang[d]
+                                        .barangkeluar)}</td>
+                                </tr>`;
+                            } else if (
+                                response.laporanbarang[d].barangmasuk === null
+                            ) {
+                                // stockakhir -=
+                                //     response.laporanbarang[d].barangkeluar;
+                                contentlaporankeluarmasukbarang.innerHTML += `<tr class="">
+                                <td class="pt-4 pb-4"></td>
+                                <td class="text-center pt-4 pb-4"></td>
+                                <td class="text-center pt-4 pb-4">${stockakhir}</td>
+                                <td class="text-center pt-4 pb-4">-</td>
+                                <td class="text-center pt-4 pb-4">-</td>
+                                <td class="text-center pt-4 pb-4">${
+                                    response.laporanbarang[d].barangkeluar
+                                }</td>
+                                <td class="text-center pt-4 pb-4">${
+                                    response.laporanbarang[d]
+                                        .tanggalkeluarbarang
+                                }</td>
+                                <td class="text-center pt-4 pb-4">${(stockakhir -=
+                                    response.laporanbarang[d]
+                                        .barangkeluar)}</td>
+                                </tr>`;
+                            }
+                            tempidbarang = response.laporanbarang[d].id;
+                        } else if (
+                            response.laporanbarang[d].id != tempidbarang
+                        ) {
+                            stockakhir = 0;
+                            stockakhir =
+                                response.laporanbarang[d].Stockfinalawal +
+                                response.laporanbarang[d].barangmasuk -
+                                response.laporanbarang[d].barangkeluar;
+                            contentlaporankeluarmasukbarang.innerHTML += `<tr class="">
+                            <td class="pt-4 pb-4">${response.laporanbarang[d].id}</td>
+                            <td class="text-center pt-4 pb-4">${response.laporanbarang[d].nama}</td>
+                            <td class="text-center pt-4 pb-4">${response.laporanbarang[d].Stockfinalawal}</td>
+                            <td class="text-center pt-4 pb-4">${response.laporanbarang[d].barangmasuk}</td>
+                            <td class="text-center pt-4 pb-4">${response.laporanbarang[d].tanggalmasukbarang}</td>
+                            <td class="text-center pt-4 pb-4">${response.laporanbarang[d].barangkeluar}</td>
+                            <td class="text-center pt-4 pb-4">${response.laporanbarang[d].tanggalkeluarbarang}</td>
+                            <td class="text-center pt-4 pb-4">${stockakhir}</td>
+                            </tr>`;
+
+                            tempidbarang = response.laporanbarang[d].id;
+                        }
                     }
-                    console.log(contentlaporankeluarmasukbarang);
                     isilaporankeluarmasukbarang.style.display = "block";
                     // console.log(response.laporanbarang);
                 }

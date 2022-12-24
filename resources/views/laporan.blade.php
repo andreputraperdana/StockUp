@@ -142,8 +142,8 @@
                                                     </tbody>
                                                 </table>
                                                 </div>
-                                                <div class="isi_laporankeluarmasukbarang"  style="display: none;">
-                                                <table class="table table-bordered" style="width: 90%;">
+                                                <div class="isi_laporankeluarmasukbarang"  style="display: none;" style="display: 50%;">
+                                                <table class="table table-bordered" style="width: 90%; font-size: 5pt;">
                                                     <thead>
                                                       <tr>
                                                         <td scope="col" rowspan="2" style="opacity: 0.6; font-weight: bold;">ID Barang</td>
