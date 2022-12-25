@@ -8,7 +8,9 @@ const text_error = document.querySelector(".texterror");
 //     buttonUMKM.style.background = "yellow";
 //     console.log(buttonUMKM.style.background);
 // });
+// console.log(errormessagenotif[0].innerHTML);
 
+let count = 0;
 $(document).ready(function () {
     $(document).on("submit", "#submitform", function (e) {
         e.preventDefault();
@@ -45,36 +47,82 @@ $(document).ready(function () {
                     notification_success.classList.remove("hidden");
                 } else if (response.stats === 300) {
                     const errormessage = response.error;
-                    text_error.innerHTML = "";
+                    // text_error.innerHTML = "";
                     // console.log(errormessage[nomortelp]);
                     // for (var hasil in errormessage) {
                     //     console.log(hasil + ":" + errormessage[hasil]);
                     // }
+                    const objectmessage = Object.keys(errormessage);
 
-                    Object.keys(errormessage).forEach(
-                        (test) =>
-                            (text_error.innerHTML +=
-                                "<span>*" +
-                                errormessage[test] +
-                                "</span>" +
-                                "<br>")
-                    );
+                    if (!errormessage.hasOwnProperty("email")) {
+                        document.querySelector(
+                            ".errormessage-email"
+                        ).innerHTML = "";
+                        document.querySelector(".errormessage-email").display =
+                            "none";
+                    }
+                    if (!errormessage.hasOwnProperty("password")) {
+                        document.querySelector(
+                            ".errormessage-password"
+                        ).innerHTML = "";
+                        document.querySelector(
+                            ".errormessage-password"
+                        ).display = "none";
+                    }
+                    if (!errormessage.hasOwnProperty("nama")) {
+                        document.querySelector(".errormessage-nama").innerHTML =
+                            "";
+                        document.querySelector(".errormessage-nama").display =
+                            "none";
+                    }
+                    if (!errormessage.hasOwnProperty("kategori")) {
+                        document.querySelector(
+                            ".errormessage-kategori"
+                        ).innerHTML = "";
+                        document.querySelector(
+                            ".errormessage-kategori"
+                        ).display = "none";
+                    }
+                    if (!errormessage.hasOwnProperty("nomortelp")) {
+                        document.querySelector(
+                            ".errormessage-nomortelp"
+                        ).innerHTML = "";
+                        document.querySelector(
+                            ".errormessage-nomortelp"
+                        ).display = "none";
+                    }
 
-                    overlay.classList.remove("hidden");
-                    notification_gagal.classList.remove("hidden");
+                    for (let e = 0; e < objectmessage.length; e++) {
+                        document.querySelector(
+                            `.errormessage-${objectmessage[e]}`
+                        ).innerHTML = `<span>${
+                            errormessage[objectmessage[e]]
+                        }</span>`;
+                        document.querySelector(
+                            `.errormessage-${objectmessage[e]}`
+                        ).style.display = "block";
+                    }
+                    // Object.keys(errormessage).forEach(
+                    //     (test) =>
+                    //     // (text_error.innerHTML +=
+                    //     //     "<span>*" +
+                    //     //     errormessage[test] +
+                    //     //     "</span>" +
+                    //     //     "<br>")
+                    // );
                 }
             },
         });
     });
 });
 
-if (notification_gagal.classList.contains === "hidden") {
-} else {
-    window.addEventListener("click", function (e) {
-        overlay.classList.add("hidden");
-        notification_gagal.classList.add("hidden");
-    });
-}
+// if (notification_gagal.classList.contains === "hidden") {
+// } else {
+//     window.addEventListener("click", function (e) {
+//         overlay.classList.add("hidden");
+//         notification_gagal.classList.add("hidden");
+//     });
+// }
 
 buttonUMKM.addEventListener("click", function (e) {
     buttonUMKM.style.backgroundColor = "#d7caa0";

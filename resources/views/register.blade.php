@@ -66,11 +66,17 @@
                 
                                         <div class="daftar_akun_kanan ms-5" style="width: 55%">
                                             <div class="daftar_akun_kanan_email mb-3">
-                                                <input type="email" name="email" class="form-control email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" style="border: 1px solid #626262; background-color:transparent;">
+                                                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" style="border: 1px solid #626262; background-color:transparent;">
+                                            </div>
+                                            <div class="errormessage-email" style="display: none; color: red;">
+        
                                             </div>
                                             <div class="daftar_akun_kanan_password">
                                                 <input type="password" name="password" class="form-control password" id="exampleInputPassword1" placeholder="Password" style="border: 1px solid #626262; background-color:transparent;">
                                             </div>
+                                            <div class="errormessage-password" style="display: none; color: red;">
+
+                                            </div> 
                                         </div>
                                     </div>
             
@@ -103,6 +109,9 @@
                                         <div class="daftar_profil_kanan_nama mb-3">
                                             <input type="text" name="nama" class="form-control nama" id="exampleInputNama1" aria-describedby="emailHelp" placeholder="Nama" style="border: 1px solid #626262; background-color:transparent;">
                                         </div>
+                                        <div class="errormessage-nama" style="display: none; color: red;">
+
+                                        </div> 
                                         <div class="daftar_profil_kanan_kategori mb-3">
                                             <select name="kategori" class="kategori p-2" style="color: #626262; border-radius: 5px;">
                                                 <option selected="true" disabled="disabled">Pilih Kategori</option>
@@ -117,12 +126,18 @@
                                                 <option value="Lainnya">Lainnya</option>
                                             </select>
                                         </div>
+                                        <div class="errormessage-kategori" style="display: none; color: red;">
+
+                                        </div> 
                                         <div class="daftar_profil_kanan_nomortelepon mb-3">
                                             <input type="text" name="nomortelp" class="form-control nomortelp" id="exampleInputNomorTelepon1" placeholder="Nomor Telepon" style="border: 1px solid #626262; background-color:transparent;">
                                         </div>
-                                            <div class="input_fotoprofil">
-                                                <input type="file" name="fotoprofil" class="form-control fotoprofil" id="exampleInputFotoProfil1" aria-describedby="emailHelp" placeholder="Foto Profil" style="border: 1px solid #626262; background-color:transparent;">
-                                            </div>
+                                        <div class="errormessage-nomortelp" style="display: none; color: red;">
+  
+                                        </div> 
+                                        <div class="input_fotoprofil">
+                                            <input type="file" name="fotoprofil" class="form-control fotoprofil" id="exampleInputFotoProfil1" aria-describedby="emailHelp" placeholder="Foto Profil" style="border: 1px solid #626262; background-color:transparent;">
+                                        </div>
                                     </div>
                                 </div>
         

@@ -111,8 +111,27 @@
 
 
     <div id="footer">
-        <div class="copyright">
-            <p class="d-flex justify-content-end fw-bold footerCopy text-dark">&#169 2022</p>
+        <div class="d-flex justify-content-between">
+            <div class="left-footer d-flex pt-4 ps-4">
+                <div class="instagram-icon pe-4">
+                    <a href="">
+                        <img src="{{URL::asset('instagram.png')}}" alt="" style="height: 50px;">
+                    </a>
+                </div>
+                <div class="twitter-icon pe-4">
+                    <a href="">
+                        <img src="{{URL::asset('twitter.png')}}" alt="" style="height: 50px;">
+                    </a>
+                </div>
+                <div class="facebook-icon">
+                    <a href="">
+                        <img src="{{URL::asset('facebook.png')}}" alt="" style="height: 50px;">
+                    </a>
+                </div>
+            </div>
+            <div class="copyright right-footer">
+                <p class="fw-bold footerCopy text-dark">&#169 2022</p>
+            </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
