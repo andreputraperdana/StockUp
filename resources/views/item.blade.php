@@ -29,7 +29,7 @@
             </div>
             <div class="dropdown mt-2">
                 <button class="dropbutton ps-3 pe-4 pt-1 pb-1" style="border: none; border-radius: 25px;">
-                <img src="{{URL::asset('akun.png')}}" alt="" style="height: 40px;"> {{Str::limit(auth()->user()->name,5)}}
+                    <img src="\public\image\{{auth()->user()->foto_profile}}" alt="" style="height: 40px; width: 40px; border-radius: 50px;"> {{Str::limit(auth()->user()->name,5)}}
                 </button>
                 <div class="dropdown-content">
                     <a href="/editprofile">Pengaturan</a>
@@ -53,7 +53,7 @@
                         <img src="\public\image\{{$BarangDetail->get(0)->foto_barang}}" alt="" style="height: 250px; margin-left: 60px;">
                     </div>
 
-                    <div class="catatan_item">
+                    <div class="catatan_item" style="width: 100%">
                         <div class="harga_item">
                             <p style="font-size: 25px; font-weight: bold;">@currency($BarangDetail->get(0)->harga)</p>
                         </div>
@@ -62,7 +62,7 @@
                                 <p style="font-size: 20px; font-weight: bold;">Deskripsi Produk</p>
                             </div>
                             <div class="isi_deskripsi">
-                                <p style="font-size: 16px; width: 60%;">
+                                <p style="font-size: 16px; width: 80%;">
                                     {{ $BarangDetail->get(0)->deskripsi }}
                                 </p>
                             </div>
@@ -73,13 +73,15 @@
                 <div class="data_toko"  style="height: 120px;">
                     <div class="toko_foto">
                         <div class="gambar_toko ps-4">
-                            <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 120px; width: 120px; margin-left: 60px; border-radius: 50%;">
+                            <img src="\public\image\{{ $BarangDetail->get(0)->foto_profile }}" alt="" style="height: 120px; width: 120px; margin-left: 60px; border-radius: 50%;">
                         </div>
                     </div>
 
                     <div class="toko_keterangan ps-3">
                         <div class="toko_nama">
-                            <p style="font-size: 25px; font-weight: bold;">{{ $BarangDetail->get(0)->name }}</p>
+                            <a href="/profiltoko/{{ $BarangDetail->get(0)->user_id }}">
+                                <p style="font-size: 25px; font-weight: bold;">{{ $BarangDetail->get(0)->name }}</p>
+                            </a>
                         </div>
 
                         <div class="toko_tombol">
@@ -92,7 +94,7 @@
                             </div>
 
                             <div class="toko_tombol_platform">
-                                <a href="/platformsosial">
+                                <a href="/platformsosial/{{ $BarangDetail->get(0)->user_id }}">
                                     <button class="btn btn-primary ps-4 pe-4 " id="btn_platform" style="background-color: #D7CAA0; border: none; font-weight: bold; color: black;">Platform Sosial</button>
                                 </a>
                             </div>
@@ -102,91 +104,27 @@
 
                 <div class="produk_terkait">
                     <div class="judul_produk_terkait">
-                        <p style="font-size: 20px; font-weight: bold;">Produk Terkait</p>
+                        <p style="font-size: 20px; font-weight: bold;">Produk Lainnya</p>
                     </div>
 
                     <div class="row_produk_terkait d-flex">
+                        @foreach($BarangRandom as $BarangRandom)
                         <div class="kotak_gambar_produk_terkait" style="border: 1px solid black;">
                             <div class="col">
                                 <div class="gambar_toko ps-4">
-                                    <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
+                                    <img src="\public\image\{{ $BarangRandom->foto_barang }}" alt="" style="height: 60px;">
                                 </div>
                                 
                                 <div class="nama_barang pt-3 ps-2">
-                                    <p style="font-size: 16px; font-weight: bold;">Nugget kensler</p>
+                                    <p style="font-size: 16px; text-align: center;">{{ $BarangRandom->nama }}</p>
                                 </div>
                                 
                                 <div class="harga_barang ps-2">
-                                    <p style="font-size: 16px;">Rp. 50.000</p>
+                                    <p style="font-size: 16px; font-weight: bold; text-align: center;">@currency($BarangRandom->harga)</p>
                                 </div>
                             </div>   
                         </div>
-
-                        <div class="kotak_gambar_produk_terkait" style="border: 1px solid black;">
-                            <div class="col">
-                                <div class="gambar_toko ps-4">
-                                    <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
-                                </div>
-                                
-                                <div class="nama_barang pt-3 ps-2">
-                                    <p style="font-size: 16px; font-weight: bold;">Nugget kensler</p>
-                                </div>
-                                
-                                <div class="harga_barang ps-2">
-                                    <p style="font-size: 16px;">Rp. 50.000</p>
-                                </div>
-                            </div>   
-                        </div>
-
-                        <div class="kotak_gambar_produk_terkait" style="border: 1px solid black;">
-                            <div class="col">
-                                <div class="gambar_toko ps-4">
-                                    <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
-                                </div>
-                                
-                                <div class="nama_barang pt-3 ps-2">
-                                    <p style="font-size: 16px; font-weight: bold;">Nugget kensler</p>
-                                </div>
-                                
-                                <div class="harga_barang ps-2">
-                                    <p style="font-size: 16px;">Rp. 50.000</p>
-                                </div>
-                            </div>   
-                        </div>
-
-                        <div class="kotak_gambar_produk_terkait" style="border: 1px solid black;">
-                            <div class="col">
-                                <div class="gambar_toko ps-4">
-                                    <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
-                                </div>
-                                
-                                <div class="nama_barang pt-3 ps-2">
-                                    <p style="font-size: 16px; font-weight: bold;">Nugget kensler</p>
-                                </div>
-                                
-                                <div class="harga_barang ps-2">
-                                    <p style="font-size: 16px;">Rp. 50.000</p>
-                                </div>
-                            </div>   
-                        </div>
-
-                        <div class="kotak_gambar_produk_terkait" style="border: 1px solid black;">
-                            <div class="col">
-                                <div class="gambar_toko ps-4">
-                                    <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
-                                </div>
-                                
-                                <div class="nama_barang pt-3 ps-2">
-                                    <p style="font-size: 16px; font-weight: bold;">Nugget kensler</p>
-                                </div>
-                                
-                                <div class="harga_barang ps-2">
-                                    <p style="font-size: 16px;">Rp. 50.000</p>
-                                </div>
-                            </div>   
-                        </div>
-
-                        
+                        @endforeach
                     </div>
 
                 </div>

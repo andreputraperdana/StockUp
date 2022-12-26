@@ -28,7 +28,8 @@
 
                             <div class="dropdown mt-2">
                             <button class="dropbutton ps-3 pe-4 pt-1 pb-1" style="border: none; border-radius: 25px;">
-                                <img src="{{URL::asset('akun.png')}}" alt="" style="height: 40px;"> {{Str::limit(auth()->user()->name,5)}}
+                                <img src="\public\image\{{auth()->user()->foto_profile}}" alt="" style="height: 40px; width: 40px; border-radius: 50px;">
+                                {{Str::limit(auth()->user()->name,5)}}
                             </button>
                                 <div class="dropdown-content">
                                     <a href="/editprofile">Pengaturan</a>
@@ -57,19 +58,23 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center pt-4"style="width: 100%;">
+                @if(!$AllItems->isEmpty())
                 <div class="resp-table-body" style="width: 90%;">
-                    <div class="" style="font-size: 20px; font-weight: bold;"> 
-                        <div class="table-body-cell " style="visibility: visible; width: 25%;">
+                    <div class="" style="font-size: 20px; font-weight: bold; text-center; width: 100%"> 
+                        <div class="table-body-cell " style="visibility: visible; width: 33%;">
                             Image
                         </div>
                         <div class="table-body-cell" style="width: 25%;">
                             ID
                         </div>
-                        <div class="table-body-cell" style="width: 28%;">
+                        <div class="table-body-cell" style="width: 30%;">
                             Nama Barang
                         </div>
-                        <div class="table-body-cell" style="width: 34%;">
+                        <div class="table-body-cell" style="width: 30%;">
                             Kuantitas
+                        </div>
+                        <div class="table-body-cell" style="visibility: hidden;">
+                            Action
                         </div>
                         <div class="table-body-cell" style="visibility: hidden;">
                             <div class="d-flex">
@@ -83,7 +88,10 @@
                     <div class="resp-table-row mb-5 p-3" style="font-size: 20px;"> 
                         <div class="d-flex">
                             <div class="foto" style="width: 18%;">
-                                <img src="\public\image\{{$AllItem->BarangUMKM->foto_barang}}" alt="Foto Profil" style="height: 200px; width: 200px;">
+                                <img src="\public\image\{{$AllItem->BarangUMKM->foto_barang}}" alt="Foto Profil" style="height: 100px; width: 100px;">
+                            </div>
+                            <div class="nama_header center" style="width: 36%;">
+                                {{$AllItem->BarangUMKM->id}}
                             </div>
                             <div class="nama_header center" style="width: 36%;">
                                 {{$AllItem->BarangUMKM->nama}}
@@ -127,6 +135,11 @@
                     </div>
                     @endforeach      
             </div>
+            @else
+            <div class="d-flex" style="justify-content: center; align-items:center; height: 400px;">
+                <h4>Barang Kosong</h4>
+            </div>
+            @endif
     </div>
     
     <span class="d-flex justify-content-center">
@@ -174,7 +187,7 @@
                    <div class="popupkontenidtanggal">
 
                    </div>
-                    <input type="hidden" value="{{$AllItem->total}}">
+                    {{-- <input type="hidden" value="{{$AllItem->total}}"> --}}
                     <div class="daftar_profil_kk pt-4" style="width: 100%;">
                         <input type="number" name="kuantitas" class="form-control kuantitas" id="kuantitas" placeholder="kuantitas" style="border: 1px solid #626262; background-color:transparent;">
                     </div>
@@ -208,14 +221,14 @@
                                 </div>
                             </div>
                             <div class="notifikasi pe-2 mt-2">
-                                <a href="">
+                                <a href="\notifikasi">
                                     <img src="{{URL::asset('notifikasi.png')}}" class="ps-2 pe-2 pt-1 pb-1" style="background-color: #f4f4f4; border-radius: 50%; height: 45px;">
                                 </a>
                             </div>
 
                             <div class="dropdown mt-2">
                             <button class="dropbutton ps-3 pe-4 pt-1 pb-1" style="border: none; border-radius: 25px;">
-                                <img src="{{URL::asset('akun.png')}}" alt="" style="height: 40px;"> {{Str::limit(auth()->user()->name,5)}}
+                                <img src="\public\image\{{auth()->user()->foto_profile}}" alt="" style="height: 40px; width: 40px; border-radius: 50px;"> {{Str::limit(auth()->user()->name,5)}}
                             </button>
                                 <div class="dropdown-content">
                                     <a href="/editprofile">Pengaturan</a>
@@ -243,66 +256,13 @@
                     </form> 
                 </div>
             </div>
-            <div class="d-flex justify-content-center pt-4"style="width: 100%;">
-                <div class="resp-table-body" style="width: 90%;">
-                    <div class="" style="font-size: 20px; font-weight: bold;"> 
-                        <div class="table-body-cell " style="visibility: hidden; width: 30%;">
-                            Image
-                        </div>
-                        <div class="table-body-cell" style="width: 30%;">
-                            Nama Barang
-                        </div>
-                        <div class="table-body-cell" style="width: 30%;">
-                            Jenis Barang
-                        </div>
-                        <div class="table-body-cell" style="width: 30%;">
-                            Harga
-                        </div>
-                        <div class="table-body-cell" style="width: 30%;">
-                            Action
-                        </div>
-                        <div class="table-body-cell" style="visibility: hidden;">
-                            <div class="d-flex">
-                                <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login"><img src="{{URL::asset('exit.png')}}" alt="" style="height: 25px;"></a></button>
-                                <button class="btn__login me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a href="/login">></a></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    @foreach($AllItems as $AllItem)
-                    <div class="resp-table-row mb-5 p-3" style="font-size: 20px;"> 
-                        <div class="d-flex">
-                            <div class="foto" style="width: 30%;">
-                                <img src="\public\image\{{$AllItem->foto_barang}}" alt="Foto Profil" style="height: 200px; width: 200px;">
-                            </div>
-                            <div class="nama_header center" style="width: 30%;">
-                                <p style="font-size: 16px;">{{$AllItem->nama}}</p>
-                            </div>
-                            <div class="nama_header center" style="width: 30%;">
-                                <p style="font-size: 16px;">{{$AllItem->jenis}}</p>
-                            </div>
-                            <div class="nama_header center" style="width: 30%;">
-                                <p style="font-size: 16px;">{{$AllItem->harga}}</p>
-                            </div>
-                            <div class="center" style="width: 30%;">
-                                <div class="d-flex">
-                                    <form action="{{route('users.destroy', $AllItem->id)}}" method="POST">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;" onclick="return confirm('Apakah Kamu Yakin Ingin Menghapus Barang Ini?')"><img src="{{URL::asset('trash.png')}}" alt="" style="height: 25px;"></button>   
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach      
-            </div>
-    </div>
     <div class="table-responsive-md" style="display: flex; justify-content: center; width: 100%;" >
+        @if(!$AllItems->isEmpty())
         <table class="table table-borderless align-middle tableMengelola" style="width: 90%;">
             <thead class="theadMengelola">
               <tr>
                 <th scope="col">Image</th>
+                <th scope="col">Id</th>
                 <th scope="col">Nama Barang</th>
                 <th scope="col">Jenis Barang</th>
                 <th scope="col">Harga</th>
@@ -313,6 +273,7 @@
             <tbody class="tbodyMengelola">
               <tr>
                 <td scope="row"><img src="\public\image\{{$AllItem->foto_barang}}" alt="Foto Profil" style="height: 100px; width: 100px;"></td>
+                <td>{{$AllItem->id}}</td>
                 <td>{{$AllItem->nama}}</td>
                 <td>{{$AllItem->jenis}}</td>
                 <td>{{$AllItem->harga}}</td>
@@ -330,11 +291,16 @@
             </tbody>
             @endforeach
           </table>
+          @else
+            <div class="d-flex" style="justify-content: center; align-items:center; height: 400px;">
+                <h4>Barang Kosong</h4>
+            </div>
+          @endif
     </div>
 </div>
 
    <span class="d-flex justify-content-center">
-        {{$AllItems->links()}}
+        {{-- {{$AllItems->links()}} --}}
     </span> 
     <div style="visibility:hidden">
             <p class="tanda">{{$flag}}</p>

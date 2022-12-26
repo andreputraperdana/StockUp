@@ -30,7 +30,7 @@
 
                 <div class="dropdown mt-2">
                     <button class="dropbutton ps-3 pe-4 pt-1 pb-1" style="border: none; border-radius: 25px;">
-                    <img src="{{URL::asset('akun.png')}}" alt="" style="height: 40px;"> {{Str::limit(auth()->user()->name,5)}}
+                    <img src="\public\image\{{auth()->user()->foto_profile}}" alt="" style="height: 40px; width: 40px; border-radius: 50px;"> {{Str::limit(auth()->user()->name,5)}}
                     </button>
                     <div class="dropdown-content">
                         <a href="/editprofile">Pengaturan</a>
@@ -199,6 +199,7 @@
                                 </form>
                                 <div class="">
                                     <div class="d-flex justify-content-center" style="width: 100%;">
+                                        @if(!$AllItems->isEmpty())
                                         <table class="table caption-top" style="width: 90%;">
                                           <thead>
                                             <tr>
@@ -216,9 +217,14 @@
                                               <td class="text-center pt-4 pb-4">{{$AllItem->BarangUMKM->jenis}}</td>
                                               <td class="text-center pt-4 pb-4">{{$AllItem->totalAll}}</td>
                                             </tr>
-                                          @endforeach
+                                            @endforeach
                                           </tbody>
                                         </table>
+                                        @else
+                                        <div class="d-flex" style="justify-content: center; align-items:center; height: 400px;">
+                                            <h4>Barang Kosong</h4>
+                                        </div>
+                                        @endif
                                       </div>
                                       <span class="d-flex justify-content-center">
                                         {{$AllItems->links()}}
@@ -261,7 +267,7 @@
            <div class="atas_kanan d-flex mt-5">
                 <div class="dropdown mt-2">
                     <button class="dropbutton ps-3 pe-4 pt-1 pb-1" style="border: none; border-radius: 25px;">
-                    <img src="{{URL::asset('akun.png')}}" alt="" style="height: 40px;"> {{Str::limit(auth()->user()->name,5)}}
+                    <img src="\public\image\{{auth()->user()->foto_profile}}" alt="" style="height: 40px; width: 40px; border-radius: 50px;"> {{Str::limit(auth()->user()->name,5)}}
                     </button>
                     <div class="dropdown-content">
                         <a href="/editprofile">Pengaturan</a>
@@ -291,6 +297,7 @@
                                 </form>
                                 <div class="">
                                     <div class="d-flex justify-content-center" style="width: 100%;">
+                                        @if(!$AllItems->isEmpty())
                                         <table class="table caption-top" style="width: 90%;">
                                           <thead>
                                             <tr>
@@ -309,6 +316,11 @@
                                           @endforeach
                                           </tbody>
                                          </table>
+                                         @else
+                                            <div class="d-flex" style="justify-content: center; align-items:center; height: 400px;">
+                                                <h4>Barang Kosong</h4>
+                                            </div>
+                                         @endif
                                     </div>
                                     <span class="d-flex justify-content-center">
                                         {{$AllItems->links()}}
