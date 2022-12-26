@@ -58,7 +58,10 @@ $(document).ready(function () {
                         document.querySelector(
                             ".errormessage-email"
                         ).innerHTML = "";
-                        document.querySelector(".errormessage-email").display =
+                        document.querySelector(
+                            ".errormessage-email"
+                        ).style.display = "none";
+                        document.querySelector(".error-email").style.display =
                             "none";
                     }
                     if (!errormessage.hasOwnProperty("password")) {
@@ -67,12 +70,18 @@ $(document).ready(function () {
                         ).innerHTML = "";
                         document.querySelector(
                             ".errormessage-password"
-                        ).display = "none";
+                        ).style.display = "none";
+                        document.querySelector(
+                            ".error-password"
+                        ).style.display = "none";
                     }
                     if (!errormessage.hasOwnProperty("nama")) {
                         document.querySelector(".errormessage-nama").innerHTML =
                             "";
-                        document.querySelector(".errormessage-nama").display =
+                        document.querySelector(
+                            ".errormessage-nama"
+                        ).style.display = "none";
+                        document.querySelector(".error-nama").style.display =
                             "none";
                     }
                     if (!errormessage.hasOwnProperty("kategori")) {
@@ -81,7 +90,10 @@ $(document).ready(function () {
                         ).innerHTML = "";
                         document.querySelector(
                             ".errormessage-kategori"
-                        ).display = "none";
+                        ).style.display = "none";
+                        document.querySelector(
+                            ".error-kategori"
+                        ).style.display = "none";
                     }
                     if (!errormessage.hasOwnProperty("nomortelp")) {
                         document.querySelector(
@@ -89,7 +101,10 @@ $(document).ready(function () {
                         ).innerHTML = "";
                         document.querySelector(
                             ".errormessage-nomortelp"
-                        ).display = "none";
+                        ).style.display = "none";
+                        document.querySelector(
+                            ".error-nomortelp"
+                        ).style.display = "none";
                     }
 
                     for (let e = 0; e < objectmessage.length; e++) {
@@ -100,6 +115,9 @@ $(document).ready(function () {
                         }</p>`;
                         document.querySelector(
                             `.errormessage-${objectmessage[e]}`
+                        ).style.display = "block";
+                        document.querySelector(
+                            `.error-${objectmessage[e]}`
                         ).style.display = "block";
                     }
                     // Object.keys(errormessage).forEach(
