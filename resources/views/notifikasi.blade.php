@@ -8,7 +8,7 @@
         <div class="atas d-flex justify-content-between" style="width:100%">
                     <div class="atas_kiri d-flex">
                         <div class="judul_halaman mt-5 me-3">
-                            <a href="javascript:history.back()">
+                            <a href="/beranda">
                                 <button class="ps-3 pe-3" style="background-color: #d7caa0; font-size: 30px; font-weight: bold;border-radius: 50%; border: none;"><</button>
                             </a>
                         </div>
@@ -99,7 +99,7 @@
     <div class="notif_success hidden" style="height: 380px;">
         <div class="header_detail d-flex pt-3 pb-3 ps-2">
             <div class="leftheader_detail">
-                <img src="{{URL::asset('barangbaru.png')}}" alt="" style="height: 60px;">
+                <img src="\public\image\{{$AllBarang->BarangUMKM->foto_barang}}" alt="" style="height: 60px;">
             </div>
             <div class="rightheader_detail ps-2 pt-2">
                 <div class="detailnamabarang">

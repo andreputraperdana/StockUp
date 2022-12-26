@@ -19,14 +19,14 @@
                                             </div>
                                         </div>
                                         <div class="notifikasi pe-2 mt-2">
-                                            <a href="">
+                                            <a href="\notifikasi">
                                                 <img src="{{URL::asset('notifikasi.png')}}" class="ps-2 pe-2 pt-1 pb-1" style="background-color: #f4f4f4; border-radius: 50%; height: 45px;">
                                             </a>
                                         </div>
             
                                         <div class="dropdown mt-2">
                                         <button class="dropbutton ps-3 pe-4 pt-1 pb-1" style="border: none; border-radius: 25px;">
-                                            <img src="{{URL::asset('akun.png')}}" alt="" style="height: 40px;"> {{Str::limit(auth()->user()->name,5)}}
+                                            <img src="\public\image\{{auth()->user()->foto_profile}}" alt="" style="height: 40px; width: 40px; border-radius: 50px;"> {{Str::limit(auth()->user()->name,5)}}
                                         </button>
                                             <div class="dropdown-content">
                                                 <a href="/editprofile">Pengaturan</a>
@@ -61,6 +61,7 @@
                             </div>   
                         </div>
                         
+                        @if(!$Item->isEmpty())
                         <div class="d-flex">
                             <div class="d-flex pt-4 ps-5"style="width: 28%;">
                                 <div class="kategori_raja" style="width: 70%;">
@@ -95,6 +96,11 @@
                                 </div>
                             </div>
                         </div>
+                        @else
+                        <div class="d-flex" style="justify-content: center; align-items:center; height: 400px;">
+                            <h4>Barang tidak tersedia</h4>
+                        </div>
+                        @endif
                     </div>
         <div style="visibility:hidden">
             <p class="tanda">{{$flag}}</p>

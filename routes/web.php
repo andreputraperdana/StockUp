@@ -72,9 +72,9 @@ Route::get('/notifikasi', [NotifikasiController::class, 'getindex']);
 
 Route::get('/item/{id}', [ItemController::class, 'getindex']);
 
-Route::get('/profiltoko', [ProfilTokoController::class, 'getindex']);
+Route::get('/profiltoko/{id}', [ProfilTokoController::class, 'getindex']);
 
-Route::get('/platformsosial', [PlatformSosialController::class, 'getindex']);
+Route::get('/platformsosial/{id}', [PlatformSosialController::class, 'getindex']);
 
 Route::get('/ajaxData', [MengelolaBarangController::class, 'ajaxData']);
 

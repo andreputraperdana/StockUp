@@ -22,13 +22,13 @@
                             </div>
                         </div>
                         <div class="notifikasi pe-2 mt-2">
-                            <a href="">
+                            <a href="\notifikasi">
                                 <img src="{{URL::asset('notifikasi.png')}}" class="ps-2 pe-2 pt-1 pb-1" style="background-color: #f4f4f4; border-radius: 50%; height: 45px;">
                             </a>
                         </div>
                         <div class="dropdown mt-2">
                             <button class="dropbutton ps-3 pe-4 pt-1 pb-1" style="border: none; border-radius: 25px;">
-                            <img src="{{URL::asset('akun.png')}}" alt="" style="height: 40px;"> {{Str::limit(auth()->user()->name,5)}}
+                            <img src="\public\image\{{auth()->user()->foto_profile}}" alt="" style="height: 30px; width: 30px; border-radius: 50px;"> {{Str::limit(auth()->user()->name,5)}}
                             </button>
                             <div class="dropdown-content">
                                 <a href="/editprofile">Pengaturan</a>
@@ -95,7 +95,7 @@
                     <div class="pengaturan_akun" style="width: 100%;">
                         <div class="section_dua d-flex" style="width: 100%">
                             <div class="foto_profile d-flex justify-content-center" style="width: 30%; padding-top: 7%;">
-                                <img src="{{URL::asset('akun.png')}}" alt="Foto Profil" style="height: 200px;">
+                                <img src="\public\image\{{auth()->user()->foto_profile}}" alt="Foto Profil" style="height: 200px; width: 200px;">
                             </div>
                             <div class="form_pengaturan_akun" style= "width: 70%;">
                                 <div class="d-flex justify-content-center pt-4" style="width:80%;">
@@ -265,17 +265,20 @@
                             </div>
                         </div>
                         <div class="notifikasi pe-2 mt-2">
-                            <a href="">
+                            <a href="\notifikasi">
                                 <img src="{{URL::asset('notifikasi.png')}}" class="ps-2 pe-2 pt-1 pb-1" style="background-color: #f4f4f4; border-radius: 50%; height: 45px;">
                             </a>
                         </div>
                         <div class="dropdown mt-2">
                             <button class="dropbutton ps-3 pe-4 pt-1 pb-1" style="border: none; border-radius: 25px;">
-                            <img src="{{URL::asset('akun.png')}}" alt="" style="height: 40px;"> {{Str::limit(auth()->user()->name,5)}}
+                                <img src="\public\image\{{auth()->user()->foto_profile}}" alt="" style="height: 40px; width: 40px; border-radius: 50px;"> {{Str::limit(auth()->user()->name,5)}}
                             </button>
                             <div class="dropdown-content">
                                 <a href="/editprofile">Pengaturan</a>
-                                <a href="#">Logout</a>
+                                <form action="/logout" method="POST">
+                                    @csrf
+                                    <input type="submit" class="btn prevbutton" value="Logout">
+                                </form>
                             </div>
                         </div>  
                     </div>
@@ -353,7 +356,7 @@
                     <div class="pengaturan_akun" style="width: 100%;">
                         <div class="section_dua d-flex" style="width: 100%">
                             <div class="foto_profile d-flex justify-content-center" style="width: 30%; padding-top: 7%;">
-                                <img src="{{URL::asset('akun.png')}}" alt="Foto Profil" style="height: 200px;">
+                                <img src="\public\image\{{auth()->user()->foto_profile}}" alt="Foto Profil" style="height: 200px; width: 200px;">
                             </div>
                             <div class="form_pengaturan_akun" style= "width: 70%;">
                                 <div class="d-flex justify-content-center pt-4" style="width:80%;">
@@ -494,14 +497,25 @@
 
                                             <div class="daftar_platform_kanan ms-5" style="width: 65%; display: none;">
                                                 <div class="daftar_akun_kanan_email mb-3">
-                                                    <input type="text" name="nama" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="" style="border: 1px solid #626262; background-color:transparent;">
+                                                    @if(isset($platformIg->get(0)->link))
+                                                        <input type="text" name="platform_instagram" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"placeholder="contoh: http://instagram.com/tokokita" value="{{$platformIg->get(0)->link}}" style="border: 1px solid #626262; background-color:transparent;">
+                                                    @else
+                                                        <input type="text" name="platform_instagram" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"placeholder="contoh: http://instagram.com/tokokita" value="" style="border: 1px solid #626262; background-color:transparent;">
+                                                    @endif
                                                 </div>
                                                 <div class="daftar_akun_kanan_password">
-                                                    <input type="text" name="nama" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="" style="border: 1px solid #626262; background-color:transparent;">
+                                                    @if(isset($platformShope->get(0)->link))
+                                                        <input type="text" name="platform_shopee" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="contoh: http://shopee.com/tokokita" value="{{$platformShope->get(0)->link}}" style="border: 1px solid #626262; background-color:transparent;">
+                                                    @else
+                                                        <input type="text" name="platform_shopee" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="contoh: http://shopee.com/tokokita" value="" style="border: 1px solid #626262; background-color:transparent;">
+                                                    @endif
                                                 </div>
                                                 <div class="daftar_akun_kanan_password mt-4">
-                                                    <input type="tel" name="nomorTelp" class="form-control" id="exampleInputPassword1" placeholder="Nomor Telfon" 
-                                                    style="border: 1px solid #626262; background-color:transparent;">
+                                                    @if(isset($platformTokped->get(0)->link))
+                                                        <input type="text" name="platform_tokopedia" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="contoh: http://shopee.com/tokokita" value="{{$platformTokped->get(0)->link}}" style="border: 1px solid #626262; background-color:transparent;">
+                                                    @else
+                                                        <input type="text" name="platform_tokopedia" class="form-control" id="exampleInputEmail1" value="" placeholder="contoh: http://tokopedia.com/tokokita" style="border: 1px solid #626262; background-color:transparent;">
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
