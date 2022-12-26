@@ -53,7 +53,6 @@ class MengelolaBarangController extends Controller
 
     public function keluarbarang(Request $request){
         $inputbarangkeluar = $request->all();
-        dd($inputbarangkeluar);
         $NewBarangKeluar = new TransaksiBarangKeluar();
         $idTransaksi = $inputbarangkeluar['listid_tanggal'];
         $BarangMasuk = TransaksiBarangMasuk::where('id', '=', $idTransaksi)->first();

@@ -143,6 +143,28 @@
                                                     </tbody>
                                                 </table>
                                                 </div>
+                                                <div class="isi_laporankeluarmasukbarang"  style="display: none;" style="display: 50%;">
+                                                <table class="table table-bordered" style="width: 90%; font-size: 5pt;">
+                                                    <thead>
+                                                      <tr>
+                                                        <td scope="col" rowspan="2" style="opacity: 0.6; font-weight: bold;">ID Barang</td>
+                                                        <td scope="col" rowspan="2" style="opacity: 0.6; font-weight: bold;" class="text-center">Nama Barang</td>
+                                                        <td scope="col" rowspan="2" style="opacity: 0.6; font-weight: bold;" class="text-center">Stock Awal</td>
+                                                        <td scope="col" colspan="4" style="opacity: 0.6; font-weight: bold;" class="text-center">Jumlah Barang</td>
+                                                        <td scope="col" rowspan="2" style="opacity: 0.6; font-weight: bold;" class="text-center">Stock Akhir</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Masuk</td>
+                                                        <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Tanggal Masuk</td>
+                                                        <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Keluar</td>
+                                                        <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Tanggal Keluar</td>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody class="content_laporankeluarmasukbarang">
+
+                                                    </tbody>
+                                                </table>
+                                                </div>
 
                                             </div>
                                        </div>    
