@@ -95,9 +95,9 @@ $(document).ready(function () {
                     for (let e = 0; e < objectmessage.length; e++) {
                         document.querySelector(
                             `.errormessage-${objectmessage[e]}`
-                        ).innerHTML = `<span>${
+                        ).innerHTML = `<p>${
                             errormessage[objectmessage[e]]
-                        }</span>`;
+                        }</p>`;
                         document.querySelector(
                             `.errormessage-${objectmessage[e]}`
                         ).style.display = "block";

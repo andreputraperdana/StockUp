@@ -39,7 +39,7 @@ class BerandaController extends Controller
         }
 
         $BarangHabis = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id')->having(DB::raw('SUM(jumlah)'), '<', 10)->select('barang_umkm_id',DB::raw('SUM(jumlah) as total'))->where('user_id', '=', auth()->user()->id)->get();
-        $PengeluranPerHari = TransaksiBarangKeluar::join('transaksi_barang_masuk', 'transaksi_barang_masuk.id', '=', 'transaksi_barang_keluar.transaksi_barang_masuk_id')->join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->where('user_id', '=', auth()->user()->id)->get();
+        $PengeluranPerHari = TransaksiBarangKeluar::join('transaksi_barang_masuk', 'transaksi_barang_masuk.id', '=', 'transaksi_barang_keluar.transaksi_barang_masuk_id')->join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->whereRaw(DB::raw("(CURDATE() =  DATE_FORMAT(transaksi_barang_keluar.created_at, '%Y-%m-%d'))"))->where('user_id', '=', auth()->user()->id)->get();
         $ListBarang = BarangUMKM::paginate(3);
         $BarangAkanKadaluarsa = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->select('*', DB::raw('CURDATE() as Date_Today'))->whereRaw(DB::raw('((CURDATE() BETWEEN DATE_ADD(tanggal_kadaluarsa, INTERVAL -14 DAY) AND tanggal_kadaluarsa) or (CURDATE() > tanggal_kadaluarsa))'))->where('user_id', '=', auth()->user()->id)->get();
         $TotalBarangHabis = COUNT($BarangHabis);    
