@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BarcodeController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\DaftarController;
@@ -97,3 +98,5 @@ Route::post('/barangkeluar', [MengelolaBarangController::class, 'keluarbarang'])
 Route::get('/detailnotifikasi/{id}', [DetailNotifikasiController::class, 'getindex']);
 
 Route::post('/editprofile/update', [EditProfileController::class, 'update']);
+
+Route::get('/barcode/{id}', [BarcodeController::class, 'getindex'])->name('barcode');

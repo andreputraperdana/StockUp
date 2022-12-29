@@ -32,13 +32,16 @@
                             </button>
                             <div class="dropdown-content">
                                 <a href="/editprofile">Pengaturan</a>
-                                <a href="#">Logout</a>
+                                <form action="/logout" method="POST">
+                                    @csrf
+                                    <input type="submit" class="btn btnLogout" value="Logout">
+                                </form>
                             </div>
                         </div>  
                     </div>
         </div>
 
-        <form action="/editprofile/update" method="post">
+        <form action="/editprofile/update" method="post" enctype="multipart/form-data">
         @csrf
         <div class="content_tambahbarang mt-5" style="height: 740px; width: 100%; background-color: #F4F4F4; border-radius: 25px;" >
             @if($errors->any())
@@ -94,8 +97,15 @@
                     </div>
                     <div class="pengaturan_akun" style="width: 100%;">
                         <div class="section_dua d-flex" style="width: 100%">
-                            <div class="foto_profile d-flex justify-content-center" style="width: 30%; padding-top: 7%;">
-                                <img src="\public\image\{{auth()->user()->foto_profile}}" alt="Foto Profil" style="height: 200px; width: 200px;">
+                            <div class="foto_profile" style="width: 30%; padding-top: 7%;">
+                                <div class="d-flex justify-content-center">
+                                    <img src="\public\image\{{auth()->user()->foto_profile}}" alt="Foto Profil" style="height: 200px; width: 200px;">
+                                </div>
+                                <div class="button_pilihfoto d-flex justify-content-center pt-5 mt-2">
+                                    <label class="custom-file-upload" style="border-radius: 7px;">
+                                        <input type="file" name="fotoprofile"/>
+                                    </label>
+                                </div>
                             </div>
                             <div class="form_pengaturan_akun" style= "width: 70%;">
                                 <div class="d-flex justify-content-center pt-4" style="width:80%;">
@@ -284,7 +294,7 @@
                     </div>
         </div>
 
-        <form action="/editprofile/update" method="post">
+        <form action="/editprofile/update" method="post" enctype="multipart/form-data">
         @csrf
         <div class="content_tambahbarang mt-5" style="height: 740px; width: 100%; background-color: #F4F4F4; border-radius: 25px;" >
             @if($errors->any())
@@ -355,8 +365,15 @@
                     </div>
                     <div class="pengaturan_akun" style="width: 100%;">
                         <div class="section_dua d-flex" style="width: 100%">
-                            <div class="foto_profile d-flex justify-content-center" style="width: 30%; padding-top: 7%;">
-                                <img src="\public\image\{{auth()->user()->foto_profile}}" alt="Foto Profil" style="height: 200px; width: 200px;">
+                            <div class="foto_profile" style="width: 30%; padding-top: 7%;">
+                                <div class="d-flex justify-content-center">
+                                    <img src="\public\image\{{auth()->user()->foto_profile}}" alt="Foto Profil" style="height: 200px; width: 200px;">
+                                </div>
+                                <div class="button_pilihfoto d-flex justify-content-center pt-5 mt-2">
+                                    <label class="custom-file-upload" style="border-radius: 7px;">
+                                        <input type="file" name="fotoprofile"/>
+                                    </label>
+                                </div>
                             </div>
                             <div class="form_pengaturan_akun" style= "width: 70%;">
                                 <div class="d-flex justify-content-center pt-4" style="width:80%;">

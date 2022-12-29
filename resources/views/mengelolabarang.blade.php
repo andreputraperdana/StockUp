@@ -120,11 +120,14 @@
                                     <div class="table-body-cell text-center" style="width: 20%;">
                                         Kuantitas
                                     </div>
-                                    <div class="table-body-cell text-center" style="width: 20%;">
+                                    <div class="table-body-cell text-center" style="width: 22%;">
                                         Harga
                                     </div>
                                     <div class="table-body-cell text-center" style="width: 20%;">
                                         Tanggal Kadaluarsa
+                                    </div>
+                                    <div class="table-body-cell text-center" style="width: 20%; visibility: hidden;">
+                                        Action
                                     </div>
                                 </div>
                             </div>

@@ -46,10 +46,13 @@ class EditProfileController extends Controller
                     $platIg->link = $platformInstagram;
                     $platIg->update();
                 }else{
-                    $platformSosial->user_id = $id;
-                    $platformSosial->nama = "Instagram";
-                    $platformSosial->link = $platformInstagram;
-                    $platformSosial->save();
+                    // $platformSosial->user_id = $id;
+                    // $platformSosial->nama = "Instagram";
+                    // $platformSosial->link = $platformInstagram;
+                    $platformSosial = [
+                        ['user_id' => $id, 'nama' => "Instagram", 'link' => $platformInstagram],
+                    ];
+                    PlatformSosial::insert($platformSosial);
                 }
             }
             if($platformShopee != "" || $platformShopee != null){
@@ -59,10 +62,14 @@ class EditProfileController extends Controller
                     $platShope->link = $platformShopee;
                     $platShope->update();
                 }else{
-                    $platformSosial->user_id = $id;
-                    $platformSosial->nama = "Shopee";
-                    $platformSosial->link = $platformShopee;
-                    $platformSosial->save();
+                    // $platformSosial->user_id = $id;
+                    // $platformSosial->nama = "Shopee";
+                    // $platformSosial->link = $platformShopee;
+                    $platformSosial = [
+                        ['user_id' => $id, 'nama' => "Shopee", 'link' => $platformShopee],
+                    ];
+
+                    PlatformSosial::insert($platformSosial);
                 }
             }
             if($platformTokopedia != "" || $platformTokopedia != null){
@@ -72,10 +79,13 @@ class EditProfileController extends Controller
                     $platTokped->link = $platformTokopedia;
                     $platTokped->update();
                 }else{
-                    $platformSosial->user_id = $id;
-                    $platformSosial->nama = "Tokopedia";
-                    $platformSosial->link = $platformTokopedia;
-                    $platformSosial->save();
+                    // $platformSosial->user_id = $id;
+                    // $platformSosial->nama = "Tokopedia";
+                    // $platformSosial->link = $platformTokopedia;
+                    $platformSosial = [
+                        ['user_id' => $id, 'nama' => "Tokopedia", 'link' => $platformTokopedia],
+                    ];
+                    PlatformSosial::insert($platformSosial);
                 }
             }
         }
@@ -85,9 +95,22 @@ class EditProfileController extends Controller
             $user->kategori = $output['kategori'];
             $user->nomortelp = $output['nomorTelp'];
             $user->password = $auth->password;
+            if($request->file('fotoprofile') != null){
+                $filenameWithExt = $request->file('fotoprofile')->getClientOriginalName();
+                // Get Filename
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                // Get just Extension
+                $extension = $request->file('fotoprofile')->getClientOriginalExtension();
+                // Filename To store
+                $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+                // Upload Image
+                $path = $request->file('fotoprofile')->move('public/image', $fileNameToStore);
+                $user->foto_profile = $fileNameToStore;
+            }
             $user->update();
             return back()->with('success', 'Data Berhasil Dirubah');
         }
+
         if(!Hash::check($output['password'], $auth->password)){
             return back()->with('error', 'Password Lama anda salah');
         }else if($passwordBaru != $passwordKonfirmasi){
