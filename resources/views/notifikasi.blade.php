@@ -154,7 +154,7 @@
                 </div>
             </div>
         </div>
-        <div class="text-center pt-3">
+        <div class="text-center pt-1">
             <a href="/toko">
                 <button class="btn btntoko" id="btntoko" style="background-color: #d7caa0;">Cari Barang</button>
             </a>

@@ -60,7 +60,7 @@
             <div class="d-flex justify-content-center pt-4"style="width: 100%;">
                 @if(!$AllItems->isEmpty())
                 <div class="resp-table-body" style="width: 90%;">
-                    <div class="" style="font-size: 20px; font-weight: bold; text-center; width: 100%"> 
+                    <div class="" style="font-size: 20px; font-weight: bold; width: 100%"> 
                         <div class="table-body-cell " style="visibility: visible; width: 33%;">
                             Image
                         </div>
@@ -190,8 +190,8 @@
                    <div class="popupkontenidtanggal">
 
                    </div>
-                    {{-- <input type="hidden" value="{{$AllItem->total}}"> --}}
-                    <div class="daftar_profil_kk pt-4" style="width: 100%;">
+                    <!-- {{-- <input type="hidden" value="{{$AllItem->total}}"> --}} -->
+                    <div class="daftar_profil_kk pt-3" style="width: 100%;">
                         <input type="number" name="kuantitas" class="form-control kuantitas" id="kuantitas" placeholder="kuantitas" style="border: 1px solid #626262; background-color:transparent;">
                     </div>
                 </div>

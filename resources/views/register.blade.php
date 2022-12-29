@@ -59,8 +59,14 @@
                                             <div class="daftar_akun_kiri_email mb-3">
                                                 <label for="exampleInputEmail1" class="form-label" style="color: black;">Email</label>
                                             </div>
+                                            <div class="error-email" style="display: none; visibility: collapse;">
+                                                <p>test</p>
+                                            </div>
                                             <div class="daftar_akun_kiri_password mt-4">
                                                 <label for="exampleInputPassword1" class="form-label" style="color: black">Password</label>
+                                            </div>
+                                            <div class="error-password" style="display: none; visibility: collapse;">
+                                                <p>test</p>
                                             </div>
                                         </div>
                 
@@ -94,11 +100,20 @@
                                         <div class="daftar_profil_kiri_nama mb-3">
                                             <label for="exampleInputNama1" class="form-label" style="color: black;">Nama</label>
                                         </div>
+                                        <div class="error-nama" style="display: none; visibility: collapse;">
+                                            <p>test</p>
+                                        </div>
                                         <div class="daftar_profil_kiri_kategori mt-4">
                                             <label for="exampleInputKategori1" class="form-label" style="color: black">Kategori</label>
                                         </div>
+                                        <div class="error-kategori" style="display: none; visibility: collapse;">
+                                            <p>test</p>
+                                        </div>
                                         <div class="daftar_profil_kiri_nomortelepon mt-4">
                                             <label for="exampleInputNomorTelepon1" class="form-label" style="color: black">Nomor Telepon</label>
+                                        </div>
+                                        <div class="error-nomortelp" style="display: none; visibility: collapse;">
+                                            <p>test</p>
                                         </div>
                                         <div class="daftar_profil_kiri_foto mt-4">
                                             <label for="exampleInputFoto1" class="form-label" style="color: black">Foto</label>

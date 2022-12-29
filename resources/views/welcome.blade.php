@@ -115,17 +115,17 @@
             <div class="left-footer d-flex pt-4 ps-4">
                 <div class="instagram-icon pe-4">
                     <a href="">
-                        <img src="{{URL::asset('instagram.png')}}" alt="" style="height: 50px;">
+                        <img src="{{URL::asset('instagram.png')}}" alt="" style="height: 45px;">
                     </a>
                 </div>
                 <div class="twitter-icon pe-4">
                     <a href="">
-                        <img src="{{URL::asset('twitter.png')}}" alt="" style="height: 50px;">
+                        <img src="{{URL::asset('twitter.png')}}" alt="" style="height: 45px;">
                     </a>
                 </div>
                 <div class="facebook-icon">
                     <a href="">
-                        <img src="{{URL::asset('facebook.png')}}" alt="" style="height: 50px;">
+                        <img src="{{URL::asset('facebook.png')}}" alt="" style="height: 45px;">
                     </a>
                 </div>
             </div>

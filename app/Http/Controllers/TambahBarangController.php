@@ -14,7 +14,7 @@ class TambahBarangController extends Controller
     public function getindex()
     {
         $flag = 2;
-        $BarangEksisting = BarangUMKM::all();
+        $BarangEksisting = BarangUMKM::where('user_id', '=', auth()->user()->id)->get();
         return view('tambahbarang', ['flag' => $flag, 'barangexist'=>$BarangEksisting]);
     }
 
