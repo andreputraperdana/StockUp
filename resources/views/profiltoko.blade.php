@@ -73,14 +73,14 @@
                             <div class="list_toko d-flex pt-4" style="width:70%">
                                 <div class="container d-flex">
                                     <div class="row justify-content-between">
-                                        @foreach($Toko as $Toko)
+                                        @foreach($barangpemasok as $barangpemasoks)
                                         <div class="col-3 mb-3">
-                                            <a href="/item/{{$Toko->id}}">
+                                            <a href="/item/{{$barangpemasoks->id}}">
                                                 <div class="card me-5" style="width: 100%;" role="button">
-                                                    <img src="\public\image\{{$Toko->foto_barang}}" class="card-img-top" alt="">
+                                                    <img src="\public\image\{{$barangpemasoks->foto_barang}}" class="card-img-top" alt="">
                                                     <div class="card-body">
-                                                        <p class="card-title" style="text-align: center;  font-size: 14px;">{{$Toko->nama}}</p>
-                                                        <p class="card-text" style="text-align: center; font-weight: bold; font-size: 16px">@currency($Toko->harga)</p>
+                                                        <p class="card-title" style="text-align: center;  font-size: 14px;">{{$barangpemasoks->nama}}</p>
+                                                        <p class="card-text" style="text-align: center; font-weight: bold; font-size: 16px">@currency($barangpemasoks->harga)</p>
                                                         {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
                                                     </div>
                                                 </div>

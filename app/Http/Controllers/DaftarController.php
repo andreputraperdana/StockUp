@@ -28,6 +28,12 @@ class DaftarController extends Controller
         }
 
         else{
+            $this->adduser($request);
+            return response()->json(['stats'=>200]);
+        }
+    }
+
+    public function adduser($request){
             $hasil = $request->input();
             $register = new User;
             $register->email = $hasil['email'];
@@ -49,8 +55,5 @@ class DaftarController extends Controller
             $path = $request->file('fotoprofil')->move('public/image', $fileNameToStore);
             $register->foto_profile = $fileNameToStore;
             $register->save();
-            
-            return response()->json(['stats'=>200]);
-        }
     }
 }

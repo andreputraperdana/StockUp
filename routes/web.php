@@ -93,7 +93,7 @@ Route::post('/editbarang/update', [EditBarangController::class, 'update']);
 
 Route::get('/detailbarang/{id}', [DetailBarangController::class, 'getindex'])->name('detailsbarang');
 
-Route::post('/barangkeluar', [MengelolaBarangController::class, 'keluarbarang']);
+Route::post('/barangkeluar', [MengelolaBarangController::class, 'GetBarangKeluar']);
 
 Route::get('/detailnotifikasi/{id}', [DetailNotifikasiController::class, 'getindex']);
 

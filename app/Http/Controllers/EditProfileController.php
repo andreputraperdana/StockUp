@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PlatformSosial;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,61 +34,10 @@ class EditProfileController extends Controller
         $passwordBaru = $output['passwordBaru'];
         $passwordKonfirmasi = $output['passwordKonfirmasi'];
         $auth = Auth::user();
+        $Users = $this->CheckUser();
 
-        if($auth->role_id == 2){
-            $passwordKonfirmasi = $output['passwordKonfirmasi'];
-            $platformInstagram = $output['platform_instagram'];
-            $platformShopee = $output['platform_shopee'];
-            $platformTokopedia = $output['platform_tokopedia'];
-            if($platformInstagram != "" || $platformInstagram != null){
-                if(!$platformIg->isEmpty()){
-                    $platIg->user_id = $id;
-                    $platIg->nama = "Instagram";
-                    $platIg->link = $platformInstagram;
-                    $platIg->update();
-                }else{
-                    // $platformSosial->user_id = $id;
-                    // $platformSosial->nama = "Instagram";
-                    // $platformSosial->link = $platformInstagram;
-                    $platformSosial = [
-                        ['user_id' => $id, 'nama' => "Instagram", 'link' => $platformInstagram],
-                    ];
-                    PlatformSosial::insert($platformSosial);
-                }
-            }
-            if($platformShopee != "" || $platformShopee != null){
-                if(!$platformShope->isEmpty()){
-                    $platShope->user_id = $id;
-                    $platShope->nama = "Shopee";
-                    $platShope->link = $platformShopee;
-                    $platShope->update();
-                }else{
-                    // $platformSosial->user_id = $id;
-                    // $platformSosial->nama = "Shopee";
-                    // $platformSosial->link = $platformShopee;
-                    $platformSosial = [
-                        ['user_id' => $id, 'nama' => "Shopee", 'link' => $platformShopee],
-                    ];
-
-                    PlatformSosial::insert($platformSosial);
-                }
-            }
-            if($platformTokopedia != "" || $platformTokopedia != null){
-                if(!$platformTokped->isEmpty()){
-                    $platTokped->user_id = $id;
-                    $platTokped->nama = "Tokopedia";
-                    $platTokped->link = $platformTokopedia;
-                    $platTokped->update();
-                }else{
-                    // $platformSosial->user_id = $id;
-                    // $platformSosial->nama = "Tokopedia";
-                    // $platformSosial->link = $platformTokopedia;
-                    $platformSosial = [
-                        ['user_id' => $id, 'nama' => "Tokopedia", 'link' => $platformTokopedia],
-                    ];
-                    PlatformSosial::insert($platformSosial);
-                }
-            }
+        if($Users == 'Pemasok'){
+            $this->InsertPlatformSosial($output, $platformIg, $platIg, $platformShope, $platShope, $platformTokped, $platTokped, $id);
         }
 
         if(($passwordLama == "" || $passwordLama == null) && ($passwordBaru == "" || $passwordBaru == null) && ($passwordKonfirmasi == "" || $passwordKonfirmasi == null)){
@@ -108,7 +58,7 @@ class EditProfileController extends Controller
                 $user->foto_profile = $fileNameToStore;
             }
             $user->update();
-            return back()->with('success', 'Data Berhasil Dirubah');
+            return back()->with('success', 'Data Berhasil Diubah');
         }
 
         if(!Hash::check($output['password'], $auth->password)){
@@ -116,13 +66,85 @@ class EditProfileController extends Controller
         }else if($passwordBaru != $passwordKonfirmasi){
             return back()->with('error', 'Password Konfirmasi tidak sesuai dengan password baru');
         }
+        $this->UpdateProfile($user, $output);
+
+        return redirect('/')->with('success', 'Data Berhasil Diubah');
+    }
+
+    public function CheckUser(){
+        $Check = Role::where('id', '=', auth()->user()->role_id)->first();
+        return $Check->name;
+    }
+
+    public function UpdateProfile($user, $output){
         $user->email = $output['email'];
         $user->name = $output['nama'];
         $user->kategori = $output['kategori'];
         $user->nomortelp = $output['nomorTelp'];
         $user->password = Hash::make($output['passwordKonfirmasi']);
         $user->update();
-
-        return redirect('/')->with('success', 'Data Berhasil Dirubah');
     }
+
+    public function InsertPlatformSosial($output, $id){
+        $platIg = PlatformSosial::where(['user_id' => $id, 'nama' => 'Instagram'])->first();
+        $platShope = PlatformSosial::where(['user_id' => $id, 'nama' => 'Shopee'])->first();
+        $platTokped = PlatformSosial::where(['user_id' => $id, 'nama' => 'Tokopedia'])->first();
+        $platformIg = PlatformSosial::where(['user_id' => $id, 'nama' => 'Instagram'])->get();
+        $platformShope = PlatformSosial::where(['user_id' => $id, 'nama' => 'Shopee'])->get();
+        $platformTokped = PlatformSosial::where(['user_id' => $id, 'nama' => 'Tokopedia'])->get();
+        $passwordKonfirmasi = $output['passwordKonfirmasi'];
+        $platformInstagram = $output['platform_instagram'];
+        $platformShopee = $output['platform_shopee'];
+        $platformTokopedia = $output['platform_tokopedia'];
+        if($platformInstagram != "" || $platformInstagram != null){
+            if(!$platformIg->isEmpty()){
+                $platIg->user_id = $id;
+                $platIg->nama = "Instagram";
+                $platIg->link = $platformInstagram;
+                $platIg->update();
+            }else{
+                // $platformSosial->user_id = $id;
+                // $platformSosial->nama = "Instagram";
+                // $platformSosial->link = $platformInstagram;
+                $platformSosial = [
+                    ['user_id' => $id, 'nama' => "Instagram", 'link' => $platformInstagram],
+                ];
+                PlatformSosial::insert($platformSosial);
+            }
+        }
+        if($platformShopee != "" || $platformShopee != null){
+            if(!$platformShope->isEmpty()){
+                $platShope->user_id = $id;
+                $platShope->nama = "Shopee";
+                $platShope->link = $platformShopee;
+                $platShope->update();
+            }else{
+                // $platformSosial->user_id = $id;
+                // $platformSosial->nama = "Shopee";
+                // $platformSosial->link = $platformShopee;
+                $platformSosial = [
+                    ['user_id' => $id, 'nama' => "Shopee", 'link' => $platformShopee],
+                ];
+
+                PlatformSosial::insert($platformSosial);
+            }
+        }
+        if($platformTokopedia != "" || $platformTokopedia != null){
+            if(!$platformTokped->isEmpty()){
+                $platTokped->user_id = $id;
+                $platTokped->nama = "Tokopedia";
+                $platTokped->link = $platformTokopedia;
+                $platTokped->update();
+            }else{
+                // $platformSosial->user_id = $id;
+                // $platformSosial->nama = "Tokopedia";
+                // $platformSosial->link = $platformTokopedia;
+                $platformSosial = [
+                    ['user_id' => $id, 'nama' => "Tokopedia", 'link' => $platformTokopedia],
+                ];
+                PlatformSosial::insert($platformSosial);
+            }
+        }
+    }
+
 }
