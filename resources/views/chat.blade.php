@@ -58,8 +58,8 @@
                                 </div>
 
                                 <div class="pt-1 pe-3">
-                                    <p style="font-size: 16px; font-weight: bold; margin-bottom: -1px; margin-left: -16px;">Stephanus</p>
-                                    <p style="font-size: 12px;">Stock nya ada kak</p>
+                                    <p style="font-size: 16px; font-weight: bold; margin-bottom: -1px; margin-left: -16px;">Stefanie Lim</p>
+                                    <p style="font-size: 12px;">Stock nya ada kak ?</p>
                                 </div>
 
                                 <div class="pt-1">
@@ -67,26 +67,26 @@
                                 </div>
                             </button>
 
-                            <button class="content__chat d-flex" style="border: 0px; background-color: transparent;">
+                            <!-- <button class="content__chat d-flex" style="border: 0px; background-color: transparent;">
                                 <div class="pe-2">
                                     <img src="{{URL::asset('akun.png')}}" alt="" style="height: 50px;"> 
                                 </div>
 
                                 <div class="pt-1 pe-3">
-                                    <p style="font-size: 16px; font-weight: bold; margin-bottom: -1px; margin-left: -16px;">Stephanus</p>
-                                    <p style="font-size: 12px;">Stock nya ada kak</p>
+                                    <p style="font-size: 16px; font-weight: bold; margin-bottom: -1px; margin-left: -16px;">Andre</p>
+                                    <p style="font-size: 12px;">Bisa pesan lewat apa kak ?</p>
                                 </div>
 
                                 <div class="pt-1">
                                     <p style="font-size: 12px;">Online</p>
                                 </div>
-                            </button>
+                            </button> -->
 
                         </div>
 
 
                         <div style="width: 70%;">
-                            <div class="d-flex justify-content-center" style="width: 100%; border-radius: 0 25px 0 0; background-color: white; height: 55px;">
+                            <div class="d-flex justify-content-center" style="width: 100%; border-radius: 0 25px 0 0; background-color: #D7CAA0; height: 55px;">
                                 <div class="content__chat d-flex" style="border: 0px; width: 80%;">
                                     <div class="pe-2">
                                         <img src="{{URL::asset('akun.png')}}" alt="" style="height: 50px;"> 

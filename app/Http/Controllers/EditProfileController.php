@@ -37,7 +37,7 @@ class EditProfileController extends Controller
         $Users = $this->CheckUser();
 
         if($Users == 'Pemasok'){
-            $this->InsertPlatformSosial($output, $platformIg, $platIg, $platformShope, $platShope, $platformTokped, $platTokped, $id);
+            $this->InsertPlatformSosial($output, $id);
         }
 
         if(($passwordLama == "" || $passwordLama == null) && ($passwordBaru == "" || $passwordBaru == null) && ($passwordKonfirmasi == "" || $passwordKonfirmasi == null)){
