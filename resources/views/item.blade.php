@@ -107,22 +107,19 @@
                         <p style="font-size: 20px; font-weight: bold;">Produk Lainnya</p>
                     </div>
 
-                    <div class="row_produk_terkait d-flex">
+                    <div class="row_produk_terkait d-flex justify-content-between">
                         @foreach($BarangRandom as $BarangRandom)
-                        <div class="kotak_gambar_produk_terkait" style="border: 1px solid black;">
-                            <div class="col">
-                                <div class="gambar_toko ps-4">
-                                    <img src="\public\image\{{ $BarangRandom->foto_barang }}" alt="" style="height: 60px;">
+                        <div class="col-3 mb-3">
+                            <a href="/item/{{$BarangRandom->id}}">
+                                <div class="card me-5" style="width: 80%;" role="button">
+                                    <img src="\public\image\{{$BarangRandom->foto_barang}}" class="card-img-top" alt="">
+                                    <div class="card-body">
+                                        <p class="card-title" style="text-align: center;  font-size: 14px;">{{$BarangRandom->nama}}</p>
+                                        <p class="card-text" style="text-align: center; font-weight: bold; font-size: 16px">@currency($BarangRandom->harga)</p>
+                                        {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+                                    </div>
                                 </div>
-                                
-                                <div class="nama_barang pt-3 ps-2">
-                                    <p style="font-size: 16px; text-align: center;">{{ $BarangRandom->nama }}</p>
-                                </div>
-                                
-                                <div class="harga_barang ps-2">
-                                    <p style="font-size: 16px; font-weight: bold; text-align: center;">@currency($BarangRandom->harga)</p>
-                                </div>
-                            </div>   
+                            </a>
                         </div>
                         @endforeach
                     </div>

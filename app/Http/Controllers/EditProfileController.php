@@ -103,6 +103,7 @@ class EditProfileController extends Controller
                 $platIg->link = $platformInstagram;
                 $platIg->update();
             }else{
+                dd($id);
                 // $platformSosial->user_id = $id;
                 // $platformSosial->nama = "Instagram";
                 // $platformSosial->link = $platformInstagram;

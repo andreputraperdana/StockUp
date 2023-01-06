@@ -279,7 +279,7 @@
                 <td>{{$AllItem->id}}</td>
                 <td>{{$AllItem->nama}}</td>
                 <td>{{$AllItem->jenis}}</td>
-                <td>{{$AllItem->harga}}</td>
+                <td>@currency($AllItem->harga)</td>
                 <td>
                     <div class="d-flex">
                         <form action="{{route('users.destroy', $AllItem->id)}}" method="POST">

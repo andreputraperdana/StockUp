@@ -9,7 +9,7 @@
 <body>
     <div class="container d-flex justify-content-center" style="margin-top: 200px;">
         {{-- <div class="mb-3">{!! DNS1D::getBarcodeSVG('2001'.'22082000', 'EAN13', 3, 100, '#2A3239', true) !!}</div> --}}
-        <div class="mb-3">{!! DNS1D::getBarcodeHTML($KodeBarang, 'EAN13', 3, 100, '#2A3239', true) !!}</div>
+        <div class="mb-3">{!! DNS1D::getBarcodeSVG($KodeBarang, 'EAN13', 3, 100, '#2A3239', true) !!}</div>
     </div>
 </body>
 </html>

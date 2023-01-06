@@ -7,15 +7,12 @@ use Illuminate\Http\Request;
 
 class BarcodeController extends Controller
 {
-    public function getindex($id, Request $request){
+    public function getindex($id, Request $request, $kodeId){
         $Barang = TransaksiBarangMasuk::where('id', '=', $id)->first();
         $BarangKadaluarsa = str_replace("-", "", $Barang->tanggal_kadaluarsa);
-        $idBrg = $Barang->barang_umkm_id;
-        $count = 0;
-        $count+=1;
-        $no = "00" . $count;
-        $idBarang = $idBrg . $no;
-        $KodeBarang = $idBarang . $BarangKadaluarsa;
+        $kode = str_replace("-","", $kodeId);
+        $kodeBrang = str_replace(" ", "", $kode);
+        $KodeBarang = $kodeBrang . $BarangKadaluarsa;
         return view('barcode', ['KodeBarang' => $KodeBarang]);
     }
 }

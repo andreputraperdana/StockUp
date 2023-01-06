@@ -21,7 +21,7 @@ class ItemController extends Controller
     }
 
     public function getBarangRandom(){
-       $BarangRandom =  BarangPemasok::join('users', 'users.id', '=', 'barang_pemasok.user_id')->inRandomOrder()->limit(5)->get();
+       $BarangRandom =  BarangPemasok::inRandomOrder()->limit(5)->get();
        return $BarangRandom;
     }
 }
