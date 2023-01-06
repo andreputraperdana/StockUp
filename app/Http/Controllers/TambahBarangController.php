@@ -30,7 +30,7 @@ class TambahBarangController extends Controller
             } else {
                 $this->inputbarangMasukExisting($request, $checkbarang);
             }
-        } else if ($User->role_id == 'Pemasok') {
+        } else if ($User == 'Pemasok') {
            $this->inputbarangPemasok($request);
         }
         // return redirect('/tambahbarang');

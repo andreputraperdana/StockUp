@@ -56,7 +56,7 @@
                 <input type="hidden" name="tipe_notif" class="tipe_notif" value="BarangKadaluarsa">
                 <div class="button__rekomen">
                     <div class="button_rekomen_notif ps-5">
-                        <button type="submit" class="btn btn-primary " id="btn_rekom_notif" style="background-color: #D7CAA0; width: 100%; border: none; font-weight: bold; color: black;">Cari Barang</button>
+                        <button type="submit" class="btn btn-primary " id="btn_rekom_notif" style="background-color: #D7CAA0; width: 100%; border: none; font-weight: bold; color: black;">Detail Barang</button>
                     </div>
                 </div>
             </div>
@@ -82,7 +82,7 @@
                     <input type="hidden" name="tipe_notif" class="tipe_notif" value="BarangHabis">
                     <div class="button__rekomen">
                         <div class="button_rekomen_notif ps-5">
-                            <button type="submit" class="btn btn-primary" id="btn_rekom_notif" style="background-color: #D7CAA0; width: 100%; border: none; font-weight: bold; color: black;">Cari Barang</button>
+                            <button type="submit" class="btn btn-primary" id="btn_rekom_notif" style="background-color: #D7CAA0; width: 100%; border: none; font-weight: bold; color: black;">Detail Barang</button>
                         </div>
                     </div>
                 </div>
@@ -156,7 +156,7 @@
         </div>
         <div class="text-center pt-1">
             <a href="/toko">
-                <button class="btn btntoko" id="btntoko" style="background-color: #d7caa0;">Cari Barang</button>
+                <button class="btn btntoko" id="btntoko" style="background-color: #d7caa0; font-weight: bold;">Cari Barang</button>
             </a>
         </div>
     </div>

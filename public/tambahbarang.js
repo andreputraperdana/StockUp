@@ -84,7 +84,6 @@ $(document).ready(function () {
         e.preventDefault();
 
         let formData = new FormData($("#tambahbarang")[0]);
-
         // overlay.classList.remove("hidden");
         // notification.classList.remove("hidden");
         // console.log(hasil);

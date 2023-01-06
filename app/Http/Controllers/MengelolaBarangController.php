@@ -94,17 +94,22 @@ class MengelolaBarangController extends Controller
         $NewBarangKeluar = new TransaksiBarangKeluar();
         // dd($BarangUMKMAll[1]['jumlah']);
         for($j=0; $j<$TotalBarang; $j++){
-            if($JumlahBarang > $BarangUMKMAll[$j]['jumlah']){
-                $JumlahBarang -= $BarangUMKMAll[$j]['jumlah'];
-                $BarangUMKMAll[$j]['jumlah']  = 0;
-                $BarangUMKMAll[$j]->save();
-                $this->InsertBarangKeluar($NewBarangKeluar, $BarangUMKMAll[$j]['id'], $BarangUMKMAll[$j]['jumlah']);
+            if($BarangUMKMAll[$j]['jumlah'] == 0){
+                continue;
             }
-            else if($JumlahBarang < $BarangUMKMAll[$j]['jumlah']){
-                $BarangUMKMAll[$j]['jumlah'] -= $JumlahBarang;
-                $BarangUMKMAll[$j]->save();
-                $this->InsertBarangKeluar($NewBarangKeluar, $BarangUMKMAll[$j]['id'], $BarangUMKMAll[$j]['jumlah']);
-                break;
+            else{
+                if($JumlahBarang > $BarangUMKMAll[$j]['jumlah']){
+                    $JumlahBarang -= $BarangUMKMAll[$j]['jumlah'];
+                    $BarangUMKMAll[$j]['jumlah']  = 0;
+                    $BarangUMKMAll[$j]->save();
+                    $this->InsertBarangKeluar($NewBarangKeluar, $BarangUMKMAll[$j]['id'], $BarangUMKMAll[$j]['jumlah']);
+                }
+                else if($JumlahBarang < $BarangUMKMAll[$j]['jumlah']){
+                    $BarangUMKMAll[$j]['jumlah'] -= $JumlahBarang;
+                    $BarangUMKMAll[$j]->save();
+                    $this->InsertBarangKeluar($NewBarangKeluar, $BarangUMKMAll[$j]['id'], $BarangUMKMAll[$j]['jumlah']);
+                    break;
+                }
             }
         }
 

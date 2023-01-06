@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class ListBarangController extends Controller
 {
     public function getindex($id){
-        $hasil = TransaksiBarangMasuk::where('barang_umkm_id', '=', $id)->get();
+        $hasil = TransaksiBarangMasuk::where('barang_umkm_id', '=', $id)->whereraw(DB::raw('(jumlah > 0)'))->get();
         return view('listbarang',  ['hasil'=> $hasil]);
     }
 

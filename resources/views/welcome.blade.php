@@ -102,7 +102,7 @@
                 <div class="col__desc">
                     <p>Memperkenalkan pemasok berserta</br>
                     barang yang dijualnya kepada</br>
-                    UMKM melalui chat</p>
+                    UMKM</p>
                 </div>
               </div>
             </div>
