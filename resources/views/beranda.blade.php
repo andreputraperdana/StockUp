@@ -217,6 +217,7 @@
                                 <table class="table caption-top" style="width: 90%;">
                                     <thead>
                                         <tr>
+                                            <td scope="col" style="color: black;">Foto Barang</td>
                                             <td scope="col" style="color: black;">Nama Barang</td>
                                             <td scope="col" style="color: black;" class="text-center">Kuantitas</td>
                                             <td scope="col" style="color: black;" class="text-center">Jenis Barang
@@ -227,6 +228,7 @@
                                     <tbody>
                                         @foreach ($AllItems as $AllItem)
                                             <tr class="">
+                                                <td class="pt-4 pb-4"><img src="\public\image\{{$AllItem->BarangUMKM->foto_barang}}" alt="Foto Profil" style="height: 60px;"></td>
                                                 <td class="pt-4 pb-4">{{ $AllItem->BarangUMKM->nama }}<br><span
                                                         style="opacity: 0.6;">00{{ $AllItem->BarangUMKM->id }}</span></td>
                                                 <td class="text-center pt-4 pb-4">{{ $AllItem->total }}</td>
@@ -326,16 +328,18 @@
                                 <table class="table caption-top" style="width: 90%;">
                                     <thead>
                                         <tr>
-                                            <td scope="col" style="opacity: 0.6;">Nama Barang</td>
-                                            <td scope="col" style="opacity: 0.6;" class="text-center">Jenis Barang
+                                            <td scope="col" style="color: black;">Foto Barang</td>
+                                            <td scope="col" style="color: black;">Nama Barang</td>
+                                            <td scope="col" style="color: black;" class="text-center">Jenis Barang
                                             </td>
-                                            <td scope="col" style="opacity: 0.6;" class="text-center">Harga Barang
+                                            <td scope="col" style="color: black;" class="text-center">Harga Barang
                                             </td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($AllItems as $AllItem)
                                             <tr class="">
+                                                <td class="pt-4 pb-4"><img src="\public\image\{{$AllItem->BarangUMKM->foto_barang}}" alt="Foto Profil" style="height: 60px;"></td>
                                                 <td class="pt-4 pb-4">{{ $AllItem->nama }}<br><span
                                                         style="opacity: 0.6;">00{{ $AllItem->id }}</span></td>
                                                 <td class="text-center pt-4 pb-4">{{ $AllItem->jenis }}</td>

@@ -80,7 +80,7 @@
                                             <div class="daftar_akun_kanan_password">
                                                 <input type="password" name="password" class="form-control password" id="exampleInputPassword1" placeholder="Password" style="border: 1px solid #626262; background-color:transparent;">
                                             </div>
-                                            <div class="errormessage-password" style="display: none; color: red;">
+                                            <div class="errormessage-password pt-3" style="display: none; color: red;">
 
                                             </div> 
                                         </div>
@@ -112,11 +112,14 @@
                                         <div class="daftar_profil_kiri_nomortelepon mt-4">
                                             <label for="exampleInputNomorTelepon1" class="form-label" style="color: black">Nomor Telepon</label>
                                         </div>
-                                        <div class="error-nomortelp" style="display: none; visibility: collapse;">
+                                        <div class="error-nomortelepon" style="display: none; visibility: collapse;">
                                             <p>test</p>
                                         </div>
                                         <div class="daftar_profil_kiri_foto mt-4">
                                             <label for="exampleInputFoto1" class="form-label" style="color: black">Foto</label>
+                                        </div>
+                                        <div class="error-fotoprofil" style="display: none; visibility: collapse;">
+                                            <p>test</p>
                                         </div>
                                     </div>
             
@@ -145,14 +148,17 @@
 
                                         </div> 
                                         <div class="daftar_profil_kanan_nomortelepon mb-3">
-                                            <input type="text" name="nomortelp" class="form-control nomortelp" id="exampleInputNomorTelepon1" placeholder="Nomor Telepon" style="border: 1px solid #626262; background-color:transparent;">
+                                            <input type="text" name="nomortelepon" class="form-control nomortelp" id="exampleInputNomorTelepon1" placeholder="Nomor Telepon" style="border: 1px solid #626262; background-color:transparent;">
                                         </div>
-                                        <div class="errormessage-nomortelp" style="display: none; color: red;">
+                                        <div class="errormessage-nomortelepon" style="display: none; color: red;">
   
                                         </div> 
                                         <div class="input_fotoprofil">
                                             <input type="file" name="fotoprofil" class="form-control fotoprofil" id="exampleInputFotoProfil1" aria-describedby="emailHelp" placeholder="Foto Profil" style="border: 1px solid #626262; background-color:transparent;">
                                         </div>
+                                        <div class="errormessage-fotoprofil pt-3" style="display: none; color: red;">
+  
+                                        </div> 
                                     </div>
                                 </div>
         

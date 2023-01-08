@@ -45,7 +45,7 @@ $(document).ready(function () {
                 if (response.stats === 200) {
                     overlay.classList.remove("hidden");
                     notification_success.classList.remove("hidden");
-                } else if (response.stats === 300) {
+                } else if (response.stats === 300 || response.stats === 400) {
                     const errormessage = response.error;
                     // text_error.innerHTML = "";
                     // console.log(errormessage[nomortelp]);
@@ -95,29 +95,71 @@ $(document).ready(function () {
                             ".error-kategori"
                         ).style.display = "none";
                     }
-                    if (!errormessage.hasOwnProperty("nomortelp")) {
+                    if (!errormessage.hasOwnProperty("nomortelepon")) {
                         document.querySelector(
-                            ".errormessage-nomortelp"
+                            ".errormessage-nomortelepon"
                         ).innerHTML = "";
                         document.querySelector(
-                            ".errormessage-nomortelp"
+                            ".errormessage-nomortelepon"
                         ).style.display = "none";
                         document.querySelector(
-                            ".error-nomortelp"
+                            ".error-nomortelepon"
                         ).style.display = "none";
                     }
 
-                    for (let e = 0; e < objectmessage.length; e++) {
+                    if (response.stats === 300) {
                         document.querySelector(
-                            `.errormessage-${objectmessage[e]}`
-                        ).innerHTML = `<p>${
-                            errormessage[objectmessage[e]]
-                        }</p>`;
+                            ".errormessage-fotoprofil"
+                        ).innerHTML = "";
                         document.querySelector(
-                            `.errormessage-${objectmessage[e]}`
+                            `.errormessage-fotoprofil`
+                        ).style.display = "none";
+                        document.querySelector(
+                            `.error-fotoprofil`
+                        ).style.display = "none";
+
+                        for (let e = 0; e < objectmessage.length; e++) {
+                            document.querySelector(
+                                `.errormessage-${objectmessage[e]}`
+                            ).innerHTML = `<p>${
+                                errormessage[objectmessage[e]]
+                            }</p>`;
+                            document.querySelector(
+                                `.errormessage-${objectmessage[e]}`
+                            ).style.display = "block";
+                            document.querySelector(
+                                `.error-${objectmessage[e]}`
+                            ).style.display = "block";
+                        }
+                    } else if (response.stats === 400) {
+                        for (let k = 0; k < objectmessage.length - 1; k++) {
+                            // console.log(objectmessage[k]);
+                            // console.log(errormessage[objectmessage[k]]);
+                            // console.log(
+                            //     document.querySelector(
+                            //         `.errormessage-${objectmessage[k]}`
+                            //     )
+                            // );
+                            document.querySelector(
+                                `.errormessage-${objectmessage[k]}`
+                            ).innerHTML = `<p>${
+                                errormessage[objectmessage[k]]
+                            }</p>`;
+                            document.querySelector(
+                                `.errormessage-${objectmessage[k]}`
+                            ).style.display = "block";
+                            document.querySelector(
+                                `.error-${objectmessage[k]}`
+                            ).style.display = "block";
+                        }
+                        document.querySelector(
+                            ".errormessage-fotoprofil"
+                        ).innerHTML = `<p>${response.fotoprofil}</p>`;
+                        document.querySelector(
+                            `.errormessage-fotoprofil`
                         ).style.display = "block";
                         document.querySelector(
-                            `.error-${objectmessage[e]}`
+                            `.error-fotoprofil`
                         ).style.display = "block";
                     }
                     // Object.keys(errormessage).forEach(

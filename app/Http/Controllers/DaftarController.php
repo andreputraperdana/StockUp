@@ -19,12 +19,19 @@ class DaftarController extends Controller
             'password'=> 'required|min:5',
             'nama' => 'required',
             'kategori' => 'required',
-            'nomortelp' => 'required|min:12',
-            // 'fotoprofil' => 'image'
+            'nomortelepon' => 'required|min:12',
+            'fotoprofil' => 'mimes:jpeg,jpg,png,gif|required|max:10000'
         ]);
 
+        // dd($validate->errors()->first('email'));
+
         if($validate->fails()){
-            return response()->json(['stats'=>300, 'error'=>$validate->errors()]);
+            if($validate->errors()->first('fotoprofil')){
+                return response()->json(['stats'=>400, 'error'=>$validate->errors(), 'fotoprofil'=> $validate->errors()->first('fotoprofil')]);
+            }
+            else{
+                return response()->json(['stats'=>300, 'error'=>$validate->errors()]);
+            }
         }
 
         else{
@@ -40,7 +47,7 @@ class DaftarController extends Controller
             $register->password = Hash::make($hasil['password']);
             $register->name = $hasil['nama'];
             $register->kategori = $hasil['kategori'];
-            $register->nomortelp = $hasil['nomortelp'];
+            $register->nomortelp = $hasil['nomortelepon'];
             $register->role_id = $hasil['roleid'];
             $register->status = "Active";
             
