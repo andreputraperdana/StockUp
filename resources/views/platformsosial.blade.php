@@ -41,18 +41,18 @@
         </div>
 
 
-                    <div class="content_tambahbarang mt-5" style="height: 890px; width: 100%; background-color: #F4F4F4; border-radius: 25px;" >
+                    <div class="content_tambahbarang mt-5" style="height: auto; width: 100%; background-color: #F4F4F4; border-radius: 25px;" >
                         <div class="d-flex justify-content-between pt-5">
                             <div class="d-flex justify-content-center" style="width: 100%;">
-                                <div class="images_toko d-flex justify-content-center" style="width: 30%; height: 40px;">
-                                    <img src="\public\image\{{$PlatformSosial->get(0)->foto_profile}}" alt="" style="height: 60px;">
+                                <div class="images_toko d-flex justify-content-center" style="width: 30%;">
+                                    <img src="\public\image\{{$PlatformSosial->get(0)->foto_profile}}" alt="" style="height: 100px;">
                                 </div>
-                                <div class="desc__toko" style="width: 50%;">
+                                <div class="desc__toko d-flex justify-content-center" style="align-items: center;">
                                     <h2>{{$PlatformSosial->get(0)->name}}</h2>
                                 </div>
                             </div>   
                         </div>
-                            <div class="btn_platform" style="margin-top: 150px; width: 100%;">
+                            <div class="btn_platform" style="margin-top: 70px; width: 100%; padding-bottom: 50px;">
                                 <div class="btn_sopi" style="width: 70%; margin-top: 25px;">
                                     <a href="{{ $PlatformSosial->get(1)->link }}">
                                         <button type="submit" class="btn btn-primary" id="btn_platformsoc" style="background-color: #D7CAA0; width: 100%; border: none; font-weight: bold; color: black;">Shopee</button>

@@ -21,20 +21,55 @@ class TambahBarangController extends Controller
 
     public function inputbarang(Request $request)
     {
-        $checkbarang = BarangUMKM::where('nama', $request->namabarangeksisting)->first();
         $User = $this->CheckUser();
-        if ($User == 'UMKM') {
-            if (!$checkbarang) {
-                $barangUMKM = $this->inputbarangUMKM($request);
-                $this->inputbarangMasuk($request, $barangUMKM);
-            } else {
-                $this->inputbarangMasukExisting($request, $checkbarang);
+
+        if($User == 'UMKM'){
+            $validate = Validator::make($request->all(), [
+                'namabarang' => 'required',
+                'jenisbarang'=> 'required',
+                'jumlahbarang' => 'required',
+                'hargabarang' => 'required',
+                'fotobarang' => 'mimes:jpeg,jpg,png,gif|required|max:10000'
+            ]);
+            if($validate->fails()){
+                if($validate->errors()->first('fotobarang')){
+                    return response()->json(['stats'=>400, 'error'=>$validate->errors(), 'fotobarang'=> $validate->errors()->first('fotobarang')]);
+                }
+                else{
+                    return response()->json(['stats'=>300, 'error'=>$validate->errors()]);
+                }
+            }else{
+                $checkbarang = BarangUMKM::where('nama', $request->namabarangeksisting)->first();
+                if (!$checkbarang) {
+                    $barangUMKM = $this->inputbarangUMKM($request);
+                    $this->inputbarangMasuk($request, $barangUMKM);
+                } else {
+                    $this->inputbarangMasukExisting($request, $checkbarang);
+                }
             }
-        } else if ($User == 'Pemasok') {
-           $this->inputbarangPemasok($request);
+        }
+        else if ($User == 'Pemasok') {
+            $validate = Validator::make($request->all(), [
+                'namabarang' => 'required',
+                'jenisbarang'=> 'required',
+                'hargabarang' => 'required',
+                'deskripsi' => 'required',
+                'fotobarang' => 'mimes:jpeg,jpg,png,gif|required|max:10000'
+            ]);
+            if($validate->fails()){
+                if($validate->errors()->first('fotobarang')){
+                    return response()->json(['stats'=>400, 'error'=>$validate->errors(), 'fotobarang'=> $validate->errors()->first('fotobarang')]);
+                }
+                else{
+                    return response()->json(['stats'=>300, 'error'=>$validate->errors()]);
+                }
+            }else{
+                $this->inputbarangPemasok($request);
+            }
         }
         // return redirect('/tambahbarang');
         return response()->json(['stats' => 200]);
+
     }
 
     public function CheckUser(){
@@ -43,45 +78,45 @@ class TambahBarangController extends Controller
     }
 
     public function inputbarangPemasok($request){
-        $output = $request->input();
-        $barangPemasok = new BarangPemasok;
-        $barangPemasok->user_id = auth()->user()->id;
-        $barangPemasok->nama = $output['namabarang'];
-        $barangPemasok->jenis = $output['jenisbarang'];
-        $barangPemasok->harga = $output['hargabarang'];
-        $barangPemasok->deskripsi = $output['deskripsi'];
-        $filenameWithExt = $request->file('fotobarang')->getClientOriginalName();
-        // Get Filename
-        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-        // Get just Extension
-        $extension = $request->file('fotobarang')->getClientOriginalExtension();
-        // Filename To store
-        $fileNameToStore = $filename . '_' . time() . '.' . $extension;
-        // Upload Image
-        $path = $request->file('fotobarang')->move('public/image', $fileNameToStore);
-        $barangPemasok->foto_barang = $fileNameToStore;
-        $barangPemasok->save();
+            $output = $request->input();
+            $barangPemasok = new BarangPemasok;
+            $barangPemasok->user_id = auth()->user()->id;
+            $barangPemasok->nama = $output['namabarang'];
+            $barangPemasok->jenis = $output['jenisbarang'];
+            $barangPemasok->harga = $output['hargabarang'];
+            $barangPemasok->deskripsi = $output['deskripsi'];
+            $filenameWithExt = $request->file('fotobarang')->getClientOriginalName();
+            // Get Filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just Extension
+            $extension = $request->file('fotobarang')->getClientOriginalExtension();
+            // Filename To store
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            // Upload Image
+            $path = $request->file('fotobarang')->move('public/image', $fileNameToStore);
+            $barangPemasok->foto_barang = $fileNameToStore;
+            $barangPemasok->save();
     }
 
     public function inputbarangUMKM($request){
-        $output = $request->input();
-        $barangUMKM = new BarangUMKM;
-        $barangUMKM->user_id = auth()->user()->id;
-        $barangUMKM->nama = $output['namabarang'];
-        $barangUMKM->jenis = $output['jenisbarang'];
-        // $barangUMKM->foto_barang = $output['fotobarang'];
-        $filenameWithExt = $request->file('fotobarang')->getClientOriginalName();
-        // Get Filename
-        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-        // Get just Extension
-        $extension = $request->file('fotobarang')->getClientOriginalExtension();
-        // Filename To store
-        $fileNameToStore = $filename . '_' . time() . '.' . $extension;
-        // Upload Image
-        $path = $request->file('fotobarang')->move('public/image', $fileNameToStore);
-        $barangUMKM->foto_barang = $fileNameToStore;
-        $barangUMKM->save();
-        return $barangUMKM;
+            $output = $request->input();
+            $barangUMKM = new BarangUMKM;
+            $barangUMKM->user_id = auth()->user()->id;
+            $barangUMKM->nama = $output['namabarang'];
+            $barangUMKM->jenis = $output['jenisbarang'];
+            // $barangUMKM->foto_barang = $output['fotobarang'];
+            $filenameWithExt = $request->file('fotobarang')->getClientOriginalName();
+            // Get Filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just Extension
+            $extension = $request->file('fotobarang')->getClientOriginalExtension();
+            // Filename To store
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            // Upload Image
+            $path = $request->file('fotobarang')->move('public/image', $fileNameToStore);
+            $barangUMKM->foto_barang = $fileNameToStore;
+            $barangUMKM->save();
+            return $barangUMKM;
     }
 
     public function inputbarangMasuk($request, $barangUMKM){

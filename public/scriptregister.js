@@ -42,6 +42,7 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             success: function (response) {
+                console.log(response);
                 if (response.stats === 200) {
                     overlay.classList.remove("hidden");
                     notification_success.classList.remove("hidden");
@@ -133,7 +134,7 @@ $(document).ready(function () {
                         }
                     } else if (response.stats === 400) {
                         for (let k = 0; k < objectmessage.length - 1; k++) {
-                            // console.log(objectmessage[k]);
+                            console.log(objectmessage[k]);
                             // console.log(errormessage[objectmessage[k]]);
                             // console.log(
                             //     document.querySelector(

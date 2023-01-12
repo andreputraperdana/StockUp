@@ -101,3 +101,5 @@ Route::post('/editprofile/update', [EditProfileController::class, 'update']);
 
 Route::get('/barcode/{id}/{kodeId}', [BarcodeController::class, 'getindex'])->name('barcode');
 
+Route::get('/toko/{jenis}', [TokoController::class, 'getDataByKategori']);
+

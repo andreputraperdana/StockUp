@@ -130,13 +130,13 @@ for (let j = 0; j < barangid.length; j++) {
                     expanded[0].style.rotate = "90deg";
                     ItemList[j].style.display = "initial";
                     ItemList[j].classList.add("item_list");
-                    content.style.height = "1400px";
+                    // content.style.height = "1200px";
                     additional[j].innerHTML = data;
                 } else if ((expanded[0].style.rotate = "90deg")) {
                     ItemList[j].style.display = "none";
                     ItemList[j].classList.add("item_list");
                     expanded[0].style.rotate = "";
-                    content.style.height = "1200px";
+                    // content.style.height = "900px";
                 }
             }
         };

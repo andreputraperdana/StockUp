@@ -50,7 +50,7 @@
     
                 <div class="produk_item">
                     <div class="gambar_item ps-4">
-                        <img src="\public\image\{{$BarangDetail->get(0)->foto_barang}}" alt="" style="height: 250px; margin-left: 60px;">
+                        <img src="\public\image\{{$BarangDetail->get(0)->foto_barang}}" alt="" style="height: 230px; margin-left: 60px;">
                     </div>
 
                     <div class="catatan_item" style="width: 100%">
@@ -73,7 +73,7 @@
                 <div class="data_toko"  style="height: 120px;">
                     <div class="toko_foto">
                         <div class="gambar_toko ps-4">
-                            <img src="\public\image\{{ $BarangDetail->get(0)->foto_profile }}" alt="" style="height: 120px; width: 120px; margin-left: 60px; border-radius: 50%;">
+                            <img src="\public\image\{{ $BarangDetail->get(0)->foto_profile }}" alt="" style="height: 100px; width: 100px; margin-left: 60px; border-radius: 50%;">
                         </div>
                     </div>
 
@@ -107,12 +107,12 @@
                         <p style="font-size: 20px; font-weight: bold;">Produk Lainnya</p>
                     </div>
 
-                    <div class="row_produk_terkait d-flex justify-content-between">
+                    <div class="row_produk_terkait d-flex">
                         @foreach($BarangRandom as $BarangRandom)
                         <div class="col-3 mb-3">
                             <a href="/item/{{$BarangRandom->id}}">
                                 <div class="card me-5" style="width: 80%;" role="button">
-                                    <img src="\public\image\{{$BarangRandom->foto_barang}}" class="card-img-top" alt="">
+                                    <img src="\public\image\{{$BarangRandom->foto_barang}}" class="card-img-top" style="width: 100%; height: 150px;" alt="">
                                     <div class="card-body">
                                         <p class="card-title" style="text-align: center;  font-size: 14px;">{{$BarangRandom->nama}}</p>
                                         <p class="card-text" style="text-align: center; font-weight: bold; font-size: 16px">@currency($BarangRandom->harga)</p>

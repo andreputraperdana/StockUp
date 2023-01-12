@@ -82,7 +82,6 @@ if (document.querySelector(".tanda").innerHTML == "2") {
 $(document).ready(function () {
     $(document).on("submit", "#tambahbarang", function (e) {
         e.preventDefault();
-
         let formData = new FormData($("#tambahbarang")[0]);
         // overlay.classList.remove("hidden");
         // notification.classList.remove("hidden");
@@ -101,11 +100,129 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             success: function (response) {
-                // console.log(response);
+                console.log(response);
                 // console.log(response.stats);
-                if (response.stats) {
+                if (response.stats === 200) {
                     overlay.classList.remove("hidden");
                     notification.classList.remove("hidden");
+                }else if (response.stats === 300 || response.stats === 400) {
+                    const errormessage = response.error;
+                    console.log(errormessage);
+                    // text_error.innerHTML = "";
+                    // console.log(errormessage[nomortelp]);
+                    // for (var hasil in errormessage) {
+                    //     console.log(hasil + ":" + errormessage[hasil]);
+                    // }
+                    const objectmessage = Object.keys(errormessage);
+
+                    if (!errormessage.hasOwnProperty("namabarang")) {
+                        document.querySelector(
+                            ".errormessage-namabarang"
+                        ).innerHTML = "";
+                        document.querySelector(
+                            ".errormessage-namabarang"
+                        ).style.display = "none";
+                        // document.querySelector(".error-namabarang").style.display =
+                        //     "none";
+                    }
+                    if (!errormessage.hasOwnProperty("jenisbarang")) {
+                        document.querySelector(
+                            ".errormessage-jenisbarang"
+                        ).innerHTML = "";
+                        document.querySelector(
+                            ".errormessage-jenisbarang"
+                        ).style.display = "none";
+                        // document.querySelector(
+                        //     ".error-jenisbarang"
+                        // ).style.display = "none";
+                    }
+                    if(document.querySelector("#penanda").value == 1){
+                        if (!errormessage.hasOwnProperty("jumlahbarang")) {
+                            document.querySelector(".errormessage-jumlahbarang").innerHTML =
+                                "";
+                            document.querySelector(
+                                ".errormessage-jumlahbarang"
+                            ).style.display = "none";
+                            // document.querySelector(".error-jumlahbarang").style.display =
+                            //     "none";
+                        }
+                    }
+                    if (!errormessage.hasOwnProperty("hargabarang")) {
+                        document.querySelector(
+                            ".errormessage-hargabarang"
+                        ).innerHTML = "";
+                        document.querySelector(
+                            ".errormessage-hargabarang"
+                        ).style.display = "none";
+                        // document.querySelector(
+                        //     ".error-hargabarang"
+                        // ).style.display = "none";
+                    }
+
+                    if (response.stats === 300) {
+                        document.querySelector(
+                            ".errormessage-fotobarang"
+                        ).innerHTML = "";
+                        document.querySelector(
+                            `.errormessage-fotobarang`
+                        ).style.display = "none";
+                        // document.querySelector(
+                        //     `.error-fotobarang`
+                        // ).style.display = "none";
+
+                        for (let e = 0; e < objectmessage.length; e++) {
+                            console.log(objectmessage[e]);
+                            document.querySelector(
+                                `.errormessage-${objectmessage[e]}`
+                            ).innerHTML = `<p>${
+                                errormessage[objectmessage[e]]
+                            }</p>`;
+                            document.querySelector(
+                                `.errormessage-${objectmessage[e]}`
+                            ).style.display = "block";
+                            // document.querySelector(
+                            //     `.error-${objectmessage[e]}`
+                            // ).style.display = "block";
+                        }
+                    } else if (response.stats === 400) {
+                        for (let k = 0; k < objectmessage.length - 1; k++) {
+                            console.log(objectmessage[k]);
+                            // console.log(errormessage[objectmessage[k]]);
+                            // console.log(
+                            //     document.querySelector(
+                            //         `.errormessage-${objectmessage[k]}`
+                            //     )
+                            // );
+                            document.querySelector(
+                                `.errormessage-${objectmessage[k]}`
+                            ).innerHTML = `<p>${
+                                errormessage[objectmessage[k]]
+                            }</p>`;
+                            document.querySelector(
+                                `.errormessage-${objectmessage[k]}`
+                            ).style.display = "block";
+                            // document.querySelector(
+                            //     `.error-${objectmessage[k]}`
+                            // ).style.display = "block";
+                        }
+                        document.querySelector(
+                            ".errormessage-fotobarang"
+                        ).innerHTML = `<p>${response.fotobarang}</p>`;
+                        document.querySelector(
+                            `.errormessage-fotobarang`
+                        ).style.display = "block";
+                        // document.querySelector(
+                        //     `.error-fotoprofil`
+                        // ).style.display = "block";
+                    }
+                    // Object.keys(errormessage).forEach(
+                    //     (test) =>
+                    //     // (text_error.innerHTML +=
+                    //     //     "<span>*" +
+                    //     //     errormessage[test] +
+                    //     //     "</span>" +
+                    //     //     "<br>")
+                    // );
                 }
             },
         });

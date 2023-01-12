@@ -196,7 +196,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="raja_list" style="width: 97%; height: 550px; border-radius: 25px;">
+                <div class="raja_list" style="width: 97%; height: auto; border-radius: 25px;">
                     <form action="/beranda">
                         <div class="ps-5 pt-4 pb-5 d-flex justify-content-between" style="width: 95%;">
                             <div class="d-flex"
@@ -249,7 +249,7 @@
                                 </div>
                             @endif
                         </div>
-                        <span class="d-flex justify-content-center">
+                        <span class="d-flex justify-content-center" style="padding-bottom: 20px;">
                             {{ $AllItems->links() }}
                         </span>
                     </div>
@@ -339,7 +339,7 @@
                                     <tbody>
                                         @foreach ($AllItems as $AllItem)
                                             <tr class="">
-                                                <td class="pt-4 pb-4"><img src="\public\image\{{$AllItem->BarangUMKM->foto_barang}}" alt="Foto Profil" style="height: 60px;"></td>
+                                                <td class="pt-4 pb-4"><img src="\public\image\{{$AllItem->foto_barang}}" alt="Foto Profil" style="height: 60px;"></td>
                                                 <td class="pt-4 pb-4">{{ $AllItem->nama }}<br><span
                                                         style="opacity: 0.6;">00{{ $AllItem->id }}</span></td>
                                                 <td class="text-center pt-4 pb-4">{{ $AllItem->jenis }}</td>

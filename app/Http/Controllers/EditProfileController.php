@@ -58,7 +58,7 @@ class EditProfileController extends Controller
                 $user->foto_profile = $fileNameToStore;
             }
             $user->update();
-            return back()->with('success', 'Data Berhasil Diubah');
+            return back();
         }
 
         if(!Hash::check($output['password'], $auth->password)){
@@ -103,7 +103,6 @@ class EditProfileController extends Controller
                 $platIg->link = $platformInstagram;
                 $platIg->update();
             }else{
-                dd($id);
                 // $platformSosial->user_id = $id;
                 // $platformSosial->nama = "Instagram";
                 // $platformSosial->link = $platformInstagram;

@@ -11,7 +11,14 @@ class TokoController extends Controller
     public function getindex()
     {
         $flag = 5;
-        $Item = BarangPemasok::all();
+        $Item = BarangPemasok::paginate(12);
+        $Kategori = BarangPemasok::select('jenis', DB::raw('count(*) as total'))->groupBy('jenis')->get();
+        return view('toko', ['flag' => $flag, 'Item' => $Item, 'Kategori' => $Kategori]);
+    }
+
+    public function getDataByKategori($jenis){
+        $flag = 5;
+        $Item = BarangPemasok::where('jenis', '=', $jenis)->paginate(12);
         $Kategori = BarangPemasok::select('jenis', DB::raw('count(*) as total'))->groupBy('jenis')->get();
         return view('toko', ['flag' => $flag, 'Item' => $Item, 'Kategori' => $Kategori]);
     }

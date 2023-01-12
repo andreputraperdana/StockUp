@@ -47,7 +47,7 @@
 
 
         <div class="content_tambahbarang mt-5"
-            style="height: 850px; width: 100%; background-color: #F4F4F4; border-radius: 25px;">
+            style="height: 1000px; width: 100%; background-color: #F4F4F4; border-radius: 25px;">
             <div class="content_tambah d-flex" style="height: 80px;">
                 <button class="btn d-flex justify-content-center" id="btnBarangBaru"
                     style="width: 50%; background-color: #D7CAA0; border-radius: 25px 0 0 0;">
@@ -92,6 +92,9 @@
                                         aria-describedby="emailHelp" placeholder="Nama Barang"
                                         style="border: 1px solid #626262; background-color:transparent;">
                                 </div>
+                                <div class="errormessage-namabarang" style="display: none; color: red;">
+
+                                </div> 
                                 <div class="input_namabarangeksisting" style="display: none;">
                                     <select name="namabarangeksisting" class="namabarangeksisting p-2"
                                         style="color: #626262; border-radius: 5px;">>
@@ -102,6 +105,9 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="errormessage-namabarangeksisting" style="display: none; color: red;">
+
+                                </div> 
                             </div>
 
                             <div class="input_content_jenisbarang mt-3">
@@ -132,6 +138,9 @@
                                         <option value="Rumah tangga">Rumah tangga</option>
                                         <option value="Lainnya">Lainnya</option>
                                     </select>
+                                    <div class="errormessage-jenisbarang" style="display: none; color: red;">
+
+                                    </div> 
                                 </div>
                             </div>
 
@@ -147,6 +156,9 @@
                                         placeholder="Jumlah Barang"
                                         style="border: 1px solid #626262; background-color:transparent;">
                                 </div>
+                                <div class="errormessage-jumlahbarang" style="display: none; color: red;">
+
+                                </div> 
                             </div>
 
                             <div class="input_content_jumlahbarang mt-3">
@@ -161,6 +173,9 @@
                                         placeholder="Harga Barang"
                                         style="border: 1px solid #626262; background-color:transparent;">
                                 </div>
+                                <div class="errormessage-hargabarang" style="display: none; color: red;">
+
+                                </div> 
                             </div>
 
                             <div class="input_content_tanggalkadaluarsa mt-3">
@@ -189,6 +204,9 @@
                                         placeholder="Foto Barang"
                                         style="border: 1px solid #626262; background-color:transparent;">
                                 </div>
+                                <div class="errormessage-fotobarang" style="display: none; color: red;">
+
+                                </div> 
                             </div>
                         </div>
                     </div>
@@ -222,6 +240,9 @@
         <div class="overlay hidden"></div>
         <div style="visibility:hidden">
             <p class="tanda">{{ $flag }}</p>
+        </div>
+        <div class="role" style="visibility: hidden;">
+            <input type="hidden" id="penanda" value="1">
         </div>
     @endsection
 @elseif(auth()->user()->role_id == 2)
@@ -261,7 +282,7 @@
             </div>
         </div>
         <div class="content_tambahbarang mt-5"
-            style="height: 850px; width: 100%; background-color: #F4F4F4; border-radius: 25px;">
+            style="height: 1000px; width: 100%; background-color: #F4F4F4; border-radius: 25px;">
             <div class="isi_content_tambahbarang" style="width: 100%;">
                 <form method="POST" enctype="multipart/form-data" id="tambahbarang">
                     @csrf
@@ -279,6 +300,9 @@
                                         name="namabarang" aria-describedby="emailHelp" placeholder="Nama Barang"
                                         style="border: 1px solid #626262; background-color:transparent;">
                                 </div>
+                                <div class="errormessage-namabarang" style="display: none; color: red;">
+
+                                </div> 
                             </div>
 
                             <div class="input_content_jenisbarang mt-3">
@@ -310,6 +334,9 @@
                                         <option value="Lainnya">Lainnya</option>
                                     </select>
                                 </div>
+                                <div class="errormessage-jenisbarang" style="display: none; color: red;">
+
+                                </div> 
                             </div>
 
                             <div class="input_content_jumlahbarang mt-3">
@@ -324,6 +351,9 @@
                                         placeholder="Harga Barang"
                                         style="border: 1px solid #626262; background-color:transparent;">
                                 </div>
+                                <div class="errormessage-hargabarang" style="display: none; color: red;">
+
+                                </div> 
                             </div>
                             <div class="input_content_tanggalkadaluarsa mt-3">
                                 <div class="input_judul_tanggalkadaluarsa">
@@ -335,6 +365,9 @@
                                     <textarea id="deskripsi" name="deskripsi" rows="4" cols="50" placeholder="Deskripsi"
                                         style="border: 1px solid #626262; background-color:transparent; width: 100%;"></textarea>
                                 </div>
+                                <div class="errormessage-deskripsi" style="display: none; color: red;">
+
+                                </div> 
                             </div>
 
                             <div class="input_content_fotobarang mt-3">
@@ -349,6 +382,9 @@
                                         placeholder="Foto Barang"
                                         style="border: 1px solid #626262; background-color:transparent;">
                                 </div>
+                                <div class="errormessage-fotobarang " style="display: none; color: red;">
+
+                                </div> 
                             </div>
                         </div>
                     </div>
@@ -382,6 +418,9 @@
         <div class="overlay hidden"></div>
         <div style="visibility:hidden">
             <p class="tanda">{{ $flag }}</p>
+        </div>
+        <div class="role" style="visibility: hidden;">
+            <input type="hidden" id="penanda" value="2">
         </div>
     @endsection
 @endif

@@ -35,3 +35,12 @@ if (document.querySelector(".tanda").innerHTML == "5") {
     document.querySelector("#tko").style.fontWeight = "700";
     document.querySelector(".menu_tko").classList.add("actives");
 }
+
+const lokasi = window.location.href;
+
+const kategori_a = document.querySelector(`a.${lokasi.substring(27).replaceAll("%20", ".")}`);
+const kategori_p = document.querySelector(`p.${lokasi.substring(27).replaceAll("%20", ".")}`);
+kategori_a.style.color = "#D7CAA0";
+kategori_p.style.color = "#D7CAA0";
+
+console.log(kategori_a, kategori_p);
