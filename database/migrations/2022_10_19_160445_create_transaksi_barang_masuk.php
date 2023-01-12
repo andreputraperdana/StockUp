@@ -20,7 +20,7 @@ return new class extends Migration
             $table->double('harga');
             $table->integer('jumlah');
             $table->integer('stockawal');
-            $table->date('tanggal_kadaluarsa');
+            $table->date('tanggal_kadaluarsa')->nullable();
             $table->timestamps();
             $table->integer('notif_flag');
         });

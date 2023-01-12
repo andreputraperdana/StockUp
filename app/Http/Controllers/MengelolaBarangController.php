@@ -23,10 +23,10 @@ class MengelolaBarangController extends Controller
         if($user == 'UMKM'){
             $flag = 4;
             // $AllItems = TransaksiBarangMasuk::groupBy('barang_umkm_id')->select('barang_umkm_id', DB::raw('SUM(jumlah) as total'))->get();
-            $AllItems = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id')->select('barang_umkm_id', DB::raw('SUM(jumlah) as total'))->where('transaksi_barang_masuk.jumlah', '>', 1)->paginate(3);
+            $AllItems = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id')->select('barang_umkm_id', DB::raw('SUM(jumlah) as total'))->where('transaksi_barang_masuk.jumlah', '>', 1)->where('user_id','=', $auth->id)->paginate(3);
             if (request('search')) {
                 $cari = request('search');
-                $AllItems = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id')->select('barang_umkm_id', DB::raw('SUM(jumlah) as total'))->where('barang_umkm.nama', 'like', "%" . $cari . "%")->where('transaksi_barang_masuk.jumlah', '>', 1)->paginate(3);
+                $AllItems = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id')->select('barang_umkm_id', DB::raw('SUM(jumlah) as total'))->where('barang_umkm.nama', 'like', "%" . $cari . "%")->where('transaksi_barang_masuk.jumlah', '>', 1)->where('user_id','=', $auth->id)->paginate(3);
             }
         }else if($user == 'Pemasok'){
             $flag = 4;
