@@ -22,7 +22,6 @@ class TambahBarangController extends Controller
     public function inputbarang(Request $request)
     {
         $User = $this->CheckUser();
-
         if($User == 'UMKM'){
             $hasilinput = $request->input();
             if($hasilinput['jenisAllbarang'] == 'Barang Baru'){

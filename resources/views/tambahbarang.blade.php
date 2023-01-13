@@ -193,8 +193,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <input type="hidden" name="jenisAllbarang" value="Barang Baru">
                             <div class="button_simpan d-flex justify-content-center pt-5 mt-2">
-                                <button type="submit" class="btn btn-primary ps-5 pe-5 " id="btn_simpan" name="jenisAllbarang" value="Barang Baru"
+                                <button type="submit" class="btn btn-primary ps-5 pe-5 " id="btn_simpan"
                                     style="background-color: #D7CAA0; width: 25%; border: none; font-weight: bold; color: black;">Simpan</button>
                             </div>
                         </div>
@@ -202,7 +203,7 @@
             </div>
 
             <div class="barangExisting" style="display: none;">
-            <form method="POST" enctype="multipart/form-data" id="tambahbarang">
+            <form method="POST" enctype="multipart/form-data" id="tambahbarangexisting">
                     @csrf
                         <div class="judul_content_tambahbarang text-center pt-5">
                             <label for="">
@@ -244,7 +245,7 @@
                                                 placeholder="Jumlah Barang"
                                                 style="border: 1px solid #626262; background-color:transparent;">
                                         </div>
-                                        <div class="errormessage-jumlahbarang" style="display: none; color: red;">
+                                        <div class="errormessage-jumlahbarang-1" style="display: none; color: red;">
         
                                         </div> 
                                     </div>
@@ -261,7 +262,7 @@
                                                 placeholder="Harga Barang"
                                                 style="border: 1px solid #626262; background-color:transparent;">
                                         </div>
-                                        <div class="errormessage-hargabarang" style="display: none; color: red;">
+                                        <div class="errormessage-hargabarang-1" style="display: none; color: red;">
         
                                         </div> 
                                     </div>
@@ -281,8 +282,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <input type="hidden" name="jenisAllbarang" value="Barang Existing">
                             <div class="button_simpan d-flex justify-content-center pt-5 mt-2">
-                                <button type="submit" class="btn btn-primary ps-5 pe-5 " id="btn_simpan1" name="jenisAllbarang" value="Barang Existing"
+                                <button type="submit" class="btn btn-primary ps-5 pe-5 " id="btn_simpan1"
                                     style="background-color: #D7CAA0; width: 25%; border: none; font-weight: bold; color: black;">Simpan</button>
                             </div>
                         </div>
