@@ -99,12 +99,12 @@ $(document).ready(function () {
                     const errormessage = response.error;
                     console.log(errormessage);
                     const objectmessages = Object.keys(errormessage);
-                    if (!errormessage.hasOwnProperty("namabarangeksisting")) {
+                    if (!errormessage.hasOwnProperty("namabarangeksisting-1")) {
                         document.querySelector(
-                            ".errormessage-namabarangeksisting"
+                            ".errormessage-namabarangeksisting-1"
                         ).innerHTML = "";
                         document.querySelector(
-                            ".errormessage-namabarangeksisting"
+                            ".errormessage-namabarangeksisting-1"
                         ).style.display = "none";
                         // document.querySelector(".error-namabarang").style.display =
                         //     "none";

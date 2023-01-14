@@ -27,6 +27,43 @@ function outputhasil(ouptut) {
     }
 }
 
+function deleteConfirmation(barangid) {
+    swal({
+        title: "Delete?",
+        text: "Apakah Anda ingin menghapus barang ini!",
+        type: "warning",
+        showCancelButton: !0,
+        confirmButtonText: "Ya",
+        cancelButtonText: "Tidak",
+        reverseButtons: !0,
+    }).then(
+        function (e) {
+            // console.log(e.value);
+            if (e.value === true) {
+                var data = {
+                    _token: $('meta[name="csrf-token"]').attr("content"),
+                    id: barangid,
+                };
+                $.ajax({
+                    type: "DELETE",
+                    url: `/listbarangs/${barangid}`,
+                    data: data,
+                    success: function (response) {
+                        swal("Berhasil", response.stats).then((result) => {
+                            location.reload();
+                        });
+                    },
+                });
+            } else {
+                e.dismiss;
+            }
+        },
+        function (dismiss) {
+            return false;
+        }
+    );
+}
+
 slidebar.addEventListener("mouseover", function (e) {
     // console.log(this.classList);
     this.style.width = "250px";
@@ -53,11 +90,11 @@ if (document.querySelector(".tanda").innerHTML == "4") {
     document.querySelector(".menu_mnglola").classList.add("actives");
 }
 
-butondelete.addEventListener("click", function (e) {
-    var p = e.parentNode.parentNode;
-    console.log(p);
-    p.parentNode.removeChild(p);
-});
+// butondelete.addEventListener("click", function (e) {
+//     var p = e.parentNode.parentNode;
+//     console.log(p);
+//     p.parentNode.removeChild(p);
+// });
 
 // function myFunction(event) {
 //     var btnexpand = event;

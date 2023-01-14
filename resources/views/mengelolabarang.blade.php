@@ -134,13 +134,13 @@
                                 <div class="item_list_hidden" id="list_Allitem" style="width: 100%;">
                                     <div class="" style="width: 100%;">
                                         <div class="" style="width: 100%; font-size: 16px;">
-                                            <div class="table-body-cell text-center" style="width: 20%;">
+                                            <div class="table-body-cell text-center" style="width: 25%;">
                                                 ID
                                             </div>
-                                            <div class="table-body-cell text-center" style="width: 20%;">
+                                            <div class="table-body-cell text-center" style="width: 16%;">
                                                 Kuantitas
                                             </div>
-                                            <div class="table-body-cell text-center" style="width: 22%;">
+                                            <div class="table-body-cell text-center" style="width: 30%;">
                                                 Harga
                                             </div>
                                             <div class="table-body-cell text-center" style="width: 20%;">

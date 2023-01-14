@@ -229,7 +229,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="errormessage-namabarangeksisting" style="display: none; color: red;">
+                                        <div class="errormessage-namabarangeksisting-1" style="display: none; color: red;">
                                         </div> 
                                     </div>
         

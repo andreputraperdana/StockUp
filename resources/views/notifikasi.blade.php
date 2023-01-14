@@ -21,8 +21,8 @@
         <div class="content_tambahbarang mt-5" style="height: 650px; width: 100%; background-color: #F4F4F4; border-radius: 25px;" >
            <div class="d-flex justify-content-start pt-5" style="width: 100%;">
             <div class="daftar_profil_kanan_kategori mb-3 ps-5" style="width: 30%;">
-                 <select name="kategori" class="kategori p-2" style="color: #626262; border-radius: 5px;">
-                    <option value="Barang Kadaluarsa">Semua Jenis Notifikasi</option> 
+                 <select name="kategori" class="kategori p-2" style="color: #626262; border-radius: 5px;" onchange="outputchange(this)">
+                    <option value="Semua Barang">Semua Jenis Notifikasi</option> 
                     <option value="Barang Habis">Barang Habis/Akan Habis</option>
                     <option value="Barang Kadaluarsa">Barang Akan Kadaluarsa</option>
                  </select>
@@ -41,6 +41,7 @@
             </div>
         </div>
         @else
+        <div class="AllNotif">
             @foreach($Allbarang as $AllBarang)
             @if(empty($AllBarang->Total))    
             <form action="/detailnotif" method="POST">
@@ -102,6 +103,7 @@
         
         <div class="d-flex justify-content-center">
             {{$Allbarang->links()}}
+        </div>
         </div>
     </div>
 
