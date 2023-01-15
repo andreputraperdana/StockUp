@@ -177,7 +177,7 @@
                 <div class="notif_text_judul text-center">
                     <h1>Barang Keluar</h1>
                 </div>
-                <form action="/barangkeluar" method="POST">
+                <form action="/barangkeluar" method="POST" enctype="multipart/form-data" id="submitbarang">
                     @csrf
                     <div class="notif_content d-flex justify-content-center">
                         <div class="popupbarangkeluar d-flex pt-4">
@@ -230,9 +230,17 @@
                     <div class="button_simpan d-flex justify-content-center pt-4">
                         <button type="submit" class="btn btn-primary ps-5 pe-5" id="btn_simpan"
                             style="background-color: #d7caa0; width: 25%; border: none; font-weight: bold; color: black;"
-                            name="roleid" value="1">Simpan</button>
+                            >Simpan</button>
                     </div>
                 </form>
+            </div>
+
+            <div class="hidden">
+                    <div class="imagedelete">
+                        <div class="notif_image text-center ps-4" style="height: 300px;">
+                            <img src="{{ URL::asset('maskot2.png') }}" alt="">
+                        </div>
+                    </div>
             </div>
             <div class="overlay hidden"></div>
         @endsection

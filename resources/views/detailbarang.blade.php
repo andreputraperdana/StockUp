@@ -16,7 +16,11 @@
                                 @php
                                     $total +=1 ;
                                 @endphp
-                                <option value="{{$detail->id}}">{{$detail->barang_umkm_id}}-00{{$total}} / {{$detail->tanggal_kadaluarsa}}</option>
+                                @if(is_null($detail->tanggal_kadaluarsa))
+                                    <option value="{{$detail->id}}">{{$detail->barang_umkm_id}}-00{{$total}}</option>
+                                @else
+                                    <option value="{{$detail->id}}">{{$detail->barang_umkm_id}}-00{{$total}} / {{$detail->tanggal_kadaluarsa}}</option>
+                                @endif
                             @endforeach
                         </select>
                      </div>
