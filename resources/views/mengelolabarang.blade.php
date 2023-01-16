@@ -169,6 +169,7 @@
             <span class="d-flex justify-content-center">
                 {{ $AllItems->links() }}
             </span>
+        </div>
             <div style="visibility:hidden">
                 <p class="tanda">{{ $flag }}</p>
             </div>
@@ -243,6 +244,7 @@
                     </div>
             </div>
             <div class="overlay hidden"></div>
+    
         @endsection
     @elseif(auth()->user()->role_id == 2)
         @section('javascript')

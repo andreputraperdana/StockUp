@@ -1125,11 +1125,15 @@ ul#menu_bar li:hover::before {
 .swal2-cancel {
     background-color: #d7caa0 !important
     ;
+    color: #000 !important;
+    font-weight: bold !important;
 }
 
 .swal2-confirm {
     background-color: #d7caa0 !important
     ;
+    color: #000 !important;
+    font-weight: bold !important;
 }
 /* .swal-all {
     height: 400px;
