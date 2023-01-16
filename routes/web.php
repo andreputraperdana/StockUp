@@ -71,6 +71,8 @@ Route::get('/editbarang/{id}', [EditBarangController::class, 'getindex']);
 
 Route::get('/notifikasi', [NotifikasiController::class, 'getindex']);
 
+Route::get('/notifikasifilter/{id}', [NotifikasiController::class, 'filternotif']);
+
 Route::get('/item/{id}', [ItemController::class, 'getindex']);
 
 Route::get('/profiltoko/{id}', [ProfilTokoController::class, 'getindex']);
@@ -81,7 +83,7 @@ Route::get('/ajaxData', [MengelolaBarangController::class, 'ajaxData']);
 
 Route::get('/listbarang/{id}', [ListBarangController::class, 'getindex']);
 
-Route::delete('/listbarang/{id}', [ListBarangController::class, 'destroy'])->name('barang.destroy');
+Route::delete('/listbarangs/{id}', [ListBarangController::class, 'destroy'])->name('barang.destroy');
 
 Route::delete('/mengelolabarang/{id}', [MengelolaBarangController::class, 'destroy'])->name('users.destroy');
 

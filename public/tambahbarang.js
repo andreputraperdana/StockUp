@@ -14,6 +14,8 @@ const notification = document.querySelector(".notif_success");
 const judulTambahBarangExist = document.querySelector(
     ".judul_content_tambahbarangexist"
 );
+const BarangBaruContent = document.querySelector(".barangBaru");
+const BarangExistingContent = document.querySelector(".barangExisting");
 
 const inputTanggalKadaluarsa = document.querySelector(
     ".input_content_tanggalkadaluarsa"
@@ -48,15 +50,8 @@ if (buttonBarangBaru) {
     buttonBarangBaru.addEventListener("click", function (e) {
         buttonBarangBaru.style.backgroundColor = "#D7CAA0";
         buttonBarangExist.style.backgroundColor = "#FFFFFF";
-        inputTambahBarang.style.display = "block";
-        inputJenisBarang.style.display = "block";
-        inputJumlahBarang.style.display = "block";
-        inputbarangbaru.style.display = "block";
-        inputbarangeksisting.style.display = "none";
-        inputTanggalKadaluarsa.style.display = "block";
-        inputFoto.style.display = "block";
-        judulTambahBarang.style.display = "block";
-        judulTambahBarangExist.style.display = "none";
+        BarangBaruContent.style.display = "block";
+        BarangExistingContent.style.display = "none";
     });
 }
 
@@ -64,12 +59,8 @@ if (buttonBarangExist) {
     buttonBarangExist.addEventListener("click", function (e) {
         buttonBarangExist.style.backgroundColor = "#D7CAA0";
         buttonBarangBaru.style.backgroundColor = "#FFFFFF";
-        inputJenisBarang.style.display = "none";
-        inputbarangbaru.style.display = "none";
-        inputbarangeksisting.style.display = "block";
-        inputFoto.style.display = "none";
-        judulTambahBarang.style.display = "none";
-        judulTambahBarangExist.style.display = "block";
+        BarangBaruContent.style.display = "none";
+        BarangExistingContent.style.display = "block";
     });
 }
 
@@ -78,6 +69,77 @@ if (document.querySelector(".tanda").innerHTML == "2") {
     document.querySelector("#tmbhBrg").style.fontWeight = "700";
     document.querySelector(".menu_tmbhbrg").classList.add("actives");
 }
+
+$(document).ready(function () {
+    $(document).on("submit", "#tambahbarangexisting", function (e) {
+        e.preventDefault();
+        let formData = new FormData($("#tambahbarangexisting")[0]);
+        // overlay.classList.remove("hidden");
+        // notification.classList.remove("hidden");
+        // console.log(hasil);
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        });
+        console.log(formData);
+        $.ajax({
+            type: "POST",
+            url: "/tambahbarang",
+            data: formData,
+            // dataType: "json",
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                // console.log(response.stats);
+                if (response.stats === 200) {
+                    overlay.classList.remove("hidden");
+                    notification.classList.remove("hidden");
+                } else if (response.stats === 100) {
+                    const errormessage = response.error;
+                    console.log(errormessage);
+                    const objectmessages = Object.keys(errormessage);
+                    if (!errormessage.hasOwnProperty("namabarangeksisting-1")) {
+                        document.querySelector(
+                            ".errormessage-namabarangeksisting-1"
+                        ).innerHTML = "";
+                        document.querySelector(
+                            ".errormessage-namabarangeksisting-1"
+                        ).style.display = "none";
+                        // document.querySelector(".error-namabarang").style.display =
+                        //     "none";
+                    }
+                    if (!errormessage.hasOwnProperty("jumlahbarang")) {
+                        document.querySelector(
+                            ".errormessage-jumlahbarang-1"
+                        ).innerHTML = "";
+                        document.querySelector(
+                            ".errormessage-jumlahbarang-1"
+                        ).style.display = "none";
+                    }
+                    if (!errormessage.hasOwnProperty("hargabarang")) {
+                        document.querySelector(
+                            ".errormessage-hargabarang-1"
+                        ).innerHTML = "";
+                        document.querySelector(
+                            ".errormessage-hargabarang-1"
+                        ).style.display = "none";
+                    }
+                    for (let e = 0; e < objectmessages.length; e++) {
+                        document.querySelector(
+                            `.errormessage-${objectmessages[e]}-1`
+                        ).innerHTML = `<p>${
+                            errormessage[objectmessages[e]]
+                        }</p>`;
+                        document.querySelector(
+                            `.errormessage-${objectmessages[e]}-1`
+                        ).style.display = "block";
+                    }
+                }
+            },
+        });
+    });
+});
 
 $(document).ready(function () {
     $(document).on("submit", "#tambahbarang", function (e) {
@@ -101,11 +163,11 @@ $(document).ready(function () {
             processData: false,
             success: function (response) {
                 console.log(response);
-                // console.log(response.stats);
+                // // console.log(response.stats);
                 if (response.stats === 200) {
                     overlay.classList.remove("hidden");
                     notification.classList.remove("hidden");
-                }else if (response.stats === 300 || response.stats === 400) {
+                } else if (response.stats === 300 || response.stats === 400) {
                     const errormessage = response.error;
                     console.log(errormessage);
                     // text_error.innerHTML = "";
@@ -136,10 +198,11 @@ $(document).ready(function () {
                         //     ".error-jenisbarang"
                         // ).style.display = "none";
                     }
-                    if(document.querySelector("#penanda").value == 1){
+                    if (document.querySelector("#penanda").value == 1) {
                         if (!errormessage.hasOwnProperty("jumlahbarang")) {
-                            document.querySelector(".errormessage-jumlahbarang").innerHTML =
-                                "";
+                            document.querySelector(
+                                ".errormessage-jumlahbarang"
+                            ).innerHTML = "";
                             document.querySelector(
                                 ".errormessage-jumlahbarang"
                             ).style.display = "none";

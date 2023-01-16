@@ -547,7 +547,6 @@ li {
     border-radius: 25px;
 }
 
-
 /* TABLE BOOTSTRAP*/
 
 .tableMengelola {
@@ -568,11 +567,12 @@ th {
     width: 200px;
 }
 
-td{
+td {
     width: 195px;
 }
 
-td, th {
+td,
+th {
     padding: 5px;
     text-align: center;
 }
@@ -728,7 +728,8 @@ td, th {
     transition: all 0.5s;
 }
 
-.btn2, .btn3 {
+.btn2,
+.btn3 {
     border: 2px solid #d7caa0;
     border-radius: 7px;
     box-shadow: #f4f4f4 4px 4px 0 0;
@@ -1104,3 +1105,36 @@ ul#menu_bar li:hover::before {
     z-index: 1000;
     transition: all 0.5s;
 }
+
+.popup_baranghapus {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: 450px;
+    background-color: #f4f4f4;
+    z-index: 1000;
+    transition: all 0.5s;
+}
+
+.swal2-title {
+    max-height: 280px !important;
+}
+
+.swal2-cancel {
+    background-color: #d7caa0 !important
+    ;
+}
+
+.swal2-confirm {
+    background-color: #d7caa0 !important
+    ;
+}
+/* .swal-all {
+    height: 400px;
+} */
+
+/* .swal2-popup {
+    max-height: 400px !important;
+} */ ;

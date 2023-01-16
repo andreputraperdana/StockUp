@@ -22,29 +22,42 @@ class TambahBarangController extends Controller
     public function inputbarang(Request $request)
     {
         $User = $this->CheckUser();
-
         if($User == 'UMKM'){
-            $validate = Validator::make($request->all(), [
-                'namabarang' => 'required',
-                'jenisbarang'=> 'required',
-                'jumlahbarang' => 'required',
-                'hargabarang' => 'required',
-                'fotobarang' => 'mimes:jpeg,jpg,png,gif|required|max:10000'
-            ]);
-            if($validate->fails()){
-                if($validate->errors()->first('fotobarang')){
-                    return response()->json(['stats'=>400, 'error'=>$validate->errors(), 'fotobarang'=> $validate->errors()->first('fotobarang')]);
+            $hasilinput = $request->input();
+            if($hasilinput['jenisAllbarang'] == 'Barang Baru'){
+                $validate = Validator::make($request->all(), [
+                    'namabarang' => 'required',
+                    'jenisbarang'=> 'required',
+                    'jumlahbarang' => 'required',
+                    'hargabarang' => 'required',
+                    'fotobarang' => 'mimes:jpeg,jpg,png,gif|required|max:10000'
+                ]);
+                if($validate->fails()){
+                    if($validate->errors()->first('fotobarang')){
+                        return response()->json(['stats'=>400, 'error'=>$validate->errors(), 'fotobarang'=> $validate->errors()->first('fotobarang')]);
+                    }
+                    else{
+                        return response()->json(['stats'=>300, 'error'=>$validate->errors()]);
+                    }
+                }else{
+                        $barangUMKM = $this->inputbarangUMKM($request);
+                        $this->inputbarangMasuk($request, $barangUMKM);
+                        return response()->json(['stats' => 200]);
+                }
+            }
+            else if($hasilinput['jenisAllbarang'] == 'Barang Existing'){
+                $validates = Validator::make($request->all(), [
+                    'namabarangeksisting' => 'required',
+                    'jumlahbarang' => 'required',
+                    'hargabarang' => 'required',
+                ]);
+                if($validates->fails()){
+                    return response()->json(['stats'=>100, 'error'=>$validates->errors()]);
                 }
                 else{
-                    return response()->json(['stats'=>300, 'error'=>$validate->errors()]);
-                }
-            }else{
-                $checkbarang = BarangUMKM::where('nama', $request->namabarangeksisting)->first();
-                if (!$checkbarang) {
-                    $barangUMKM = $this->inputbarangUMKM($request);
-                    $this->inputbarangMasuk($request, $barangUMKM);
-                } else {
+                    $checkbarang = BarangUMKM::where('nama', '=', $hasilinput['namabarangeksisting'])->first();
                     $this->inputbarangMasukExisting($request, $checkbarang);
+                    return response()->json(['stats' => 200]);
                 }
             }
         }
@@ -124,7 +137,7 @@ class TambahBarangController extends Controller
         $transaksibarangmasuk = new TransaksiBarangMasuk;
         $transaksibarangmasuk->barang_umkm_id = $barangUMKM->id;
         $transaksibarangmasuk->jumlah = $output['jumlahbarang'];
-        $transaksibarangmasuk->stockawal = $output['jumlahbarang'];
+        $transaksibarangmasuk->stockawal =$output['jumlahbarang'];
         $transaksibarangmasuk->harga = $output['hargabarang'];
         $transaksibarangmasuk->tanggal_kadaluarsa = $output['tanggalkadaluarsa'];
         $transaksibarangmasuk->notif_flag = 0;

@@ -13,10 +13,13 @@ let content = document.querySelector(".content_tambahbarang");
 // );
 const pengeluaran = document.querySelector("select.pengeluaran");
 
+const popupbarangdelete = document.querySelector(".testpopup");
 const id_tanggalkadaluarsa = document.querySelector(".popupkontenidtanggal");
 const daftaridtanggal = document.querySelector(
     ".daftar_profil_kiri_id_kadaluarsa"
 );
+
+const imagedeletebarang = document.querySelector(".imagedelete");
 function outputhasil(ouptut) {
     if (ouptut.value === "Manual") {
         daftaridtanggal.style.display = "block";
@@ -25,6 +28,43 @@ function outputhasil(ouptut) {
         daftaridtanggal.style.display = "none";
         id_tanggalkadaluarsa.style.display = "none";
     }
+}
+
+function deleteConfirmation(barangid) {
+    swal({
+        title: imagedeletebarang.innerHTML,
+        html: "Apakah Anda ingin<br>menghapus barang ini!",
+        showCancelButton: !0,
+        confirmButtonText: "Ya",
+        cancelButtonText: "Tidak",
+        reverseButtons: !0,
+        background: "#f4f4f4",
+    }).then(
+        function (e) {
+            // console.log(e.value);
+            if (e.value === true) {
+                var data = {
+                    _token: $('meta[name="csrf-token"]').attr("content"),
+                    id: barangid,
+                };
+                $.ajax({
+                    type: "DELETE",
+                    url: `/listbarangs/${barangid}`,
+                    data: data,
+                    success: function (response) {
+                        swal("Berhasil", response.stats).then((result) => {
+                            location.reload();
+                        });
+                    },
+                });
+            } else {
+                e.dismiss;
+            }
+        },
+        function (dismiss) {
+            return false;
+        }
+    );
 }
 
 slidebar.addEventListener("mouseover", function (e) {
@@ -53,11 +93,11 @@ if (document.querySelector(".tanda").innerHTML == "4") {
     document.querySelector(".menu_mnglola").classList.add("actives");
 }
 
-butondelete.addEventListener("click", function (e) {
-    var p = e.parentNode.parentNode;
-    console.log(p);
-    p.parentNode.removeChild(p);
-});
+// butondelete.addEventListener("click", function (e) {
+//     var p = e.parentNode.parentNode;
+//     console.log(p);
+//     p.parentNode.removeChild(p);
+// });
 
 // function myFunction(event) {
 //     var btnexpand = event;
@@ -202,14 +242,46 @@ window.addEventListener("click", function (event) {
     }
 });
 
-var req = new XMLHttpRequest();
+$(document).ready(function () {
+    $(document).on("submit", "#submitbarang", function (e) {
+        e.preventDefault();
+        let hasil = new FormData($("#submitbarang")[0]);
 
-req.open("GET", "/ajaxData", true);
-req.send();
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        });
 
-req.onreadystatechange = function () {
-    if (req.readyState == 4 && req.status == 200) {
-        var obj = JSON.parse(req.responseText);
-        // console.log(obj);
-    }
-};
+        console.log(hasil);
+        $.ajax({
+            type: "POST",
+            url: "/barangkeluar",
+            data: hasil,
+            dataType: "json",
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if (response.stats) {
+                    overlay.classList.add("hidden");
+                    popupbarangkeluar.classList.add("hidden");
+                    swal("Berhasil", response.stats).then((result) => {
+                        location.reload();
+                    });
+                }
+            },
+        });
+    });
+});
+
+// var req = new XMLHttpRequest();
+
+// req.open("GET", "/ajaxData", true);
+// req.send();
+
+// req.onreadystatechange = function () {
+//     if (req.readyState == 4 && req.status == 200) {
+//         var obj = JSON.parse(req.responseText);
+//         // console.log(obj);
+//     }
+// };

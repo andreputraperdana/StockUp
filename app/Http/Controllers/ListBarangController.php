@@ -14,14 +14,15 @@ class ListBarangController extends Controller
         return view('listbarang',  ['hasil'=> $hasil]);
     }
 
-    public function destroy($id, Request $request){
-        $barangUMKMID = $request->input('barang_umkm_id');
+    public function destroy($id){
+        $barangUMKMIDSearch = TransaksiBarangMasuk::where('id', '=', $id)->first();
+        $barangUMKMID = $barangUMKMIDSearch['barang_umkm_id'];
         $transaksiBarangMasuk = TransaksiBarangMasuk::where('barang_umkm_id', '=', $barangUMKMID)->count();
         if($transaksiBarangMasuk == 1){
             DB::delete('DELETE FROM barang_umkm WHERE id = ?', [$barangUMKMID]);
         }else{
             DB::delete('DELETE FROM transaksi_barang_masuk WHERE id = ?', [$id]);
         }
-        return redirect('mengelolabarang')->with('success','Barang Telah Di hapus');
+        return response()->json(['stats' => 'Data berhasil dihapus']);
     }
 }

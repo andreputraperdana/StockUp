@@ -23,10 +23,10 @@ class MengelolaBarangController extends Controller
         if($user == 'UMKM'){
             $flag = 4;
             // $AllItems = TransaksiBarangMasuk::groupBy('barang_umkm_id')->select('barang_umkm_id', DB::raw('SUM(jumlah) as total'))->get();
-            $AllItems = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id')->select('barang_umkm_id', DB::raw('SUM(jumlah) as total'))->where('transaksi_barang_masuk.jumlah', '>', 1)->paginate(3);
+            $AllItems = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id')->select('barang_umkm_id', DB::raw('SUM(jumlah) as total'))->where('transaksi_barang_masuk.jumlah', '>', 1)->where('user_id','=', $auth->id)->paginate(3);
             if (request('search')) {
                 $cari = request('search');
-                $AllItems = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id')->select('barang_umkm_id', DB::raw('SUM(jumlah) as total'))->where('barang_umkm.nama', 'like', "%" . $cari . "%")->where('transaksi_barang_masuk.jumlah', '>', 1)->paginate(3);
+                $AllItems = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id')->select('barang_umkm_id', DB::raw('SUM(jumlah) as total'))->where('barang_umkm.nama', 'like', "%" . $cari . "%")->where('transaksi_barang_masuk.jumlah', '>', 1)->where('user_id','=', $auth->id)->paginate(3);
             }
         }else if($user == 'Pemasok'){
             $flag = 4;
@@ -65,10 +65,10 @@ class MengelolaBarangController extends Controller
             $this->InsertBarangKeluar($NewBarangKeluar, $BarangMasuk['id'], $inputbarangkeluar);
         }
         else if($inputbarangkeluar['pengeluaran'] == "FIFO"){   
-            $BarangUMKMid =  $this->GetBarangMasukPertama($inputbarangkeluar);
+            $this->GetBarangMasukPertama($inputbarangkeluar);
         }
 
-        return redirect()->back();
+        return response()->json(['stats'=>"Data Berhasil Dikeluarkan"]);
     }
 
     public function CheckUser(){
@@ -91,7 +91,6 @@ class MengelolaBarangController extends Controller
         $BarangUMKMAll = TransaksiBarangMasuk::where('barang_umkm_id', '=', $Barang_UMKM)->get();
         $TotalBarang = Count($BarangUMKMAll);
         $JumlahBarang = $inputbarangkeluar['kuantitas'];
-        $NewBarangKeluar = new TransaksiBarangKeluar();
         // dd($BarangUMKMAll[1]['jumlah']);
         for($j=0; $j<$TotalBarang; $j++){
             if($BarangUMKMAll[$j]['jumlah'] == 0){
@@ -102,12 +101,12 @@ class MengelolaBarangController extends Controller
                     $JumlahBarang -= $BarangUMKMAll[$j]['jumlah'];
                     $BarangUMKMAll[$j]['jumlah']  = 0;
                     $BarangUMKMAll[$j]->save();
-                    $this->InsertBarangKeluar($NewBarangKeluar, $BarangUMKMAll[$j]['id'], $BarangUMKMAll[$j]['jumlah']);
+                    $this->InsertBarangKeluarFIFO($BarangUMKMAll[$j]['id'], $BarangUMKMAll[$j]['stockawal']);
                 }
-                else if($JumlahBarang < $BarangUMKMAll[$j]['jumlah']){
+                else if($JumlahBarang <= $BarangUMKMAll[$j]['jumlah']){
                     $BarangUMKMAll[$j]['jumlah'] -= $JumlahBarang;
                     $BarangUMKMAll[$j]->save();
-                    $this->InsertBarangKeluar($NewBarangKeluar, $BarangUMKMAll[$j]['id'], $BarangUMKMAll[$j]['jumlah']);
+                    $this->InsertBarangKeluarFIFO($BarangUMKMAll[$j]['id'], $JumlahBarang);
                     break;
                 }
             }
@@ -115,9 +114,16 @@ class MengelolaBarangController extends Controller
 
     }
 
+    public function InsertBarangKeluarFIFO($BarangUMKMid, $jumlahbarang){
+        $NewBarangKeluar = new TransaksiBarangKeluar();
+        $NewBarangKeluar['transaksi_barang_masuk_id'] = $BarangUMKMid;
+        $NewBarangKeluar['jumlah'] = $jumlahbarang;
+        $NewBarangKeluar->save();
+    }
+
     public function InsertBarangKeluar($NewBarangKeluar, $BarangUMKMid, $inputbarangkeluar){
         $NewBarangKeluar['transaksi_barang_masuk_id'] = $BarangUMKMid;
-        $NewBarangKeluar['jumlah'] = $inputbarangkeluar;
+        $NewBarangKeluar['jumlah'] = $inputbarangkeluar['kuantitas'];
         $NewBarangKeluar->save();
     }
 

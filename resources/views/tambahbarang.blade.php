@@ -65,158 +65,230 @@
                 </button>
             </div>
 
-            <div class="isi_content_tambahbarang mt-4" style="width: 100%;">
+     
+            <div class="barangBaru" style="display: block;">         
                 <form method="POST" enctype="multipart/form-data" id="tambahbarang">
                     @csrf
-                    <div class="judul_content_tambahbarang text-center">
+                    <div class="judul_content_tambahbarang text-center pt-5">
                         <label for="">
                             <p style="font-size: 25px; font-weight: bold;">Barang Baru</p>
                         </label>
                     </div>
-                    <div class="judul_content_tambahbarangexist text-center" style="display: none;">
-                        <label for="">
-                            <p style="font-size: 25px; font-weight: bold;">Barang Eksisting</p>
-                        </label>
-                    </div>
-
-                    <div class="d-flex justify-content-center">
-                        <div style="width: 80%;">
-                            <div class="input_content_tambahbarang">
-                                <div class="input_judul_namabarang">
-                                    <label for="">
-                                        <p style="font-size: 16px; font-weight: bold;">Nama Barang</p>
-                                    </label>
+                        <div class="isi_content_tambahbarang mt-4 pt-3" style="width: 100%;">
+                            <div class="d-flex justify-content-center">
+                                <div style="width: 80%;">
+                                    <div class="input_content_tambahbarang">
+                                        <div class="input_judul_namabarang">
+                                            <label for="">
+                                                <p style="font-size: 16px; font-weight: bold;">Nama Barang</p>
+                                            </label>
+                                        </div>
+                                        <div class="input_namabarang">
+                                            <input type="text" class="form-control namabarang" id="namabarang" name="namabarang"
+                                                aria-describedby="emailHelp" placeholder="Nama Barang"
+                                                style="border: 1px solid #626262; background-color:transparent;">
+                                        </div>
+                                        <div class="errormessage-namabarang" style="display: none; color: red;">
+        
+                                        </div> 
+                                    </div>
+        
+                                    <div class="input_content_jenisbarang mt-3">
+                                        <div class="input_judul_jenisbarang">
+                                            <label for="">
+                                                <p style="font-size: 16px; font-weight: bold;">Kategori Barang</p>
+                                            </label>
+                                        </div>
+                                        <div class="daftar_profil_kanan_kategori mb-3">
+                                            <select name="jenisbarang" class="kategori p-2"
+                                                style="color: #626262; border-radius: 5px;">
+                                                <option selected="true" disabled="disabled">Pilih Kategori Barang</option>
+                                                <option value="Alat tulis">Alat tulis</option>
+                                                <option value="Bahan baku">Bahan baku</option>
+                                                <option valuse="Buku">Buku</option>
+                                                <option value="Dapur">Dapur</option>
+                                                <option value="Elektronik">Elektronik</option>
+                                                <option value="Fashion">Fashion</option>
+                                                <option value="Kecantikan">Kecantikan</option>
+                                                <option value="Kerajinan">Kerajinan</option>
+                                                <option value="Kesehatan">Kesehatan</option>
+                                                <option value="Mainan">Mainan</option>
+                                                <option value="Makanan dan minuman">Makanan dan minuman</option>
+                                                <option value="Olahraga">Olahraga</option>
+                                                <option value="Otomotif">Otomotif</option>
+                                                <option value="Perlengkapan pesta">Perlengkapan pesta</option>
+                                                <option value="Pertukangan">Pertukangan</option>
+                                                <option value="Rumah tangga">Rumah tangga</option>
+                                                <option value="Lainnya">Lainnya</option>
+                                            </select>
+                                            <div class="errormessage-jenisbarang" style="display: none; color: red;">
+        
+                                            </div> 
+                                        </div>
+                                    </div>
+        
+                                    <div class="input_content_jumlahbarang mt-3">
+                                        <div class="input_judul_jumlahbarang">
+                                            <label for="">
+                                                <p style="font-size: 16px; font-weight: bold;">Jumlah Barang</p>
+                                            </label>
+                                        </div>
+                                        <div class="input_namabarang">
+                                            <input type="number" class="form-control jumlahbarang" name="jumlahbarang"
+                                                id="exampleInputJumlaBarang1" aria-describedby="emailHelp"
+                                                placeholder="Jumlah Barang"
+                                                style="border: 1px solid #626262; background-color:transparent;">
+                                        </div>
+                                        <div class="errormessage-jumlahbarang" style="display: none; color: red;">
+        
+                                        </div> 
+                                    </div>
+        
+                                    <div class="input_content_jumlahbarang mt-3">
+                                        <div class="input_judul_jumlahbarang">
+                                            <label for="">
+                                                <p style="font-size: 16px; font-weight: bold;">Harga Barang</p>
+                                            </label>
+                                        </div>
+                                        <div class="input_namabarang">
+                                            <input type="number" class="form-control hargabarang" name="hargabarang"
+                                                id="exampleInputHargaBarang1" aria-describedby="emailHelp"
+                                                placeholder="Harga Barang"
+                                                style="border: 1px solid #626262; background-color:transparent;">
+                                        </div>
+                                        <div class="errormessage-hargabarang" style="display: none; color: red;">
+        
+                                        </div> 
+                                    </div>
+        
+                                    <div class="input_content_tanggalkadaluarsa mt-3">
+                                        <div class="input_judul_tanggalkadaluarsa">
+                                            <label for="">
+                                                <p style="font-size: 16px; font-weight: bold;">Tanggal Kadaluarsa</p>
+                                            </label>
+                                        </div>
+                                        <div class="input_tanggalkadaluarsa">
+                                            <input type="date" class="form-control tanggalkadaluarsa" name="tanggalkadaluarsa"
+                                                id="exampleInputTanggalKadaluarsa1" aria-describedby="emailHelp"
+                                                placeholder="Tanggal Kadaluarsa"
+                                                style="border: 1px solid #626262; background-color:transparent;">
+                                        </div>
+                                    </div>
+        
+                                    <div class="input_content_fotobarang mt-3">
+                                        <div class="input_judul_fotobarang">
+                                            <label for="">
+                                                <p style="font-size: 16px; font-weight: bold;">Foto Barang</p>
+                                            </label>
+                                        </div>
+                                        <div class="input_fotobarang">
+                                            <input type="file" name="fotobarang" class="form-control fotobarang"
+                                                id="exampleInputFotoBarang1" aria-describedby="emailHelp"
+                                                placeholder="Foto Barang"
+                                                style="border: 1px solid #626262; background-color:transparent;">
+                                        </div>
+                                        <div class="errormessage-fotobarang" style="display: none; color: red;">
+        
+                                        </div> 
+                                    </div>
                                 </div>
-                                <div class="input_namabarang">
-                                    <input type="text" class="form-control namabarang" id="namabarang" name="namabarang"
-                                        aria-describedby="emailHelp" placeholder="Nama Barang"
-                                        style="border: 1px solid #626262; background-color:transparent;">
-                                </div>
-                                <div class="errormessage-namabarang" style="display: none; color: red;">
-
-                                </div> 
-                                <div class="input_namabarangeksisting" style="display: none;">
-                                    <select name="namabarangeksisting" class="namabarangeksisting p-2"
-                                        style="color: #626262; border-radius: 5px;">>
-                                        <option selected="true" disabled="disabled">Nama Barang</option>
-                                        @foreach ($barangexist as $barangexistings)
-                                            <option value="{{ $barangexistings->nama }}">{{ $barangexistings->nama }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="errormessage-namabarangeksisting" style="display: none; color: red;">
-
-                                </div> 
                             </div>
-
-                            <div class="input_content_jenisbarang mt-3">
-                                <div class="input_judul_jenisbarang">
-                                    <label for="">
-                                        <p style="font-size: 16px; font-weight: bold;">Kategori Barang</p>
-                                    </label>
-                                </div>
-                                <div class="daftar_profil_kanan_kategori mb-3">
-                                    <select name="jenisbarang" class="kategori p-2"
-                                        style="color: #626262; border-radius: 5px;">
-                                        <option selected="true" disabled="disabled">Pilih Kategori Barang</option>
-                                        <option value="Alat tulis">Alat tulis</option>
-                                        <option value="Bahan baku">Bahan baku</option>
-                                        <option valuse="Buku">Buku</option>
-                                        <option value="Dapur">Dapur</option>
-                                        <option value="Elektronik">Elektronik</option>
-                                        <option value="Fashion">Fashion</option>
-                                        <option value="Kecantikan">Kecantikan</option>
-                                        <option value="Kerajinan">Kerajinan</option>
-                                        <option value="Kesehatan">Kesehatan</option>
-                                        <option value="Mainan">Mainan</option>
-                                        <option value="Makanan dan minuman">Makanan dan minuman</option>
-                                        <option value="Olahraga">Olahraga</option>
-                                        <option value="Otomotif">Otomotif</option>
-                                        <option value="Perlengkapan pesta">Perlengkapan pesta</option>
-                                        <option value="Pertukangan">Pertukangan</option>
-                                        <option value="Rumah tangga">Rumah tangga</option>
-                                        <option value="Lainnya">Lainnya</option>
-                                    </select>
-                                    <div class="errormessage-jenisbarang" style="display: none; color: red;">
-
-                                    </div> 
-                                </div>
-                            </div>
-
-                            <div class="input_content_jumlahbarang mt-3">
-                                <div class="input_judul_jumlahbarang">
-                                    <label for="">
-                                        <p style="font-size: 16px; font-weight: bold;">Jumlah Barang</p>
-                                    </label>
-                                </div>
-                                <div class="input_namabarang">
-                                    <input type="number" class="form-control jumlahbarang" name="jumlahbarang"
-                                        id="exampleInputJumlaBarang1" aria-describedby="emailHelp"
-                                        placeholder="Jumlah Barang"
-                                        style="border: 1px solid #626262; background-color:transparent;">
-                                </div>
-                                <div class="errormessage-jumlahbarang" style="display: none; color: red;">
-
-                                </div> 
-                            </div>
-
-                            <div class="input_content_jumlahbarang mt-3">
-                                <div class="input_judul_jumlahbarang">
-                                    <label for="">
-                                        <p style="font-size: 16px; font-weight: bold;">Harga Barang</p>
-                                    </label>
-                                </div>
-                                <div class="input_namabarang">
-                                    <input type="number" class="form-control hargabarang" name="hargabarang"
-                                        id="exampleInputHargaBarang1" aria-describedby="emailHelp"
-                                        placeholder="Harga Barang"
-                                        style="border: 1px solid #626262; background-color:transparent;">
-                                </div>
-                                <div class="errormessage-hargabarang" style="display: none; color: red;">
-
-                                </div> 
-                            </div>
-
-                            <div class="input_content_tanggalkadaluarsa mt-3">
-                                <div class="input_judul_tanggalkadaluarsa">
-                                    <label for="">
-                                        <p style="font-size: 16px; font-weight: bold;">Tanggal Kadaluarsa</p>
-                                    </label>
-                                </div>
-                                <div class="input_tanggalkadaluarsa">
-                                    <input type="date" class="form-control tanggalkadaluarsa" name="tanggalkadaluarsa"
-                                        id="exampleInputTanggalKadaluarsa1" aria-describedby="emailHelp"
-                                        placeholder="Tanggal Kadaluarsa"
-                                        style="border: 1px solid #626262; background-color:transparent;">
-                                </div>
-                            </div>
-
-                            <div class="input_content_fotobarang mt-3">
-                                <div class="input_judul_fotobarang">
-                                    <label for="">
-                                        <p style="font-size: 16px; font-weight: bold;">Foto Barang</p>
-                                    </label>
-                                </div>
-                                <div class="input_fotobarang">
-                                    <input type="file" name="fotobarang" class="form-control fotobarang"
-                                        id="exampleInputFotoBarang1" aria-describedby="emailHelp"
-                                        placeholder="Foto Barang"
-                                        style="border: 1px solid #626262; background-color:transparent;">
-                                </div>
-                                <div class="errormessage-fotobarang" style="display: none; color: red;">
-
-                                </div> 
+                            <input type="hidden" name="jenisAllbarang" value="Barang Baru">
+                            <div class="button_simpan d-flex justify-content-center pt-5 mt-2">
+                                <button type="submit" class="btn btn-primary ps-5 pe-5 " id="btn_simpan"
+                                    style="background-color: #D7CAA0; width: 25%; border: none; font-weight: bold; color: black;">Simpan</button>
                             </div>
                         </div>
-                    </div>
+                    </form>
+            </div>
 
-
-                    <div class="button_simpan d-flex justify-content-center pt-4 mt-2">
-                        <button type="submit" class="btn btn-primary ps-5 pe-5 " id="btn_simpan"
-                            style="background-color: #D7CAA0; width: 25%; border: none; font-weight: bold; color: black;">Simpan</button>
-                    </div>
-                </form>
+            <div class="barangExisting" style="display: none;">
+            <form method="POST" enctype="multipart/form-data" id="tambahbarangexisting">
+                    @csrf
+                        <div class="judul_content_tambahbarang text-center pt-5">
+                            <label for="">
+                                <p style="font-size: 25px; font-weight: bold;">Barang Existing</p>
+                            </label>
+                        </div>
+                        <div class="isi_content_tambahbarang mt-4 pt-3" style="width: 100%;">
+                            <div class="d-flex justify-content-center">
+                                <div style="width: 80%;">
+                                    <div class="input_content_tambahbarang">
+                                        <div class="input_judul_namabarang">
+                                            <label for="">
+                                                <p style="font-size: 16px; font-weight: bold;">Nama Barang</p>
+                                            </label>
+                                        </div>
+                                        <div class="input_namabarangeksisting">
+                                            <select name="namabarangeksisting" class="namabarangeksisting p-2"
+                                                style="color: #626262; border-radius: 5px;">>
+                                                <option selected="true" disabled="disabled">Nama Barang</option>
+                                                @foreach ($barangexist as $barangexistings)
+                                                    <option value="{{ $barangexistings->nama }}">{{ $barangexistings->nama }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="errormessage-namabarangeksisting-1" style="display: none; color: red;">
+                                        </div> 
+                                    </div>
+        
+                                    <div class="input_content_jumlahbarang mt-3">
+                                        <div class="input_judul_jumlahbarang">
+                                            <label for="">
+                                                <p style="font-size: 16px; font-weight: bold;">Jumlah Barang</p>
+                                            </label>
+                                        </div>
+                                        <div class="input_namabarang">
+                                            <input type="number" class="form-control jumlahbarang" name="jumlahbarang"
+                                                id="exampleInputJumlaBarang1" aria-describedby="emailHelp"
+                                                placeholder="Jumlah Barang"
+                                                style="border: 1px solid #626262; background-color:transparent;">
+                                        </div>
+                                        <div class="errormessage-jumlahbarang-1" style="display: none; color: red;">
+        
+                                        </div> 
+                                    </div>
+        
+                                    <div class="input_content_jumlahbarang mt-3">
+                                        <div class="input_judul_jumlahbarang">
+                                            <label for="">
+                                                <p style="font-size: 16px; font-weight: bold;">Harga Barang</p>
+                                            </label>
+                                        </div>
+                                        <div class="input_namabarang">
+                                            <input type="number" class="form-control hargabarang" name="hargabarang"
+                                                id="exampleInputHargaBarang1" aria-describedby="emailHelp"
+                                                placeholder="Harga Barang"
+                                                style="border: 1px solid #626262; background-color:transparent;">
+                                        </div>
+                                        <div class="errormessage-hargabarang-1" style="display: none; color: red;">
+        
+                                        </div> 
+                                    </div>
+        
+                                    <div class="input_content_tanggalkadaluarsa mt-3">
+                                        <div class="input_judul_tanggalkadaluarsa">
+                                            <label for="">
+                                                <p style="font-size: 16px; font-weight: bold;">Tanggal Kadaluarsa</p>
+                                            </label>
+                                        </div>
+                                        <div class="input_tanggalkadaluarsa">
+                                            <input type="date" class="form-control tanggalkadaluarsa" name="tanggalkadaluarsa"
+                                                id="exampleInputTanggalKadaluarsa1" aria-describedby="emailHelp"
+                                                placeholder="Tanggal Kadaluarsa"
+                                                style="border: 1px solid #626262; background-color:transparent;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="jenisAllbarang" value="Barang Existing">
+                            <div class="button_simpan d-flex justify-content-center pt-5 mt-2">
+                                <button type="submit" class="btn btn-primary ps-5 pe-5 " id="btn_simpan1"
+                                    style="background-color: #D7CAA0; width: 25%; border: none; font-weight: bold; color: black;">Simpan</button>
+                            </div>
+                        </div>
+                    </form>
             </div>
 
         </div>

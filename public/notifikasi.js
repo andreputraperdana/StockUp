@@ -20,6 +20,27 @@ const tipenotifall = document.querySelectorAll(".tipe_notif");
 const isidetailbaranghabis = document.querySelector(".isi_detail_baranghabis");
 const bodydetailbarang = document.querySelector(".body_detail_1");
 const bodydetailkadaluarsa = document.querySelector(".body_detail_2");
+const notifikasisAll = document.querySelector(".AllNotif");
+
+function outputchange(ouptut) {
+    let req = new XMLHttpRequest();
+    let code = 0;
+    if (ouptut.value === "Barang Habis") {
+        code = 1;
+    } else if (ouptut.value === "Barang Kadaluarsa") {
+        code = 2;
+    } else if (ouptut.value === "Semua Barang") {
+        code = 3;
+    }
+    req.open("GET", `/notifikasifilter/${code}`, true);
+    req.onload = function () {
+        notifikasisAll.innerHTML = "";
+        if (req.readyState === XMLHttpRequest.DONE) {
+            notifikasisAll.innerHTML = req.response;
+        }
+    };
+    req.send();
+}
 for (let i = 0; i < listNotif.length; i++) {
     $(document).ready(function () {
         listNotif[i].addEventListener("click", function (e) {
