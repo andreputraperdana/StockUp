@@ -169,7 +169,7 @@
                                             </div>
                                        </div>    
                                        <div class="button_simpan d-flex justify-content-center pt-4 mt-2" style="width: 90%;">
-                                            <button type="submit" class="btn btn-primary ps-5 pe-5 " id="btn_simpan" style="background-color: #D7CAA0; width: 60%; border: 2px solid #D7CAA0; font-weight: bold; color: black; border-radius: 7px;"> <img src="{{URL::asset('downloadicon.png')}}" alt="" height="25px">Download PDF</button>
+                                            <button type="submit" class="btn btn-primary ps-5 pe-5 " id="btn_download" style="background-color: #D7CAA0; width: 60%; border: 2px solid #D7CAA0; font-weight: bold; color: black; border-radius: 7px;"> <img src="{{URL::asset('downloadicon.png')}}" alt="" height="25px">Download PDF</button>
                                         </div>
                                    </div>
                           </div>
