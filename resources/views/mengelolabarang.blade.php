@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="notifikasi pe-2 mt-2">
-                    <a href="">
+                    <a href="/notifikasi">
                         <img src="{{ URL::asset('notifikasi.png') }}" class="ps-2 pe-2 pt-1 pb-1"
                             style="background-color: #f4f4f4; border-radius: 50%; height: 45px;">
                     </a>
@@ -100,7 +100,7 @@
                                 <div class="d-flex">
                                     <div class="foto" style="width: 18%;">
                                         <img src="\public\image\{{ $AllItem->BarangUMKM->foto_barang }}" alt="Foto Profil"
-                                            style="height: 100px; width: 100px;">
+                                            style="height: 60px; width: 60px;">
                                     </div>
                                     <div class="nama_header center" style="width: 36%;">
                                         <p style="font-size: 16px;">{{ $AllItem->BarangUMKM->id }}</p>

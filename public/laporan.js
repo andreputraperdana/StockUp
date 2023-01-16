@@ -1,9 +1,11 @@
+
 const textmenu = document.querySelectorAll(".textmenu");
 const slidelogo = document.querySelector(".side_logo");
 const isikonten = document.querySelector(".isi_konten");
 textmenu.forEach((test) => test.classList.add("hide"));
 const slidebar = document.querySelector(".side_bar");
 const buttonBarangBaru = document.querySelector("#btnBarangBaru");
+const buttonDownload = document.querySelector("#btn_download");
 const buttonBarangExist = document.querySelector("#btnBarangExisting");
 const inputTambahBarang = document.querySelector(".input_content_tambahbarang");
 const inputJenisBarang = document.querySelector(".input_content_jenisbarang");
@@ -67,6 +69,32 @@ if (document.querySelector(".tanda").innerHTML == "3") {
 }
 
 $(document).ready(function () {
+    
+
+    buttonDownload.addEventListener("click", function(e){
+        var head = document.querySelectorAll(".table_head");
+
+        var hasil = {
+            jenislaporan: $(".jenislaporan").val(),
+            input_tanggalawal: $(".input_tanggalawal").val(),
+            input_tanggalakhir: $(".input_tanggalakhir").val(),
+        };
+        
+        // var table_head = {
+        //     "Barang akan kadaluarsa": ['ID Barang', 'Tanggal Masuk Barang', 'Nama Barang', "Tanggal Kadaluarsa", 'Jumlah Barang']
+        // }
+
+        // td = "";
+        // table_head[hasil.jenislaporan].map((el) => {
+        //     td+=`<td>${el}</td>`;
+        // })
+
+        // console.log(head);
+        // head.append(td);
+
+        window.location.href = `/laporan/cetak_pdf?jenis_laporan=${hasil.jenislaporan}&start=${hasil.input_tanggalawal}&end=${hasil.input_tanggalakhir}`;
+    });
+
     previewlaporan.addEventListener("click", function (e) {
         isilaporankadaluarsa.style.display = "none";
         isilaporanbaranghabis.style.display = "none";
@@ -109,6 +137,7 @@ $(document).ready(function () {
                         </tr>`;
                     }
                     isilaporankadaluarsa.style.display = "block";
+                    // window.location.href = `/laporan/cetak_pdf/${hasil.jenislaporan}/${hasil.input_tanggalawal}/${hasil.input_tanggalakhir}`;
                 } else if (response.jenislaporan === "Barang akan habis") {
                     judullaporan.innerHTML = `<h4>${response.jenislaporan}</h4>`;
                     periodelaporan.innerHTML = `<p>Periode: ${response.periodeawal} / ${response.periodeakhir}</p>`;
