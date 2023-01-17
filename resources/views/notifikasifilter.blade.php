@@ -40,10 +40,10 @@
                     </div>
                 </div>
                 </form>
+                @endforeach
                 <div class="d-flex justify-content-center">
                     {{$Allbarang->links()}}
                 </div>
-            @endforeach
         @elseif($jenis == 1)
             @foreach($Allbarang as $AllBarang)
                     <form action="/detailnotif" method="POST">
@@ -71,10 +71,10 @@
                         </div>
                     </div>
                     </form>
+                    @endforeach
                     <div class="d-flex justify-content-center">
                     {{$Allbarang->links()}}
                     </div>
-            @endforeach
         @elseif($jenis == 3)
             @foreach($Allbarang as $AllBarang)
                 @if(empty($AllBarang->Total))    
