@@ -18,7 +18,7 @@
                     </div>
 
         </div>
-        <div class="content_tambahbarang mt-5" style="height: 650px; width: 100%; background-color: #F4F4F4; border-radius: 25px;" >
+        <div class="content_tambahbarang mt-5" style="min-height: 750px; width: 100%; background-color: #F4F4F4; border-radius: 25px;" >
            <div class="d-flex justify-content-start pt-5" style="width: 100%;">
             <div class="daftar_profil_kanan_kategori mb-3 ps-5" style="width: 30%;">
                  <select name="kategori" class="kategori p-2" style="color: #626262; border-radius: 5px;" onchange="outputchange(this)">
@@ -101,7 +101,7 @@
             @endif
             @endforeach
         
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center" style="padding-bottom: 30px;">
             {{$Allbarang->links()}}
         </div>
         </div>
