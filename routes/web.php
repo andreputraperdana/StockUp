@@ -69,9 +69,13 @@ Route::get('/editprofile', [EditProfileController::class, 'getindex']);
 
 Route::get('/editbarang/{id}', [EditBarangController::class, 'getindex']);
 
-Route::get('/notifikasi', [NotifikasiController::class, 'getindex']);
+// Route::get('/notifikasifilter/{id}', [NotifikasiController::class, 'filternotif']);
 
-Route::get('/notifikasifilter/{id}', [NotifikasiController::class, 'filternotif']);
+// Route::get('/notifikasi/{id}', [NotifikasiController::class, 'filternotif']);
+
+Route::get('/notifikasi/fetch_data', [NotifikasiController::class, 'fetch_data']);
+
+Route::get('/notifikasi', [NotifikasiController::class, 'getindex']);
 
 Route::get('/item/{id}', [ItemController::class, 'getindex']);
 
