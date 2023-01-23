@@ -31,14 +31,14 @@ class BerandaController extends Controller
             $AllItems = $this->GetListAllBarangPemasok($searchbarang);
         }
 
-        $BarangHabis = $this->GetListBarangHabis();
-        $TotalBarangHabis = COUNT($BarangHabis);
+        // $BarangHabis = $this->GetListBarangHabis();
+        $TotalBarangHabis = $this->GetTotalBarangHabis();
         
-        $PengeluranPerHari = $this->GetListBarangAkanKadaluarsa();
-        $TotalPengeluranPerHari = COUNT($PengeluranPerHari);
+        // $PengeluranPerHari = $this->GetListBarangAkanKadaluarsa();
+        $TotalPengeluranPerHari = $this->GetTotalPengeluranPerHari();
 
-        $BarangAkanKadaluarsa = $this->GetListPengeluaranBarangPerHari();
-        $TotalBarangAkanKadaluarsa = COUNT($BarangAkanKadaluarsa);
+        // $BarangAkanKadaluarsa = $this->GetListPengeluaranBarangPerHari();
+        $TotalBarangAkanKadaluarsa = $this->GetTotalBarangAkanKadaluarsa();
 
         $ListBarang = BarangUMKM::paginate(3);
 
@@ -61,22 +61,37 @@ class BerandaController extends Controller
         // $emailuser = auth()->user()->email;
         // $username = auth()->user()->name;
         // Mail::to($emailuser)->send(new SendNotification($TotalBarangHabis, $TotalBarangAkanKadaluarsa, $username));
-        return view('beranda', ['ListUser'=> $ListUser, 'flag'=>$flag, 'AllItems'=>$AllItems, 'BarangHabis'=> $BarangHabis, 'PengeluranPerHari'=> $PengeluranPerHari, 'BarangAkanKadaluarsa' => $BarangAkanKadaluarsa, 'TotalBarangHabis' => $TotalBarangHabis, 'TotalPengeluranPerHari'=>$TotalPengeluranPerHari, 'TotalBarangAkanKadaluarsa' => $TotalBarangAkanKadaluarsa, 'Listbarang' => $ListBarang, 'Totalnotif'=> $TotalNotif]);
+        return view('beranda', ['ListUser'=> $ListUser, 'flag'=>$flag, 'AllItems'=>$AllItems, 'TotalBarangHabis' => $TotalBarangHabis, 'TotalPengeluranPerHari'=>$TotalPengeluranPerHari, 'TotalBarangAkanKadaluarsa' => $TotalBarangAkanKadaluarsa, 'Listbarang' => $ListBarang, 'Totalnotif'=> $TotalNotif]);
     }
 
 
-    public function GetListBarangHabis(){
-        $BarangHabis = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id')->having(DB::raw('SUM(jumlah)'), '<', 10)->select('barang_umkm_id',DB::raw('SUM(jumlah) as total'))->where('user_id', '=', auth()->user()->id)->get();
+    // public function GetListBarangHabis(){
+    //     $BarangHabis = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id')->having(DB::raw('SUM(jumlah)'), '<', 10)->select('barang_umkm_id',DB::raw('SUM(jumlah) as total'))->where('user_id', '=', auth()->user()->id)->paginate(3);
+    //     return $BarangHabis;
+    // }
+
+    // public function GetListBarangAkanKadaluarsa(){
+    //     $PengeluranPerHari = TransaksiBarangKeluar::join('transaksi_barang_masuk', 'transaksi_barang_masuk.id', '=', 'transaksi_barang_keluar.transaksi_barang_masuk_id')->join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->whereRaw(DB::raw("(CURDATE() =  DATE_FORMAT(transaksi_barang_keluar.created_at, '%Y-%m-%d'))"))->where('user_id', '=', auth()->user()->id)->paginate(3);
+    //     return $PengeluranPerHari;
+    // }
+
+    // public function GetListPengeluaranBarangPerHari(){
+    //     $BarangAkanKadaluarsa = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->select('*', DB::raw('CURDATE() as Date_Today'))->whereRaw(DB::raw('((CURDATE() BETWEEN DATE_ADD(tanggal_kadaluarsa, INTERVAL -14 DAY) AND tanggal_kadaluarsa) or (CURDATE() > tanggal_kadaluarsa))'))->where('user_id', '=', auth()->user()->id)->paginate(3);
+    //     return $BarangAkanKadaluarsa;
+    // }
+
+    public function GetTotalBarangHabis(){
+        $BarangHabis = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id')->having(DB::raw('SUM(jumlah)'), '<', 10)->select('barang_umkm_id',DB::raw('SUM(jumlah) as total'))->where('user_id', '=', auth()->user()->id)->count();
         return $BarangHabis;
     }
 
-    public function GetListBarangAkanKadaluarsa(){
-        $PengeluranPerHari = TransaksiBarangKeluar::join('transaksi_barang_masuk', 'transaksi_barang_masuk.id', '=', 'transaksi_barang_keluar.transaksi_barang_masuk_id')->join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->whereRaw(DB::raw("(CURDATE() =  DATE_FORMAT(transaksi_barang_keluar.created_at, '%Y-%m-%d'))"))->where('user_id', '=', auth()->user()->id)->get();
+    public function GetTotalPengeluranPerHari(){
+        $PengeluranPerHari = TransaksiBarangKeluar::join('transaksi_barang_masuk', 'transaksi_barang_masuk.id', '=', 'transaksi_barang_keluar.transaksi_barang_masuk_id')->join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->whereRaw(DB::raw("(CURDATE() =  DATE_FORMAT(transaksi_barang_keluar.created_at, '%Y-%m-%d'))"))->where('user_id', '=', auth()->user()->id)->count();
         return $PengeluranPerHari;
     }
 
-    public function GetListPengeluaranBarangPerHari(){
-        $BarangAkanKadaluarsa = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->select('*', DB::raw('CURDATE() as Date_Today'))->whereRaw(DB::raw('((CURDATE() BETWEEN DATE_ADD(tanggal_kadaluarsa, INTERVAL -14 DAY) AND tanggal_kadaluarsa) or (CURDATE() > tanggal_kadaluarsa))'))->where('user_id', '=', auth()->user()->id)->get();
+    public function GetTotalBarangAkanKadaluarsa(){
+        $BarangAkanKadaluarsa = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->select('*', DB::raw('CURDATE() as Date_Today'))->whereRaw(DB::raw('((CURDATE() BETWEEN DATE_ADD(tanggal_kadaluarsa, INTERVAL -14 DAY) AND tanggal_kadaluarsa) or (CURDATE() > tanggal_kadaluarsa))'))->where('user_id', '=', auth()->user()->id)->count();
         return $BarangAkanKadaluarsa;
     }
 
@@ -87,10 +102,10 @@ class BerandaController extends Controller
 
     public function GetListAllBarangUMKM($searchbarang){
         if($searchbarang){
-            $AllItems = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id')->select('barang_umkm_id',DB::raw('count(barang_umkm_id) as totalAll, SUM(jumlah) as total'))->where('nama', 'LIKE', "%" . $searchbarang . "%")->where('user_id', '=', auth()->user()->id)->paginate(10);
+            $AllItems = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id')->select('barang_umkm_id',DB::raw('count(barang_umkm_id) as totalAll, SUM(jumlah) as total'))->where('nama', 'LIKE', "%" . $searchbarang . "%")->where('user_id', '=', auth()->user()->id)->paginate(5);
         }
         else{
-            $AllItems = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id')->select('barang_umkm_id',DB::raw('count(barang_umkm_id) as totalAll, SUM(jumlah) as total'))->where('user_id', '=', auth()->user()->id)->paginate(10);
+            $AllItems = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id')->select('barang_umkm_id',DB::raw('count(barang_umkm_id) as totalAll, SUM(jumlah) as total'))->where('user_id', '=', auth()->user()->id)->paginate(5);
         }
         return $AllItems;
     }
@@ -117,5 +132,23 @@ class BerandaController extends Controller
         return $AllNotifBarang;
     }
 
+    public function fetchDataBarang(Request $request){
+        $input = $request->code;
+        if($request->ajax()){
+            if($input === '1'){
+                $TipeBarang = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id')->having(DB::raw('SUM(jumlah)'), '<', 10)->select('barang_umkm_id',DB::raw('SUM(jumlah) as total'))->where('user_id', '=', auth()->user()->id)->paginate(3);
+            }
+            else if($input === '2'){
+                $TipeBarang = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->select('*', DB::raw('CURDATE() as Date_Today'))->whereRaw(DB::raw('((CURDATE() BETWEEN DATE_ADD(tanggal_kadaluarsa, INTERVAL -14 DAY) AND tanggal_kadaluarsa) or (CURDATE() > tanggal_kadaluarsa))'))->where('user_id', '=', auth()->user()->id)->paginate(3);
+            }
+            else if($input === '3'){
+                $TipeBarang = TransaksiBarangKeluar::join('transaksi_barang_masuk', 'transaksi_barang_masuk.id', '=', 'transaksi_barang_keluar.transaksi_barang_masuk_id')->join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->whereRaw(DB::raw("(CURDATE() =  DATE_FORMAT(transaksi_barang_keluar.created_at, '%Y-%m-%d'))"))->where('user_id', '=', auth()->user()->id)->paginate(3);
+            }
+            else if($input === '4'){
+                $TipeBarang = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id')->select('barang_umkm_id',DB::raw('count(barang_umkm_id) as totalAll, SUM(jumlah) as total'))->where('user_id', '=', auth()->user()->id)->paginate(5);
+            }
+            return view('barangpagination', compact('TipeBarang', 'input'));
+        }
+    }
     
 }

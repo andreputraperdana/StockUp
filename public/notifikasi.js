@@ -30,7 +30,7 @@ function outputchange(ouptut) {
     } else if (ouptut.value === "Semua Barang") {
         code = 3;
     }
-    
+
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr("content");
 
     $.ajaxSetup({
@@ -42,34 +42,33 @@ function outputchange(ouptut) {
     fetch_data("", code);
 
     // function fetch_jenis(code){
-        // $.ajax({
-        //     type: 'GET',
-        //     url: "/notifikasi/fetch_data?code="+code,
-        //     success:function(AllBarang){
-        //         // console.log(AllBarang);
-        //         $('.AllNotif').html(AllBarang);
-        //     }
-        // })
+    // $.ajax({
+    //     type: 'GET',
+    //     url: "/notifikasi/fetch_data?code="+code,
+    //     success:function(AllBarang){
+    //         // console.log(AllBarang);
+    //         $('.AllNotif').html(AllBarang);
+    //     }
+    // })
 
-        // $(document).on('click', '.pagination a', function(e){
-        //     e.preventDefault();
-        //     var page = $(this).attr('href').split('page=')[1];
-        //     fetch_data(page, code);
-            
-    
-        // });
-    
-        // function fetch_data(page, code){
-        //     // console.log(page);
-        //     $.ajax({
-        //         type: 'GET',
-        //         url: "/notifikasi/fetch_data?page="+page+"&code="+code,
-        //         success:function(AllBarang){
-        //             // console.log(AllBarang);
-        //             $('.AllNotif').html(AllBarang);
-        //         }
-        //     })
-        // }
+    // $(document).on('click', '.pagination a', function(e){
+    //     e.preventDefault();
+    //     var page = $(this).attr('href').split('page=')[1];
+    //     fetch_data(page, code);
+
+    // });
+
+    // function fetch_data(page, code){
+    //     // console.log(page);
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: "/notifikasi/fetch_data?page="+page+"&code="+code,
+    //         success:function(AllBarang){
+    //             // console.log(AllBarang);
+    //             $('.AllNotif').html(AllBarang);
+    //         }
+    //     })
+    // }
     // }
     // fetch_jenis(code);
     // let title = $(".title_notif p");
@@ -88,9 +87,9 @@ function outputchange(ouptut) {
     //             console.log(result[s]);
     //             title.html(result[s].id);
     //             if (res.stats === 200) {
-                    
+
     //             } else if (res.stats === 300) {
-                    
+
     //             }
     //         }
     //         }
@@ -99,33 +98,33 @@ function outputchange(ouptut) {
 }
 
 // $(document).ready(function () {
-    
-    $(document).on('click', '.pagination a', function(e){
-        e.preventDefault();
-        var page = $(this).attr('href').split('page=')[1] ;
-        console.log(page);
-        fetch_data(page, code);
+
+$(document).on("click", ".pagination a", function (e) {
+    e.preventDefault();
+    var page = $(this).attr("href").split("page=")[1];
+    console.log(page);
+    // console.log(page);
+    fetch_data(page, code);
+});
+// });
+function fetch_data(page, code) {
+    // console.log(page);
+    let newCode = code ? code : "3";
+    console.log(newCode);
+    $.ajax({
+        type: "GET",
+        url: "/notifikasi/fetch_data?page=" + page + "&code=" + newCode,
+        success: function (AllBarang) {
+            console.log(AllBarang);
+            $(".AllNotif").html(AllBarang);
+        },
     });
+}
+
 // });
-    function fetch_data(page, code){
-        // console.log(page);
-        let newCode = code ? code : '3'
-        $.ajax({
-            type: 'GET',
-            url: "/notifikasi/fetch_data?page="+page+"&code="+newCode,
-            success:function(AllBarang){
-                // console.log(AllBarang);
-                $('.AllNotif').html(AllBarang);
-            }
-        })
-    }
-
-
-   
-    // });
 // });
 
-function onClickDetailBarang(e){
+function onClickDetailBarang(e) {
     console.log(e);
     // const listNotif = document.querySelectorAll("#btn_rekom_notif");
     // console.log("kok ga berubah");
@@ -135,83 +134,77 @@ function onClickDetailBarang(e){
     //     listNotif[i].addEventListener("click", function (e) {
     //         console.log("ke klik");
     //         e.preventDefault();
-            let button_val = e.value;
-            console.log(button_val);
+    let button_val = e.value;
+    console.log(button_val);
 
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr("content");
-            const idbarangall = document.querySelectorAll(".id_barang_"+button_val);
-            const tipenotifall = document.querySelectorAll(".tipe_notif_"+button_val);
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr("content");
+    const idbarangall = document.querySelectorAll(".id_barang_" + button_val);
+    const tipenotifall = document.querySelectorAll(".tipe_notif_" + button_val);
 
-            console.log(idbarangall);
-            var hasil = {
-                id_barang: idbarangall[0].value,
-                tipe_notif: tipenotifall[0].value,
-            };
+    console.log(idbarangall);
+    var hasil = {
+        id_barang: idbarangall[0].value,
+        tipe_notif: tipenotifall[0].value,
+    };
 
-            $.ajaxSetup({
-                headers: {
-                    "X-CSRF-TOKEN": CSRF_TOKEN,
-                },
-            });
+    $.ajaxSetup({
+        headers: {
+            "X-CSRF-TOKEN": CSRF_TOKEN,
+        },
+    });
 
-            $.ajax({
-                type: "POST",
-                url: "/detailnotif",
-                data: hasil,
-                async: true,
-                dataType: "json",
-                success: function (response) {
-                    console.log(response);
-                    if (response.stats === 200) {
-                        $("#foto_barang").attr(
-                            "src",
-                            "\\public\\image\\" +
-                                response.detailbarang.foto_barang
-                        );
-                        detailnamabarang.innerHTML = `<p style="margin-bottom: -1px;">${response.detailbarang.nama}</p>`;
-                        rightkategoribarang.innerHTML = `<p>${response.detailbarang.jenis}</p>`;
-                        IDBarangData.innerHTML = `<p>${response.detailbarang.id}</p>`;
-                        HargaData.innerHTML = `<p>${response.detailbarang.harga}</p>`;
-                        JumlahData.innerHTML = `<p>${response.detailbarang.jumlah}</p>`;
-                        TanggalKadaluarsaData.innerHTML = `<p>${response.detailbarang.tanggal_kadaluarsa}</p>`;
-                        bodydetailkadaluarsa.style.display = "block";
-                        overlay.classList.remove("hidden");
-                        notification.classList.remove("hidden");
-                    } else if (response.stats === 300) {
-                        console.log(response.detailbarang[0].foto_barang);
-                        $("#foto_barang").attr(
-                            "src",
-                            "\\public\\image\\" +
-                                response.detailbarang[0].foto_barang
-                        );
-                        isidetailbaranghabis.innerHTML = "";
-                        // console.log(Array(response.detailbarang)[0]);
-                        // let res = Array(response.detailbarang);
-                        for (let a = 0; a < response.detailbarang.length; a++) {
-                            detailnamabarang.innerHTML = `<p style="margin-bottom: -1px;">${response.detailbarang[0].nama}</p>`;
-                            rightkategoribarang.innerHTML = `<p>${response.detailbarang[0].jenis}</p>`;
-                            isidetailbaranghabis.innerHTML += `<tr class="">
+    $.ajax({
+        type: "POST",
+        url: "/detailnotif",
+        data: hasil,
+        async: true,
+        dataType: "json",
+        success: function (response) {
+            console.log(response);
+            if (response.stats === 200) {
+                $("#foto_barang").attr(
+                    "src",
+                    "\\public\\image\\" + response.detailbarang.foto_barang
+                );
+                detailnamabarang.innerHTML = `<p style="margin-bottom: -1px;">${response.detailbarang.nama}</p>`;
+                rightkategoribarang.innerHTML = `<p>${response.detailbarang.jenis}</p>`;
+                IDBarangData.innerHTML = `<p>${response.detailbarang.id}</p>`;
+                HargaData.innerHTML = `<p>${response.detailbarang.harga}</p>`;
+                JumlahData.innerHTML = `<p>${response.detailbarang.jumlah}</p>`;
+                TanggalKadaluarsaData.innerHTML = `<p>${response.detailbarang.tanggal_kadaluarsa}</p>`;
+                bodydetailkadaluarsa.style.display = "block";
+                overlay.classList.remove("hidden");
+                notification.classList.remove("hidden");
+            } else if (response.stats === 300) {
+                console.log(response.detailbarang[0].foto_barang);
+                $("#foto_barang").attr(
+                    "src",
+                    "\\public\\image\\" + response.detailbarang[0].foto_barang
+                );
+                isidetailbaranghabis.innerHTML = "";
+                // console.log(Array(response.detailbarang)[0]);
+                // let res = Array(response.detailbarang);
+                for (let a = 0; a < response.detailbarang.length; a++) {
+                    detailnamabarang.innerHTML = `<p style="margin-bottom: -1px;">${response.detailbarang[0].nama}</p>`;
+                    rightkategoribarang.innerHTML = `<p>${response.detailbarang[0].jenis}</p>`;
+                    isidetailbaranghabis.innerHTML += `<tr class="">
                                 <td class="pt-4 pb-4">${response.detailbarang[a].id}</td>
                                 <td class="text-center pt-4 pb-4">${response.detailbarang[a].harga}</td>
                                 <td class="text-center pt-4 pb-4">${response.detailbarang[a].jumlah}</td>
                                 <td class="text-center pt-4 pb-4">${response.detailbarang[a].tanggal_kadaluarsa}</td>
                                 </tr>`;
-                            bodydetailbarang.style.display = "block";
-                            overlay.classList.remove("hidden");
-                            notification.classList.remove("hidden");
-                        }
-                    }
-                },
-            });
+                    bodydetailbarang.style.display = "block";
+                    overlay.classList.remove("hidden");
+                    notification.classList.remove("hidden");
+                }
+            }
+        },
+    });
     //     });
     // }
 }
 
-
-
 // $(document).on('change','.kategori', function (e){
-
-
 
 window.addEventListener("click", function (e) {
     const slidebar = document.querySelector(".side_bar");

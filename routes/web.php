@@ -49,6 +49,8 @@ Route::post('/logout', [LoginController::class, 'Logout']);
 
 Route::get('/beranda', [BerandaController::class, 'getindex']);
 
+Route::get('/barang/fetch_data', [BerandaController::class, 'fetchDataBarang']);
+
 Route::get('/listalluser', [ListUserController::class, 'getindex']);
 
 Route::POST('/chat', [ChatController::class, 'getindex']);

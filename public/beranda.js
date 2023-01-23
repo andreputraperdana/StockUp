@@ -18,13 +18,86 @@ let popupbarang = document.querySelectorAll(
 
 // console.log(document.querySelector(`#myPopup-BarangHabis`));
 let popupbutton = document.querySelectorAll(".popUpBarang");
+let hasil12 = undefined;
+let code = undefined;
+
+// $(document).ready(function () {
+//     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr("content");
+
+//     $.ajaxSetup({
+//         headers: {
+//             "X-CSRF-TOKEN": CSRF_TOKEN,
+//         },
+//     });
+
+//     fetch_data_barang("", code, hasil12);
+// });
+
 for (let l = 0; l < popupbarang.length; l++) {
     popupbutton[l].addEventListener("click", function (e) {
-        let hasil12 = popupbarang[l].innerHTML;
+        hasil12 = popupbarang[l].innerHTML;
+        code = 0;
+        if (hasil12 === "BarangHabis") {
+            code = 1;
+        } else if (hasil12 === "BarangKadaluarsa") {
+            code = 2;
+        } else if (hasil12 === "Pengeluaran") {
+            code = 3;
+        }
+
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr("content");
+
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": CSRF_TOKEN,
+            },
+        });
+
+        fetch_data_barang("", code, hasil12);
         document.querySelector(`#myPopup-${hasil12}`).style.display = "block";
         // console.log(document.querySelector(`#myPopup-${hasil12}`).style);
     });
 }
+
+$(document).on("click", ".pagination a", function (e) {
+    e.preventDefault();
+    var page = $(this).attr("href").split("page=")[1];
+    // console.log(page);
+    fetch_data_barang(page, code, hasil12);
+});
+
+function fetch_data_barang(page, code, tipebarang) {
+    if (!code) {
+        code = 4;
+    }
+    if (!tipebarang) {
+        tipebarang = "AllBarang";
+    }
+    console.log(page);
+    console.log(code);
+    console.log(tipebarang);
+    $.ajax({
+        type: "GET",
+        url: "/barang/fetch_data?page=" + page + "&code=" + code,
+        success: function (TipeBarang) {
+            // console.log(TipeBarang);
+            $(`#content${tipebarang}`).html(TipeBarang);
+        },
+    });
+}
+
+// function fetch_data_barangkadaluarsa(page) {
+//     console.log(page);
+//     $.ajax({
+//         type: "GET",
+//         url: "/baranghabis/fetch_data?page=" + page,
+//         success: function (BarangHabis) {
+//             console.log(BarangHabis);
+//             $("#contentBarangHabis").html(BarangHabis);
+//         },
+//     });
+// }
+
 slidebar.addEventListener("mouseover", function (e) {
     // console.log(this.classList);
     this.style.width = "250px";
@@ -36,7 +109,7 @@ slidebar.addEventListener("mouseover", function (e) {
     document.querySelector(".menu_brnd").classList.remove("actives");
 });
 
-function refreshTime(){
+function refreshTime() {
     const d = new Date().toLocaleString();
     var formattedString = d.replace(", ", " - ");
     time.innerHTML = formattedString;
@@ -72,9 +145,17 @@ window.addEventListener("click", function (event) {
         if (event.target == document.querySelector(`#myPopup-${hasil13}`)) {
             document.querySelector(`#myPopup-${hasil13}`).style.display =
                 "none";
+            code = undefined;
+            hasil12 = undefined;
         }
     }
 });
+
+// $(document).on("click", ".pagination a", function (e) {
+//     e.preventDefault();
+//     var page = $(this).attr("href").split("page=")[1];
+//     console.log(page);
+// });
 
 // setInterval(() => {
 //     let xhr = new XMLHttpRequest();
