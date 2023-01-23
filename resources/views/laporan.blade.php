@@ -116,7 +116,7 @@
                                             </div>
                                             <div class="isi_laporan d-flex justify-content-center pt-2">
                                                 <div class="isi_laporanbarangkadaluarsa" style="display: none;">
-                                                <table class="table table-bordered" style="width: 90%;">
+                                                <table class="table table-bordered" style="width: 90%; font-size: 7pt;">
                                                     <thead>
                                                       <tr>
                                                         <td scope="col" style="opacity: 0.6; font-weight: bold;">ID Barang</td>
@@ -131,7 +131,7 @@
                                                 </table>
                                                 </div>
                                                 <div class="isi_laporanbaranghabis" style="display: none;">
-                                                <table class="table table-bordered" style="width: 90%;">
+                                                <table class="table table-bordered" style="width: 90%; font-size: 7pt;">
                                                     <thead>
                                                       <tr>
                                                         <td scope="col" style="opacity: 0.6; font-weight: bold;">ID Barang</td>
@@ -151,7 +151,7 @@
                                                         <td scope="col" rowspan="2" style="opacity: 0.6; font-weight: bold;" class="text-center">Nama Barang</td>
                                                         <td scope="col" rowspan="2" style="opacity: 0.6; font-weight: bold;" class="text-center">Stock Awal</td>
                                                         <td scope="col" colspan="4" style="opacity: 0.6; font-weight: bold;" class="text-center">Jumlah Barang</td>
-                                                        <td scope="col" rowspan="2" style="opacity: 0.6; font-weight: bold;" class="text-center">Stock Akhir</td>
+                                                        <td scope="col" rowspan="2" style="opacity: 0.6; font-weight: bold;" class="text-center">Stok Akhir</td>
                                                       </tr>
                                                       <tr>
                                                         <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Masuk</td>
@@ -161,6 +161,22 @@
                                                       </tr>
                                                     </thead>
                                                     <tbody class="content_laporankeluarmasukbarang">
+
+                                                    </tbody>
+                                                </table>
+                                                </div>
+
+                                                <div class="isi_laporanpersediaanstockbarang" style="display: none;" >
+                                                <table class="table table-bordered" style="width: 90%; font-size: 7pt;">
+                                                    <thead>
+                                                      <tr>
+                                                        <td scope="col" style="opacity: 0.6; font-weight: bold;">ID Barang</td>
+                                                        <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Nama Barang</td>
+                                                        <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Jumlah Barang Masuk</td>
+                                                        <td scope="col" style="opacity: 0.6; font-weight: bold;" class="text-center">Jumlah Barang Keluar</td>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody class="content_laporanpersediaanstockbarang">
 
                                                     </tbody>
                                                 </table>

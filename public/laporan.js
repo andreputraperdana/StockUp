@@ -1,4 +1,3 @@
-
 const textmenu = document.querySelectorAll(".textmenu");
 const slidelogo = document.querySelector(".side_logo");
 const isikonten = document.querySelector(".isi_konten");
@@ -36,6 +35,13 @@ const contentlaporanbaranghabis = document.querySelector(
     ".content_laporanbaranghabis"
 );
 
+const isilaporanpersediaanstockbarang = document.querySelector(
+    ".isi_laporanpersediaanstockbarang"
+);
+const contentlaporanpersediaanstockbarang = document.querySelector(
+    ".content_laporanpersediaanstockbarang"
+);
+
 const isilaporankeluarmasukbarang = document.querySelector(
     ".isi_laporankeluarmasukbarang"
 );
@@ -69,9 +75,7 @@ if (document.querySelector(".tanda").innerHTML == "3") {
 }
 
 $(document).ready(function () {
-    
-
-    buttonDownload.addEventListener("click", function(e){
+    buttonDownload.addEventListener("click", function (e) {
         var head = document.querySelectorAll(".table_head");
 
         var hasil = {
@@ -79,7 +83,7 @@ $(document).ready(function () {
             input_tanggalawal: $(".input_tanggalawal").val(),
             input_tanggalakhir: $(".input_tanggalakhir").val(),
         };
-        
+
         // var table_head = {
         //     "Barang akan kadaluarsa": ['ID Barang', 'Tanggal Masuk Barang', 'Nama Barang', "Tanggal Kadaluarsa", 'Jumlah Barang']
         // }
@@ -96,9 +100,31 @@ $(document).ready(function () {
     });
 
     previewlaporan.addEventListener("click", function (e) {
-        isilaporankadaluarsa.style.display = "none";
-        isilaporanbaranghabis.style.display = "none";
-        isilaporankeluarmasukbarang.style.display = "none";
+        if (isilaporankadaluarsa.classList.contains("d-flex")) {
+            isilaporankadaluarsa.classList.remove("d-flex");
+            isilaporankadaluarsa.classList.remove("justify-content-center");
+            isilaporankadaluarsa.style.display = "none";
+        }
+        if (isilaporanbaranghabis.classList.contains("d-flex")) {
+            isilaporanbaranghabis.classList.remove("d-flex");
+            isilaporanbaranghabis.classList.remove("justify-content-center");
+            isilaporanbaranghabis.style.display = "none";
+        }
+        if (isilaporankeluarmasukbarang.classList.contains("d-flex")) {
+            isilaporankeluarmasukbarang.classList.remove("d-flex");
+            isilaporankeluarmasukbarang.classList.remove(
+                "justify-content-center"
+            );
+            isilaporankeluarmasukbarang.style.display = "none";
+        }
+        if (isilaporanpersediaanstockbarang.classList.contains("d-flex")) {
+            isilaporanpersediaanstockbarang.classList.remove("d-flex");
+            isilaporanpersediaanstockbarang.classList.remove(
+                "justify-content-center"
+            );
+            isilaporanpersediaanstockbarang.style.display = "none";
+        }
+
         e.preventDefault();
 
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr("content");
@@ -124,18 +150,23 @@ $(document).ready(function () {
                 contentlaporankadaluarsa.innerHTML = "";
                 contentlaporanbaranghabis.innerHTML = "";
                 contentlaporankeluarmasukbarang.innerHTML = "";
+                contentlaporanpersediaanstockbarang.innerHTML = "";
                 if (response.jenislaporan === "Barang akan kadaluarsa") {
                     judullaporan.innerHTML = `<h4>${response.jenislaporan}</h4>`;
                     periodelaporan.innerHTML = `<p>Periode: ${response.periodeawal} / ${response.periodeakhir}</p>`;
                     for (let b = 0; b < response.laporanbarang.length; b++) {
                         contentlaporankadaluarsa.innerHTML += `<tr class="">
-                        <td class="pt-4 pb-4">${response.laporanbarang[b].id}</td>
-                        <td class="text-center pt-4 pb-4">${response.laporanbarang[b].TanggalMasukBarang}</td>
-                        <td class="text-center pt-4 pb-4">${response.laporanbarang[b].nama}</td>
-                        <td class="text-center pt-4 pb-4">${response.laporanbarang[b].tanggal_kadaluarsa}</td>
-                        <td class="text-center pt-4 pb-4">${response.laporanbarang[b].jumlah}</td>
-                        </tr>`;
+                            <td class="pt-4 pb-4">${response.laporanbarang[b].id}</td>
+                            <td class="text-center pt-4 pb-4">${response.laporanbarang[b].TanggalMasukBarang}</td>
+                            <td class="text-center pt-4 pb-4">${response.laporanbarang[b].nama}</td>
+                            <td class="text-center pt-4 pb-4">${response.laporanbarang[b].tanggal_kadaluarsa}</td>
+                            <td class="text-center pt-4 pb-4">${response.laporanbarang[b].jumlah}</td>
+                            </tr>`;
                     }
+                    isilaporankadaluarsa.classList.add("d-flex");
+                    isilaporankadaluarsa.classList.add(
+                        "justify-content-center"
+                    );
                     isilaporankadaluarsa.style.display = "block";
                     // window.location.href = `/laporan/cetak_pdf/${hasil.jenislaporan}/${hasil.input_tanggalawal}/${hasil.input_tanggalakhir}`;
                 } else if (response.jenislaporan === "Barang akan habis") {
@@ -143,14 +174,39 @@ $(document).ready(function () {
                     periodelaporan.innerHTML = `<p>Periode: ${response.periodeawal} / ${response.periodeakhir}</p>`;
                     for (let c = 0; c < response.laporanbarang.length; c++) {
                         contentlaporanbaranghabis.innerHTML += `<tr class="">
-                        <td class="pt-4 pb-4">${response.laporanbarang[c].id}</td>
-                        <td class="text-center pt-4 pb-4">${response.laporanbarang[c].nama}</td>
-                        <td class="text-center pt-4 pb-4">${response.laporanbarang[c].jumlah}</td>
-                        </tr>`;
+                            <td class="pt-4 pb-4">${response.laporanbarang[c].id}</td>
+                            <td class="text-center pt-4 pb-4">${response.laporanbarang[c].nama}</td>
+                            <td class="text-center pt-4 pb-4">${response.laporanbarang[c].total}</td>
+                            </tr>`;
                     }
+                    isilaporanbaranghabis.classList.add("d-flex");
+                    isilaporanbaranghabis.classList.add(
+                        "justify-content-center"
+                    );
                     isilaporanbaranghabis.style.display = "block";
                 } else if (response.jenislaporan === "Persediaan stok barang") {
-                    console.log("test3");
+                    judullaporan.innerHTML = `<h4>${response.jenislaporan}</h4>`;
+                    periodelaporan.innerHTML = `<p>Periode: ${response.periodeawal} / ${response.periodeakhir}</p>`;
+
+                    for (let e = 0; e < response.stockbarang.length; e++) {
+                        if (response.stockbarang[e].StockMasuk === null) {
+                            response.stockbarang[e].StockMasuk = "-";
+                        }
+                        if (response.stockbarang[e].StockKeluar === null) {
+                            response.stockbarang[e].StockKeluar = "-";
+                        }
+                        contentlaporanpersediaanstockbarang.innerHTML += `<tr class="">
+                        <td class="pt-4 pb-4">${response.stockbarang[e].id}</td>
+                        <td class="text-center pt-4 pb-4">${response.stockbarang[e].nama}</td>
+                        <td class="text-center pt-4 pb-4">${response.stockbarang[e].StockMasuk}</td>
+                        <td class="text-center pt-4 pb-4">${response.stockbarang[e].StockKeluar}</td>
+                        </tr>`;
+                    }
+                    isilaporanpersediaanstockbarang.classList.add("d-flex");
+                    isilaporanpersediaanstockbarang.classList.add(
+                        "justify-content-center"
+                    );
+                    isilaporanpersediaanstockbarang.style.display = "block";
                 } else if (response.jenislaporan === "Keluar masuk barang") {
                     judullaporan.innerHTML = `<h4>${response.jenislaporan}</h4>`;
                     periodelaporan.innerHTML = `<p>Periode: ${response.periodeawal} / ${response.periodeakhir}</p>`;
@@ -163,127 +219,93 @@ $(document).ready(function () {
                     //     console.log("test2");
                     // }
                     let stockakhir = 0;
-                    console.log(response.laporanbarang);
+                    // console.log(response.laporanbarang);
                     for (let d = 0; d < response.laporanbarang.length; d++) {
                         if (response.laporanbarang[d].id === tempidbarang) {
+                            // stockakhir -=
+                            //     response.laporanbarang[d].barangkeluar;
+                            // stockakhir -=
+                            //     response.laporanbarang[d].barangkeluar;
+
                             if (
-                                response.laporanbarang[d].barangmasukid ===
+                                response.laporanbarang[d].barangmasukid ==
                                 response.laporanbarang[d - 1].barangmasukid
                             ) {
-                                // stockakhir -=
-                                //     response.laporanbarang[d].barangkeluar;
-                                contentlaporankeluarmasukbarang.innerHTML += `<tr class="">
-                                <td class="pt-4 pb-4"></td>
-                                <td class="text-center pt-4 pb-4"></td>
-                                <td class="text-center pt-4 pb-4">${stockakhir}</td>
-                                <td class="text-center pt-4 pb-4">-</td>
-                                <td class="text-center pt-4 pb-4">-</td>
-                                <td class="text-center pt-4 pb-4">${
-                                    response.laporanbarang[d].barangkeluar
-                                }</td>
-                                <td class="text-center pt-4 pb-4">${
-                                    response.laporanbarang[d]
-                                        .tanggalkeluarbarang
-                                }</td>
-                                <td class="text-center pt-4 pb-4">${(stockakhir -=
-                                    response.laporanbarang[d]
-                                        .barangkeluar)}</td>
-                                </tr>`;
-                            } else if (
-                                response.laporanbarang[d].id !==
-                                    response.laporanbarang[d - 1]
-                                        .barangmasukid &&
-                                response.laporanbarang[d].barangmasukid !== null
-                            ) {
-                                let barangkeluarnull;
-                                let tanggalbarangkeluar;
-                                // stockakhir +=
-                                //     response.laporanbarang[d].barangmasuk -
-                                //     response.laporanbarang[d].barangkeluar;
-                                if (
-                                    response.laporanbarang[d].barangkeluar ===
-                                    null
-                                ) {
-                                    barangkeluarnull = "-";
-                                } else {
-                                    barangkeluarnull =
-                                        response.laporanbarang[d].barangkeluar;
-                                }
+                                response.laporanbarang[d].barangmasuk = 0;
+                                response.laporanbarang[d].tanggalmasukbarang =
+                                    "-";
+                            }
 
-                                if (
-                                    response.laporanbarang[d]
-                                        .tanggalkeluarbarang === null
-                                ) {
-                                    tanggalbarangkeluar = "-";
-                                } else {
-                                    tanggalbarangkeluar =
-                                        response.laporanbarang[d]
-                                            .tanggalkeluarbarang;
-                                }
-
-                                contentlaporankeluarmasukbarang.innerHTML += `<tr class="">
-                                <td class="pt-4 pb-4"></td>
-                                <td class="text-center pt-4 pb-4"></td>
-                                <td class="text-center pt-4 pb-4">${stockakhir}</td>
-                                <td class="text-center pt-4 pb-4">${
-                                    response.laporanbarang[d].barangmasuk
-                                }</td>
-                                <td class="text-center pt-4 pb-4">${
-                                    response.laporanbarang[d].tanggalmasukbarang
-                                }</td>
-                                <td class="text-center pt-4 pb-4">${barangkeluarnull}</td>
-                                <td class="text-center pt-4 pb-4">${tanggalbarangkeluar}</td>
-                                <td class="text-center pt-4 pb-4">${(stockakhir +=
-                                    response.laporanbarang[d].barangmasuk -
-                                    response.laporanbarang[d]
-                                        .barangkeluar)}</td>
-                                </tr>`;
-                            } else if (
+                            if (
                                 response.laporanbarang[d].barangmasuk === null
                             ) {
-                                // stockakhir -=
-                                //     response.laporanbarang[d].barangkeluar;
-                                contentlaporankeluarmasukbarang.innerHTML += `<tr class="">
-                                <td class="pt-4 pb-4"></td>
-                                <td class="text-center pt-4 pb-4"></td>
-                                <td class="text-center pt-4 pb-4">${stockakhir}</td>
-                                <td class="text-center pt-4 pb-4">-</td>
-                                <td class="text-center pt-4 pb-4">-</td>
-                                <td class="text-center pt-4 pb-4">${
-                                    response.laporanbarang[d].barangkeluar
-                                }</td>
-                                <td class="text-center pt-4 pb-4">${
-                                    response.laporanbarang[d]
-                                        .tanggalkeluarbarang
-                                }</td>
-                                <td class="text-center pt-4 pb-4">${(stockakhir -=
-                                    response.laporanbarang[d]
-                                        .barangkeluar)}</td>
-                                </tr>`;
+                                response.laporanbarang[d].barangmasuk = 0;
+                                response.laporanbarang[d].tanggalmasukbarang =
+                                    "-";
+                            } else if (
+                                response.laporanbarang[d].barangkeluar == null
+                            ) {
+                                response.laporanbarang[d].barangkeluar = 0;
+                                response.laporanbarang[d].tanggalkeluarbarang =
+                                    "-";
                             }
+                            contentlaporankeluarmasukbarang.innerHTML += `<tr class="">
+                                    <td class="pt-4 pb-4"></td>
+                                    <td class="text-center pt-4 pb-4"></td>
+                                    <td class="text-center pt-4 pb-4">${stockakhir}</td>
+                                    <td class="text-center pt-4 pb-4">${
+                                        response.laporanbarang[d].barangmasuk
+                                    }</td>
+                                    <td class="text-center pt-4 pb-4">${
+                                        response.laporanbarang[d]
+                                            .tanggalmasukbarang
+                                    }</td>
+                                    <td class="text-center pt-4 pb-4">${
+                                        response.laporanbarang[d].barangkeluar
+                                    }</td>
+                                    <td class="text-center pt-4 pb-4">${
+                                        response.laporanbarang[d]
+                                            .tanggalkeluarbarang
+                                    }</td>
+                                    <td class="text-center pt-4 pb-4">${(stockakhir +=
+                                        response.laporanbarang[d].barangmasuk -
+                                        response.laporanbarang[d]
+                                            .barangkeluar)}</td>
+                                    </tr>`;
                             tempidbarang = response.laporanbarang[d].id;
                         } else if (
-                            response.laporanbarang[d].id != tempidbarang
+                            response.laporanbarang[d].id !== tempidbarang
                         ) {
+                            if (
+                                response.laporanbarang[d].barangkeluar == null
+                            ) {
+                                response.laporanbarang[d].barangkeluar = 0;
+                                response.laporanbarang[d].tanggalkeluarbarang =
+                                    "-";
+                            }
                             stockakhir = 0;
                             stockakhir =
                                 response.laporanbarang[d].Stockfinalawal +
                                 response.laporanbarang[d].barangmasuk -
                                 response.laporanbarang[d].barangkeluar;
                             contentlaporankeluarmasukbarang.innerHTML += `<tr class="">
-                            <td class="pt-4 pb-4">${response.laporanbarang[d].id}</td>
-                            <td class="text-center pt-4 pb-4">${response.laporanbarang[d].nama}</td>
-                            <td class="text-center pt-4 pb-4">${response.laporanbarang[d].Stockfinalawal}</td>
-                            <td class="text-center pt-4 pb-4">${response.laporanbarang[d].barangmasuk}</td>
-                            <td class="text-center pt-4 pb-4">${response.laporanbarang[d].tanggalmasukbarang}</td>
-                            <td class="text-center pt-4 pb-4">${response.laporanbarang[d].barangkeluar}</td>
-                            <td class="text-center pt-4 pb-4">${response.laporanbarang[d].tanggalkeluarbarang}</td>
-                            <td class="text-center pt-4 pb-4">${stockakhir}</td>
-                            </tr>`;
+                        <td class="pt-4 pb-4">${response.laporanbarang[d].id}</td>
+                        <td class="text-center pt-4 pb-4">${response.laporanbarang[d].nama}</td>
+                        <td class="text-center pt-4 pb-4">${response.laporanbarang[d].Stockfinalawal}</td>
+                        <td class="text-center pt-4 pb-4">${response.laporanbarang[d].barangmasuk}</td>
+                        <td class="text-center pt-4 pb-4">${response.laporanbarang[d].tanggalmasukbarang}</td>
+                        <td class="text-center pt-4 pb-4">${response.laporanbarang[d].barangkeluar}</td>
+                        <td class="text-center pt-4 pb-4">${response.laporanbarang[d].tanggalkeluarbarang}</td>
+                        <td class="text-center pt-4 pb-4">${stockakhir}</td>
+                        </tr>`;
 
                             tempidbarang = response.laporanbarang[d].id;
                         }
                     }
+                    isilaporankeluarmasukbarang.classList.add("d-flex");
+                    isilaporankeluarmasukbarang.classList.add(
+                        "justify-content-center"
+                    );
                     isilaporankeluarmasukbarang.style.display = "block";
                     // console.log(response.laporanbarang);
                 }
