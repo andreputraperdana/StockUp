@@ -52,7 +52,7 @@
                                 </div>
                             </div>
 
-                            <button class="content__chat d-flex" style="border: 0px; background-color: transparent;">
+                            <!-- <button class="content__chat d-flex" style="border: 0px; background-color: transparent;">
                                 <div class="pe-2">
                                     <img src="{{URL::asset('akun.png')}}" alt="" style="height: 50px;"> 
                                 </div>
@@ -65,7 +65,7 @@
                                 <div class="pt-1">
                                     <p style="font-size: 12px;">Online</p>
                                 </div>
-                            </button>
+                            </button> -->
 
                             <!-- <button class="content__chat d-flex" style="border: 0px; background-color: transparent;">
                                 <div class="pe-2">
@@ -100,16 +100,24 @@
                                 </div>
                             </div>
 
-                            <div class="d-flex flex-column justify-content-end" style="height: 85%;">
-                                <div class="d-flex justify-content-center" >
-                                    <div class="d-flex" style="border: 0; background-color:transparent; border-radius: 7px; width: 85%; height: 40px;">
-                                        <input type="text" class="form-control me-2" id="exampleInputTanggalKadaluarsa1" aria-describedby="emailHelp" placeholder="Kirim Pesan" style="border-radius: 0; background-color:transparent; border: 1px solid black;">
-                                        <button type="submit" class="btn" style="border: 1px solid black; border-radius: 0 7px 7px 0; background-color: #D7CAA0;">
-                                            <img src="{{URL::asset('sendicon.png')}}" class="" style="height: 20px;">
-                                        </button>
-                                    </div>
-                                </div>
+                            <div class="content-chat">
+                                
                             </div>
+                            <div class="d-flex flex-column justify-content-end" style="height: 85%;">
+                                <form method="POST" action="/sendmessage" enctype="multipart/form-data" id="submitmessage">
+                                    @csrf
+                                    <div class="d-flex justify-content-center" >
+                                        <div class="d-flex" style="border: 0; background-color:transparent; border-radius: 7px; width: 85%; height: 40px;">
+                                            <input type="text" class="form-control me-2 message" id="message" name="message" placeholder="Kirim Pesan" style="border-radius: 0; background-color:transparent; border: 1px solid black;">
+                                            <button type="submit" class="btn" style="border: 1px solid black; border-radius: 0 7px 7px 0; background-color: #D7CAA0;">
+                                                <img src="{{URL::asset('sendicon.png')}}" class="" style="height: 20px;">
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="UMKMID" style="display: none;">{{$userchat->id}}</div>
+                            <div class="PemasokID" style="display: none;">{{auth()->user()->id}}</div>
                         </div>
                         </div>
                     </div>
