@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 class HalamanUtamaController extends Controller
 {
-   public function getindex(){
-        return view('welcome');
+   public function getindex()
+   {
+      return view('welcome');
    }
 }

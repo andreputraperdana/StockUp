@@ -9,18 +9,20 @@ use Illuminate\Support\Facades\DB;
 
 class ListBarangController extends Controller
 {
-    public function getindex($id){
+    public function getindex($id)
+    {
         $hasil = TransaksiBarangMasuk::where('barang_umkm_id', '=', $id)->whereraw(DB::raw('(jumlah > 0)'))->get();
-        return view('listbarang',  ['hasil'=> $hasil]);
+        return view('listbarang',  ['hasil' => $hasil]);
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $barangUMKMIDSearch = TransaksiBarangMasuk::where('id', '=', $id)->first();
         $barangUMKMID = $barangUMKMIDSearch['barang_umkm_id'];
         $transaksiBarangMasuk = TransaksiBarangMasuk::where('barang_umkm_id', '=', $barangUMKMID)->count();
-        if($transaksiBarangMasuk == 1){
+        if ($transaksiBarangMasuk == 1) {
             DB::delete('DELETE FROM barang_umkm WHERE id = ?', [$barangUMKMID]);
-        }else{
+        } else {
             DB::delete('DELETE FROM transaksi_barang_masuk WHERE id = ?', [$id]);
         }
         return response()->json(['stats' => 'Data berhasil dihapus']);

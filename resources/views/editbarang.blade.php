@@ -12,7 +12,7 @@
                     <a href="javascript:history.back()">
                         <button class="ps-3 pe-3"
                             style="background-color: #d7caa0; font-size: 30px; font-weight: bold;border-radius: 50%; border: none;">
-                        <</button>
+                            << /button>
                     </a>
                 </div>
             </div>
@@ -34,7 +34,9 @@
                 </div>
                 <div class="dropdown mt-2">
                     <button class="dropbutton ps-3 pe-4 pt-1 pb-1" style="border: none; border-radius: 25px;">
-                        <img src="\public\image\{{auth()->user()->foto_profile}}" alt="" style="height: 40px; width: 40px; border-radius: 50px;"> {{Str::limit(auth()->user()->name,5)}}
+                        <img src="\public\image\{{ auth()->user()->foto_profile }}" alt=""
+                            style="height: 40px; width: 40px; border-radius: 50px;">
+                        {{ Str::limit(auth()->user()->name, 5) }}
                     </button>
                     <div class="dropdown-content">
                         <a href="/editprofile">Pengaturan</a>
@@ -210,9 +212,9 @@
                                                 </label>
                                             </div>
                                             <!-- <div class="input_namabarang">
-                                                        <input type="number" step="500" class="form-control" id="exampleInputHarga1" aria-describedby="emailHelp" placeholder="Harga" style="border: 1px solid #626262; background-color:transparent;">
-                                                        
-                                                    </div> -->
+                                                            <input type="number" step="500" class="form-control" id="exampleInputHarga1" aria-describedby="emailHelp" placeholder="Harga" style="border: 1px solid #626262; background-color:transparent;">
+                                                            
+                                                        </div> -->
                                             <div class="d-flex">
 
                                                 <div style="width: 40%;" class="pe-5">
@@ -444,9 +446,9 @@
                                                 </label>
                                             </div>
                                             <!-- <div class="input_namabarang">
-                                                        <input type="number" step="500" class="form-control" id="exampleInputHarga1" aria-describedby="emailHelp" placeholder="Harga" style="border: 1px solid #626262; background-color:transparent;">
-                                                        
-                                                    </div> -->
+                                                            <input type="number" step="500" class="form-control" id="exampleInputHarga1" aria-describedby="emailHelp" placeholder="Harga" style="border: 1px solid #626262; background-color:transparent;">
+                                                            
+                                                        </div> -->
                                             <div class="d-flex">
 
                                                 <div style="width: 40%;" class="pe-5">

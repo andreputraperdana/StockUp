@@ -141,46 +141,48 @@
                         </div>
                     </form>
                     <div class="" id="contentAllBarang">
-                    <div class="d-flex justify-content-center" style="width: 100%;">
-                        @if (!$AllItems->isEmpty())
-                            <table class="table caption-top" style="width: 90%;">
-                                <thead>
-                                    <tr>
-                                        <td scope="col" style="color: black;">Foto Barang</td>
-                                        <td scope="col" style="color: black;">Nama Barang</td>
-                                        <td scope="col" style="color: black;" class="text-center">Kuantitas</td>
-                                        <td scope="col" style="color: black;" class="text-center">Jenis Barang
-                                        </td>
-                                        <td scope="col" style="color: black;" class="text-center">Total Batch</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($AllItems as $AllItem)
-                                        <tr class="">
-                                            <td class="pt-4 pb-4"><img src="\public\image\{{$AllItem->BarangUMKM->foto_barang}}" alt="Foto Profil" style="height: 60px;"></td>
-                                            <td class="pt-4 pb-4">{{ $AllItem->BarangUMKM->nama }}<br><span
-                                                    style="opacity: 0.6;">00{{ $AllItem->BarangUMKM->id }}</span></td>
-                                            <td class="text-center pt-4 pb-4">{{ $AllItem->total }}</td>
-                                            <td class="text-center pt-4 pb-4">{{ $AllItem->BarangUMKM->jenis }}</td>
-                                            <td class="text-center pt-4 pb-4">{{ $AllItem->totalAll }}</td>
+                        <div class="d-flex justify-content-center" style="width: 100%;">
+                            @if (!$AllItems->isEmpty())
+                                <table class="table caption-top" style="width: 90%;">
+                                    <thead>
+                                        <tr>
+                                            <td scope="col" style="color: black;">Foto Barang</td>
+                                            <td scope="col" style="color: black;">Nama Barang</td>
+                                            <td scope="col" style="color: black;" class="text-center">Kuantitas</td>
+                                            <td scope="col" style="color: black;" class="text-center">Jenis Barang
+                                            </td>
+                                            <td scope="col" style="color: black;" class="text-center">Total Batch</td>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        @else
-                            <div class="pt-5">
-                                <div class="d-flex justify-content-center">
-                                    <img src="{{ URL::asset('emptyicon.png') }}" alt="" height="185px">
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($AllItems as $AllItem)
+                                            <tr class="">
+                                                <td class="pt-4 pb-4"><img
+                                                        src="\public\image\{{ $AllItem->BarangUMKM->foto_barang }}"
+                                                        alt="Foto Profil" style="height: 60px;"></td>
+                                                <td class="pt-4 pb-4">{{ $AllItem->BarangUMKM->nama }}<br><span
+                                                        style="opacity: 0.6;">00{{ $AllItem->BarangUMKM->id }}</span></td>
+                                                <td class="text-center pt-4 pb-4">{{ $AllItem->total }}</td>
+                                                <td class="text-center pt-4 pb-4">{{ $AllItem->BarangUMKM->jenis }}</td>
+                                                <td class="text-center pt-4 pb-4">{{ $AllItem->totalAll }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            @else
+                                <div class="pt-5">
+                                    <div class="d-flex justify-content-center">
+                                        <img src="{{ URL::asset('emptyicon.png') }}" alt="" height="185px">
+                                    </div>
+                                    <div class="d-flex" style="justify-content: center; align-items:center;">
+                                        <h4>Barang Kosong</h4>
+                                    </div>
                                 </div>
-                                <div class="d-flex" style="justify-content: center; align-items:center;">
-                                    <h4>Barang Kosong</h4>
-                                </div>
-                            </div>
-                        @endif
-                    </div>
-                    <span class="d-flex justify-content-center" style="padding-bottom: 25px;">
-                        {{ $AllItems->links() }}
-                    </span>
+                            @endif
+                        </div>
+                        <span class="d-flex justify-content-center" style="padding-bottom: 25px;">
+                            {{ $AllItems->links() }}
+                        </span>
                     </div>
                 </div>
             </div>
@@ -268,7 +270,9 @@
                                     <tbody>
                                         @foreach ($AllItems as $AllItem)
                                             <tr class="">
-                                                <td class="pt-4 pb-4"><img src="\public\image\{{$AllItem->foto_barang}}" alt="Foto Profil" style="height: 60px;"></td>
+                                                <td class="pt-4 pb-4"><img
+                                                        src="\public\image\{{ $AllItem->foto_barang }}" alt="Foto Profil"
+                                                        style="height: 60px;"></td>
                                                 <td class="pt-4 pb-4">{{ $AllItem->nama }}<br><span
                                                         style="opacity: 0.6;">00{{ $AllItem->id }}</span></td>
                                                 <td class="text-center pt-4 pb-4">{{ $AllItem->jenis }}</td>

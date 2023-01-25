@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Membuat Laporan PDF Dengan DOMPDF Laravel</title>
+	<title>Laporan {{$jenis}}</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
@@ -16,7 +16,7 @@
 		}
 	</style>
 	<center>
-		<h5>Membuat Laporan {{$jenis}}</h4>
+		<h5 style="text-transform: capitalize;">Laporan {{$jenis}}</h4>
         <h6>Periode: {{$tanggalawalLaporan}} - {{$tanggalakhirLaporan}}</h6>
 	</center>
     
@@ -39,7 +39,7 @@
 		</thead>
 		<tbody>
 			@php $i=1 @endphp
-			@foreach($BarangAkanKadaluarsa as $p)
+			@foreach($LaporanBarang as $p)
             <tr>
                 @foreach($p as $data)
                     {{-- @if($key != "barang_umkm_id" && $key !="harga" ) --}}

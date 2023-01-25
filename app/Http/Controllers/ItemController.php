@@ -12,16 +12,18 @@ class ItemController extends Controller
         $BarangDetail = $this->getBarangPemasokByID($id);
         $BarangRandom = $this->getBarangRandom();
         // return redirect()->route('item', ['id' => $id])->with('BarangDetail', $BarangDetail);
-        return view('item', ['BarangDetail'=> $BarangDetail, 'BarangRandom'=> $BarangRandom]);
+        return view('item', ['BarangDetail' => $BarangDetail, 'BarangRandom' => $BarangRandom]);
     }
 
-    public function getBarangPemasokByID($id){
+    public function getBarangPemasokByID($id)
+    {
         $BarangDetail = BarangPemasok::join('users', 'users.id', '=', 'barang_pemasok.user_id')->where('barang_pemasok.id', '=', $id)->get();
         return $BarangDetail;
     }
 
-    public function getBarangRandom(){
-       $BarangRandom =  BarangPemasok::inRandomOrder()->limit(4)->get();
-       return $BarangRandom;
+    public function getBarangRandom()
+    {
+        $BarangRandom =  BarangPemasok::inRandomOrder()->limit(4)->get();
+        return $BarangRandom;
     }
 }
