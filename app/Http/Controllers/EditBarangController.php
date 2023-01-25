@@ -16,45 +16,49 @@ class EditBarangController extends Controller
     {
         $auth = Auth::user();
         $user = $this->CheckUser();
-        if($user == 'UMKM'){
-                $hasil = $this->GetBarangUMKMByid($id);
-            }else{
-                $hasil = $this->GetBarangPemasokByid($id);
-            }
-            return view('editbarang', ['hasil' => $hasil]);
+        if ($user == 'UMKM') {
+            $hasil = $this->GetBarangUMKMByid($id);
+        } else {
+            $hasil = $this->GetBarangPemasokByid($id);
+        }
+        return view('editbarang', ['hasil' => $hasil]);
     }
 
     public function EditBarang(Request $request)
     {
         $auth = Auth::user();
         $user = $this->CheckUser();
-        if($user == 'UMKM'){
-           $this->EditBarangUMKM($request);
-        }else{
+        if ($user == 'UMKM') {
+            $this->EditBarangUMKM($request);
+        } else {
             $this->EditBarangPemasok($request);
         }
 
         return redirect('/mengelolabarang')->with('status', 'Data siswa Berhasil Diubah');
     }
 
-    public function CheckUser(){
+    public function CheckUser()
+    {
         $Check = Role::where('id', '=', auth()->user()->role_id)->first();
         return $Check->name;
     }
 
-    public function GetBarangUMKMByid($id){
+    public function GetBarangUMKMByid($id)
+    {
         $getbarangumkm =  $hasil = DB::table('barang_umkm')
-        ->join('transaksi_barang_masuk', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')
-        ->where('transaksi_barang_masuk.id', '=', $id)->get();
+            ->join('transaksi_barang_masuk', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')
+            ->where('transaksi_barang_masuk.id', '=', $id)->get();
         return $getbarangumkm;
     }
 
-    public function GetBarangPemasokByid($id){
+    public function GetBarangPemasokByid($id)
+    {
         $getbarangpemasok = DB::table('barang_pemasok')->where('id', '=', $id)->get();
         return $getbarangpemasok;
     }
 
-    public function EditBarangUMKM($request){
+    public function EditBarangUMKM($request)
+    {
         $output = $request->input();
         $checkbarang = BarangUMKM::where('id', $request->idbarang)->first();
         $transaksibarangmasuk = TransaksiBarangMasuk::where('barang_umkm_id', $checkbarang->id)->first();
@@ -66,7 +70,7 @@ class EditBarangController extends Controller
         $transaksibarangmasuk->tanggal_kadaluarsa = $output['tanggalkadaluarsa'];
         $transaksibarangmasuk->notif_flag = 0;
         $transaksibarangmasuk->update();
-        if($request->file('fotobarang') != null){
+        if ($request->file('fotobarang') != null) {
             $filenameWithExt = $request->file('fotobarang')->getClientOriginalName();
             // Get Filename
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
@@ -81,14 +85,15 @@ class EditBarangController extends Controller
         }
     }
 
-    public function EditBarangPemasok($request){
+    public function EditBarangPemasok($request)
+    {
         $output = $request->input();
         $checkbarang = BarangPemasok::where('id', $request->idbarang)->first();
         $checkbarang->nama = $output['namabarang'];
         $checkbarang->jenis = $output['kategori'];
         $checkbarang->harga = $output['hargabarang'];
         $checkbarang->deskripsi = $output['deskripsi'];
-        if($request->file('fotobarang') != null){
+        if ($request->file('fotobarang') != null) {
             $filenameWithExt = $request->file('fotobarang')->getClientOriginalName();
             // Get Filename
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);

@@ -10,7 +10,7 @@ class LoginController extends Controller
 {
     public function getindex()
     {
-        return view('login', ['messages'=>'']);
+        return view('login', ['messages' => '']);
     }
 
     public function authenticate(Request $request)

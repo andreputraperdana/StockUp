@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="input_pilihtanggal" style="width: 30%;">
-                    <input type="date" class="form-control" id="exampleInputPilihTanggal1" aria-describedby="emailHelp"
+                    <input type="date" class="form-control" id="exampleInputPilihTanggal1" name="filterTanggal" aria-describedby="emailHelp"
                         placeholder="Pilih Tanggal" style="border: 1px solid #626262; background-color:transparent;">
                 </div>
             </div>

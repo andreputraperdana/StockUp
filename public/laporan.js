@@ -96,7 +96,7 @@ $(document).ready(function () {
         // console.log(head);
         // head.append(td);
 
-        window.location.href = `/laporan/cetak_pdf?jenis_laporan=str_slug(${hasil.jenislaporan})&start=${hasil.input_tanggalawal}&end=${hasil.input_tanggalakhir}`;
+        window.location.href = `/laporan/cetak_pdf/?jenis_laporan=${hasil.jenislaporan}&start=${hasil.input_tanggalawal}&end=${hasil.input_tanggalakhir}`;
     });
 
     previewlaporan.addEventListener("click", function (e) {

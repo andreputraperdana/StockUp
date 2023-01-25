@@ -11,7 +11,7 @@
                 <a href="/beranda">
                     <button class="ps-3 pe-3"
                         style="background-color: #d7caa0; font-size: 30px; font-weight: bold;border-radius: 50%; border: none;">
-                        </button>
+                    </button>
                 </a>
             </div>
             <div class="judul_halaman mt-5">
@@ -26,9 +26,12 @@
             <div class="daftar_profil_kanan_kategori mb-3 ps-5" style="width: 30%;">
                 <select name="kategori" class="kategori p-2" style="color: #626262; border-radius: 5px;"
                     onchange="outputchange(this)">
-                    <option value="Semua Barang" name="option_kategori" {{!empty($jenis) &&  $jenis == 1 ? "selected":""}}>Semua Jenis Notifikasi</option>
-                    <option value="Barang Habis" name="option_kategori" {{!empty($jenis) && $jenis == 2 ? "selected":""}}>Barang Habis/Akan Habis</option>
-                    <option value="Barang Kadaluarsa" name="option_kategori" {{!empty($jenis) && $jenis == 3 ? "selected":""}}>Barang Akan Kadaluarsa</option>
+                    <option value="Semua Barang" name="option_kategori"
+                        {{ !empty($jenis) && $jenis == 1 ? 'selected' : '' }}>Semua Jenis Notifikasi</option>
+                    <option value="Barang Habis" name="option_kategori" {{ !empty($jenis) && $jenis == 2 ? 'selected' : '' }}>
+                        Barang Habis/Akan Habis</option>
+                    <option value="Barang Kadaluarsa" name="option_kategori"
+                        {{ !empty($jenis) && $jenis == 3 ? 'selected' : '' }}>Barang Akan Kadaluarsa</option>
                 </select>
             </div>
         </div>
@@ -46,9 +49,9 @@
     </div>
 @else
     <div class="AllNotif">
-        @if(empty($jenis))
-        @include('pagination')
-        {{-- @foreach ($Allbarang as $AllBarang)
+        @if (empty($jenis))
+            @include('pagination')
+            {{-- @foreach ($Allbarang as $AllBarang)
             @if (empty($AllBarang->Total))
                 <form action="/detailnotif" method="POST">
                     @csrf
@@ -92,9 +95,9 @@
                     </div>
                 </form>        
         @endforeach --}}
-        {{-- @else
+            {{-- @else
         @include('notifikasifilter') --}}
-        {{-- <form action="/detailnotif" method="POST">
+            {{-- <form action="/detailnotif" method="POST">
             @csrf
             <div class="list_raja_notif d-flex justify-content-center pt-5">
                 <div class="list_notifikasi d-flex justify-content-center pt-3"

@@ -143,26 +143,89 @@ class LaporanController extends Controller
             "Barang akan kadaluarsa" =>
             ['ID Barang', 'Tanggal Masuk Barang', 'Nama Barang', "Tanggal Kadaluarsa", 'Jumlah Barang'],
             "Keluar masuk barang" =>
-            ['ID Barang', 'Nama Barang', 'Stock Awal'],
+            ['ID Barang', 'Nama Barang', 'Stok Awal', 'Masuk', 'Tanggal Masuk', 'Keluar', 'Tanggal Keluar', 'Stok Akhir'],
+            "Persediaan stok barang" =>
+            ['ID Barang', 'Nama Barang', 'Jumlah Barang Masuk', 'Jumlah Barang Keluar'],
+            "Barang akan habis" =>
+            ['ID Barang', 'Nama Barang', 'Jumlah Barang'],
         ];
         if ($jenis == "Keluar masuk barang") {
             $LaporanBarang =  $this->GetKeluarMasukBarang($tanggalawalLaporan, $tanggalakhirLaporan);
-            $pdf = PDF::loadView('isilaporan', ['LaporanBarang' => $LaporanBarang]);
+            $barang_arrange = [];
+            $prevStockAkhir = "";
+            foreach($LaporanBarang as $key => $data) {
+                    $nama = $data->nama;
+                    $id = $data->id;
+                    $stockAwal = $data->Stockfinalawal;
+                    $stockAkhir = $data->Stockfinalawal + $data->barangmasuk - $data->barangkeluar;
+
+                    if($key!= 0){
+                        if($id == $LaporanBarang[$key-1]->id){
+                            $nama = "---";
+                            $id = "---";
+                            $stockAwal = $prevStockAkhir;
+                            $stockAkhir = $stockAwal + $data->barangmasuk - $data->barangkeluar;
+                        }
+                    }
+                    
+                    $newData = [ 
+                        $id,
+                        $nama, 
+                        $stockAwal, 
+                        $data->barangmasuk, 
+                        $data->tanggalmasukbarang,
+                        $data->barangkeluar,
+                        $data->tanggalkeluarbarang,
+                        $stockAkhir
+                    ];
+
+                    $prevStockAkhir =$data->Stockfinalawal + $data->barangmasuk - $data->barangkeluar;
+                    array_push($barang_arrange, $newData);
+            }
+
+            $pdf = PDF::loadView('isilaporan', ['LaporanBarang' => $barang_arrange, 'jenis' => $jenis, 'tanggalawalLaporan' => $tanggalawalLaporan, 'tanggalakhirLaporan' => $tanggalakhirLaporan, 'table_head' => $table_head[$jenis]]);
             return $pdf->download('laporan-pdf.pdf');
         } else if ($jenis == "Persediaan stok barang") {
+            $LaporanBarang =  $this->GetPersediaanBarang($tanggalawalLaporan, $tanggalakhirLaporan);
+            $barang_arrange = [];
+            foreach($LaporanBarang as $data) {
+                    $newData = [ 
+                        $data->id, 
+                        $data->nama, 
+                        $data->StockMasuk, 
+                        $data->StockKeluar,
+                    ];
+                    array_push($barang_arrange, $newData);
+            }
+            $pdf = PDF::loadView('isilaporan', ['LaporanBarang' => $barang_arrange, 'jenis' => $jenis, 'tanggalawalLaporan' => $tanggalawalLaporan, 'tanggalakhirLaporan' => $tanggalakhirLaporan, 'table_head' => $table_head[$jenis]]);
+            return $pdf->download('laporan-pdf.pdf');
         } else if ($jenis == "Barang akan kadaluarsa") {
             $BarangAkanKadaluarsa = $this->GetBarangKadaluarsa($tanggalawalLaporan, $tanggalakhirLaporan);
             // dd($BarangAkanKadaluarsa);
             $barang_arrange = [];
             foreach($BarangAkanKadaluarsa as $data) {
-                    $newData = [ $data->id, $data->TanggalMasukBarang, $data->nama, $data->tanggal_kadaluarsa, $data->jumlah];
+                    $newData = [ 
+                        $data->id, 
+                        $data->TanggalMasukBarang, 
+                        $data->nama, 
+                        $data->tanggal_kadaluarsa,
+                        $data->jumlah];
                     array_push($barang_arrange, $newData);
             }
-            $pdf = PDF::loadView('isilaporan', ['BarangAkanKadaluarsa' => $barang_arrange, 'jenis' => $jenis, 'tanggalawalLaporan' => $tanggalawalLaporan, 'tanggalakhirLaporan' => $tanggalakhirLaporan, 'table_head' => $table_head[$jenis]]);
+            $pdf = PDF::loadView('isilaporan', ['LaporanBarang' => $barang_arrange, 'jenis' => $jenis, 'tanggalawalLaporan' => $tanggalawalLaporan, 'tanggalakhirLaporan' => $tanggalakhirLaporan, 'table_head' => $table_head[$jenis]]);
             return $pdf->download('laporan-pdf.pdf');
         } else if ($jenis == "Barang akan habis") {
-            $BarangAkanHabis = $this->GetBarangHabis($tanggalawalLaporan, $tanggalakhirLaporan);
-            return response()->json(['stats' => 400, 'laporanbarang' => $BarangAkanHabis, 'jenislaporan' => $jenis, 'periodeawal' => $tanggalawalLaporan, 'periodeakhir' => $tanggalakhirLaporan]);
+            $LaporanBarang = $this->GetBarangHabis($tanggalawalLaporan, $tanggalakhirLaporan);
+            $barang_arrange = [];
+            foreach($LaporanBarang as $data) {
+                    $newData = [ 
+                        $data->id, 
+                        $data->nama, 
+                        $data->total];
+                    array_push($barang_arrange, $newData);
+            }
+            $pdf = PDF::loadView('isilaporan', ['LaporanBarang' => $barang_arrange, 'jenis' => $jenis, 'tanggalawalLaporan' => $tanggalawalLaporan, 'tanggalakhirLaporan' => $tanggalakhirLaporan, 'table_head' => $table_head[$jenis]]);
+            return $pdf->download('laporan-pdf.pdf');
         }
 
         // $barang = BarangPemasok::all();
