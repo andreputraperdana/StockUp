@@ -6,6 +6,8 @@ let umkmid = document.querySelector(".UMKMID").innerHTML;
 let pemasokid = document.querySelector(".PemasokID").innerHTML;
 textmenu.forEach((test) => test.classList.add("hide"));
 const contentchat = document.querySelector(".content-chat");
+const contentmessage = document.getElementById("message");
+const pesanMasuk = document.querySelector(".pesanAllMasuk");
 slidebar.addEventListener("mouseover", function (e) {
     // console.log(this.classList);
     this.style.width = "250px";
@@ -49,6 +51,7 @@ $(document).ready(function () {
             processData: false,
             success: function (response) {
                 response.stats;
+                contentmessage.value = "";
             },
         });
     });
@@ -68,4 +71,16 @@ setInterval(() => {
         }
     };
     xhr.send();
+}, 1000);
+
+setInterval(() => {
+    let req = new XMLHttpRequest();
+    req.open("GET", "/allpesanmasuk", true);
+    req.onload = () => {
+        if (req.readyState === XMLHttpRequest.DONE) {
+            let data = req.response;
+            pesanMasuk.innerHTML = data;
+        }
+    };
+    req.send();
 }, 1000);

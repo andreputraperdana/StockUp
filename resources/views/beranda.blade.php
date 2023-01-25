@@ -264,7 +264,7 @@
                                             <td scope="col" style="color: black;" class="text-center">Jenis Barang
                                             </td>
                                             <td scope="col" style="color: black;" class="text-center">Harga Barang
-                                            </td>
+                                            </td> 
                                         </tr>
                                     </thead>
                                     <tbody>

@@ -16,6 +16,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\ListBarangController;
 use App\Http\Controllers\MengelolaBarangController;
 use App\Http\Controllers\NotifikasiController;
+use App\Http\Controllers\PesanController;
 use App\Http\Controllers\PlatformSosialController;
 use App\Http\Controllers\ProfilTokoController;
 use App\Http\Controllers\TokoController;
@@ -53,6 +54,8 @@ Route::get('/barang/fetch_data', [BerandaController::class, 'fetchDataBarang']);
 Route::get('/listalluser', [ListUserController::class, 'getindex']);
 
 Route::post('/chat', [ChatController::class, 'getindex']);
+
+Route::get('/allpesanmasuk', [PesanController::class, 'getindex']);
 
 Route::post('/sendmessage', [ChatController::class, 'postmessage']);
 
