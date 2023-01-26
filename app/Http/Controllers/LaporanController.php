@@ -108,7 +108,7 @@ class LaporanController extends Controller
         })->leftJoin(DB::raw("(SELECT * FROM transaksi_barang_keluar WHERE DATE_FORMAT(created_at, '%Y-%m-%d') BETWEEN DATE_FORMAT('" . $tanggalawalLaporan . "','%Y-%m-%d') AND DATE_FORMAT('" . $tanggalakhirLaporan . "','%Y-%m-%d')) TransaksiBarangKeluar"), function ($join2) {
             $join2->on('TransaksiBarangMasuk.id', '=', 'TransaksiBarangKeluar.transaksi_barang_masuk_id');
             $join2->on(DB::raw("DATE_FORMAT(TransaksiBarangMasuk.created_at, '%Y-%m-%d')"), "=", DB::raw("DATE_FORMAT(TransaksiBarangKeluar.created_at, '%Y-%m-%d')"));
-        })->whereRaw(DB::raw('(TransaksiBarangMasuk.stockawal IS NOT NULL OR TransaksiBarangKeluar.jumlah IS NOT NULL)'))->WHERE('barang_umkm.user_id', '=', auth()->user()->id)->select('barang_umkm.id', DB::raw('TransaksiBarangMasuk.id as barangmasukid'), 'barang_umkm.nama', 'combinestock.Stockfinalawal', DB::raw("TransaksiBarangMasuk.stockawal as barangmasuk, DATE_FORMAT(TransaksiBarangMasuk.created_at, '%Y-%m-%d') as tanggalmasukbarang, TransaksiBarangKeluar.jumlah as barangkeluar, DATE_FORMAT(TransaksiBarangKeluar.created_at, '%Y-%m-%d') as tanggalkeluarbarang"))->union($LaporanBarangKeluarDifTanggal)->orderBy('id', 'ASC')->orderBy('tanggalmasukbarang', 'ASC')->offset(0)->limit(5)->get();
+        })->whereRaw(DB::raw('(TransaksiBarangMasuk.stockawal IS NOT NULL OR TransaksiBarangKeluar.jumlah IS NOT NULL)'))->WHERE('barang_umkm.user_id', '=', auth()->user()->id)->select('barang_umkm.id', DB::raw('TransaksiBarangMasuk.id as barangmasukid'), 'barang_umkm.nama', 'combinestock.Stockfinalawal', DB::raw("TransaksiBarangMasuk.stockawal as barangmasuk, DATE_FORMAT(TransaksiBarangMasuk.created_at, '%Y-%m-%d') as tanggalmasukbarang, TransaksiBarangKeluar.jumlah as barangkeluar, DATE_FORMAT(TransaksiBarangKeluar.created_at, '%Y-%m-%d') as tanggalkeluarbarang"))->union($LaporanBarangKeluarDifTanggal)->orderBy('id', 'ASC')->orderBy('tanggalmasukbarang', 'ASC')->get();
         return $LaporanBarang;
     }
 
@@ -117,19 +117,19 @@ class LaporanController extends Controller
         on a.id = b.transaksi_barang_masuk_id where DATE_FORMAT(a.created_at, '%Y-%m-%d') BETWEEN DATE_FORMAT('" . $tanggalawalLaporan . "','%Y-%m-%d') AND DATE_FORMAT('" . $tanggalakhirLaporan . "','%Y-%m-%d') GROUP BY a.barang_umkm_id) final")
         , function($join){
             $join->on('barang_umkm.id', '=', 'final.barang_umkm_id');
-        })->where('barang_umkm.user_id', '=', auth()->user()->id)->select('barang_umkm.id', 'barang_umkm.nama', 'final.barang_umkm_id', 'final.StockMasuk', 'final.StockKeluar')->offset(0)->limit(5)->get();
+        })->where('barang_umkm.user_id', '=', auth()->user()->id)->select('barang_umkm.id', 'barang_umkm.nama', 'final.barang_umkm_id', 'final.StockMasuk', 'final.StockKeluar')->get();
         return $persediaanStockBarang;
     }
 
     public function GetBarangKadaluarsa($tanggalawalLaporan, $tanggalakhirLaporan)
     {
-        $BarangAkanKadalurasa = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->select('*', DB::raw('CURDATE() as Date_Today'))->whereRaw(DB::raw("((CURDATE() BETWEEN DATE_ADD(tanggal_kadaluarsa, INTERVAL -14 DAY) AND tanggal_kadaluarsa) or (CURDATE() > tanggal_kadaluarsa)) AND (DATE_FORMAT(transaksi_barang_masuk.created_at, '%Y-%m-%d') BETWEEN DATE_FORMAT('" . $tanggalawalLaporan . "','%Y-%m-%d') AND DATE_FORMAT('" . $tanggalakhirLaporan . "','%Y-%m-%d'))"))->where('user_id', '=', auth()->user()->id)->select('transaksi_barang_masuk.id', 'transaksi_barang_masuk.barang_umkm_id', 'barang_umkm.nama', 'harga', 'jumlah', 'tanggal_kadaluarsa', DB::raw("DATE_FORMAT(transaksi_barang_masuk.created_at, '%Y-%m-%d') as TanggalMasukBarang"))->offset(0)->limit(5)->get();
+        $BarangAkanKadalurasa = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->select('*', DB::raw('CURDATE() as Date_Today'))->whereRaw(DB::raw("((CURDATE() BETWEEN DATE_ADD(tanggal_kadaluarsa, INTERVAL -14 DAY) AND tanggal_kadaluarsa) or (CURDATE() > tanggal_kadaluarsa)) AND (DATE_FORMAT(transaksi_barang_masuk.created_at, '%Y-%m-%d') BETWEEN DATE_FORMAT('" . $tanggalawalLaporan . "','%Y-%m-%d') AND DATE_FORMAT('" . $tanggalakhirLaporan . "','%Y-%m-%d'))"))->where('user_id', '=', auth()->user()->id)->select('transaksi_barang_masuk.id', 'transaksi_barang_masuk.barang_umkm_id', 'barang_umkm.nama', 'harga', 'jumlah', 'tanggal_kadaluarsa', DB::raw("DATE_FORMAT(transaksi_barang_masuk.created_at, '%Y-%m-%d') as TanggalMasukBarang"))->get();
         return $BarangAkanKadalurasa;
     }
 
     public function GetBarangHabis($tanggalawalLaporan, $tanggalakhirLaporan)
     {
-        $BarangAkanHabis = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id', 'barang_umkm.id', 'barang_umkm.nama')->having(DB::raw('SUM(jumlah)'), '<', 10)->select('barang_umkm_id', 'barang_umkm.id', 'barang_umkm.nama', DB::raw('SUM(jumlah) as total'))->whereRaw(DB::raw("(DATE_FORMAT(transaksi_barang_masuk.created_at, '%Y-%m-%d') BETWEEN DATE_FORMAT('" . $tanggalawalLaporan . "','%Y-%m-%d') AND DATE_FORMAT('" . $tanggalakhirLaporan . "','%Y-%m-%d'))"))->where('user_id', '=', auth()->user()->id)->offset(0)->limit(5)->get();
+        $BarangAkanHabis = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id', 'barang_umkm.id', 'barang_umkm.nama')->having(DB::raw('SUM(jumlah)'), '<', 10)->select('barang_umkm_id', 'barang_umkm.id', 'barang_umkm.nama', DB::raw('SUM(jumlah) as total'))->whereRaw(DB::raw("(DATE_FORMAT(transaksi_barang_masuk.created_at, '%Y-%m-%d') BETWEEN DATE_FORMAT('" . $tanggalawalLaporan . "','%Y-%m-%d') AND DATE_FORMAT('" . $tanggalakhirLaporan . "','%Y-%m-%d'))"))->where('user_id', '=', auth()->user()->id)->get();
         return $BarangAkanHabis;
     }
 
@@ -179,12 +179,12 @@ class LaporanController extends Controller
                         $stockAkhir
                     ];
 
-                    $prevStockAkhir =$data->Stockfinalawal + $data->barangmasuk - $data->barangkeluar;
+                    $prevStockAkhir = $stockAwal + $data->barangmasuk - $data->barangkeluar;
                     array_push($barang_arrange, $newData);
             }
 
             $pdf = PDF::loadView('isilaporan', ['LaporanBarang' => $barang_arrange, 'jenis' => $jenis, 'tanggalawalLaporan' => $tanggalawalLaporan, 'tanggalakhirLaporan' => $tanggalakhirLaporan, 'table_head' => $table_head[$jenis]]);
-            return $pdf->download('laporan-pdf.pdf');
+            return $pdf->download('Laporan - Keluar Masuk Barang.pdf');
         } else if ($jenis == "Persediaan stok barang") {
             $LaporanBarang =  $this->GetPersediaanBarang($tanggalawalLaporan, $tanggalakhirLaporan);
             $barang_arrange = [];
@@ -198,7 +198,7 @@ class LaporanController extends Controller
                     array_push($barang_arrange, $newData);
             }
             $pdf = PDF::loadView('isilaporan', ['LaporanBarang' => $barang_arrange, 'jenis' => $jenis, 'tanggalawalLaporan' => $tanggalawalLaporan, 'tanggalakhirLaporan' => $tanggalakhirLaporan, 'table_head' => $table_head[$jenis]]);
-            return $pdf->download('laporan-pdf.pdf');
+            return $pdf->download('Laporan - Persediaan Stok Barang.pdf');
         } else if ($jenis == "Barang akan kadaluarsa") {
             $BarangAkanKadaluarsa = $this->GetBarangKadaluarsa($tanggalawalLaporan, $tanggalakhirLaporan);
             // dd($BarangAkanKadaluarsa);
@@ -213,7 +213,7 @@ class LaporanController extends Controller
                     array_push($barang_arrange, $newData);
             }
             $pdf = PDF::loadView('isilaporan', ['LaporanBarang' => $barang_arrange, 'jenis' => $jenis, 'tanggalawalLaporan' => $tanggalawalLaporan, 'tanggalakhirLaporan' => $tanggalakhirLaporan, 'table_head' => $table_head[$jenis]]);
-            return $pdf->download('laporan-pdf.pdf');
+            return $pdf->download('Laporan - Barang Akan Kadaluarsa.pdf');
         } else if ($jenis == "Barang akan habis") {
             $LaporanBarang = $this->GetBarangHabis($tanggalawalLaporan, $tanggalakhirLaporan);
             $barang_arrange = [];
@@ -225,7 +225,7 @@ class LaporanController extends Controller
                     array_push($barang_arrange, $newData);
             }
             $pdf = PDF::loadView('isilaporan', ['LaporanBarang' => $barang_arrange, 'jenis' => $jenis, 'tanggalawalLaporan' => $tanggalawalLaporan, 'tanggalakhirLaporan' => $tanggalakhirLaporan, 'table_head' => $table_head[$jenis]]);
-            return $pdf->download('laporan-pdf.pdf');
+            return $pdf->download('Laporan - Barang Akan Habis.pdf');
         }
 
         // $barang = BarangPemasok::all();

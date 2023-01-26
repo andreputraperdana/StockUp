@@ -109,7 +109,7 @@
                 </div>
                 <div class="content_right_laporan" style="width: 45%;">
                     <div class="preview_laporan"
-                        style="height: 600px; border:1px solid black; width: 95%; background-color: white;">
+                        style="overflow-y: scroll;height: 600px; border:1px solid black; width: 95%; background-color: white;">
                         <div class="logo_laporan d-flex justify-content-end pt-3 pe-3">
                             <h5 style="font-weight: 1000;">STOCKUP</h5>
                         </div>
