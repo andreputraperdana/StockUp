@@ -33,10 +33,20 @@ class ChatController extends Controller
 
     public function postmessage(Request $request){
         $NewMessage = new Message();
-        $NewMessage->user_id = auth()->user()->id;
-        $NewMessage->message = $request->message;
-        $NewMessage->destination_id = $request->destinationid;
-        $NewMessage->save();
+        if(auth()->user()->role_id == 1){
+            $NewMessage->user_id = auth()->user()->id;
+            $NewMessage->message = $request->message;
+            $NewMessage->destination_id = $request->destinationid;
+            $NewMessage->flag = 1;
+            $NewMessage->save();
+        }
+        else if(auth()->user()->role_id == 2){
+            $NewMessage->user_id =  $request->destinationid;
+            $NewMessage->message = $request->message;
+            $NewMessage->destination_id = auth()->user()->id;
+            $NewMessage->flag = 0;
+            $NewMessage->save();
+        }
 
         return response()->json(['stats'=>200]);
     }
