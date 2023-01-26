@@ -93,13 +93,11 @@
 
                 <div class="toko_tombol">
                     <div class="toko_tombol_chat me-3">
-                        <form method="POST" action="/chat">
-                            @csrf
-                            <input type="hidden" name="user_id" value="{{ $BarangDetail->get(0)->user_id }}">
-                            <button class="btn btn-primary ps-4 pe-4 " id="btn_chat"
-                                style="background-color: #D7CAA0; border: none; font-weight: bold; color: black;">Chat
-                                Toko</button>
-                        </form>
+                            <a href="/chat/{{ $BarangDetail->get(0)->user_id }}">
+                                <button class="btn btn-primary ps-4 pe-4 " id="btn_chat"
+                                    style="background-color: #D7CAA0; border: none; font-weight: bold; color: black;">Chat
+                                    Toko</button>
+                            </a>
                     </div>
 
                     <div class="toko_tombol_platform">
