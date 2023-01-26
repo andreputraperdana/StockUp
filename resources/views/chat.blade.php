@@ -1,4 +1,4 @@
-<!-- @extends('template')
+@extends('template')
 
 @section('javascript')
 <script defer src="/chat.js"></script>
@@ -169,4 +169,4 @@
                         </div>
                     </div>
                 @endif
-@endsection -->
+@endsection
