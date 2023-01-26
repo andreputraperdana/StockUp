@@ -1135,6 +1135,15 @@ ul#menu_bar li:hover::before {
     color: #000 !important;
     font-weight: bold !important;
 }
+
+.content-chat {
+    margin: 4px, 4px;
+    padding: 4px;
+    height: 380px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+}
 /* .swal-all {
     height: 400px;
 } */

@@ -67,4 +67,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(BarangPemasok::class);
     }
+    
+    public function messages(){
+        return $this->hasMany(Message::class);
+    }
 }

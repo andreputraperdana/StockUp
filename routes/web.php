@@ -5,7 +5,6 @@ use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\DaftarController;
 use App\Http\Controllers\DetailBarangController;
-use App\Http\Controllers\DetailNotifikasiController;
 use App\Http\Controllers\EditBarangController;
 use App\Http\Controllers\EditProfileController;
 use App\Http\Controllers\HalamanUtamaController;
@@ -17,6 +16,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\ListBarangController;
 use App\Http\Controllers\MengelolaBarangController;
 use App\Http\Controllers\NotifikasiController;
+use App\Http\Controllers\PesanController;
 use App\Http\Controllers\PlatformSosialController;
 use App\Http\Controllers\ProfilTokoController;
 use App\Http\Controllers\TokoController;
@@ -53,7 +53,13 @@ Route::get('/barang/fetch_data', [BerandaController::class, 'fetchDataBarang']);
 
 Route::get('/listalluser', [ListUserController::class, 'getindex']);
 
-Route::POST('/chat', [ChatController::class, 'getindex']);
+Route::post('/chat', [ChatController::class, 'getindex']);
+
+Route::get('/allpesanmasuk', [PesanController::class, 'getindex']);
+
+Route::post('/sendmessage', [ChatController::class, 'postmessage']);
+
+Route::get('/allmessages', [ChatController::class, 'getAllMessages']);
 
 Route::get('/tambahbarang', [TambahBarangController::class, 'getindex']);
 
@@ -103,7 +109,7 @@ Route::get('/detailbarang/{id}', [DetailBarangController::class, 'getindex'])->n
 
 Route::post('/barangkeluar', [MengelolaBarangController::class, 'GetBarangKeluar']);
 
-Route::get('/detailnotifikasi/{id}', [DetailNotifikasiController::class, 'getindex']);
+// Route::get('/detailnotifikasi/{id}', [DetailNotifikasiController::class, 'getindex']);
 
 Route::post('/editprofile/update', [EditProfileController::class, 'update']);
 
