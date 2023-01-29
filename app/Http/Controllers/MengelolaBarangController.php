@@ -102,9 +102,10 @@ class MengelolaBarangController extends Controller
             } else {
                 if ($JumlahBarang > $BarangUMKMAll[$j]['jumlah']) {
                     $JumlahBarang -= $BarangUMKMAll[$j]['jumlah'];
+                    $temp = $BarangUMKMAll[$j]['jumlah'];
                     $BarangUMKMAll[$j]['jumlah']  = 0;
                     $BarangUMKMAll[$j]->save();
-                    $this->InsertBarangKeluarFIFO($BarangUMKMAll[$j]['id'], $BarangUMKMAll[$j]['stockawal']);
+                    $this->InsertBarangKeluarFIFO($BarangUMKMAll[$j]['id'], $temp);
                 } else if ($JumlahBarang <= $BarangUMKMAll[$j]['jumlah']) {
                     $BarangUMKMAll[$j]['jumlah'] -= $JumlahBarang;
                     $BarangUMKMAll[$j]->save();

@@ -4,6 +4,8 @@ const slidelogo = document.querySelector(".side_logo");
 const isikonten = document.querySelector(".isi_konten");
 let umkmid = document.querySelector(".UMKMID").innerHTML;
 let pemasokid = document.querySelector(".PemasokID").innerHTML;
+console.log(umkmid);
+console.log(pemasokid);
 textmenu.forEach((test) => test.classList.add("hide"));
 const contentchat = document.querySelector(".content-chat");
 const contentmessage = document.getElementById("message");
@@ -57,21 +59,23 @@ $(document).ready(function () {
     });
 });
 
-setInterval(() => {
-    let xhr = new XMLHttpRequest();
-    xhr.open(
-        "GET",
-        "/allmessages?umkm=" + umkmid + "&pemasok=" + pemasokid,
-        true
-    );
-    xhr.onload = () => {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            let data = xhr.response;
-            contentchat.innerHTML = data;
-        }
-    };
-    xhr.send();
-}, 1000);
+if (umkmid !== "0" || pemasokid !== "0") {
+    setInterval(() => {
+        let xhr = new XMLHttpRequest();
+        xhr.open(
+            "GET",
+            "/allmessages?umkm=" + umkmid + "&pemasok=" + pemasokid,
+            true
+        );
+        xhr.onload = () => {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                let data = xhr.response;
+                contentchat.innerHTML = data;
+            }
+        };
+        xhr.send();
+    }, 1000);
+}
 
 setInterval(() => {
     let req = new XMLHttpRequest();
