@@ -59,25 +59,25 @@
         </div>
         <div class="btn_platform" style="margin-top: 70px; width: 100%; padding-bottom: 50px;">
             <div class="btn_sopi" style="width: 70%; margin-top: 25px;">
-                <a href="{{ $PlatformSosial->get(1)->link }}">
+                <a target="_blank" href="{{ $PlatformSosial->get(1)->link }}">
                     <button type="submit" class="btn btn-primary" id="btn_platformsoc"
                         style="background-color: #D7CAA0; width: 100%; border: none; font-weight: bold; color: black;">Shopee</button>
                 </a>
             </div>
             <div class="btn_tokped" style="width: 70%;  margin-top: 25px;">
-                <a href="{{ $PlatformSosial->get(2)->link }}">
+                <a target="_blank" href="{{ $PlatformSosial->get(2)->link }}">
                     <button type="submit" class="btn btn-primary" id="btn_platformsoc"
                         style="background-color: #D7CAA0; width: 100%; border: none; font-weight: bold; color: black;">Tokopedia</button>
                 </a>
             </div>
             <div class="btn_instagram" style="width: 70%;  margin-top: 25px;">
-                <a href="{{ $PlatformSosial->get(0)->link }}">
+                <a target="_blank" href="{{ $PlatformSosial->get(0)->link }}">
                     <button type="submit" class="btn btn-primary" id="btn_platformsoc"
                         style="background-color: #D7CAA0; width: 100%; border: none; font-weight: bold; color: black;">Instagram</button>
                 </a>
             </div>
             <div class="btn_whatsapp" style="width: 70%;  margin-top: 25px;">
-                <a href="http://wa.me/0{{ $PlatformSosial->get(0)->nomortelp }}">
+                <a target="_blank" href="http://wa.me/0{{ $PlatformSosial->get(0)->nomortelp }}">
                     <button type="submit" class="btn btn-primary" id="btn_platformsoc"
                         style="background-color: #D7CAA0; width: 100%; border: none; font-weight: bold; color: black;">Whatsapp</button>
                 </a>
