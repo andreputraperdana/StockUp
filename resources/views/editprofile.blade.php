@@ -330,7 +330,7 @@
         <form action="/editprofile/update" method="post" enctype="multipart/form-data">
             @csrf
             <div class="content_tambahbarang mt-5"
-                style="height: 800px; width: 100%; background-color: #F4F4F4; border-radius: 25px;">
+                style="height: 740px; width: 100%; background-color: #F4F4F4; border-radius: 25px;">
                 <div class="daftar_header pt-5 pb-1">
                     <div class="menu_daftar">
                         <div class="button__first pe-3">
