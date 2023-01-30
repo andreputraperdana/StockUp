@@ -47,7 +47,7 @@
         </div>
     </div>
 
-    <div class="content_item mt-5" style="height: 850px; width: 100%; background-color: #F4F4F4; border-radius: 25px;">
+    <div class="content_item mt-5" style="height: 900px; width: 100%; background-color: #F4F4F4; border-radius: 25px;">
 
         <div class="nama_item">
             <p style="font-size: 30px; font-weight: bold;">{{ $BarangDetail->get(0)->nama }}</p>
@@ -122,7 +122,7 @@
                         <a href="/item/{{ $BarangRandom->id }}">
                             <div class="card me-5" style="width: 80%;" role="button">
                                 <img src="\public\image\{{ $BarangRandom->foto_barang }}" class="card-img-top"
-                                    style="width: 100%; height: 150px;" alt="">
+                                    style="width: 100%; height: 180px;" alt="">
                                 <div class="card-body">
                                     <p class="card-title" style="text-align: center;  font-size: 14px;">
                                         {{ $BarangRandom->nama }}</p>

@@ -60,7 +60,7 @@
                             style="border: 1px solid black; width: 72%;  border-radius: 7px;">
                             <div class="foto_notif pe-5 pt-4">
                                 <img src="\public\image\{{ $AllBarang->BarangUMKM->foto_barang }}" alt=""
-                                    style="height: 60px;">
+                                    style="height: 100px;">
                             </div>
                             <div class="description_notif ps-5">
                                 <div class="title_notif">

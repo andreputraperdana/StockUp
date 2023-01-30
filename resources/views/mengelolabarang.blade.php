@@ -160,9 +160,14 @@
                         @endforeach
                     </div>
                 @else
-                    <div class="d-flex" style="justify-content: center; align-items:center; height: 400px;">
+                <div class="pt-5">
+                    <div class="d-flex justify-content-center">
+                        <img src="{{ URL::asset('emptyicon.png') }}" alt="" height="185px">
+                    </div>
+                    <div class="d-flex" style="justify-content: center; align-items:center;">
                         <h4>Barang Kosong</h4>
                     </div>
+                </div>
                 @endif
             </div>
 
@@ -291,7 +296,7 @@
 
 
         <div class="content_tambahbarang mt-5"
-            style="height: auto; margin-bottom: 50px; width: 100%; background-color: #F4F4F4; border-radius: 25px;">
+            style="height: 550px; margin-bottom: 50px; width: 100%; background-color: #F4F4F4; border-radius: 25px;">
             <div class="d-flex justify-content-center pt-4 pb-5">
                 <div class="d-flex justify-content-between" style="width: 90%;">
                     <form action="/mengelolabarang">
@@ -331,7 +336,7 @@
                                     <td>@currency($AllItem->harga)</td>
                                     <td>
                                         <div class="d-flex">
-                                            <form action="{{ route('users.destroy', $AllItem->id) }}" method="POST">
+                                            <!-- <form action="{{ route('users.destroy', $AllItem->id) }}" method="POST">
                                                 @method('DELETE')
                                                 @csrf
                                                 <button class="btn__delete me-3 p-2 pe-3 ps-3"
@@ -339,7 +344,10 @@
                                                     onclick="return confirm('Apakah Kamu Yakin Ingin Menghapus Barang Ini?')"><img
                                                         src="{{ URL::asset('trash.png') }}" alt=""
                                                         style="height: 25px;"></button>
-                                            </form>
+                                            </form> -->
+                                            <button class="btn__delete me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"><img
+                                                src="{{ URL::asset('trash.png') }}" alt=""
+                                            onclick="deleteConfirmation( '{{ $AllItem->id }}');" style="height: 25px;"></button>
                                             <button class="btn__edit me-3 p-2 pe-3 ps-3"
                                                 style="font-size: 16px; font-weight: bold;"> <a
                                                     href="/editbarang/{{ $AllItem->id }}"><img
@@ -352,9 +360,14 @@
                         @endforeach
                     </table>
                 @else
-                    <div class="d-flex" style="justify-content: center; align-items:center; height: 400px;">
+                <div class="pt-5">
+                    <div class="d-flex justify-content-center">
+                        <img src="{{ URL::asset('emptyicon.png') }}" alt="" height="185px">
+                    </div>
+                    <div class="d-flex" style="justify-content: center; align-items:center;">
                         <h4>Barang Kosong</h4>
                     </div>
+                </div>
                 @endif
             </div>
         </div>
@@ -366,5 +379,15 @@
             <p class="tanda">{{ $flag }}</p>
         </div>
         <div class="overlay hidden"></div>
+
+        <!-- <div class="overlay hidden"></div> -->
     @endsection
 @endif
+
+<div class="hidden">
+            <div class="imagedelete">
+                <div class="notif_image text-center ps-4" style="height: 300px;">
+                    <img src="{{ URL::asset('maskot2.png') }}" alt="">
+                </div>
+            </div>
+        </div>
