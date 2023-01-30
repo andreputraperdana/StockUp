@@ -48,7 +48,7 @@
         <form action="/editprofile/update" method="post" enctype="multipart/form-data">
             @csrf
             <div class="content_tambahbarang mt-5"
-                style="height: 740px; width: 100%; background-color: #F4F4F4; border-radius: 25px;">
+                style="height: 800px; width: 100%; background-color: #F4F4F4; border-radius: 25px;">
                 @if ($errors->any())
                     {!! implode('', $errors->all('<div style="color:red">:message</div>')) !!}
                 @endif

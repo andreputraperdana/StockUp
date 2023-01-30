@@ -35,6 +35,7 @@ class EditProfileController extends Controller
         $passwordLama = $output['password'];
         $passwordBaru = $output['passwordBaru'];
         $passwordKonfirmasi = $output['passwordKonfirmasi'];
+        $nomortelp = $output['nomorTelp'];
         $auth = Auth::user();
         $Users = $this->CheckUser();
 
@@ -46,6 +47,11 @@ class EditProfileController extends Controller
             $user->name = $output['nama'];
             $user->kategori = $output['kategori'];
             $user->nomortelp = $output['nomorTelp'];
+            if($user->nomortelp == "" || $user->nomortelp == null){
+                return back()->with('error', 'Nomor Telfon Tidak Boleh Kosong');
+            }else if($user->name == "" || $user->name == null){
+                return back()->with('error', 'Nama Tidak Boleh Kosong');
+            }
             $user->password = $auth->password;
             if ($request->file('fotoprofile') != null) {
                 $filenameWithExt = $request->file('fotoprofile')->getClientOriginalName();
@@ -62,7 +68,6 @@ class EditProfileController extends Controller
             $user->update();
             return back();
         }
-
         if (!Hash::check($output['password'], $auth->password)) {
             return back()->with('error', 'Password Lama anda salah');
         } else if ($passwordBaru != $passwordKonfirmasi) {
