@@ -80,13 +80,13 @@
         <div class="d-flex justify-content-center mb-3 mt-5">
             <div class="list_toko d-flex pt-4" style="width:70%">
                 <div class="container d-flex">
-                    <div class="row justify-content-between">
+                    <div class="row w-100">
                         @foreach ($barangpemasok as $barangpemasoks)
-                            <div class="col-3 mb-3">
+                            <div class="col-3 mb-3 d-flex">
                                 <a href="/item/{{ $barangpemasoks->id }}">
-                                    <div class="card me-5" style="width: 100%;" role="button">
+                                    <div class="card me-5" style="width: 100%; height: 250px;" role="button">
                                         <img src="\public\image\{{ $barangpemasoks->foto_barang }}" class="card-img-top"
-                                            alt="">
+                                            alt="" style="height: 180px; width: 100%;">
                                         <div class="card-body">
                                             <p class="card-title" style="text-align: center;  font-size: 14px;">
                                                 {{ $barangpemasoks->nama }}</p>
