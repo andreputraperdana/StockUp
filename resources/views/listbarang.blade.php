@@ -36,14 +36,18 @@
                             src="{{ URL::asset('trash.png') }}" alt=""
                             onclick="deleteConfirmation( '{{ $hasil->id }}');" style="height: 25px;"></button>
                     <!-- </form> -->
-                    <button class="btn__edit me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> <a
-                            href="/editbarang/{{ $hasil->id }}"><img src="{{ URL::asset('editicon.png') }}"
-                                alt=""
-                                style="height: 25px; transform: rotate(0deg); transition: all 0.5s;"></a></button>
+                    <a href="/editbarang/{{ $hasil->id }}">
+                        <button class="btn__edit me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;"> 
+                            <img src="{{ URL::asset('editicon.png') }}"
+                            alt=""
+                            style="height: 25px; transform: rotate(0deg); transition: all 0.5s;">    
+                        </button>
+                    </a>
                     {{-- <form action="/barcode/{{$hasil->id}}" method="POST">
                     <input type="hidden" name="barangKode" value="{{$hasil->barang_umkm_id}} - 00{{$total}}"> --}}
-                    <button class="btn__edit" style="font-size: 16px; font-weight: bold;"><a
-                            href="/barcode/{{ $hasil->id }}/{{ $hasil->barang_umkm_id }} - 00{{ $total }}">Barcode</a></button>
+                    <a target="_blank" href="/barcode/{{ $hasil->id }}/{{ $hasil->barang_umkm_id }} - 00{{ $total }}">
+                        <button class="btn__edit me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;">Barcode</button>
+                    </a>
                     {{-- </form> --}}
                 </div>
             </div>

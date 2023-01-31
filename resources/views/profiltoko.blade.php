@@ -6,9 +6,17 @@
 
 @section('content')
     <div class="atas d-flex justify-content-between" style="width:100%">
-        <div class="atas_kiri">
+        <div class="atas_kiri d-flex">
+            <div class="judul_halaman mt-5">
+                <a href="javascript:history.back()">
+                    <button class="ps-3 pe-3"
+                        style="background-color: #d7caa0; font-size: 30px; font-weight: bold;border-radius: 50%; border: none;">
+                    <</button>
+                </a>
+            </div>
             <div class="judul_halaman mt-5">
                 <p style="font-size: 30px; font-weight: bold;">Toko</p>
+                
             </div>
         </div>
 
@@ -59,14 +67,14 @@
                         <div class="btn_ct" style="width: 30%;">
                             <form method="POST" action="/chat">
                                 @csrf
-                                <input type="hidden" name="user_id" value="{{ $Toko->get(0)->user_id }}">
+                                <input type="hidden" name="user_id" value="{{ $Toko->get(0)->id }}">
                                 <button class="btn btn-primary ps-4 pe-4 " id="btn_chat"
                                     style="background-color: #D7CAA0; border: none; font-weight: bold; color: black;">Chat
                                     Toko</button>
                             </form>
                         </div>
                         <div class="btn_ps" style="width: 40%;">
-                            <a href="/platformsosial/{{ $Toko->get(0)->user_id }}">
+                            <a href="/platformsosial/{{ $Toko->get(0)->id }}">
                                 <button class="btn btn-primary ps-4 pe-4 " id="btn_platform"
                                     style="background-color: #D7CAA0; border: none; font-weight: bold; color: black;">Platform
                                     Sosial</button>

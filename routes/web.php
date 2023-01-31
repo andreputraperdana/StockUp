@@ -104,7 +104,7 @@ Route::delete('/mengelolabarang/{id}', [MengelolaBarangController::class, 'destr
 
 Route::post('/detailnotif', [NotifikasiController::class, 'postdetail']);
 
-Route::post('/editbarang/update', [EditBarangController::class, 'update']);
+Route::post('/editbarang/update', [EditBarangController::class, 'EditBarang']);
 
 Route::get('/detailbarang/{id}', [DetailBarangController::class, 'getindex'])->name('detailsbarang');
 

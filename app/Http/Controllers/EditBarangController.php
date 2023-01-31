@@ -34,7 +34,7 @@ class EditBarangController extends Controller
             $this->EditBarangPemasok($request);
         }
 
-        return redirect('/mengelolabarang')->with('status', 'Data siswa Berhasil Diubah');
+        return redirect('/mengelolabarang')->with('status', 'Data barang Berhasil Diubah');
     }
 
     public function CheckUser()
@@ -60,7 +60,8 @@ class EditBarangController extends Controller
     public function EditBarangUMKM($request)
     {
         $output = $request->input();
-        $checkbarang = BarangUMKM::where('id', $request->idbarang)->first();
+        // dd($output['idbarang']);
+        $checkbarang = BarangUMKM::where('id', $output['idbarang'])->first();
         $transaksibarangmasuk = TransaksiBarangMasuk::where('barang_umkm_id', $checkbarang->id)->first();
         $transaksibarangmasuk->barang_umkm_id = $checkbarang->id;
         $transaksibarangmasuk->jumlah = $output['jumlahbarang'];

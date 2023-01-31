@@ -55,7 +55,7 @@
         style="height: 600px; width: 100%; background-color: #F4F4F4; border-radius: 25px;">
         <div class="d-flex justify-content-between pt-5">
             <div class="d-flex justify-content-center" style="width: 95%;">
-                <div class="images_toko d-flex justify-content-center" style="width: 10%;">
+                <div class="images_toko d-flex justify-content-center" style="width: 20%;">
                     <img src="\public\image\{{ $PlatformSosial->get(0)->foto_profile }}" alt=""
                         style="height: 80px;">
                 </div>

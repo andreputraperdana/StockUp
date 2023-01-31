@@ -12,7 +12,7 @@
                     <a href="javascript:history.back()">
                         <button class="ps-3 pe-3"
                             style="background-color: #d7caa0; font-size: 30px; font-weight: bold;border-radius: 50%; border: none;">
-                        </button>
+                        <</button>
                     </a>
                 </div>
             </div>
@@ -84,7 +84,7 @@
                                             </div>
                                             <div class="input_idbarang">
                                                 <input type="hidden" name="idbarang" class="form-control"
-                                                    id="exampleInputNamaBarang1" value="{{ $hasil->get(0)->id }}"
+                                                    id="exampleInputNamaBarang1" value="{{ $hasil->get(0)->barang_umkm_id }}"
                                                     aria-describedby="emailHelp" placeholder="Id Barang"
                                                     style="border: 1px solid #626262; background-color:transparent;">
                                             </div>
@@ -97,7 +97,7 @@
                                                 </label>
                                             </div>
                                             <div class="daftar_profil_kanan_kategori mb-3">
-                                                <select name="kategori" class="kategori p-2"
+                                                <select disabled name="kategori" class="kategori p-2"
                                                     style="color: black; border-radius: 5px;">
                                                     {{-- <option selected="true" disabled="disabled">{{auth()->user()->kategori}}</option> --}}
                                                     <option value="Alat tulis"
@@ -490,7 +490,7 @@
     @endsection
 @endif
 
-<div class="notif_success hidden">
+{{-- <div class="notif_success hidden">
         <div class="notif_image text-center ps-4 pt-4">
             <img src="{{ URL::asset('maskot2.png') }}" alt="">
         </div>
@@ -505,6 +505,6 @@
                 <button class="btn btnLogin" id="btnUmkm" style="background-color: #d7caa0;">Login</button>
             </a>
         </div>
-    </div>
+    </div> --}}
 
-    <div class="overlay hidden"></div>
+    {{-- <div class="overlay hidden"></div> --}}

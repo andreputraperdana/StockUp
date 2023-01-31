@@ -1144,6 +1144,11 @@ ul#menu_bar li:hover::before {
     overflow-y: auto;
     text-align: justify;
 }
+
+.popUpBarang:hover{
+    cursor: pointer;
+}
+
 /* .swal-all {
     height: 400px;
 } */
