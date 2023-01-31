@@ -6,9 +6,16 @@
 
 @section('content')
     <div class="atas d-flex justify-content-between" style="width:100%">
-        <div class="atas_kiri">
+        <div class="atas_kiri d-flex">
+            <div class="judul_halaman mt-5 pe-3">
+                <a href="javascript:history.back()">
+                    <button class="ps-3 pe-3"
+                        style="background-color: #d7caa0; font-size: 30px; font-weight: bold;border-radius: 50%; border: none;">
+                        <</button>
+                </a>
+            </div>
             <div class="judul_halaman mt-5">
-                <p style="font-size: 30px; font-weight: bold;">Toko</p>
+                <p style="font-size: 30px; font-weight: bold;">Platform Sosial</p>
             </div>
         </div>
 
@@ -45,14 +52,14 @@
 
 
     <div class="content_tambahbarang mt-5"
-        style="height: auto; width: 100%; background-color: #F4F4F4; border-radius: 25px;">
+        style="height: 600px; width: 100%; background-color: #F4F4F4; border-radius: 25px;">
         <div class="d-flex justify-content-between pt-5">
-            <div class="d-flex justify-content-center" style="width: 100%;">
-                <div class="images_toko d-flex justify-content-center" style="width: 30%;">
+            <div class="d-flex justify-content-center" style="width: 95%;">
+                <div class="images_toko d-flex justify-content-center" style="width: 10%;">
                     <img src="\public\image\{{ $PlatformSosial->get(0)->foto_profile }}" alt=""
-                        style="height: 100px;">
+                        style="height: 80px;">
                 </div>
-                <div class="desc__toko d-flex justify-content-center" style="align-items: center;">
+                <div class="desc__toko d-flex justify-content-center pt-3" style="align-items: center;">
                     <h2>{{ $PlatformSosial->get(0)->name }}</h2>
                 </div>
             </div>

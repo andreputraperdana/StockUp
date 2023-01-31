@@ -30,19 +30,17 @@
                 </div>
                 <div class="dropdown mt-2">
                     <button class="dropbutton ps-3 pe-4 pt-1 pb-1" style="border: none; border-radius: 25px;">
-                        <img src="\public\image\{{ auth()->user()->foto_profile }}" alt=""
-                            style="height: 30px; width: 30px; border-radius: 50px;">
-                        {{ Str::limit(auth()->user()->name, 5) }}
+                        <img src="{{URL::asset('akun.png')}}" alt="" style="height: 40px;"> {{Str::limit(auth()->user()->name,5)}}
                     </button>
-                    <div class="dropdown-content">
-                        <a href="/editprofile">Pengaturan</a>
-                        <form action="/logout" method="POST">
-                            @csrf
-                            <input type="submit" class="btn btnLogout" value="Logout">
-                        </form>
+                        <div class="dropdown-content">
+                            <a href="#">Pengaturan</a>
+                            <form action="/logout" method="POST">
+                             @csrf
+                                <input type="submit" class="btn prevbutton" value="Logout">
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
         </div>
 
         <form action="/editprofile/update" method="post" enctype="multipart/form-data">
@@ -332,26 +330,7 @@
         <form action="/editprofile/update" method="post" enctype="multipart/form-data">
             @csrf
             <div class="content_tambahbarang mt-5"
-                style="height: 800px; width: 100%; background-color: #F4F4F4; border-radius: 25px;">
-                @if ($errors->any())
-                    {!! implode('', $errors->all('<div style="color:red">:message</div>')) !!}
-                @endif
-                @if (Session::get('error') && Session::get('error') != null)
-                    <div class="alert alert-danger">
-                        {{ Session::get('error') }}
-                    </div>
-                    @php
-                        Session::put('error', null);
-                    @endphp
-                @endif
-                @if (Session::get('success') && Session::get('success') != null)
-                    <div class="alert alert-success">
-                        {{ Session::get('error') }}
-                    </div>
-                    @php
-                        Session::put('success', null);
-                    @endphp
-                @endif
+                style="height: 740px; width: 100%; background-color: #F4F4F4; border-radius: 25px;">
                 <div class="daftar_header pt-5 pb-1">
                     <div class="menu_daftar">
                         <div class="button__first pe-3">

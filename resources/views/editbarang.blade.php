@@ -12,7 +12,7 @@
                     <a href="javascript:history.back()">
                         <button class="ps-3 pe-3"
                             style="background-color: #d7caa0; font-size: 30px; font-weight: bold;border-radius: 50%; border: none;">
-                            << /button>
+                        </button>
                     </a>
                 </div>
             </div>
@@ -233,7 +233,6 @@
                                                         style="border: 1px solid #626262; background-color:transparent; border-radius: 5px; width: 100%;">
                                                         <button type="submit" class="btn"
                                                             style="border-right: 1px solid #626262; border-radius: 0;">-</button>
-                                                        {{-- <span class="ps-4 pe-4 pt-2"></span> --}}
                                                         <input type="text" value="{{ $hasil->get(0)->jumlah }}"
                                                             name="jumlahbarang"
                                                             style="border: 0px solid #626262;background-color:transparent; outline: 0; width: 50px; text-align: center;"
@@ -267,7 +266,7 @@
                     <a href="javascript:history.back()">
                         <button class="ps-3 pe-3"
                             style="background-color: #d7caa0; font-size: 30px; font-weight: bold;border-radius: 50%; border: none;">
-                            << /button>
+                        </button>
                     </a>
                 </div>
             </div>
@@ -490,3 +489,22 @@
         </form>
     @endsection
 @endif
+
+<div class="notif_success hidden">
+        <div class="notif_image text-center ps-4 pt-4">
+            <img src="{{ URL::asset('maskot2.png') }}" alt="">
+        </div>
+        <div class="notif_text text-center">
+            <p>BERHASIL</p>
+            <div class="sub_notif_text">
+                <p>Data berhasil diubah</p>
+            </div>
+        </div>
+        <div class="text-center">
+            <a href="/login">
+                <button class="btn btnLogin" id="btnUmkm" style="background-color: #d7caa0;">Login</button>
+            </a>
+        </div>
+    </div>
+
+    <div class="overlay hidden"></div>

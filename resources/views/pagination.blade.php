@@ -3,10 +3,10 @@
     {{-- <form action="/detailnotif" method="POST"> --}}
     @csrf
     <div class="list_raja_notif d-flex justify-content-center pt-5">
-        <div class="list_notifikasi d-flex justify-content-center pt-3"
+        <div class="list_notifikasi d-flex justify-content-center pt-4 pb-3"
             style="border: 1px solid black; width: 72%;  border-radius: 7px;">
-            <div class="foto_notif pe-5 pt-4">
-                <img src="\public\image\{{ $Allbarang->BarangUMKM->foto_barang }}" alt="" style="height: 60px;">
+            <div class="foto_notif pe-5" style="width: 15%;">
+                <img src="\public\image\{{ $Allbarang->BarangUMKM->foto_barang }}" alt="" style="height: 80px;">
             </div>
             <div class="description_notif ps-5">
                 <div class="title_notif">

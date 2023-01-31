@@ -282,8 +282,13 @@
                                     </tbody>
                                 </table>
                             @else
-                                <div class="d-flex" style="justify-content: center; align-items:center; height: 400px;">
-                                    <h4>Barang Kosong</h4>
+                                <div class="pt-5">
+                                    <div class="d-flex justify-content-center">
+                                        <img src="{{ URL::asset('emptyicon.png') }}" alt="" height="185px">
+                                    </div>
+                                    <div class="d-flex" style="justify-content: center; align-items:center;">
+                                        <h4>Barang Kosong</h4>
+                                    </div>
                                 </div>
                             @endif
                         </div>
