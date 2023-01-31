@@ -20,13 +20,15 @@
                             </div>
 
                             <div class="dropdown mt-2">
-                            <button class="dropbutton ps-3 pe-4 pt-1 pb-1" style="border: none; border-radius: 25px;">
-                                <img src="{{URL::asset('akun.png')}}" alt="" style="height: 40px;"> {{Str::limit(auth()->user()->name,5)}}
-                            </button>
+                                <button class="dropbutton ps-3 pe-4 pt-1 pb-1" style="border: none; border-radius: 25px;">
+                                    <img src="\public\image\{{ auth()->user()->foto_profile }}" alt=""
+                                        style="height: 40px; width: 40px; border-radius: 50px;">
+                                    {{ Str::limit(auth()->user()->name, 5) }}
+                                </button>
                                 <div class="dropdown-content">
-                                    <a href="#">Pengaturan</a>
+                                    <a href="/editprofile">Pengaturan</a>
                                     <form action="/logout" method="POST">
-                                     @csrf
+                                        @csrf
                                         <input type="submit" class="btn prevbutton" value="Logout">
                                     </form>
                                 </div>
