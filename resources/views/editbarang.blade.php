@@ -12,7 +12,7 @@
                     <a href="javascript:history.back()">
                         <button class="ps-3 pe-3"
                             style="background-color: #d7caa0; font-size: 30px; font-weight: bold;border-radius: 50%; border: none;">
-                        <</button>
+                        </button>
                     </a>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                 </div>
             </div>
         </div>
-        <form action="/editbarang/update" method="post" enctype="multipart/form-data">
+        <form action="/editbarang/update" method="post" enctype="multipart/form-data" id="updatebarang">
             @csrf
             <div class="content_tambahbarang mt-5"
                 style="height: 700px; width: 100%; background-color: #F4F4F4; border-radius: 25px;">
@@ -63,6 +63,8 @@
                                 <label class="custom-file-upload" style="border-radius: 7px;">
                                     <input type="file" name="fotobarang" />
                                 </label>
+                            </div>
+                            <div class="errormessage-fotobarang ps-3" style="display: none; color: red;">
                             </div>
                         </div>
 
@@ -225,20 +227,26 @@
                                                             style="border: 0px solid #626262;background-color:transparent; outline: 0;"
                                                             value="{{ $hasil->get(0)->harga }}">
                                                     </div>
+                                                    <div class="errormessage-hargabarang " style="display: none; color: red;">
+
+                                                    </div>
                                                 </div>
 
                                                 <div class="input_content_harga" class="ps-5">
 
                                                     <div class="d-flex"
                                                         style="border: 1px solid #626262; background-color:transparent; border-radius: 5px; width: 100%;">
-                                                        <button type="submit" class="btn"
+                                                        <button type="button" class="btn" id="btnminus"
                                                             style="border-right: 1px solid #626262; border-radius: 0;">-</button>
-                                                        <input type="text" value="{{ $hasil->get(0)->jumlah }}"
-                                                            name="jumlahbarang"
+                                                        <input type="text" readonly="readonly" class="jumlahbarang" value="{{ $hasil->get(0)->jumlah }}"
+                                                         name="jumlahbarang"
                                                             style="border: 0px solid #626262;background-color:transparent; outline: 0; width: 50px; text-align: center;"
                                                             placeholder="Kuantitas">
-                                                        <button type="submit" class="btn"
+                                                        <button type="button" class="btn" id="btnplus"
                                                             style="border-left: 1px solid #626262; border-radius: 0;">+</button>
+                                                    </div>
+                                                    <div class="errormessage-jumlahbarang" style="display: none; color: red;">
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -490,21 +498,10 @@
     @endsection
 @endif
 
-{{-- <div class="notif_success hidden">
-        <div class="notif_image text-center ps-4 pt-4">
+<div class="hidden">
+    <div class="imagedelete">
+        <div class="notif_image text-center ps-4" style="height: 300px;">
             <img src="{{ URL::asset('maskot2.png') }}" alt="">
         </div>
-        <div class="notif_text text-center">
-            <p>BERHASIL</p>
-            <div class="sub_notif_text">
-                <p>Data berhasil diubah</p>
-            </div>
-        </div>
-        <div class="text-center">
-            <a href="/login">
-                <button class="btn btnLogin" id="btnUmkm" style="background-color: #d7caa0;">Login</button>
-            </a>
-        </div>
-    </div> --}}
-
-    {{-- <div class="overlay hidden"></div> --}}
+    </div>
+</div>

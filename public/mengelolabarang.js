@@ -31,6 +31,7 @@ function outputhasil(ouptut) {
 }
 
 function deleteConfirmation(barangid) {
+    // console.log(barangid);
     swal({
         title: imagedeletebarang.innerHTML,
         html: "Apakah Anda ingin<br>menghapus barang ini!",
@@ -52,7 +53,17 @@ function deleteConfirmation(barangid) {
                     url: `/listbarangs/${barangid}`,
                     data: data,
                     success: function (response) {
-                        swal("Berhasil", response.stats).then((result) => {
+                        swal({
+                            title: imagedeletebarang.innerHTML,
+                            html: ` <div class="notif_text text-center">
+                            <p>BERHASIL</p>
+                            <div class="sub_notif_text">
+                                <p>${response.stats}</p>
+                            </div>
+                        </div>`,
+                            confirmButtonText: "Ya",
+                            background: "#f4f4f4",
+                        }).then((result) => {
                             location.reload();
                         });
                     },
@@ -265,7 +276,17 @@ $(document).ready(function () {
                 if (response.stats) {
                     overlay.classList.add("hidden");
                     popupbarangkeluar.classList.add("hidden");
-                    swal("Berhasil", response.stats).then((result) => {
+                    swal({
+                        title: imagedeletebarang.innerHTML,
+                        html: ` <div class="notif_text text-center">
+                        <p>BERHASIL</p>
+                        <div class="sub_notif_text">
+                            <p>${response.stats}</p>
+                        </div>
+                    </div>`,
+                        confirmButtonText: "Ya",
+                        background: "#f4f4f4",
+                    }).then((result) => {
                         location.reload();
                     });
                 }

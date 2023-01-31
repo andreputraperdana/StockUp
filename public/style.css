@@ -1145,10 +1145,14 @@ ul#menu_bar li:hover::before {
     text-align: justify;
 }
 
-.popUpBarang:hover{
+.popUpBarang:hover {
     cursor: pointer;
 }
 
+.popupTitles {
+    font-size: 16pt;
+    color: #5cb85c;
+}
 /* .swal-all {
     height: 400px;
 } */

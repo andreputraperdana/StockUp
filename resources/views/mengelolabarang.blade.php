@@ -239,14 +239,6 @@
                 </div>
             </form>
         </div>
-
-        <div class="hidden">
-            <div class="imagedelete">
-                <div class="notif_image text-center ps-4" style="height: 300px;">
-                    <img src="{{ URL::asset('maskot2.png') }}" alt="">
-                </div>
-            </div>
-        </div>
         <div class="overlay hidden"></div>
     @endsection
 @elseif(auth()->user()->role_id == 2)
@@ -384,7 +376,7 @@
     @endsection
 @endif
 
-<div class="hidden">
+    <div class="hidden">
             <div class="imagedelete">
                 <div class="notif_image text-center ps-4" style="height: 300px;">
                     <img src="{{ URL::asset('maskot2.png') }}" alt="">

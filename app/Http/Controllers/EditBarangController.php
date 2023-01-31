@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\TransaksiBarangMasuk;
 use App\Models\BarangUMKM;
 use App\Models\Role;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -29,12 +30,27 @@ class EditBarangController extends Controller
         $auth = Auth::user();
         $user = $this->CheckUser();
         if ($user == 'UMKM') {
-            $this->EditBarangUMKM($request);
+            $validate = Validator::make($request->all(), [
+                'jumlahbarang' => 'required',
+                'hargabarang' => 'required',
+                'fotobarang' => 'mimes:jpeg,jpg,png,gif|max:10000'
+            ]);
+            if ($validate->fails()) {
+                if ($validate->errors()->first('fotobarang')) {
+                    return response()->json(['stats' => 400, 'error' => $validate->errors(), 'fotobarang' => $validate->errors()->first('fotobarang')]);
+                } else {
+                    return response()->json(['stats' => 300, 'error' => $validate->errors()]);
+                }
+            } 
+            else{
+                $this->EditBarangUMKM($request);
+                return response()->json(['stats' => 200]);
+            }
         } else {
             $this->EditBarangPemasok($request);
+            return response()->json(['stats' => 200]);
         }
-
-        return redirect('/mengelolabarang')->with('status', 'Data barang Berhasil Diubah');
+    
     }
 
     public function CheckUser()
@@ -65,8 +81,6 @@ class EditBarangController extends Controller
         $transaksibarangmasuk = TransaksiBarangMasuk::where('barang_umkm_id', $checkbarang->id)->first();
         $transaksibarangmasuk->barang_umkm_id = $checkbarang->id;
         $transaksibarangmasuk->jumlah = $output['jumlahbarang'];
-        $checkbarang->jenis = $output['kategori'];
-        $checkbarang->update();
         $transaksibarangmasuk->harga = $output['hargabarang'];
         $transaksibarangmasuk->tanggal_kadaluarsa = $output['tanggalkadaluarsa'];
         $transaksibarangmasuk->notif_flag = 0;
