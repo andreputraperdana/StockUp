@@ -24,10 +24,15 @@
                 </a>
                 </div>
                 <div class="notifikasi pe-2 mt-2">
-                    <a href="/notifikasi">
-                        <img src="{{ URL::asset('notifikasi.png') }}" class="ps-2 pe-2 pt-1 pb-1"
-                            style="background-color: #f4f4f4; border-radius: 50%; height: 45px;">
-                    </a>
+                    <div class="item">
+                        <a href="/notifikasi">
+                            @if ($Totalnotif != 0)
+                                <span class="badge">{{ $Totalnotif }}</span>
+                            @endif
+                            <img src="{{ URL::asset('notifikasi.png') }}" class="ps-2 pe-2 pt-1 pb-1"
+                                style="background-color: #F4F4F4; border-radius: 50%; height: 45px;">
+                        </a>
+                    </div>
                 </div>
 
                 <div class="dropdown mt-2">

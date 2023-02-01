@@ -16,16 +16,23 @@
 
             <div class="atas_kanan d-flex  mt-5">
                 <div class="pe-2 mt-2" style="width: 60px; height: 60px;">
-                    <div class="notifikasi d-flex justify-content-center pt-2"
-                        style="background-color: #f4f4f4; height: 75%; width: 100%; border-radius: 50%;">
-                        <img src="{{ URL::asset('chat.png') }}" class="" style="height: 29px;">
-                    </div>
-                </div>
-                <div class="notifikasi pe-2 mt-2">
-                    <a href="/notifikasi">
-                        <img src="{{ URL::asset('notifikasi.png') }}" class="ps-2 pe-2 pt-1 pb-1"
-                            style="background-color: #f4f4f4; border-radius: 50%; height: 45px;">
+                    <a href="/chat/0">
+                        <div class="notifikasi d-flex justify-content-center pt-2"
+                            style="background-color: #f4f4f4; height: 75%; width: 100%; border-radius: 50%;">
+                            <img src="{{ URL::asset('chat.png') }}" class="" style="height: 29px;">
+                        </div>
                     </a>
+                    </div>
+                <div class="notifikasi pe-2 mt-2">
+                    <div class="item">
+                        <a href="/notifikasi">
+                            @if ($Totalnotif != 0)
+                                <span class="badge">{{ $Totalnotif }}</span>
+                            @endif
+                            <img src="{{ URL::asset('notifikasi.png') }}" class="ps-2 pe-2 pt-1 pb-1"
+                                style="background-color: #F4F4F4; border-radius: 50%; height: 45px;">
+                        </a>
+                    </div>
                 </div>
 
                 <div class="dropdown mt-2">
@@ -288,7 +295,7 @@
 
 
         <div class="content_tambahbarang mt-5"
-            style="height: 550px; margin-bottom: 50px; width: 100%; background-color: #F4F4F4; border-radius: 25px;">
+            style="height: auto; margin-bottom: 50px; width: 100%; background-color: #F4F4F4; border-radius: 25px;">
             <div class="d-flex justify-content-center pt-4 pb-5">
                 <div class="d-flex justify-content-between" style="width: 90%;">
                     <form action="/mengelolabarang">

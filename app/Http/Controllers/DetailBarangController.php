@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\BarangUMKM;
 use App\Models\TransaksiBarangMasuk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class DetailBarangController extends Controller
 {

@@ -15,6 +15,7 @@ class EditBarangController extends Controller
 {
     public function getindex($id)
     {
+        $TotalNotif = 0;
         $auth = Auth::user();
         $user = $this->CheckUser();
         if ($user == 'UMKM') {
@@ -22,7 +23,22 @@ class EditBarangController extends Controller
         } else {
             $hasil = $this->GetBarangPemasokByid($id);
         }
-        return view('editbarang', ['hasil' => $hasil]);
+        $CountBarang = $this->countNotifikasi();
+        for ($i = 0; $i < COUNT($CountBarang); $i++) {
+            if ($CountBarang[$i]['notif_flag'] == 0) {
+                $TotalNotif += 1;
+            } else {
+                $TotalNotif += 0;
+            }
+        }
+        return view('editbarang', ['hasil' => $hasil, 'Totalnotif' => $TotalNotif]);
+    }
+
+    public function countNotifikasi()
+    {
+        $BarangHabisNotif = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->select('barang_umkm_id', DB::raw('1 as id, CURDATE() as Date_Today, SUM(jumlah) as Total, 2 as jumlah, "" as tanggal_kadaluarsa'))->where('user_id', '=', auth()->user()->id)->groupBy('barang_umkm_id')->havingRaw("SUM(jumlah) < 10");
+        $AllNotifBarang = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->select('barang_umkm_id', 'transaksi_barang_masuk.id', DB::raw('CURDATE() as Date_Today, "" as Total'), 'jumlah', 'tanggal_kadaluarsa')->whereRaw(DB::raw('((CURDATE() BETWEEN DATE_ADD(tanggal_kadaluarsa, INTERVAL -14 DAY) AND tanggal_kadaluarsa) or (CURDATE() > tanggal_kadaluarsa))'))->where('user_id', '=', auth()->user()->id)->union($BarangHabisNotif)->get();
+        return $AllNotifBarang;
     }
 
     public function EditBarang(Request $request)
@@ -47,8 +63,21 @@ class EditBarangController extends Controller
                 return response()->json(['stats' => 200]);
             }
         } else {
-            $this->EditBarangPemasok($request);
-            return response()->json(['stats' => 200]);
+            $validate = Validator::make($request->all(), [
+                'deskripsi' => 'required',
+                'hargabarang' => 'required',
+                'fotobarang' => 'mimes:jpeg,jpg,png,gif|max:10000'
+            ]);
+            if ($validate->fails()) {
+                if ($validate->errors()->first('fotobarang')) {
+                    return response()->json(['stats' => 450, 'error' => $validate->errors(), 'fotobarang' => $validate->errors()->first('fotobarang')]);
+                } else {
+                    return response()->json(['stats' => 350, 'error' => $validate->errors()]);
+                }
+            }else{
+                $this->EditBarangPemasok($request);
+                return response()->json(['stats' => 200]);
+            }
         }
     
     }

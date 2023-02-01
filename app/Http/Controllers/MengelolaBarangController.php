@@ -18,6 +18,7 @@ class MengelolaBarangController extends Controller
 {
     public function getindex()
     {
+        $TotalNotif = 0;
         $auth = Auth::user();
         $user = $this->CheckUser();
         if ($user == 'UMKM') {
@@ -32,8 +33,15 @@ class MengelolaBarangController extends Controller
             $flag = 4;
             $AllItems = BarangPemasok::all()->where('user_id', '=', $auth->id);
         }
-
-        return view('mengelolabarang', ['flag' => $flag, 'AllItems' => $AllItems]);
+        $CountBarang = $this->countNotifikasi();
+        for ($i = 0; $i < COUNT($CountBarang); $i++) {
+            if ($CountBarang[$i]['notif_flag'] == 0) {
+                $TotalNotif += 1;
+            } else {
+                $TotalNotif += 0;
+            }
+        }
+        return view('mengelolabarang', ['flag' => $flag, 'AllItems' => $AllItems, 'Totalnotif' => $TotalNotif]);
     }
 
     public function destroy($id)
@@ -53,6 +61,13 @@ class MengelolaBarangController extends Controller
     {
         $BarangMasuk = DB::select('select * from transaksi_barang_masuk where barang_umkm_id = 1');
         return response()->json(['BarangMasuk' => $BarangMasuk]);
+    }
+
+    public function countNotifikasi()
+    {
+        $BarangHabisNotif = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->select('barang_umkm_id', DB::raw('1 as id, CURDATE() as Date_Today, SUM(jumlah) as Total, 2 as jumlah, "" as tanggal_kadaluarsa'))->where('user_id', '=', auth()->user()->id)->groupBy('barang_umkm_id')->havingRaw("SUM(jumlah) < 10");
+        $AllNotifBarang = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->select('barang_umkm_id', 'transaksi_barang_masuk.id', DB::raw('CURDATE() as Date_Today, "" as Total'), 'jumlah', 'tanggal_kadaluarsa')->whereRaw(DB::raw('((CURDATE() BETWEEN DATE_ADD(tanggal_kadaluarsa, INTERVAL -14 DAY) AND tanggal_kadaluarsa) or (CURDATE() > tanggal_kadaluarsa))'))->where('user_id', '=', auth()->user()->id)->union($BarangHabisNotif)->get();
+        return $AllNotifBarang;
     }
 
     public function GetBarangKeluar(Request $request)

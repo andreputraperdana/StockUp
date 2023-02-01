@@ -15,8 +15,17 @@ class LaporanController extends Controller
 {
     public function getindex()
     {
+        $TotalNotif = 0;
         $flag = 3;
-        return view('laporan', ['flag' => $flag]);
+        $CountBarang = $this->countNotifikasi();
+        for ($i = 0; $i < COUNT($CountBarang); $i++) {
+            if ($CountBarang[$i]['notif_flag'] == 0) {
+                $TotalNotif += 1;
+            } else {
+                $TotalNotif += 0;
+            }
+        }
+        return view('laporan', ['flag' => $flag, 'Totalnotif' => $TotalNotif]);
     }
 
     public function getdatalaporan(Request $request)
@@ -131,6 +140,13 @@ class LaporanController extends Controller
     {
         $BarangAkanHabis = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id', 'barang_umkm.id', 'barang_umkm.nama')->having(DB::raw('SUM(jumlah)'), '<', 10)->select('barang_umkm_id', 'barang_umkm.id', 'barang_umkm.nama', DB::raw('SUM(jumlah) as total'))->whereRaw(DB::raw("(DATE_FORMAT(transaksi_barang_masuk.created_at, '%Y-%m-%d') BETWEEN DATE_FORMAT('" . $tanggalawalLaporan . "','%Y-%m-%d') AND DATE_FORMAT('" . $tanggalakhirLaporan . "','%Y-%m-%d'))"))->where('user_id', '=', auth()->user()->id)->get();
         return $BarangAkanHabis;
+    }
+
+    public function countNotifikasi()
+    {
+        $BarangHabisNotif = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->select('barang_umkm_id', DB::raw('1 as id, CURDATE() as Date_Today, SUM(jumlah) as Total, 2 as jumlah, "" as tanggal_kadaluarsa'))->where('user_id', '=', auth()->user()->id)->groupBy('barang_umkm_id')->havingRaw("SUM(jumlah) < 10");
+        $AllNotifBarang = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->select('barang_umkm_id', 'transaksi_barang_masuk.id', DB::raw('CURDATE() as Date_Today, "" as Total'), 'jumlah', 'tanggal_kadaluarsa')->whereRaw(DB::raw('((CURDATE() BETWEEN DATE_ADD(tanggal_kadaluarsa, INTERVAL -14 DAY) AND tanggal_kadaluarsa) or (CURDATE() > tanggal_kadaluarsa))'))->where('user_id', '=', auth()->user()->id)->union($BarangHabisNotif)->get();
+        return $AllNotifBarang;
     }
 
     public function cetak_pdf()

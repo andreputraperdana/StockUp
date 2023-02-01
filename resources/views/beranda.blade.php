@@ -17,6 +17,14 @@
                 </div>
             </div>
             <div class="atas_kanan d-flex mt-5">
+                <div class="pe-2 mt-2" style="width: 60px; height: 60px;">
+                    <a href="/chat/0">
+                        <div class="notifikasi d-flex justify-content-center pt-2"
+                            style="background-color: #f4f4f4; height: 75%; width: 100%; border-radius: 50%;">
+                            <img src="{{ URL::asset('chat.png') }}" class="" style="height: 29px;">
+                        </div>
+                    </a>
+                    </div>
                 <div class="notifikasi pe-2 mt-2">
                     <div class="item">
                         <a href="/notifikasi">

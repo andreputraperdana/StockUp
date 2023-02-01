@@ -11,16 +11,18 @@ let jumlahbarang = document.querySelector(".jumlahbarang");
 
 textmenu.forEach((test) => test.classList.add("hide"));
 
-buttonplus.addEventListener("click", function (e) {
-    jumlahbarang.value++;
-});
-buttonminus.addEventListener("click", function (e) {
-    if (jumlahbarang.value == 0) {
-        jumlahbarang.value = 0;
-    } else {
-        jumlahbarang.value--;
-    }
-});
+if(buttonplus && buttonminus){
+    buttonplus.addEventListener("click", function (e) {
+        jumlahbarang.value++;
+    });
+    buttonminus.addEventListener("click", function (e) {
+        if (jumlahbarang.value == 0) {
+            jumlahbarang.value = 0;
+        } else {
+            jumlahbarang.value--;
+        }
+    });
+}
 
 $(document).ready(function () {
     $(document).on("submit", "#updatebarang", function (e) {
@@ -97,6 +99,63 @@ $(document).ready(function () {
                             ).style.display = "block";
                         }
                     } else if (response.stats === 400) {
+                        for (let e = 0; e < objectmessages.length; e++) {
+                            document.querySelector(
+                                `.errormessage-${objectmessages[e]}`
+                            ).innerHTML = `<p>${
+                                errormessage[objectmessages[e]]
+                            }</p>`;
+                            document.querySelector(
+                                `.errormessage-${objectmessages[e]}`
+                            ).style.display = "block";
+                        }
+                        document.querySelector(
+                            ".errormessage-fotobarang"
+                        ).innerHTML = response.fotobarang;
+                        document.querySelector(
+                            ".errormessage-fotobarang"
+                        ).style.display = "block";
+                    }
+                }else if(response.stats === 350 || response.stats === 450){
+                    const errormessage = response.error;
+                    const objectmessages = Object.keys(errormessage);
+
+                    if (!errormessage.hasOwnProperty("deskripsi")) {
+                        document.querySelector(
+                            ".errormessage-deskripsi"
+                        ).innerHTML = "";
+                        document.querySelector(
+                            ".errormessage-deskripsi"
+                        ).style.display = "none";
+                    }
+                    if (!errormessage.hasOwnProperty("hargabarang")) {
+                        document.querySelector(
+                            ".errormessage-hargabarang"
+                        ).innerHTML = "";
+                        document.querySelector(
+                            ".errormessage-hargabarang"
+                        ).style.display = "none";
+                    }
+
+                    if (response.stats === 350) {
+                        document.querySelector(
+                            ".errormessage-fotobarang"
+                        ).innerHTML = "";
+                        document.querySelector(
+                            ".errormessage-fotobarang"
+                        ).style.display = "none";
+
+                        for (let e = 0; e < objectmessages.length; e++) {
+                            document.querySelector(
+                                `.errormessage-${objectmessages[e]}`
+                            ).innerHTML = `<p>${
+                                errormessage[objectmessages[e]]
+                            }</p>`;
+                            document.querySelector(
+                                `.errormessage-${objectmessages[e]}`
+                            ).style.display = "block";
+                        }
+                    } else if (response.stats === 450) {
                         for (let e = 0; e < objectmessages.length; e++) {
                             document.querySelector(
                                 `.errormessage-${objectmessages[e]}`

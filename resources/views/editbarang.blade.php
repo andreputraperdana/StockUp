@@ -19,18 +19,23 @@
 
             <div class="atas_kanan d-flex  mt-5">
                 <div class="pe-2 mt-2" style="width: 60px; height: 60px;">
-                    <div class="notifikasi d-flex justify-content-center pt-2"
-                        style="background-color: #f4f4f4; height: 75%; width: 100%; border-radius: 50%;">
-                        <a href="">
+                    <a href="/chat/0">
+                        <div class="notifikasi d-flex justify-content-center pt-2"
+                            style="background-color: #f4f4f4; height: 75%; width: 100%; border-radius: 50%;">
                             <img src="{{ URL::asset('chat.png') }}" class="" style="height: 29px;">
+                        </div>
+                    </a>
+                    </div>
+                <div class="notifikasi pe-2 mt-2">
+                    <div class="item">
+                        <a href="/notifikasi">
+                            @if ($Totalnotif != 0)
+                                <span class="badge">{{ $Totalnotif }}</span>
+                            @endif
+                            <img src="{{ URL::asset('notifikasi.png') }}" class="ps-2 pe-2 pt-1 pb-1"
+                                style="background-color: #F4F4F4; border-radius: 50%; height: 45px;">
                         </a>
                     </div>
-                </div>
-                <div class="notifikasi pe-2 mt-2">
-                    <a href="/notifikasi">
-                        <img src="{{ URL::asset('notifikasi.png') }}" class="ps-2 pe-2 pt-1 pb-1"
-                            style="background-color: #f4f4f4; border-radius: 50%; height: 45px;">
-                    </a>
                 </div>
                 <div class="dropdown mt-2">
                     <button class="dropbutton ps-3 pe-4 pt-1 pb-1" style="border: none; border-radius: 25px;">
@@ -294,18 +299,23 @@
                             style="background-color: #f4f4f4; border-radius: 50%; height: 45px;">
                     </a>
                 </div>
-                <div class="dropdown mt-2">
+                 <div class="dropdown mt-2">
                     <button class="dropbutton ps-3 pe-4 pt-1 pb-1" style="border: none; border-radius: 25px;">
-                        <img src="{{ URL::asset('akun.png') }}" alt="" style="height: 40px;"> Glosary
+                        <img src="\public\image\{{ auth()->user()->foto_profile }}" alt=""
+                            style="height: 40px; width: 40px; border-radius: 50px;">
+                        {{ Str::limit(auth()->user()->name, 5) }}
                     </button>
                     <div class="dropdown-content">
-                        <a href="#">Pengaturan</a>
-                        <a href="#">Logout</a>
+                        <a href="/editprofile">Pengaturan</a>
+                        <form action="/logout" method="POST">
+                            @csrf
+                            <input type="submit" class="btn prevbutton" value="Logout">
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-        <form action="/editbarang/update" method="post" enctype="multipart/form-data">
+        <form action="/editbarang/update" method="post" enctype="multipart/form-data" id="updatebarang">
             @csrf
             <div class="content_tambahbarang mt-5"
                 style="height: 700px; width: 100%; background-color: #F4F4F4; border-radius: 25px;">
@@ -320,6 +330,8 @@
                                 <label class="custom-file-upload" style="border-radius: 7px;">
                                     <input type="file" name="fotobarang" />
                                 </label>
+                            </div>
+                            <div class="errormessage-fotobarang ps-3" style="display: none; color: red;">
                             </div>
                         </div>
 
@@ -466,6 +478,9 @@
                                                             style="border: 0px solid #626262;background-color:transparent; outline: 0;"
                                                             value="{{ $hasil->get(0)->harga }}">
                                                     </div>
+                                                    <div class="errormessage-hargabarang " style="display: none; color: red;">
+
+                                                    </div>
                                                 </div>
 
                                             </div>
@@ -479,6 +494,9 @@
                                             <div class="input_tanggalkadaluarsa">
                                                 <textarea id="deskripsi" name="deskripsi" rows="4" cols="50" placeholder="Deskripsi"
                                                     style="border: 1px solid #626262; background-color:transparent; width: 100%;">{{ $hasil->get(0)->deskripsi }}</textarea>
+                                            </div>
+                                            <div class="errormessage-deskripsi " style="display: none; color: red;">
+
                                             </div>
                                         </div>
                                     </div>
