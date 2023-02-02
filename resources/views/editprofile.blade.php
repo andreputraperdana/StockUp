@@ -302,19 +302,13 @@
 
             <div class="atas_kanan d-flex  mt-5">
                 <div class="pe-2 mt-2" style="width: 60px; height: 60px;">
-                    <div class="notifikasi d-flex justify-content-center pt-2"
-                        style="background-color: #f4f4f4; height: 75%; width: 100%; border-radius: 50%;">
-                        <a href="">
+                    <a href="/chat/0">
+                        <div class="notifikasi d-flex justify-content-center pt-2"
+                            style="background-color: #f4f4f4; height: 75%; width: 100%; border-radius: 50%;">
                             <img src="{{ URL::asset('chat.png') }}" class="" style="height: 29px;">
-                        </a>
-                    </div>
-                </div>
-                <div class="notifikasi pe-2 mt-2">
-                    <a href="\notifikasi">
-                        <img src="{{ URL::asset('notifikasi.png') }}" class="ps-2 pe-2 pt-1 pb-1"
-                            style="background-color: #f4f4f4; border-radius: 50%; height: 45px;">
+                        </div>
                     </a>
-                </div>
+                    </div>
                 <div class="dropdown mt-2">
                     <button class="dropbutton ps-3 pe-4 pt-1 pb-1" style="border: none; border-radius: 25px;">
                         <img src="\public\image\{{ auth()->user()->foto_profile }}" alt=""

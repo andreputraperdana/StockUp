@@ -116,8 +116,11 @@ Route::post('/editprofile/update', [EditProfileController::class, 'update']);
 
 Route::get('/barcode/{id}/{kodeId}', [BarcodeController::class, 'getindex'])->name('barcode');
 
-Route::get('/toko/{jenis}', [TokoController::class, 'getDataByKategori']);
+Route::get('/toko/filterkategori/{jenis}', [TokoController::class, 'getDataByKategori']);
 
 // Route::get('/laporan/cetak_pdf/{jenis}/{start}/{end}', [LaporanController::class, 'cetak_pdf']);
 
 Route::get('/laporan/cetak_pdf', [LaporanController::class, 'cetak_pdf']);
+
+Route::get('/toko/filterharga', [TokoController::class, 'filterharga']);
+

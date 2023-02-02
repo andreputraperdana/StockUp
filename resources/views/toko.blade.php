@@ -69,7 +69,24 @@
                         <img src="{{ URL::asset('search.png') }}" class="" style="height: 20px;">
                     </button>
                 </div>
-
+                <div class="dropdown w-30">
+                    <a class="btn dropdown-toggle" style="border: 1px solid black; border-radius: 10px;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Filter Harga
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li style="padding-top: 15px; margin: 0px 7px;"><input class="form-check-input" type="radio" name="flexRadioDefault" id="hargaRendah">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          Harga Rendah ke Tinggi
+                        </label></li>
+                      <li style="padding-top: 15px; margin: 0px 7px;"><input class="form-check-input" type="radio" name="flexRadioDefault" id="hargaTinggi">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          Harga Tinggi ke Rendah
+                        </label></li>
+                      <li style="padding-top: 15px; margin: 0px 7px;" class="d-flex"> <input name="minHarga" class="dropdown-item" style="width: 100px; border: 1px solid black; border-radius: 5px;">&nbsp;-&nbsp; <input name="maxHarga" class="dropdown-item" style="width: 100px; border: 1px solid black; border-radius: 5px;"></li>
+                      <li style="padding-top: 10px; margin: 0px 7px;"><button type="submit" class="btn btn-primary" id="btn_terapkan"
+                        style="background-color: #D7CAA0; width: 100%; border: none; font-weight: bold; color: black;">Terapkan</button></li>
+                    </ul>
+                  </div>
                 <!-- <div class="input_pilihtanggal" style="width: 30%;">
                     <input type="date" class="form-control" id="exampleInputPilihTanggal1" name="filterTanggal" aria-describedby="emailHelp"
                         placeholder="Pilih Tanggal" style="border: 1px solid #626262; background-color:transparent;">
@@ -84,7 +101,7 @@
                         @foreach ($Kategori as $Kategories)
                             <div class="kategori_list d-flex">
                                 <div class="daftar_kategori d-flex justify-content-between {{ $Kategories->jenis }}" style="width: 100%;">
-                                    <a class="{{ $Kategories->jenis }}" href="/toko/{{ $Kategories->jenis }}">
+                                    <a class="{{ $Kategories->jenis }}" href="/toko/filterkategori/{{ $Kategories->jenis }}">
                                         {{ $Kategories->jenis }}
                                     </a>
                                     <p class="{{ $Kategories->jenis }}">{{ $Kategories->total }}</p>
