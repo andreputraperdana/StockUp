@@ -16,7 +16,6 @@ class TokoController extends Controller
     {
         $TotalNotif = 0;
         $filterTanggal = request('filterTanggal');
-        
         $flag = 5;
         $Item = BarangPemasok::paginate(12);
         $Kategori = BarangPemasok::select('jenis', DB::raw('count(*) as total'))->groupBy('jenis')->get();
@@ -27,6 +26,10 @@ class TokoController extends Controller
             } else {
                 $TotalNotif += 0;
             }
+        }
+        if (request('search')) {
+            $cari = request('search');
+            $Item = BarangPemasok::where('nama', 'like', "%" . $cari . "%")->paginate(12);
         }
         return view('toko', ['flag' => $flag, 'Item' => $Item, 'Kategori' => $Kategori, 'Totalnotif' => $TotalNotif]);
     }

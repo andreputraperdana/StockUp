@@ -59,16 +59,17 @@
                 <p style="font-size: 25px; font-weight: bold;">Kategori</p>
             </div>
             <div class="d-flex justify-content-evenly" style="width: 80%;">
-                <div class="d-flex"
-                    style="border: 1px solid #626262; background-color:transparent; border-radius: 7px; width: 30%; height: 40px;">
-                    <input type="text" class="form-control" id="exampleInputTanggalKadaluarsa1"
-                        aria-describedby="emailHelp" placeholder="Cari Barang"
-                        style="border-radius: 0; background-color:transparent; border: 0;">
-                    <button type="submit" class="btn"
-                        style="border-left: 1px solid #626262; border-radius: 0 7px 7px 0; background-color: #D7CAA0;">
-                        <img src="{{ URL::asset('search.png') }}" class="" style="height: 20px;">
-                    </button>
-                </div>
+                <form action="/toko">
+                    <div class="d-flex"
+                        style="border: 1px solid #626262; background-color:transparent; border-radius: 7px; height: 40px;">
+                        <input type="text" class="form-control" name="search" id="search"
+                            placeholder="Cari Barang" style="width: 200px;">
+                        <button type="submit" class="btn"
+                            style="border-left: 1px solid #626262; border-radius: 0 7px 7px 0; background-color: #D7CAA0;">
+                            <img src="{{ URL::asset('search.png') }}" class="" style="height: 20px;">
+                        </button>
+                    </div>
+                </form>
                 <div class="dropdown w-30">
                     <a class="btn dropdown-toggle" style="border: 1px solid black; border-radius: 10px;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Filter Harga
