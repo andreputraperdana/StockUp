@@ -133,7 +133,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="raja_list" style="width: 97%; height: auto; border-radius: 25px;">
+                <div class="raja_list" style="width: 97%; height: 550px; border-radius: 25px;">
                     <form action="/beranda">
                         <div class="ps-5 pt-4 pb-5 d-flex justify-content-between" style="width: 95%;">
                             <div class="d-flex"
