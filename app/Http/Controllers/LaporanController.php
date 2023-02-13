@@ -167,38 +167,58 @@ class LaporanController extends Controller
         ];
         if ($jenis == "Keluar masuk barang") {
             $LaporanBarang =  $this->GetKeluarMasukBarang($tanggalawalLaporan, $tanggalakhirLaporan);
+            $tempidbarang = 0;
+            $stockakhir = 0;
             $barang_arrange = [];
-            $prevStockAkhir = "";
-            foreach($LaporanBarang as $key => $data) {
-                    $nama = $data->nama;
-                    $id = $data->id;
-                    $stockAwal = $data->Stockfinalawal;
-                    $stockAkhir = $data->Stockfinalawal + $data->barangmasuk - $data->barangkeluar;
-
-                    if($key!= 0){
-                        if($id == $LaporanBarang[$key-1]->id){
-                            $nama = "---";
-                            $id = "---";
-                            $stockAwal = $prevStockAkhir;
-                            $stockAkhir = $stockAwal + $data->barangmasuk - $data->barangkeluar;
-                        }
+            for($d = 0; $d < COUNT($LaporanBarang); $d++){
+                $nama = $LaporanBarang[$d]->nama;
+                $id = $LaporanBarang[$d]->id;
+                if($id === $tempidbarang){
+                    if($LaporanBarang[$d]->barangmasukid == $LaporanBarang[$d - 1]->barangmasukid){
+                        $LaporanBarang[$d]->barangmasuk = 0;
+                        $LaporanBarang[$d]->tanggalmasukbarang = "-";
                     }
-                    
+                    if($LaporanBarang[$d]->barangmasuk === null){
+                        $LaporanBarang[$d]->barangmasuk = 0;
+                        $LaporanBarang[$d]->tanggalmasukbarang = "-";
+                    }
+                    else if($LaporanBarang[$d]->barangkeluar === null){
+                        $LaporanBarang[$d]->barangkeluar = 0;
+                        $LaporanBarang[$d]->tanggalkeluarbarang = "-";
+                    }
+                    $newData = [ 
+                        "",
+                        "", 
+                        $stockakhir, 
+                        $LaporanBarang[$d]->barangmasuk,
+                        $LaporanBarang[$d]->tanggalmasukbarang,
+                        $LaporanBarang[$d]->barangkeluar,
+                        $LaporanBarang[$d]->tanggalkeluarbarang,
+                        $stockakhir += $LaporanBarang[$d]->barangmasuk - $LaporanBarang[$d]->barangkeluar
+                    ];
+                    $tempidbarang = $LaporanBarang[$d]->id;
+                }else if($id !== $tempidbarang){
+                    if($LaporanBarang[$d]->barangkeluar === null){
+                        $LaporanBarang[$d]->barangkeluar = 0;
+                        $LaporanBarang[$d]->tanggalkeluarbarang = "-";
+                    }
+                    $stockakhir = 0;
+                    $stockakhir = $LaporanBarang[$d]->Stockfinalawal + $LaporanBarang[$d]->barangmasuk - $LaporanBarang[$d]->barangkeluar;
+                    $tempidbarang = $LaporanBarang[$d]->id;
                     $newData = [ 
                         $id,
                         $nama, 
-                        $stockAwal, 
-                        $data->barangmasuk, 
-                        $data->tanggalmasukbarang,
-                        $data->barangkeluar,
-                        $data->tanggalkeluarbarang,
-                        $stockAkhir
+                        $LaporanBarang[$d]->Stockfinalawal, 
+                        $LaporanBarang[$d]->barangmasuk,
+                        $LaporanBarang[$d]->tanggalmasukbarang,
+                        $LaporanBarang[$d]->barangkeluar,
+                        $LaporanBarang[$d]->tanggalkeluarbarang,
+                        $stockakhir
                     ];
-
-                    $prevStockAkhir = $stockAwal + $data->barangmasuk - $data->barangkeluar;
-                    array_push($barang_arrange, $newData);
+                }
+                
+                array_push($barang_arrange, $newData);
             }
-
             $pdf = PDF::loadView('isilaporan', ['LaporanBarang' => $barang_arrange, 'jenis' => $jenis, 'tanggalawalLaporan' => $tanggalawalLaporan, 'tanggalakhirLaporan' => $tanggalakhirLaporan, 'table_head' => $table_head[$jenis]]);
             return $pdf->download('Laporan - Keluar Masuk Barang.pdf');
         } else if ($jenis == "Persediaan stok barang") {

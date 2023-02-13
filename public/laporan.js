@@ -219,7 +219,7 @@ $(document).ready(function () {
                     //     console.log("test2");
                     // }
                     let stockakhir = 0;
-                    // console.log(response.laporanbarang);
+                    console.log(response.laporanbarang);
                     for (let d = 0; d < response.laporanbarang.length; d++) {
                         if (response.laporanbarang[d].id === tempidbarang) {
                             // stockakhir -=

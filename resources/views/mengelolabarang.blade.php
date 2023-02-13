@@ -56,7 +56,7 @@
 
         <div class="content_tambahbarang mt-5"
             style="height: auto; margin-bottom: 50px; width: 100%; background-color: #F4F4F4; border-radius: 25px;">
-            <div style="height: 550px;">
+            {{-- <div style="height: 550px;"> --}}
             <div class="d-flex justify-content-center pt-4 pb-5">
                 <div class="d-flex justify-content-between" style="width: 90%;">
                     <form action="/mengelolabarang">
@@ -182,7 +182,7 @@
             <span class="d-flex justify-content-center">
                 {{ $AllItems->links() }}
             </span>
-        </div>
+        {{-- </div> --}}
         </div>
         <div style="visibility:hidden">
             <p class="tanda">{{ $flag }}</p>
