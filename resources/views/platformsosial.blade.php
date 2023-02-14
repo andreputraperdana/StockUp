@@ -4,7 +4,7 @@
     <script defer src="/item.js"></script>
 @endsection
 
-@if ($PlatformSosial != null)
+@if (!$PlatformSosial->isEmpty())
     @section('content')
         <div class="atas d-flex justify-content-between" style="width:100%">
             <div class="atas_kiri d-flex">
