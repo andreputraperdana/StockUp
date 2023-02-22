@@ -142,15 +142,27 @@ class BerandaController extends Controller
         $input = $request->code;
         if ($request->ajax()) {
             if ($input === '1') {
-                $TipeBarang = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id')->having(DB::raw('SUM(jumlah)'), '<', 10)->select('barang_umkm_id', DB::raw('SUM(jumlah) as total'))->where('user_id', '=', auth()->user()->id)->paginate(3);
+                $TipeBarang = $this->GetListBarangHabis();
             } else if ($input === '2') {
-                $TipeBarang = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->select('*', DB::raw('CURDATE() as Date_Today'))->whereRaw(DB::raw('((CURDATE() BETWEEN DATE_ADD(tanggal_kadaluarsa, INTERVAL -14 DAY) AND tanggal_kadaluarsa) or (CURDATE() > tanggal_kadaluarsa))'))->where('user_id', '=', auth()->user()->id)->where('jumlah', '!=', 0)->paginate(3);
+                $TipeBarang = $this->GetListBarangAkanKadaluarsa();
             } else if ($input === '3') {
-                $TipeBarang = TransaksiBarangKeluar::join('transaksi_barang_masuk', 'transaksi_barang_masuk.id', '=', 'transaksi_barang_keluar.transaksi_barang_masuk_id')->join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->whereRaw(DB::raw("(CURDATE() =  DATE_FORMAT(transaksi_barang_keluar.created_at, '%Y-%m-%d'))"))->where('user_id', '=', auth()->user()->id)->paginate(3);
+                $TipeBarang = $this->GetListPengeluaranBarangPerHari();
             } else if ($input === '4') {
                 $TipeBarang = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id')->select('barang_umkm_id', DB::raw('count(barang_umkm_id) as totalAll, SUM(jumlah) as total'))->where('user_id', '=', auth()->user()->id)->paginate(5);
             }
             return view('barangpagination', compact('TipeBarang', 'input'));
         }
+    }
+
+    public function GetListBarangHabis(){
+        return TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id')->having(DB::raw('SUM(jumlah)'), '<', 10)->select('barang_umkm_id', DB::raw('SUM(jumlah) as total'))->where('user_id', '=', auth()->user()->id)->paginate(3);
+    }
+
+    public function GetListBarangAkanKadaluarsa(){
+        return TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->select('*', DB::raw('CURDATE() as Date_Today'))->whereRaw(DB::raw('((CURDATE() BETWEEN DATE_ADD(tanggal_kadaluarsa, INTERVAL -14 DAY) AND tanggal_kadaluarsa) or (CURDATE() > tanggal_kadaluarsa))'))->where('user_id', '=', auth()->user()->id)->where('jumlah', '!=', 0)->paginate(3);
+    }
+
+    public function GetListPengeluaranPerHari(){
+        return TransaksiBarangKeluar::join('transaksi_barang_masuk', 'transaksi_barang_masuk.id', '=', 'transaksi_barang_keluar.transaksi_barang_masuk_id')->join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->whereRaw(DB::raw("(CURDATE() =  DATE_FORMAT(transaksi_barang_keluar.created_at, '%Y-%m-%d'))"))->where('user_id', '=', auth()->user()->id)->paginate(3);
     }
 }
