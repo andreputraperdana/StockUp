@@ -18,15 +18,22 @@ const id_tanggalkadaluarsa = document.querySelector(".popupkontenidtanggal");
 const daftaridtanggal = document.querySelector(
     ".daftar_profil_kiri_id_kadaluarsa"
 );
+const namabarangpopup = document.querySelector(".daftar_profil_kiri_nama");
+
+const kuantitas = document.querySelector(".daftar_profil_kiri_kuantitas");
 
 const imagedeletebarang = document.querySelector(".imagedelete");
 function outputhasil(ouptut) {
     if (ouptut.value === "Manual") {
         daftaridtanggal.style.display = "block";
         id_tanggalkadaluarsa.style.display = "block";
+        kuantitas.style.paddingTop = "";
+        namabarangpopup.style.paddingTop = "";
     } else if (ouptut.value === "FIFO") {
         daftaridtanggal.style.display = "none";
         id_tanggalkadaluarsa.style.display = "none";
+        kuantitas.style.paddingTop = "13px";
+        namabarangpopup.style.paddingTop = "4px";
     }
 }
 

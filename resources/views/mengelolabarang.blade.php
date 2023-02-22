@@ -111,7 +111,7 @@
                                             style="height: 60px; width: 60px;">
                                     </div>
                                     <div class="nama_header center" style="width: 36%;">
-                                        <p style="font-size: 16px;">{{ $AllItem->BarangUMKM->id }}</p>
+                                        <p style="font-size: 16px;">00{{ $AllItem->BarangUMKM->id }}</p>
                                     </div>
                                     <div class="nama_header center" style="width: 36%;">
                                         <p style="font-size: 16px;">{{ $AllItem->BarangUMKM->nama }}</p>

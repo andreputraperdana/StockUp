@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+    <input type="hidden" value="0" name="tanda12" class="tanda12">
         <div class="atas d-flex justify-content-between" style="width:100%">
                         <div class="atas_kiri">
                             <div class="judul_halaman mt-5">

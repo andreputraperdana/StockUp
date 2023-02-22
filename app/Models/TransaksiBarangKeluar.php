@@ -11,4 +11,5 @@ class TransaksiBarangKeluar extends Model
     public function BarangUMKM(){
         return $this->belongsTo(BarangUMKM::class, 'barang_umkm_id', 'id');
     }
+    
 }

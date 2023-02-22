@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -19,7 +20,7 @@ class LoginController extends Controller
             'email' => 'required|email',
             'password' => 'required|min:5',
         ]);
-
+        
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('beranda');

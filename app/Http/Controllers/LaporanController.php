@@ -132,7 +132,7 @@ class LaporanController extends Controller
 
     public function GetBarangKadaluarsa($tanggalawalLaporan, $tanggalakhirLaporan)
     {
-        $BarangAkanKadalurasa = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->select('*', DB::raw('CURDATE() as Date_Today'))->whereRaw(DB::raw("((CURDATE() BETWEEN DATE_ADD(tanggal_kadaluarsa, INTERVAL -14 DAY) AND tanggal_kadaluarsa) or (CURDATE() > tanggal_kadaluarsa)) AND (DATE_FORMAT(transaksi_barang_masuk.created_at, '%Y-%m-%d') BETWEEN DATE_FORMAT('" . $tanggalawalLaporan . "','%Y-%m-%d') AND DATE_FORMAT('" . $tanggalakhirLaporan . "','%Y-%m-%d'))"))->where('user_id', '=', auth()->user()->id)->select('transaksi_barang_masuk.id', 'transaksi_barang_masuk.barang_umkm_id', 'barang_umkm.nama', 'harga', 'jumlah', 'tanggal_kadaluarsa', DB::raw("DATE_FORMAT(transaksi_barang_masuk.created_at, '%Y-%m-%d') as TanggalMasukBarang"))->get();
+        $BarangAkanKadalurasa = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->select('*', DB::raw('CURDATE() as Date_Today'))->whereRaw(DB::raw("((CURDATE() BETWEEN DATE_ADD(tanggal_kadaluarsa, INTERVAL -14 DAY) AND tanggal_kadaluarsa) or (CURDATE() > tanggal_kadaluarsa)) AND (DATE_FORMAT(transaksi_barang_masuk.created_at, '%Y-%m-%d') BETWEEN DATE_FORMAT('" . $tanggalawalLaporan . "','%Y-%m-%d') AND DATE_FORMAT('" . $tanggalakhirLaporan . "','%Y-%m-%d'))"))->where('user_id', '=', auth()->user()->id)->where('jumlah', '!=', 0)->select('transaksi_barang_masuk.id', 'transaksi_barang_masuk.barang_umkm_id', 'barang_umkm.nama', 'harga', 'jumlah', 'tanggal_kadaluarsa', DB::raw("DATE_FORMAT(transaksi_barang_masuk.created_at, '%Y-%m-%d') as TanggalMasukBarang"))->get();
         return $BarangAkanKadalurasa;
     }
 
@@ -145,7 +145,7 @@ class LaporanController extends Controller
     public function countNotifikasi()
     {
         $BarangHabisNotif = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->select('barang_umkm_id', DB::raw('1 as id, CURDATE() as Date_Today, SUM(jumlah) as Total, 2 as jumlah, "" as tanggal_kadaluarsa'))->where('user_id', '=', auth()->user()->id)->groupBy('barang_umkm_id')->havingRaw("SUM(jumlah) < 10");
-        $AllNotifBarang = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->select('barang_umkm_id', 'transaksi_barang_masuk.id', DB::raw('CURDATE() as Date_Today, "" as Total'), 'jumlah', 'tanggal_kadaluarsa')->whereRaw(DB::raw('((CURDATE() BETWEEN DATE_ADD(tanggal_kadaluarsa, INTERVAL -14 DAY) AND tanggal_kadaluarsa) or (CURDATE() > tanggal_kadaluarsa))'))->where('user_id', '=', auth()->user()->id)->union($BarangHabisNotif)->get();
+        $AllNotifBarang = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->select('barang_umkm_id', 'transaksi_barang_masuk.id', DB::raw('CURDATE() as Date_Today, "" as Total'), 'jumlah', 'tanggal_kadaluarsa')->whereRaw(DB::raw('((CURDATE() BETWEEN DATE_ADD(tanggal_kadaluarsa, INTERVAL -14 DAY) AND tanggal_kadaluarsa) or (CURDATE() > tanggal_kadaluarsa))'))->where('user_id', '=', auth()->user()->id)->where('jumlah','!=', 0)->union($BarangHabisNotif)->get();
         return $AllNotifBarang;
     }
 

@@ -3,13 +3,12 @@ const textmenu = document.querySelectorAll(".textmenu");
 const slidelogo = document.querySelector(".side_logo");
 const isikonten = document.querySelector(".isi_konten");
 textmenu.forEach((test) => test.classList.add("hide"));
-const listallUser = document.querySelector(".listall");
 var time = document.getElementById("waktuskrg");
 // var popupkadaluarsa = document.querySelector("#myPopup-Kadaluarsa");
 // var popuphabis = document.querySelector("#myPopup");
 // var popuppengeluaran = document.querySelector("#myPopup-PengeluaranPerHari");
 var span = document.querySelectorAll(".close");
-
+const pesanMasuk = document.querySelector(".listall");
 document.querySelector(".menu_brnd").classList.add("actives");
 
 let popupbarang = document.querySelectorAll(
@@ -150,6 +149,18 @@ window.addEventListener("click", function (event) {
         }
     }
 });
+
+setInterval(() => {
+    let req = new XMLHttpRequest();
+    req.open("GET", "/allpesanmasuk", true);
+    req.onload = () => {
+        if (req.readyState === XMLHttpRequest.DONE) {
+            let data = req.response;
+            pesanMasuk.innerHTML = data;
+        }
+    };
+    req.send();
+}, 1000);
 
 // $(document).on("click", ".pagination a", function (e) {
 //     e.preventDefault();

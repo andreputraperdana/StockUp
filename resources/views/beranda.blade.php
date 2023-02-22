@@ -17,13 +17,13 @@
                 </div>
             </div>
             <div class="atas_kanan d-flex mt-5">
-                <div class="pe-2 mt-2" style="width: 60px; height: 60px;">
-                    <a href="/chat/0">
+                <div class="pe-2 mt-2" onclick="FucntionTesting()" style="width: 60px; height: 60px;">
+                    <!-- <a href="/chat/0"> -->
                         <div class="notifikasi d-flex justify-content-center pt-2"
                             style="background-color: #f4f4f4; height: 75%; width: 100%; border-radius: 50%;">
                             <img src="{{ URL::asset('chat.png') }}" class="" style="height: 29px;">
                         </div>
-                    </a>
+                    <!-- </a> -->
                     </div>
                 <div class="notifikasi pe-2 mt-2">
                     <div class="item">
@@ -133,7 +133,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="raja_list" style="width: 97%; height: 550px; border-radius: 25px;">
+                <div class="raja_list" style="width: 97%; height: auto; border-radius: 25px;">
                     <form action="/beranda">
                         <div class="ps-5 pt-4 pb-5 d-flex justify-content-between" style="width: 95%;">
                             <div class="d-flex"

@@ -17,7 +17,7 @@ class BarangUMKM extends Model
         return $this->hasMany(TransaksiBarangMasuk::class, 'barang_umkm_id', 'id');
     }
 
-    public function TransaksiBarangKeluar(){
-        return $this->hasMany(TransaksiBarangKeluar::class, 'barang_umkm_id', 'id');
-    }
+    // public function TransaksiBarangKeluar(){
+    //     return $this->hasMany(TransaksiBarangKeluar::class, 'barang_umkm_id', 'id');
+    // }
 }

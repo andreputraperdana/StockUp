@@ -9,7 +9,7 @@
     <div class="resp-table-row mb-3 p-3" style="font-size: 16px; border-radius: 7px; background-color: #C7E0BC;">
         <div class="d-flex">
             <div class="center" style="width: 17vw;">
-                {{ $hasil->barang_umkm_id }} - 00{{ $total }}
+                00{{ $hasil->barang_umkm_id }} - 00{{ $hasil->id }}
             </div>
             <div class="center" style="width: 18vw;">
                 {{ $hasil->jumlah }}

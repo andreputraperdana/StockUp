@@ -176,16 +176,20 @@
                                                 class="text-center">Nama Barang</td>
                                             <td scope="col" rowspan="2" style="opacity: 0.6; font-weight: bold;"
                                                 class="text-center">Stock Awal</td>
-                                            <td scope="col" colspan="4" style="opacity: 0.6; font-weight: bold;"
+                                            <td scope="col" colspan="6" style="opacity: 0.6; font-weight: bold;"
                                                 class="text-center">Jumlah Barang</td>
                                             <td scope="col" rowspan="2" style="opacity: 0.6; font-weight: bold;"
                                                 class="text-center">Stok Akhir</td>
                                         </tr>
                                         <tr>
+                                            <td scope="col" rowspan="2" style="opacity: 0.6; font-weight: bold;">ID
+                                                Barang</td>
                                             <td scope="col" style="opacity: 0.6; font-weight: bold;"
                                                 class="text-center">Masuk</td>
                                             <td scope="col" style="opacity: 0.6; font-weight: bold;"
                                                 class="text-center">Tanggal Masuk</td>
+                                            <td scope="col" rowspan="2" style="opacity: 0.6; font-weight: bold;">ID
+                                                Barang</td>
                                             <td scope="col" style="opacity: 0.6; font-weight: bold;"
                                                 class="text-center">Keluar</td>
                                             <td scope="col" style="opacity: 0.6; font-weight: bold;"
@@ -209,6 +213,8 @@
                                                 class="text-center">Jumlah Barang Masuk</td>
                                             <td scope="col" style="opacity: 0.6; font-weight: bold;"
                                                 class="text-center">Jumlah Barang Keluar</td>
+                                            <td scope="col" style="opacity: 0.6; font-weight: bold;"
+                                                class="text-center">Stok Barang</td>    
                                         </tr>
                                     </thead>
                                     <tbody class="content_laporanpersediaanstockbarang">

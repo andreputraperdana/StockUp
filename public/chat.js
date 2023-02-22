@@ -10,6 +10,9 @@ textmenu.forEach((test) => test.classList.add("hide"));
 const contentchat = document.querySelector(".content-chat");
 const contentmessage = document.getElementById("message");
 const pesanMasuk = document.querySelector(".pesanAllMasuk");
+// localStorage.setItem("tanda", (document.querySelector(".tanda12").value += 1));
+// document.querySelector(".tanda12").value = window.localStorage.getItem("tanda");
+// console.log(document.querySelector(".tanda12").value);
 slidebar.addEventListener("mouseover", function (e) {
     // console.log(this.classList);
     this.style.width = "250px";
