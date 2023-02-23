@@ -45,7 +45,7 @@
                     </a>
                     {{-- <form action="/barcode/{{$hasil->id}}" method="POST">
                     <input type="hidden" name="barangKode" value="{{$hasil->barang_umkm_id}} - 00{{$total}}"> --}}
-                    <a target="_blank" href="/barcode/{{ $hasil->id }}/{{ $hasil->barang_umkm_id }} - 00{{ $total }}">
+                    <a target="_blank" href="/barcode/{{ $hasil->id }}/00{{ $hasil->barang_umkm_id }} - 00{{ $hasil->id }}">
                         <button class="btn__edit me-3 p-2 pe-3 ps-3" style="font-size: 16px; font-weight: bold;">Barcode</button>
                     </a>
                     {{-- </form> --}}

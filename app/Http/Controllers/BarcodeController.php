@@ -13,7 +13,8 @@ class BarcodeController extends Controller
         $BarangKadaluarsa = str_replace("-", "", $Barang->tanggal_kadaluarsa);
         $kode = str_replace("-", "", $kodeId);
         $kodeBrang = str_replace(" ", "", $kode);
-        $KodeBarang = $kodeBrang . $BarangKadaluarsa;
+        $kodeBarangg = substr($kodeBrang, -4);
+        $KodeBarang = $kodeBarangg . $BarangKadaluarsa;
         return view('barcode', ['KodeBarang' => $KodeBarang]);
     }
 }
