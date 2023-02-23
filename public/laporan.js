@@ -156,7 +156,7 @@ $(document).ready(function () {
                     periodelaporan.innerHTML = `<p>Periode: ${response.periodeawal} / ${response.periodeakhir}</p>`;
                     for (let b = 0; b < response.laporanbarang.length; b++) {
                         contentlaporankadaluarsa.innerHTML += `<tr class="">
-                            <td class="pt-4 pb-4">${response.laporanbarang[b].id}</td>
+                            <td class="pt-4 pb-4">00${response.laporanbarang[b].barang_umkm_id} - 00${response.laporanbarang[b].id}</td>
                             <td class="text-center pt-4 pb-4">${response.laporanbarang[b].TanggalMasukBarang}</td>
                             <td class="text-center pt-4 pb-4">${response.laporanbarang[b].nama}</td>
                             <td class="text-center pt-4 pb-4">${response.laporanbarang[b].tanggal_kadaluarsa}</td>

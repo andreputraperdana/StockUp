@@ -146,7 +146,7 @@ class BerandaController extends Controller
             } else if ($input === '2') {
                 $TipeBarang = $this->GetListBarangAkanKadaluarsa();
             } else if ($input === '3') {
-                $TipeBarang = $this->GetListPengeluaranBarangPerHari();
+                $TipeBarang = $this->GetListPengeluaranPerHari();
             } else if ($input === '4') {
                 $TipeBarang = TransaksiBarangMasuk::join('barang_umkm', 'barang_umkm.id', '=', 'transaksi_barang_masuk.barang_umkm_id')->groupBy('barang_umkm_id')->select('barang_umkm_id', DB::raw('count(barang_umkm_id) as totalAll, SUM(jumlah) as total'))->where('user_id', '=', auth()->user()->id)->paginate(5);
             }

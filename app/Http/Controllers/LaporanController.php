@@ -117,7 +117,7 @@ class LaporanController extends Controller
         })->leftJoin(DB::raw("(SELECT * FROM transaksi_barang_keluar WHERE DATE_FORMAT(created_at, '%Y-%m-%d') BETWEEN DATE_FORMAT('" . $tanggalawalLaporan . "','%Y-%m-%d') AND DATE_FORMAT('" . $tanggalakhirLaporan . "','%Y-%m-%d')) TransaksiBarangKeluar"), function ($join2) {
             $join2->on('TransaksiBarangMasuk.id', '=', 'TransaksiBarangKeluar.transaksi_barang_masuk_id');
             $join2->on(DB::raw("DATE_FORMAT(TransaksiBarangMasuk.created_at, '%Y-%m-%d')"), "=", DB::raw("DATE_FORMAT(TransaksiBarangKeluar.created_at, '%Y-%m-%d')"));
-        })->whereRaw(DB::raw('(TransaksiBarangMasuk.stockawal IS NOT NULL OR TransaksiBarangKeluar.jumlah IS NOT NULL)'))->WHERE('barang_umkm.user_id', '=', auth()->user()->id)->select('barang_umkm.id', DB::raw('TransaksiBarangMasuk.id as barangmasukid'), 'barang_umkm.nama', 'combinestock.Stockfinalawal', DB::raw("TransaksiBarangMasuk.stockawal as barangmasuk, DATE_FORMAT(TransaksiBarangMasuk.created_at, '%Y-%m-%d') as tanggalmasukbarang, TransaksiBarangKeluar.jumlah as barangkeluar, DATE_FORMAT(TransaksiBarangKeluar.created_at, '%Y-%m-%d') as tanggalkeluarbarang"))->unionAll($LaporanBarangKeluarDifTanggal)->orderBy('barangmasukid', 'ASC')->orderBy('tanggalmasukbarang', 'ASC')->get();
+        })->whereRaw(DB::raw('(TransaksiBarangMasuk.stockawal IS NOT NULL OR TransaksiBarangKeluar.jumlah IS NOT NULL)'))->WHERE('barang_umkm.user_id', '=', auth()->user()->id)->select('barang_umkm.id', DB::raw('TransaksiBarangMasuk.id as barangmasukid'), 'barang_umkm.nama', 'combinestock.Stockfinalawal', DB::raw("TransaksiBarangMasuk.stockawal as barangmasuk, DATE_FORMAT(TransaksiBarangMasuk.created_at, '%Y-%m-%d') as tanggalmasukbarang, TransaksiBarangKeluar.jumlah as barangkeluar, DATE_FORMAT(TransaksiBarangKeluar.created_at, '%Y-%m-%d') as tanggalkeluarbarang"))->unionAll($LaporanBarangKeluarDifTanggal)->orderBy('id', 'ASC')->orderBy('barangmasukid', 'ASC')->orderBy('tanggalmasukbarang', 'ASC')->get();
         return $LaporanBarang;
     }
 
@@ -159,9 +159,9 @@ class LaporanController extends Controller
             "Barang akan kadaluarsa" =>
             ['ID Barang', 'Tanggal Masuk Barang', 'Nama Barang', "Tanggal Kadaluarsa", 'Jumlah Barang'],
             "Keluar masuk barang" =>
-            ['ID Barang', 'Nama Barang', 'Stok Awal', 'Masuk', 'Tanggal Masuk', 'Keluar', 'Tanggal Keluar', 'Stok Akhir'],
+            ['ID Barang', 'Nama Barang', 'Stok Awal', 'ID Barang', 'Masuk', 'Tanggal Masuk', 'ID Barang', 'Keluar', 'Tanggal Keluar', 'Stok Akhir'],
             "Persediaan stok barang" =>
-            ['ID Barang', 'Nama Barang', 'Jumlah Barang Masuk', 'Jumlah Barang Keluar'],
+            ['ID Barang', 'Nama Barang', 'Jumlah Barang Masuk', 'Jumlah Barang Keluar', 'Stok Barang'],
             "Barang akan habis" =>
             ['ID Barang', 'Nama Barang', 'Jumlah Barang'],
         ];
@@ -177,44 +177,100 @@ class LaporanController extends Controller
                     if($LaporanBarang[$d]->barangmasukid == $LaporanBarang[$d - 1]->barangmasukid){
                         $LaporanBarang[$d]->barangmasuk = 0;
                         $LaporanBarang[$d]->tanggalmasukbarang = "-";
+                        $newData = [ 
+                            "",
+                            "", 
+                            $stockakhir, 
+                            "-",
+                            $LaporanBarang[$d]->barangmasuk,
+                            $LaporanBarang[$d]->tanggalmasukbarang,
+                            '00'.$LaporanBarang[$d]->id.' - '.'00'.$LaporanBarang[$d]->barangmasukid,
+                            $LaporanBarang[$d]->barangkeluar,
+                            $LaporanBarang[$d]->tanggalkeluarbarang,
+                            $stockakhir += $LaporanBarang[$d]->barangmasuk - $LaporanBarang[$d]->barangkeluar
+                        ];
                     }
-                    if($LaporanBarang[$d]->barangmasuk === null){
+                    else if($LaporanBarang[$d]->barangmasuk === null){
                         $LaporanBarang[$d]->barangmasuk = 0;
                         $LaporanBarang[$d]->tanggalmasukbarang = "-";
+                        $newData = [ 
+                            "",
+                            "", 
+                            $stockakhir, 
+                            "-",
+                            $LaporanBarang[$d]->barangmasuk,
+                            $LaporanBarang[$d]->tanggalmasukbarang,
+                            '00'.$LaporanBarang[$d]->id.' - '.'00'.$LaporanBarang[$d]->barangmasukid,
+                            $LaporanBarang[$d]->barangkeluar,
+                            $LaporanBarang[$d]->tanggalkeluarbarang,
+                            $stockakhir += $LaporanBarang[$d]->barangmasuk - $LaporanBarang[$d]->barangkeluar
+                        ];
                     }
                     else if($LaporanBarang[$d]->barangkeluar === null){
                         $LaporanBarang[$d]->barangkeluar = 0;
                         $LaporanBarang[$d]->tanggalkeluarbarang = "-";
+                        $newData = [ 
+                            "",
+                            "", 
+                            $stockakhir, 
+                            '00'.$LaporanBarang[$d]->id.' - '.'00'.$LaporanBarang[$d]->barangmasukid,
+                            $LaporanBarang[$d]->barangmasuk,
+                            $LaporanBarang[$d]->tanggalmasukbarang,
+                            "-",
+                            $LaporanBarang[$d]->barangkeluar,
+                            $LaporanBarang[$d]->tanggalkeluarbarang,
+                            $stockakhir += $LaporanBarang[$d]->barangmasuk - $LaporanBarang[$d]->barangkeluar
+                        ];
                     }
-                    $newData = [ 
-                        "",
-                        "", 
-                        $stockakhir, 
-                        $LaporanBarang[$d]->barangmasuk,
-                        $LaporanBarang[$d]->tanggalmasukbarang,
-                        $LaporanBarang[$d]->barangkeluar,
-                        $LaporanBarang[$d]->tanggalkeluarbarang,
-                        $stockakhir += $LaporanBarang[$d]->barangmasuk - $LaporanBarang[$d]->barangkeluar
-                    ];
+                    else{
+                        $newData = [ 
+                            "",
+                            "", 
+                            $stockakhir, 
+                            '00'.$LaporanBarang[$d]->id.' - '.'00'.$LaporanBarang[$d]->barangmasukid,
+                            $LaporanBarang[$d]->barangmasuk,
+                            $LaporanBarang[$d]->tanggalmasukbarang,
+                            $LaporanBarang[$d]->barangkeluar,
+                            '00'.$LaporanBarang[$d]->id.' - '.'00'.$LaporanBarang[$d]->barangmasukid,
+                            $LaporanBarang[$d]->tanggalkeluarbarang,
+                            $stockakhir += $LaporanBarang[$d]->barangmasuk - $LaporanBarang[$d]->barangkeluar
+                        ];
+                    }
                     $tempidbarang = $LaporanBarang[$d]->id;
                 }else if($id !== $tempidbarang){
-                    if($LaporanBarang[$d]->barangkeluar === null){
-                        $LaporanBarang[$d]->barangkeluar = 0;
-                        $LaporanBarang[$d]->tanggalkeluarbarang = "-";
-                    }
                     $stockakhir = 0;
                     $stockakhir = $LaporanBarang[$d]->Stockfinalawal + $LaporanBarang[$d]->barangmasuk - $LaporanBarang[$d]->barangkeluar;
                     $tempidbarang = $LaporanBarang[$d]->id;
-                    $newData = [ 
-                        $id,
-                        $nama, 
-                        $LaporanBarang[$d]->Stockfinalawal, 
-                        $LaporanBarang[$d]->barangmasuk,
-                        $LaporanBarang[$d]->tanggalmasukbarang,
-                        $LaporanBarang[$d]->barangkeluar,
-                        $LaporanBarang[$d]->tanggalkeluarbarang,
-                        $stockakhir
-                    ];
+                    if($LaporanBarang[$d]->barangkeluar === null){
+                        $LaporanBarang[$d]->barangkeluar = 0;
+                        $LaporanBarang[$d]->tanggalkeluarbarang = "-";
+                        $newData = [ 
+                            $id,
+                            $nama, 
+                            $LaporanBarang[$d]->Stockfinalawal,
+                            '00'.$LaporanBarang[$d]->id.' - '.'00'.$LaporanBarang[$d]->barangmasukid, 
+                            $LaporanBarang[$d]->barangmasuk,
+                            $LaporanBarang[$d]->tanggalmasukbarang,
+                            "-",
+                            $LaporanBarang[$d]->barangkeluar,
+                            $LaporanBarang[$d]->tanggalkeluarbarang,
+                            $stockakhir
+                        ];
+                    }
+                    else{
+                        $newData = [ 
+                            $id,
+                            $nama, 
+                            $LaporanBarang[$d]->Stockfinalawal, 
+                            '00'.$LaporanBarang[$d]->id.' - '.'00'.$LaporanBarang[$d]->barangmasukid,
+                            $LaporanBarang[$d]->barangmasuk,
+                            $LaporanBarang[$d]->tanggalmasukbarang,
+                            '00'.$LaporanBarang[$d]->id.' - '.'00'.$LaporanBarang[$d]->barangmasukid,
+                            $LaporanBarang[$d]->barangkeluar,
+                            $LaporanBarang[$d]->tanggalkeluarbarang,
+                            $stockakhir
+                        ];
+                    }
                 }
                 
                 array_push($barang_arrange, $newData);
@@ -230,6 +286,7 @@ class LaporanController extends Controller
                         $data->nama, 
                         $data->StockMasuk, 
                         $data->StockKeluar,
+                        $data->StockMasuk- $data->StockKeluar
                     ];
                     array_push($barang_arrange, $newData);
             }
@@ -241,7 +298,7 @@ class LaporanController extends Controller
             $barang_arrange = [];
             foreach($BarangAkanKadaluarsa as $data) {
                     $newData = [ 
-                        $data->id, 
+                        '00'.$data->barang_umkm_id.' - '.'00'.$data->id, 
                         $data->TanggalMasukBarang, 
                         $data->nama, 
                         $data->tanggal_kadaluarsa,
