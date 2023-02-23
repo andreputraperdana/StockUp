@@ -26,7 +26,6 @@ class DaftarController extends Controller
         ]);
 
         // dd($validate->errors()->first('email'));
-
         if ($validate->fails()) {
             if ($validate->errors()->first('fotoprofil')) {
                 return response()->json(['stats' => 400, 'error' => $validate->errors(), 'fotoprofil' => $validate->errors()->first('fotoprofil')]);

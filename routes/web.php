@@ -68,7 +68,7 @@ Route::post('/tambahbarang', [TambahBarangController::class, 'inputbarang'])->na
 
 Route::get('/laporan', [LaporanController::class, 'getindex']);
 
-Route::post('/laporanbarang',[LaporanController::class, 'getdatalaporan']);
+Route::post('/laporanbarang',[LaporanController::class, 'GetPreviewLaporan']);
 
 Route::get('/mengelolabarang', [MengelolaBarangController::class, 'getindex']);
 
@@ -120,7 +120,7 @@ Route::get('/toko/filterkategori/{jenis}', [TokoController::class, 'getDataByKat
 
 // Route::get('/laporan/cetak_pdf/{jenis}/{start}/{end}', [LaporanController::class, 'cetak_pdf']);
 
-Route::get('/laporan/cetak_pdf', [LaporanController::class, 'cetak_pdf']);
+Route::get('/laporan/cetak_pdf', [LaporanController::class, 'DownloadLaporan']);
 
-Route::get('/toko/filterharga', [TokoController::class, 'filterharga']);
+Route::get('/toko/filterharga', [TokoController::class, 'FilterBarang']);
 

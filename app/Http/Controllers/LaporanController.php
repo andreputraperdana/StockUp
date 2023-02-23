@@ -28,7 +28,7 @@ class LaporanController extends Controller
         return view('laporan', ['flag' => $flag, 'Totalnotif' => $TotalNotif]);
     }
 
-    public function getdatalaporan(Request $request)
+    public function GetPreviewLaporan(Request $request)
     {
         $inputlaporan = $request->all();
         $tanggalawalLaporan = $inputlaporan['input_tanggalawal'];
@@ -88,7 +88,7 @@ class LaporanController extends Controller
             $LaporanBarang =  $this->GetKeluarMasukBarang($tanggalawalLaporan, $tanggalakhirLaporan);
             return response()->json(['stats' => 100, 'laporanbarang' => $LaporanBarang, 'jenislaporan' => $inputlaporan['jenislaporan'], 'periodeawal' => $tanggalawalLaporan, 'periodeakhir' => $tanggalakhirLaporan]);
         } else if ($inputlaporan['jenislaporan'] == "Persediaan stok barang") {
-            $StockBarang = $this->GetPersediaanBarang($tanggalawalLaporan, $tanggalakhirLaporan);
+            $StockBarang = $this->GetJumlahStockBarang($tanggalawalLaporan, $tanggalakhirLaporan);
             return response()->json(['stats'=>200, 'stockbarang' => $StockBarang, 'jenislaporan'=> $inputlaporan['jenislaporan'], 'periodeawal' => $tanggalawalLaporan, 'periodeakhir' => $tanggalakhirLaporan]);
         } else if ($inputlaporan['jenislaporan'] == "Barang akan kadaluarsa") {
             $BarangAkanKadalurasa = $this->GetBarangKadaluarsa($tanggalawalLaporan, $tanggalakhirLaporan);
@@ -121,7 +121,7 @@ class LaporanController extends Controller
         return $LaporanBarang;
     }
 
-    public function GetPersediaanBarang($tanggalawalLaporan, $tanggalakhirLaporan){
+    public function GetJumlahStockBarang($tanggalawalLaporan, $tanggalakhirLaporan){
         $persediaanStockBarang = BarangUMKM::join(DB::raw("(SELECT a.barang_umkm_id, SUM(a.stockawal) as StockMasuk, SUM(b.total) as StockKeluar FROM transaksi_barang_masuk a LEFT JOIN(SELECT transaksi_barang_masuk_id, SUM(jumlah) as total FROM transaksi_barang_keluar WHERE DATE_FORMAT(created_at, '%Y-%m-%d') BETWEEN DATE_FORMAT('" . $tanggalawalLaporan . "','%Y-%m-%d') AND DATE_FORMAT('" . $tanggalakhirLaporan . "','%Y-%m-%d') GROUP BY transaksi_barang_masuk_id) b 
         on a.id = b.transaksi_barang_masuk_id where DATE_FORMAT(a.created_at, '%Y-%m-%d') BETWEEN DATE_FORMAT('" . $tanggalawalLaporan . "','%Y-%m-%d') AND DATE_FORMAT('" . $tanggalakhirLaporan . "','%Y-%m-%d') GROUP BY a.barang_umkm_id) final")
         , function($join){
@@ -149,7 +149,7 @@ class LaporanController extends Controller
         return $AllNotifBarang;
     }
 
-    public function cetak_pdf()
+    public function DownloadLaporan()
     {
         $jenis = str_replace('%20', ' ', request()->jenis_laporan);
         $tanggalawalLaporan = request()->start;
@@ -222,7 +222,7 @@ class LaporanController extends Controller
             $pdf = PDF::loadView('isilaporan', ['LaporanBarang' => $barang_arrange, 'jenis' => $jenis, 'tanggalawalLaporan' => $tanggalawalLaporan, 'tanggalakhirLaporan' => $tanggalakhirLaporan, 'table_head' => $table_head[$jenis]]);
             return $pdf->download('Laporan - Keluar Masuk Barang.pdf');
         } else if ($jenis == "Persediaan stok barang") {
-            $LaporanBarang =  $this->GetPersediaanBarang($tanggalawalLaporan, $tanggalakhirLaporan);
+            $LaporanBarang =  $this->GetJumlahStockBarang($tanggalawalLaporan, $tanggalakhirLaporan);
             $barang_arrange = [];
             foreach($LaporanBarang as $data) {
                     $newData = [ 

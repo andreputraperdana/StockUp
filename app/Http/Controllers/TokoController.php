@@ -41,7 +41,7 @@ class TokoController extends Controller
         return $AllNotifBarang;
     }
 
-    public function filterharga(){
+    public function FilterBarang(){
         $hargaRendah = request()->hargaRendah;
         $hargaTinggi = request()->hargaTinggi;
         $minHarga = request()->minHarga;
